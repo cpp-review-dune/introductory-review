@@ -1,0 +1,600 @@
+% arara: xelatex
+%! arara: bibtex
+% arara: xelatex
+% arara: xelatex
+% !TEX program = xelatex
+%%% !BIB program = default
+\documentclass[11pt]{book}
+\usepackage{amsmath}%,amssymb} % paper color: #000000 (black)
+%%% !TEX program = xelatex                %   #FFFFFF (white)
+%%% !BIB program = default
+%\bigl \Bigl \biggl \Biggl
+\interdisplaylinepenalty=2500 % breaking the equations between pages
+%\usepackage[utf8]{inputenc}
+%\usepackage{stix}
+%\usepackage[charter]{mathdesign}
+%\usepackage{fouriernc}
+%\makeatletter   %% se necesita para arreglar los tamaños de big, Big, bigg, Bigg, etc.
+%\AtBeginDocument{%
+%    \@ifpackageloaded{amsmath}{
+%        \def\bBigg@#1#2{%
+%            {\@mathmeasure\z@{\nulldelimiterspace\z@}%
+%                {\delimiterfactor=1000\relax \left#2\vcenter to#1\big@size{}\right.}%
+%                \box\z@}}}{
+%        \PackageError{master}{Are you kidding, you're not using amsmath?!}{}
+%}}
+%\makeatother                       % para 10pt, elegir 0.82
+%%\usepackage[scale=0.92]{tgschola}  % para 11.2pt, elegir 0.92
+%\usepackage[T1]{fontenc}
+%\usepackage{dsfont} %reemplaza mathbb, try \mathds{1} k, and h
+%\usepackage{inconsolata}
+%%\usepackage[scaled]{beramono}
+%%\renewcommand*familydefault{ttdefault}
+%%\usepackage[cal=boondoxo]{mathalfa}
+
+%\usepackage[spanish,es-nolists,es-ucroman,es-nolayout,es-nodecimaldot,es-tabla]{babel}
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{spanish}
+\defaultfontfeatures{Scale=MatchLowercase}
+%\defaultfontfeatures{Ligatures=TeX} % or Ligatures=Common
+%\setmainfont[Ligatures=TeX]{Heuristica}
+%\setmainfont[Ligatures=TeX]{Adobe Text Pro}  % muy bueno
+%\setmainfont{erewhon}
+%\setmainfont[Ligatures=TeX]{Fluria}  % letra corrida luce bien, pero negrita no es tan negrita
+\setmainfont[Ligatures=TeX]{Cambria}
+\setsansfont{Calibri}[Scale=MatchLowercase]
+%\setsansfont{Myriad Pro}[Scale=MatchLowercase]
+%%\setmonofont{Inconsolata}[Scale=MatchLowercase]  % no permite comentarios en italica
+\setmonofont{Consolas}[Scale=0.9]%[Scale=MatchLowercase]
+\usepackage{unicode-math}
+\unimathsetup{math-style=ISO,bold-style=ISO}
+\setmathfont{Cambria Math}[Scale=MatchLowercase] % mas bonito que Asana y signo de suma mas grande
+%\setmathfont{Asana Math}[Scale=MatchLowercase]
+%\setmathfont{Erewhon Math}[CharacterVariant={3,4,6},StylisticSet={4,5,6,7}]
+%\setmathfont{MdSymbol}   % buen simbolo para fuentes matematicas
+%\setmathfont{MathJax_SansSerif}[Scale=MatchLowercase]
+\addto\captionsspanish{%
+%    \renewcommand{\tablename}{Tabla}%
+%    \renewcommand{\listtablename}{Índice de tablas}%
+\renewcommand{\contentsname}{Contenidos}
+}
+
+\usepackage{graphicx}
+\graphicspath{{./figuras/}}
+\usepackage[a4paper,twoside]{geometry}
+\geometry{
+  height=24.5cm,
+  left=2cm,
+  right=2.3cm,
+  top=3cm,
+  headheight=14.5pt
+}
+\usepackage{pifont,bbding}
+\usepackage[x11names,table,xcdraw]{xcolor}
+%\color[HTML]{A9F5BC}
+\usepackage{colortbl}
+\usepackage{paralist} %% new possibilities for enumerate and itemize environments
+\setdefaultenum{(1)}{(a)}{(i)}{1)}
+\setdefaultleftmargin{}{\parindent}{\parindent}{}{}{}
+
+\definecolor{rubrojo}{rgb}{0.82,0.00,0.41}
+\definecolor{rubverde}{rgb}{0.00,0.57,0.28}
+\definecolor{rubblue}{rgb}{0.00,0.50,0.75}  % for screen use this color
+\definecolor{rubblue2}{rgb}{0.00,0.00,0.60}
+%\usepackage[arrowdel]{physics}
+\usepackage[ISO]{diffcoeff}
+\usepackage{hyperref}
+\hypersetup{%
+  pdftitle={Álgebra Lineal Numérica},
+  pdfauthor={Rubén Agapito},
+  pdfstartview={FitH},
+  plainpages=false,
+  bookmarksnumbered,
+  breaklinks=true,
+  urlcolor=blue,
+  menucolor=rubverde,
+  linkcolor=rubblue2,
+  %linktocpage,
+  colorlinks=true
+}
+%\renewcommand{\baselinestretch}{1.1}
+%\frenchspacing
+%\usepackage[e]{esvect}
+%%---------------------------------------
+\usepackage{stackengine}
+\newlength\shlength
+\newcommand\shvec[2][0]{\setlength\shlength{#1pt}%
+    \stackengine{-5.2pt}{$#2$}
+    {\smash{$\kern\shlength\mathchar"017E\kern-\shlength$}}{O}{c}{F}{T}{S}
+}
+\newcommand\shlongvec[2][0]{\setlength\shlength{#1pt}%
+    \stackengine{-5.2pt}{$#2$}{\smash{$\kern\shlength%
+            \stackengine{4.42pt}{$\mathchar"017E$}{$-$}{O}{r}{F}{F}{L}\kern-\shlength$}}%
+    {O}{c}{F}{T}{S}}
+% Ejemplos: \shvec[-.5]{r}'   \shlongvec[.5]{A}   \shlongvec[0]{w}
+%%---------------------------------------
+\usepackage[algo2e,lined,linesnumbered,algochapter,ruled]{algorithm2e}
+%
+\SetKwInput{KwIn}{Entrada}
+\SetKwInput{KwOut}{Salida}
+\SetKwInput{KwData}{Data}
+\SetKwInput{KwResult}{Resultado}
+\SetAlgorithmName{Algoritmo}{Algo}{Lista de Algoritmos}
+\usepackage{xargs}
+\newcommandx\listavec[3][1=1,3=n]{\bigl\{\shvec[-.5]{#2}_{#1},\dotsc,\shvec[-.5]{#2}_{#3}\bigr\}}
+\newcommandx\listauni[3][1=1,3=n]{\bigl\{\Hat{#2}_{#1},\dotsc,\Hat{#2}_{#3}\bigr\}}
+\usepackage{url}
+\usepackage[amsmath,thmmarks,hyperref]{ntheorem}
+\usepackage[ntheorem=true,framemethod=pgf,%
+splittopskip=\topskip,splitbottomskip=\topskip,
+innertopmargin=.5em]{mdframed}
+\usetikzlibrary{calc}
+%\usepackage{nicematrix}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{%
+\markboth{\chaptername \ \thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{%
+\markright{\thesection.\ #1}} %
+\fancyhf{} %
+\fancyhead[LE,RO]{\bfseries\thepage} %
+\fancyhead[LO]{\bfseries \rightmark} %
+\fancyhead[RE]{\bfseries \leftmark}
+\fancypagestyle{plain}{%
+  \fancyhead{}           % get rid of headers
+  \renewcommand{\headrulewidth}{0pt} % and the line
+}
+\definecolor{mifondo}{rgb}{0.82,0.82,0.91}
+\definecolor{deficolor}{rgb}{.9,.9,1}
+\definecolor{ejercolor}{rgb}{0.90,0.90,0.90}
+\definecolor{probcolor}{rgb}{0.89,0.97,0.97}
+\definecolor{teocolor}{rgb}{0.89,0.99,0.89}
+\definecolor{defibgcolor}{rgb}{.9,.9,1}
+\definecolor{migris}{rgb}{0.75,0.75,0.75}
+\newcommand{\finejm}{\ding{79}}
+\newcommand{\finrema}{\ding{78}}
+
+\theoremstyle{plain} %
+\theoremheaderfont{\ttfamily\bfseries} %
+\theorembodyfont{\normalfont}
+\theoremsymbol{} %
+\theoremseparator{.}
+\newtheorem{mdefi}{Definición}[chapter]
+%\newtheorem{mdefi}{Def\/inición}[chapter]
+
+\theoremstyle{plain}
+\theorembodyfont{\normalfont}
+\theoremheaderfont{\ttfamily\bfseries}
+\theoremseparator{:}
+\theoremsymbol{}
+\newtheorem{miejer}{Ejercicio}[section]
+
+\mdfdefinestyle{paraejer}{
+  backgroundcolor=ejercolor,
+  roundcorner=6pt,
+  outerlinewidth=.5,
+  linecolor=gray,
+  skipbelow=.2em,
+  skipabove=1em,
+  innerleftmargin=6pt,
+  innerrightmargin=6pt}
+\newenvironment{Ejercicio}{\begin{mdframed}[style=paraejer]\begin{miejer}}{\end{miejer}\end{mdframed}}
+
+%% -- para usar mdframed con mdefi
+\newenvironment{defi}{
+  \begin{mdframed}%
+  [backgroundcolor=defibgcolor,
+  roundcorner=6pt,
+  outerlinewidth=.5,
+  linecolor=blue,
+  skipbelow=\baselineskip,%
+  skipabove=\baselineskip,
+  innerleftmargin=6pt,
+  innerrightmargin=6pt]%
+ \begin{mdefi}}{\end{mdefi}\end{mdframed}}
+
+ \theoremstyle{plain}
+\theorembodyfont{\itshape}
+%\theoremheaderfont{\scshape\bfseries} %
+\theoremheaderfont{\ttfamily\bfseries} %
+\theoremsymbol{} %
+\theoremseparator{.}
+\newtheorem{mteo}[mdefi]{Teorema}
+\newtheorem{mcor}[mdefi]{Corolario}
+\newtheorem{mlem}[mdefi]{Lema}
+\newtheorem{mprop}[mdefi]{Proposición}
+%\newtheorem*{teoin}{Teorema de la Funcion Inversa}
+%% -- para usar mdframed con mteo
+\newenvironment{teo}{\begin{mdframed}%
+ [backgroundcolor=teocolor,roundcorner=6pt,
+ outerlinewidth=.5,linecolor=green,skipbelow=\baselineskip,%
+skipabove=\baselineskip,innerleftmargin=6pt,innerrightmargin=6pt]%
+ \begin{mteo}}{\end{mteo}\end{mdframed}}
+\newenvironment{cor}{\begin{mdframed}%
+ [backgroundcolor=teocolor,roundcorner=6pt,
+ outerlinewidth=.5,linecolor=green,skipbelow=\baselineskip,%
+skipabove=\baselineskip,innerleftmargin=6pt,innerrightmargin=6pt]%
+ \begin{mcor}}{\end{mcor}\end{mdframed}}
+
+\newenvironment{lem}{
+  \begin{mdframed}%
+  [backgroundcolor=teocolor,
+  roundcorner=6pt,
+  outerlinewidth=.5,
+  linecolor=green,
+  skipbelow=\baselineskip,%
+  skipabove=\baselineskip,
+  innerleftmargin=6pt,
+  innerrightmargin=6pt]%
+ \begin{mlem}}{\end{mlem}\end{mdframed}}
+\newenvironment{prop}{
+  \begin{mdframed}%
+  [backgroundcolor=teocolor,
+  roundcorner=6pt,
+  outerlinewidth=.5,
+  linecolor=green,
+  skipbelow=\baselineskip,%
+  skipabove=\baselineskip,
+  innerleftmargin=6pt,
+  innerrightmargin=6pt]%
+ \begin{mprop}}{\end{mprop}\end{mdframed}}
+
+\theoremstyle{plain} %
+\theoremheaderfont{\scshape\bfseries} %
+\theorembodyfont{\normalfont}
+\theoremsymbol{\text{\finrema}} %
+\theoremseparator{.}
+\newtheorem{obs}[mdefi]{Observación}
+
+\theoremstyle{plain} %
+\theoremheaderfont{\scshape\bfseries} %
+\theorembodyfont{\normalfont}
+\theoremsymbol{\text{\finrema}} %
+\theoremseparator{.}
+\newtheorem{obss}[mdefi]{Observaciones}
+
+\newcounter{exa}[chapter]
+%\renewcommand\theexa{\thechapter.\arabic{exa}}
+\renewcommand\theexa{\arabic{exa}}
+
+\newlength\mylen% to hols the width of the title
+
+\newmdenv[
+  settings={
+    \global\refstepcounter{exa}
+    \settowidth\mylen{\bfseries\color{blue}Ejemplo~\theexa}},
+  leftline=false,
+  linecolor=blue,
+  middlelinewidth=1pt,
+  innertopmargin=30pt,
+  innerbottommargin=10pt,
+  innerleftmargin=0pt,
+  skipbelow=1.3\topsep,
+  singleextra={
+    \path node[
+      font=\bfseries\color{blue},
+      anchor=west,
+      yshift=-12pt,
+      inner sep=0pt] at (O|-P) {Ejemplo~\theexa};
+    \draw[ultra thick,blue] ([yshift=.5\pgflinewidth]O|-P) -- ++(\mylen,0pt);
+    \draw[line width=2pt,white] (O) -- ($(P|-O)+(-2cm,0pt)$) node (A){};
+    \node[
+      anchor=south west,
+      fill=blue,
+      inner sep=3pt,
+      outer sep=0pt
+    ] at (A) {};
+  },
+  firstextra={
+    \path node[
+      font=\bfseries\color{blue},
+      anchor=west,
+      yshift=-12pt,
+      inner sep=0pt
+    ] at (O|-P) {Ejemplo~\theexa};
+    \draw[ultra thick,blue] ([yshift=.5\pgflinewidth]O|-P) -- ++(\mylen,0pt);
+  },
+  secondextra={
+    \draw[line width=2pt,white] (O) -- ($(P|-O)+(-2cm,0pt)$) node (A){};
+    \node[
+      anchor=south west,
+      fill=blue,
+      inner sep=3pt,
+      outer sep=0pt
+    ] at (A) {};
+  }
+]{ejm}
+
+\theoremstyle{plain} %
+\theorembodyfont{\normalfont} %
+\theoremheaderfont{\ttfamily\bfseries} %
+\theoremseparator{:} %
+\theoremsymbol{}
+\newtheorem{mejer}{Problema}
+
+\mdfdefinestyle{paraejer}{
+  backgroundcolor=probcolor,
+  roundcorner=6pt,
+  outerlinewidth=.5,
+  linecolor=gray,
+  skipbelow=.2em,%
+  skipabove=1em,
+  innerleftmargin=6pt,
+  innerrightmargin=6pt
+}
+
+\newenvironment{prob}{\begin{mdframed}%
+ [style=paraejer]%
+ \begin{mejer}}{\end{mejer}\end{mdframed}}
+
+\theoremstyle{nonumberplain} %
+\theorembodyfont{\normalfont} %
+%\theoremheaderfont{\scshape\bfseries} %
+\theoremheaderfont{\sc\bfseries} %
+\theoremseparator{.} %
+\theoremsymbol{\ding{111}}
+\newtheorem{prueba}{Prueba}
+
+\theoremstyle{nonumberplain} %
+\theorembodyfont{\normalfont} %
+%\theoremheaderfont{\rubf} %
+\theoremheaderfont{\sc\bfseries} %
+\theoremseparator{.} %
+\theoremsymbol{\HandPencilLeft}
+\newtheorem{resol}{Resolución}
+
+\DeclareMathOperator{\Sen}{sen} %no se necesita con xelatex
+\DeclareMathOperator{\rank}{rank}  % rango de una matriz
+\DeclareMathOperator{\nuli}{nul}   % nulidad de una matriz
+\newcommand{\Gen}[1]{\operatorname{Gen}\bigl(#1\bigr)}    % generado de un cjto de vectores
+\DeclareMathOperator{\Ker}{Ker}    % kernel de una matriz
+\DeclareMathOperator{\Col}{Col}    % espacio columnas de una matriz
+%\DeclareMathOperator{\dif}{d\!}
+\newcommand{\proy}[2]{\operatorname{Proy}_{\shvec[-.5]{#2}}\bigl(\shvec[-.5]{#1}\bigr)}
+\DeclareMathOperator{\expo}{e}  % funcion exponencial
+%\DeclareMathOperator{\arcsen}{arcsen} %no se necesita con xelatex
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsenh}{arcsenh}
+\newcommand{\milim}{\lim\limits_{n\to\infty}}
+%\newcommand{\R}{\mathds{R}}    % if we use dsfont package: {\mathds{R}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\mathbb{F}}   % a general field, real or complex
+%\newcommand{\Cn}{\mathds{C}}  % complex number
+%\newcommand{\beqst}{\begin{equation*}}
+\newcommand{\eps}{\varepsilon}
+%\newcommand{\eeqst}{\end{equation*}}
+%\newcommand{\beq}{\begin{equation}}
+%\newcommand{\eeq}{\end{equation}}
+%\DeclarePairedDelimiter\abs{\lvert}{\rvert}   % valor absoluto, tambien usa
+                        % y opciones como \abs[big], \abs[bigg]
+\newcommand{\cepto}[1]{{\em{\textbf{#1}}}}
+%\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+\newcommand{\abs}[1]{ \left\lvert#1\right\rvert} % absolute value: single vertical bars
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert} % norm: double vertical bars
+%\newcommand{\eqdef}{\ensuremath{\mathrel{\stackrel{\mathrm{def}}{=}}}}
+\newcommand{\espaciofig}{\vspace*{5cm}}
+\newcommand{\vacio}{\emptyset}
+\newcommand{\soluejm}{\noindent{\bf\color{blue} Resolución. }}
+\newcommand{\co}{\colon\thinspace}
+
+% ---- para producto interno -----
+\makeatletter
+\newcommand*{\midot}{%
+  \mathbin{\mathpalette\midot@{}}%
+}
+\newcommand*{\midot@scalefactor}{.5}
+\newcommand*{\midot@widthfactor}{1.15}
+\newcommand*{\midot@}[2]{%
+  % #1: math style
+  % #2: unused
+  \sbox0{$#1\vcenter{}$}% math axis
+  \sbox2{$#1\cdot\m@th$}%
+  \hbox to \midot@widthfactor\wd2{%
+    \hfil
+    \raise\ht0\hbox{%
+      \scalebox{\midot@scalefactor}{%
+        \lower\ht0\hbox{$#1\bullet\m@th$}%
+      }%
+    }%
+    \hfil
+  }%
+}
+\makeatother
+% ----------------
+\title{Programación en \texttt{C++}}
+\author{Rubén Agapito}
+\date{2021--1}
+
+%\renewcommand{\spanishindexname}{Indice}  % se antepone spanish para uso, no se necesita con xelatex
+%\renewcommand{\spanishcontentsname}{Contenidos}    % no se necesita con xelatex
+
+\usepackage{listings}
+\renewcommand*\lstlistlistingname{Programas}
+\renewcommand*\lstlistingname{Programa}
+% \definecolor{listinggray}{gray}{0.9}
+\definecolor{migris}{HTML}{EFFBEF}
+\lstdefinelanguage{cpprub}{%
+  language     = {[ISO]C++},
+  % morekeywords = {syms,sym,pretty}
+}
+
+\lstset{
+  upquote=true,
+	tabsize=4,
+	% rulecolor=,
+  inputpath=programas,
+%	language=matlab,
+  numberstyle=\footnotesize\color{gray}\ttfamily,
+% basicstyle=\small\ttfamily,
+  basicstyle=\ttfamily\small\bfseries,
+% upquote=true,
+  aboveskip={0.7\baselineskip},
+% columns=fixed,
+  showstringspaces=false,
+  extendedchars=true,
+  breaklines=true,
+  prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+% frame=single,
+  showtabs=false,
+  showspaces=false,
+  showstringspaces=false,
+  identifierstyle=\ttfamily,
+  keywordstyle=\color[rgb]{0,0,1},
+  commentstyle=\itshape\color[rgb]{0.133,0.545,0.133},
+  stringstyle=\color[rgb]{0.627,0.126,0.941},
+  literate=%
+    {á}{{\'a}}1
+    {í}{{\'i}}1
+    {é}{{\'e}}1
+    {ú}{{\'u}}1
+    {ó}{{\'o}}1
+    {ñ}{{\~n}}1
+    {¿}{{?`}}1%
+}
+
+\lstnewenvironment{formula}
+{\lstset{
+  language=cpprub,
+  basicstyle=\ttfamily\small\bfseries,
+  showstringspaces=false,
+  extendedchars=true,
+  breaklines=true,
+  showtabs=false,
+  showspaces=false,
+  showstringspaces=false,
+  % morekeywords={long},
+  backgroundcolor=\color{PeachPuff1},
+  %columns=flexible,
+  identifierstyle=\ttfamily,
+  keywordstyle=\color[rgb]{0,0,1},
+  commentstyle=\color[rgb]{0.133,0.545,0.133},
+  stringstyle=\color[rgb]{0.627,0.126,0.941},
+  frame=single}}{}
+
+% TODO: Incluir archivo con la configuración de arriba (formula).
+\providecommand*{\includeformula}[1][]{%
+	\lstinputlisting[{
+    language=cpprub,
+    basicstyle=\ttfamily\small\bfseries,
+    showstringspaces=false,
+    extendedchars=true,
+    breaklines=true,
+    showtabs=false,
+    showspaces=false,
+    showstringspaces=false,
+    % morekeywords={long},
+    backgroundcolor=\color{PeachPuff1},
+    %columns=flexible,
+    identifierstyle=\ttfamily,
+    keywordstyle=\color[rgb]{0,0,1},
+    commentstyle=\color[rgb]{0.133,0.545,0.133},
+    stringstyle=\color[rgb]{0.627,0.126,0.941},
+    frame=single,
+    #1
+  }]
+}
+
+\newcommand{\micod}[1]{\lstinline[columns=flexible]{#1}}
+
+\lstnewenvironment{cppinput}
+{\lstset{
+  frame=shadowbox,
+  numbers=left,
+  stepnumber=1,
+  language=cpprub,
+  mathescape=true,
+  columns=fixed,%
+  backgroundcolor=\color{LavenderBlush1},
+  rulesepcolor=\color{black}
+  }}{}
+
+% TODO: Incluir archivo con la configuración de arriba (formula).
+% TODO: https://tex.stackexchange.com/a/249065/117967
+\providecommand*{\includecppinput}[1][]{%
+	\lstinputlisting[{
+    frame=shadowbox,
+    numbers=left,
+    stepnumber=1,
+    language=cpprub,
+    mathescape=true,
+    columns=fixed,%
+    backgroundcolor=\color{LavenderBlush1},
+    rulesepcolor=\color{black},
+    #1
+  }]
+}
+
+\lstnewenvironment{cppoutput}
+{\lstset{
+  frame=single,
+  columns=flexible,
+  keepspaces=true,
+  mathescape=true
+  }}{}
+
+% TODO: Incluir archivo con la configuración de arriba (formula).
+\providecommand*{\includecppoutput}[1][]{%
+	\lstinputlisting[{
+    frame=single,
+    columns=flexible,
+    keepspaces=true,
+    mathescape=true,
+    #1
+  }]
+}
+
+\hyphenation{mat-lab Su-pon-ga-mos ei-gen-es-pa-cio}
+\begin{document}
+\frontmatter %
+\pagenumbering{alph}
+\thispagestyle{empty}
+\maketitle %
+%\shorttoc{Esbozo de Contenidos}{1} %
+\clearpage\pagenumbering{roman}
+\tableofcontents
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{section}{\bf Listado de Programas}%
+\lstlistoflistings
+% \listoftables
+% \listoffigures
+
+%%%% Beginning of preface
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\protect\numberline{}Prefacio}
+\chapter*{Prefacio}
+\markboth{Prefacio}{Prefacio}
+
+Los contenidos de estas notas están bajo constante supervisión. Si existe
+alguna sugerencia o error, por favor mandar un correo electrónico al autor:
+\href{mailto:ruben.agapito@pucp.pe}{ruben.agapito@pucp.pe}
+
+\vspace{1cm}
+\begin{flushleft}
+	Rubén Agapito \\
+	San Miguel, marzo de 2021 \\
+	Lima, Perú.
+\end{flushleft}
+%\cleardoublepage
+%%%% End of preface
+
+\mainmatter
+\clearpage\pagenumbering{arabic}
+% \include{cap01aln}
+\include{Arreglos}
+\include{Vectores}
+% \include{rubcap3}
+% \include{chap2cal4}
+% \include{rubcap4}
+% \include{rubcap5}
+\backmatter
+
+% \cleardoublepage
+% \renewcommand{\baselinestretch}{1}   %%<-- achicar espacio para indice
+% \phantomsection
+% \addcontentsline{toc}{chapter}{\indexname}%
+% \printindex
+\end{document}

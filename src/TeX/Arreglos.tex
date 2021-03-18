@@ -1,0 +1,34 @@
+\chapter{Arreglos}
+
+Esta teoría es parte del legado de \texttt{C++}. Un arreglo es un tipo de data compuesto o data estructurada. Todos los elementos deben ser del mismo tipo y cada elemento puede ser accesado directamente. Algunas características:
+\begin{compactitem}
+\item No pueden cambiar de tamaño una vez creados.
+\item Todos los elementos son del mismo tipo.
+\item Sus elementos son guardados contiguamente en memoria.
+\item Elementos individuales son accesibles por su posición o índice.
+\item Su primer elemento tiene índice cero.
+\item Su último elemento tiene índice \texttt{size-1}.
+\item Es responsabilidad del programador accesar los elementos de un arreglo dentro de sus límites.
+\item Es una buena costumbre inicializar los arreglos.
+\end{compactitem}
+
+Al declarar arreglos debemos usar la siguiente sintaxis:
+\begin{center}
+\micod{TipoDeElemento NombreDeArreglo [número constante de elementos];}
+\end{center}
+
+Veamos algunos ejemplos con inicialización de elementos del arreglo:
+\includeformula{1.cc}
+
+Para accesar a los elementos de un arreglo la sintaxis es:
+\begin{center}
+\micod{nombre_arreglo[índice_de_elemento]}
+\end{center}
+Veamos un ejemplo
+\includeformula{2.cc}
+Usamos la misma sintaxis si deseamos guardar información en el arreglo:
+\includeformula{3.cc}
+Veamos ahora un programa que resuma lo que hemos visto hasta el momento:
+\includecppinput{4.cc}
+Luego de compilar este archivo y e ingresar una data cuando el archivo es ejecutado, obtenemos:
+\includecppoutput{salida4}
