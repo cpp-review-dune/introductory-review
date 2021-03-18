@@ -43,7 +43,7 @@ RUN echo '[multilib]' >> /etc/pacman.conf && \
 #     binutils gcc gcc-libs icu lib32-glibc lib32-icu"
 
 ENV MAIN_PKGS="\    
-    java-runtime texlive-core"
+    java-runtime texlive-core texlive-latexextra"
 
 RUN pacman -Syu --noconfirm &&\
     pacman -S --noconfirm $MAIN_PKGS &&\
