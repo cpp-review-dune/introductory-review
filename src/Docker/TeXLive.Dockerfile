@@ -14,7 +14,7 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 ENV MAIN_PKGS="\
     java-runtime texlive-core ttf-vista-fonts"
 
-RUN sudo -u aur yay --noconfirm -Sy $MAIN_PKGS && \
+RUN sudo -u aur yay --noconfirm -Syu $MAIN_PKGS && \
     sudo -u aur yay --afterclean --removemake --save && \
     sudo -u aur yay -Qtdq | xargs -r sudo -u aur yay --noconfirm -Rcns && \
     rm -rf /home/aur/.cache
