@@ -1,6 +1,7 @@
 # Copyleft (c) March, 2021, Oromion.
 # https://dev.to/cloudx/testing-our-package-build-in-the-docker-world-34p0
 # https://github.com/alersrt/texlive-archlinux-docker/blob/master/Dockerfile
+
 FROM archlinux:base-devel
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
@@ -28,7 +29,6 @@ RUN echo '[multilib]' >> /etc/pacman.conf && \
     sudo -u aur git clone --depth 1 "https://aur.archlinux.org/$AUR_PACKAGE.git" && \
     cd $AUR_PACKAGE && \
     sudo -u aur makepkg --noconfirm -si && \
-    # sudo -u aur yay --afterclean --removemake --save && \
     pacman -Qtdq | xargs -r pacman --noconfirm -Rcns && \
     rm -rf /home/aur/.cache && \
     rm -rf /build
@@ -45,11 +45,5 @@ RUN pacman -Syu --noconfirm &&\
     # pacman -S --noconfirm biber ghostscript ruby perl-tk psutils dialog ed poppler-data &&\
     # pacman -S --noconfirm python python-{pandas,matplotlib,numpy,scipy,sympy} &&\
     pacman -Scc --noconfirm
-
-# sudo -u aur yay --noconfirm -Sy $DEV_PKGS && \
-# sudo -u aur yay --noconfirm -S $MAIN_PKGS && \
-RUN sudo -u aur yay --afterclean --removemake --save && \
-    sudo -u aur yay -Qtdq | xargs -r sudo -u aur yay --noconfirm -Rcns && \
-    rm -rf /home/aur/.cache
 
 CMD ["/bin/bash"]
