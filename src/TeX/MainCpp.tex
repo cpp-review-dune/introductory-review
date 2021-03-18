@@ -14,16 +14,16 @@
 %\usepackage{stix}
 %\usepackage[charter]{mathdesign}
 %\usepackage{fouriernc}
-%\makeatletter   %% se necesita para arreglar los tamaños de big, Big, bigg, Bigg, etc.
-%\AtBeginDocument{%
-%    \@ifpackageloaded{amsmath}{
-%        \def\bBigg@#1#2{%
-%            {\@mathmeasure\z@{\nulldelimiterspace\z@}%
-%                {\delimiterfactor=1000\relax \left#2\vcenter to#1\big@size{}\right.}%
-%                \box\z@}}}{
-%        \PackageError{master}{Are you kidding, you're not using amsmath?!}{}
-%}}
-%\makeatother                       % para 10pt, elegir 0.82
+% \makeatletter   %% se necesita para arreglar los tamaños de big, Big, bigg, Bigg, etc.
+% \AtBeginDocument{%
+% 	\@ifpackageloaded{amsmath}{
+% 		\def\bBigg@#1#2{%
+% 			{\@mathmeasure\z@{\nulldelimiterspace\z@}%
+% 					{\delimiterfactor=1000\relax \left#2\vcenter to#1\big@size{}\right.}%
+% 					\box\z@}}}{
+% 		\PackageError{master}{Are you kidding, you're not using amsmath?!}{}
+% 	}}
+% \makeatother                       % para 10pt, elegir 0.82
 %%\usepackage[scale=0.92]{tgschola}  % para 11.2pt, elegir 0.92
 %\usepackage[T1]{fontenc}
 %\usepackage{dsfont} %reemplaza mathbb, try \mathds{1} k, and h
@@ -56,9 +56,9 @@
 %\setmathfont{MdSymbol}   % buen simbolo para fuentes matematicas
 %\setmathfont{MathJax_SansSerif}[Scale=MatchLowercase]
 \addto\captionsspanish{%
-%    \renewcommand{\tablename}{Tabla}%
-%    \renewcommand{\listtablename}{Índice de tablas}%
-\renewcommand{\contentsname}{Contenidos}
+	% \renewcommand{\tablename}{Tabla}%
+	% \renewcommand{\listtablename}{Índice de tablas}%
+	\renewcommand{\contentsname}{Contenidos}
 }
 
 \usepackage{graphicx}
@@ -106,13 +106,13 @@
 \usepackage{stackengine}
 \newlength\shlength
 \newcommand\shvec[2][0]{\setlength\shlength{#1pt}%
-    \stackengine{-5.2pt}{$#2$}
-    {\smash{$\kern\shlength\mathchar"017E\kern-\shlength$}}{O}{c}{F}{T}{S}
+	\stackengine{-5.2pt}{$#2$}
+	{\smash{$\kern\shlength\mathchar"017E\kern-\shlength$}}{O}{c}{F}{T}{S}
 }
 \newcommand\shlongvec[2][0]{\setlength\shlength{#1pt}%
-    \stackengine{-5.2pt}{$#2$}{\smash{$\kern\shlength%
-            \stackengine{4.42pt}{$\mathchar"017E$}{$-$}{O}{r}{F}{F}{L}\kern-\shlength$}}%
-    {O}{c}{F}{T}{S}}
+	\stackengine{-5.2pt}{$#2$}{\smash{$\kern\shlength%
+				\stackengine{4.42pt}{$\mathchar"017E$}{$-$}{O}{r}{F}{F}{L}\kern-\shlength$}}%
+	{O}{c}{F}{T}{S}}
 % Ejemplos: \shvec[-.5]{r}'   \shlongvec[.5]{A}   \shlongvec[0]{w}
 %%---------------------------------------
 \usepackage[algo2e,lined,linesnumbered,algochapter,ruled]{algorithm2e}
@@ -123,28 +123,44 @@
 \SetKwInput{KwResult}{Resultado}
 \SetAlgorithmName{Algoritmo}{Algo}{Lista de Algoritmos}
 \usepackage{xargs}
-\newcommandx\listavec[3][1=1,3=n]{\bigl\{\shvec[-.5]{#2}_{#1},\dotsc,\shvec[-.5]{#2}_{#3}\bigr\}}
-\newcommandx\listauni[3][1=1,3=n]{\bigl\{\Hat{#2}_{#1},\dotsc,\Hat{#2}_{#3}\bigr\}}
+\newcommandx\listavec[3][1=1,3=n]{
+	\bigl\{
+	\shvec[-.5]{#2}_{#1},
+	\dotsc,
+	\shvec[-.5]{#2}_{#3}
+	\bigr\}
+}
+\newcommandx\listauni[3][1=1,3=n]{
+	\bigl\{
+	\Hat{#2}_{#1},
+	\dotsc,
+	\Hat{#2}_{#3}
+	\bigr\}
+}
 \usepackage{url}
 \usepackage[amsmath,thmmarks,hyperref]{ntheorem}
-\usepackage[ntheorem=true,framemethod=pgf,%
-splittopskip=\topskip,splitbottomskip=\topskip,
-innertopmargin=.5em]{mdframed}
+\usepackage[
+	ntheorem=true,
+	framemethod=pgf,%
+	splittopskip=\topskip,
+	splitbottomskip=\topskip,
+	innertopmargin=.5em
+]{mdframed}
 \usetikzlibrary{calc}
 %\usepackage{nicematrix}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \renewcommand{\chaptermark}[1]{%
-\markboth{\chaptername \ \thechapter.\ #1}{}}
+	\markboth{\chaptername \ \thechapter.\ #1}{}}
 \renewcommand{\sectionmark}[1]{%
-\markright{\thesection.\ #1}} %
+	\markright{\thesection.\ #1}} %
 \fancyhf{} %
 \fancyhead[LE,RO]{\bfseries\thepage} %
 \fancyhead[LO]{\bfseries \rightmark} %
 \fancyhead[RE]{\bfseries \leftmark}
 \fancypagestyle{plain}{%
-  \fancyhead{}           % get rid of headers
-  \renewcommand{\headrulewidth}{0pt} % and the line
+	\fancyhead{}           % get rid of headers
+	\renewcommand{\headrulewidth}{0pt} % and the line
 }
 \definecolor{mifondo}{rgb}{0.82,0.82,0.91}
 \definecolor{deficolor}{rgb}{.9,.9,1}
@@ -180,22 +196,29 @@ innertopmargin=.5em]{mdframed}
   skipabove=1em,
   innerleftmargin=6pt,
   innerrightmargin=6pt}
-\newenvironment{Ejercicio}{\begin{mdframed}[style=paraejer]\begin{miejer}}{\end{miejer}\end{mdframed}}
+\newenvironment{Ejercicio}{
+	\begin{mdframed}[style=paraejer]
+		\begin{miejer}}{
+		\end{miejer}
+	\end{mdframed}
+}
 
 %% -- para usar mdframed con mdefi
 \newenvironment{defi}{
-  \begin{mdframed}%
-  [backgroundcolor=defibgcolor,
-  roundcorner=6pt,
-  outerlinewidth=.5,
-  linecolor=blue,
-  skipbelow=\baselineskip,%
-  skipabove=\baselineskip,
-  innerleftmargin=6pt,
-  innerrightmargin=6pt]%
- \begin{mdefi}}{\end{mdefi}\end{mdframed}}
+	\begin{mdframed}%
+		[backgroundcolor=defibgcolor,
+			roundcorner=6pt,
+			outerlinewidth=.5,
+			linecolor=blue,
+			skipbelow=\baselineskip,%
+			skipabove=\baselineskip,
+			innerleftmargin=6pt,
+			innerrightmargin=6pt]%
+		\begin{mdefi}}{
+		\end{mdefi}\end{mdframed}
+}
 
- \theoremstyle{plain}
+\theoremstyle{plain}
 \theorembodyfont{\itshape}
 %\theoremheaderfont{\scshape\bfseries} %
 \theoremheaderfont{\ttfamily\bfseries} %
@@ -207,39 +230,60 @@ innertopmargin=.5em]{mdframed}
 \newtheorem{mprop}[mdefi]{Proposición}
 %\newtheorem*{teoin}{Teorema de la Funcion Inversa}
 %% -- para usar mdframed con mteo
-\newenvironment{teo}{\begin{mdframed}%
- [backgroundcolor=teocolor,roundcorner=6pt,
- outerlinewidth=.5,linecolor=green,skipbelow=\baselineskip,%
-skipabove=\baselineskip,innerleftmargin=6pt,innerrightmargin=6pt]%
- \begin{mteo}}{\end{mteo}\end{mdframed}}
+\newenvironment{teo}{
+	\begin{mdframed}%
+		[backgroundcolor=teocolor,
+			roundcorner=6pt,
+			outerlinewidth=.5,
+			linecolor=green,
+			skipbelow=\baselineskip,%
+			skipabove=\baselineskip,
+			innerleftmargin=6pt,
+			innerrightmargin=6pt]%
+		\begin{mteo}}{
+		\end{mteo}\end{mdframed}
+}
+
 \newenvironment{cor}{\begin{mdframed}%
- [backgroundcolor=teocolor,roundcorner=6pt,
- outerlinewidth=.5,linecolor=green,skipbelow=\baselineskip,%
-skipabove=\baselineskip,innerleftmargin=6pt,innerrightmargin=6pt]%
- \begin{mcor}}{\end{mcor}\end{mdframed}}
+		[backgroundcolor=teocolor,
+			roundcorner=6pt,
+			outerlinewidth=.5,
+			linecolor=green,
+			skipbelow=\baselineskip,%
+			skipabove=\baselineskip,
+			innerleftmargin=6pt,
+			innerrightmargin=6pt]%
+		\begin{mcor}}{
+		\end{mcor}\end{mdframed}
+}
 
 \newenvironment{lem}{
-  \begin{mdframed}%
-  [backgroundcolor=teocolor,
-  roundcorner=6pt,
-  outerlinewidth=.5,
-  linecolor=green,
-  skipbelow=\baselineskip,%
-  skipabove=\baselineskip,
-  innerleftmargin=6pt,
-  innerrightmargin=6pt]%
- \begin{mlem}}{\end{mlem}\end{mdframed}}
+	\begin{mdframed}%
+		[backgroundcolor=teocolor,
+			roundcorner=6pt,
+			outerlinewidth=.5,
+			linecolor=green,
+			skipbelow=\baselineskip,%
+			skipabove=\baselineskip,
+			innerleftmargin=6pt,
+			innerrightmargin=6pt]%
+		\begin{mlem}}{
+		\end{mlem}\end{mdframed}
+}
+
 \newenvironment{prop}{
-  \begin{mdframed}%
-  [backgroundcolor=teocolor,
-  roundcorner=6pt,
-  outerlinewidth=.5,
-  linecolor=green,
-  skipbelow=\baselineskip,%
-  skipabove=\baselineskip,
-  innerleftmargin=6pt,
-  innerrightmargin=6pt]%
- \begin{mprop}}{\end{mprop}\end{mdframed}}
+	\begin{mdframed}%
+		[backgroundcolor=teocolor,
+			roundcorner=6pt,
+			outerlinewidth=.5,
+			linecolor=green,
+			skipbelow=\baselineskip,%
+			skipabove=\baselineskip,
+			innerleftmargin=6pt,
+			innerrightmargin=6pt]%
+		\begin{mprop}}{
+		\end{mprop}\end{mdframed}
+}
 
 \theoremstyle{plain} %
 \theoremheaderfont{\scshape\bfseries} %
@@ -262,49 +306,49 @@ skipabove=\baselineskip,innerleftmargin=6pt,innerrightmargin=6pt]%
 \newlength\mylen% to hols the width of the title
 
 \newmdenv[
-  settings={
-    \global\refstepcounter{exa}
-    \settowidth\mylen{\bfseries\color{blue}Ejemplo~\theexa}},
-  leftline=false,
-  linecolor=blue,
-  middlelinewidth=1pt,
-  innertopmargin=30pt,
-  innerbottommargin=10pt,
-  innerleftmargin=0pt,
-  skipbelow=1.3\topsep,
-  singleextra={
-    \path node[
-      font=\bfseries\color{blue},
-      anchor=west,
-      yshift=-12pt,
-      inner sep=0pt] at (O|-P) {Ejemplo~\theexa};
-    \draw[ultra thick,blue] ([yshift=.5\pgflinewidth]O|-P) -- ++(\mylen,0pt);
-    \draw[line width=2pt,white] (O) -- ($(P|-O)+(-2cm,0pt)$) node (A){};
-    \node[
-      anchor=south west,
-      fill=blue,
-      inner sep=3pt,
-      outer sep=0pt
-    ] at (A) {};
-  },
-  firstextra={
-    \path node[
-      font=\bfseries\color{blue},
-      anchor=west,
-      yshift=-12pt,
-      inner sep=0pt
-    ] at (O|-P) {Ejemplo~\theexa};
-    \draw[ultra thick,blue] ([yshift=.5\pgflinewidth]O|-P) -- ++(\mylen,0pt);
-  },
-  secondextra={
-    \draw[line width=2pt,white] (O) -- ($(P|-O)+(-2cm,0pt)$) node (A){};
-    \node[
-      anchor=south west,
-      fill=blue,
-      inner sep=3pt,
-      outer sep=0pt
-    ] at (A) {};
-  }
+	settings={
+			\global\refstepcounter{exa}
+			\settowidth\mylen{\bfseries\color{blue}Ejemplo~\theexa}},
+	leftline=false,
+	linecolor=blue,
+	middlelinewidth=1pt,
+	innertopmargin=30pt,
+	innerbottommargin=10pt,
+	innerleftmargin=0pt,
+	skipbelow=1.3\topsep,
+	singleextra={
+			\path node[
+				font=\bfseries\color{blue},
+				anchor=west,
+				yshift=-12pt,
+				inner sep=0pt] at (O|-P) {Ejemplo~\theexa};
+			\draw[ultra thick,blue] ([yshift=.5\pgflinewidth]O|-P) -- ++(\mylen,0pt);
+			\draw[line width=2pt,white] (O) -- ($(P|-O)+(-2cm,0pt)$) node (A){};
+			\node[
+				anchor=south west,
+				fill=blue,
+				inner sep=3pt,
+				outer sep=0pt
+			] at (A) {};
+		},
+	firstextra={
+			\path node[
+				font=\bfseries\color{blue},
+				anchor=west,
+				yshift=-12pt,
+				inner sep=0pt
+			] at (O|-P) {Ejemplo~\theexa};
+			\draw[ultra thick,blue] ([yshift=.5\pgflinewidth]O|-P) -- ++(\mylen,0pt);
+		},
+	secondextra={
+			\draw[line width=2pt,white] (O) -- ($(P|-O)+(-2cm,0pt)$) node (A){};
+			\node[
+				anchor=south west,
+				fill=blue,
+				inner sep=3pt,
+				outer sep=0pt
+			] at (A) {};
+		}
 ]{ejm}
 
 \theoremstyle{plain} %
@@ -325,9 +369,12 @@ skipabove=\baselineskip,innerleftmargin=6pt,innerrightmargin=6pt]%
   innerrightmargin=6pt
 }
 
-\newenvironment{prob}{\begin{mdframed}%
- [style=paraejer]%
- \begin{mejer}}{\end{mejer}\end{mdframed}}
+\newenvironment{prob}{
+	\begin{mdframed}%
+		[style=paraejer]%
+		\begin{mejer}}{
+		\end{mejer}\end{mdframed}
+}
 
 \theoremstyle{nonumberplain} %
 \theorembodyfont{\normalfont} %
@@ -425,18 +472,18 @@ skipabove=\baselineskip,innerleftmargin=6pt,innerrightmargin=6pt]%
 	tabsize=4,
 	% rulecolor=,
   inputpath=programas,
-%	language=matlab,
+	% language=matlab,
   numberstyle=\footnotesize\color{gray}\ttfamily,
-% basicstyle=\small\ttfamily,
+  % basicstyle=\small\ttfamily,
   basicstyle=\ttfamily\small\bfseries,
-% upquote=true,
+  % upquote=true,
   aboveskip={0.7\baselineskip},
-% columns=fixed,
+  % columns=fixed,
   showstringspaces=false,
   extendedchars=true,
   breaklines=true,
   prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
-% frame=single,
+  % frame=single,
   showtabs=false,
   showspaces=false,
   showstringspaces=false,
@@ -456,93 +503,93 @@ skipabove=\baselineskip,innerleftmargin=6pt,innerrightmargin=6pt]%
 
 \lstnewenvironment{formula}
 {\lstset{
-  language=cpprub,
-  basicstyle=\ttfamily\small\bfseries,
-  showstringspaces=false,
-  extendedchars=true,
-  breaklines=true,
-  showtabs=false,
-  showspaces=false,
-  showstringspaces=false,
-  % morekeywords={long},
-  backgroundcolor=\color{PeachPuff1},
-  %columns=flexible,
-  identifierstyle=\ttfamily,
-  keywordstyle=\color[rgb]{0,0,1},
-  commentstyle=\color[rgb]{0.133,0.545,0.133},
-  stringstyle=\color[rgb]{0.627,0.126,0.941},
-  frame=single}}{}
+		language=cpprub,
+		basicstyle=\ttfamily\small\bfseries,
+		showstringspaces=false,
+		extendedchars=true,
+		breaklines=true,
+		showtabs=false,
+		showspaces=false,
+		showstringspaces=false,
+		% morekeywords={long},
+		backgroundcolor=\color{PeachPuff1},
+		%columns=flexible,
+		identifierstyle=\ttfamily,
+		keywordstyle=\color[rgb]{0,0,1},
+		commentstyle=\color[rgb]{0.133,0.545,0.133},
+		stringstyle=\color[rgb]{0.627,0.126,0.941},
+		frame=single}}{}
 
 % TODO: Incluir archivo con la configuración de arriba (formula).
 \providecommand*{\includeformula}[1][]{%
 	\lstinputlisting[{
-    language=cpprub,
-    basicstyle=\ttfamily\small\bfseries,
-    showstringspaces=false,
-    extendedchars=true,
-    breaklines=true,
-    showtabs=false,
-    showspaces=false,
-    showstringspaces=false,
-    % morekeywords={long},
-    backgroundcolor=\color{PeachPuff1},
-    %columns=flexible,
-    identifierstyle=\ttfamily,
-    keywordstyle=\color[rgb]{0,0,1},
-    commentstyle=\color[rgb]{0.133,0.545,0.133},
-    stringstyle=\color[rgb]{0.627,0.126,0.941},
-    frame=single,
-    #1
-  }]
+				language=cpprub,
+				basicstyle=\ttfamily\small\bfseries,
+				showstringspaces=false,
+				extendedchars=true,
+				breaklines=true,
+				showtabs=false,
+				showspaces=false,
+				showstringspaces=false,
+				% morekeywords={long},
+				backgroundcolor=\color{PeachPuff1},
+				%columns=flexible,
+				identifierstyle=\ttfamily,
+				keywordstyle=\color[rgb]{0,0,1},
+				commentstyle=\color[rgb]{0.133,0.545,0.133},
+				stringstyle=\color[rgb]{0.627,0.126,0.941},
+				frame=single,
+				#1
+			}]
 }
 
 \newcommand{\micod}[1]{\lstinline[columns=flexible]{#1}}
 
 \lstnewenvironment{cppinput}
 {\lstset{
-  frame=shadowbox,
-  numbers=left,
-  stepnumber=1,
-  language=cpprub,
-  mathescape=true,
-  columns=fixed,%
-  backgroundcolor=\color{LavenderBlush1},
-  rulesepcolor=\color{black}
-  }}{}
+		frame=shadowbox,
+		numbers=left,
+		stepnumber=1,
+		language=cpprub,
+		mathescape=true,
+		columns=fixed,%
+		backgroundcolor=\color{LavenderBlush1},
+		rulesepcolor=\color{black}
+	}}{}
 
 % TODO: Incluir archivo con la configuración de arriba (formula).
 % TODO: https://tex.stackexchange.com/a/249065/117967
 \providecommand*{\includecppinput}[1][]{%
 	\lstinputlisting[{
-    frame=shadowbox,
-    numbers=left,
-    stepnumber=1,
-    language=cpprub,
-    mathescape=true,
-    columns=fixed,%
-    backgroundcolor=\color{LavenderBlush1},
-    rulesepcolor=\color{black},
-    #1
-  }]
+				frame=shadowbox,
+				numbers=left,
+				stepnumber=1,
+				language=cpprub,
+				mathescape=true,
+				columns=fixed,%
+				backgroundcolor=\color{LavenderBlush1},
+				rulesepcolor=\color{black},
+				#1
+			}]
 }
 
 \lstnewenvironment{cppoutput}
 {\lstset{
-  frame=single,
-  columns=flexible,
-  keepspaces=true,
-  mathescape=true
-  }}{}
+		frame=single,
+		columns=flexible,
+		keepspaces=true,
+		mathescape=true
+	}}{}
 
 % TODO: Incluir archivo con la configuración de arriba (formula).
 \providecommand*{\includecppoutput}[1][]{%
 	\lstinputlisting[{
-    frame=single,
-    columns=flexible,
-    keepspaces=true,
-    mathescape=true,
-    #1
-  }]
+				frame=single,
+				columns=flexible,
+				keepspaces=true,
+				mathescape=true,
+				#1
+			}]
 }
 
 \hyphenation{mat-lab Su-pon-ga-mos ei-gen-es-pa-cio}
