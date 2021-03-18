@@ -12,7 +12,7 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 
 
 ENV DEV_PKGS="\
-    binutils gcc gcc-libs icu"
+    binutils gcc gcc-libs icu lib32-glibc lib32-icu"
 
 ENV MAIN_PKGS="\    
     java-runtime texlive-core ttf-vista-fonts"
