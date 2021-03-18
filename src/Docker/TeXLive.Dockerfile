@@ -36,11 +36,11 @@ RUN echo '[multilib]' >> /etc/pacman.conf && \
 # ENV DEV_PKGS="\
 #     binutils gcc gcc-libs icu lib32-glibc lib32-icu"
 
-# ENV MAIN_PKGS="\    
-#     java-runtime texlive-core"
+ENV MAIN_PKGS="\    
+    java-runtime texlive-core"
 
 RUN pacman -Syu --noconfirm &&\
-    pacman -S --noconfirm texlive-core &&\
+    pacman -S --noconfirm $MAIN_PKGS &&\
     # pacman -S --noconfirm texlive-{core,bin,bibtexextra,fontsextra,formatsextra,games,humanities,langchinese,langcyrillic,langextra,langgreek,langjapanese,langkorean,latexextra,music,pictures,pstricks,publishers,science} &&\
     # pacman -S --noconfirm biber ghostscript ruby perl-tk psutils dialog ed poppler-data &&\
     # pacman -S --noconfirm python python-{pandas,matplotlib,numpy,scipy,sympy} &&\
