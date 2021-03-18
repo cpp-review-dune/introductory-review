@@ -12,7 +12,8 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
     vendor="Oromion Aznarán" \
     version="1.0"
 
-ARG AUR_PACKAGE=ttf-vista-fonts
+ARG FONT1_PACKAGE=ttf-vista-fonts
+ARG FONT2_PACKAGE=consolas-font
 
 RUN echo '[multilib]' >> /etc/pacman.conf && \
     echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf && \
@@ -27,7 +28,11 @@ RUN echo '[multilib]' >> /etc/pacman.conf && \
     mkdir /build && \
     chown -R aur:aur /build && \
     cd /build && \
-    sudo -u aur git clone --depth 1 "https://aur.archlinux.org/$AUR_PACKAGE.git" && \
+    sudo -u aur git clone --depth 1 "https://aur.archlinux.org/$FONT1_PACKAGE.git" && \
+    cd $AUR_PACKAGE && \
+    sudo -u aur makepkg --noconfirm -si && \
+    cd /build && \
+    sudo -u aur git clone --depth 1 "https://aur.archlinux.org/$FONT2_PACKAGE.git" && \
     cd $AUR_PACKAGE && \
     sudo -u aur makepkg --noconfirm -si && \
     pacman -Qtdq | xargs -r pacman --noconfirm -Rcns && \
