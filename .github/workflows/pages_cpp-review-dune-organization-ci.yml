@@ -1,0 +1,43 @@
+name: Deploy pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - docs/**
+  pull_request:
+    branches: [main]
+
+jobs:
+  deploy_pages:
+    runs-on: ubuntu-20.04
+
+    steps:
+      # - name: Partial Clone
+      #   shell: bash
+      #   run: |
+      #     REPO="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+      #     git config --global user.email github-actions@github.com
+      #     git config --global user.name github-actions
+      #     git clone -q --filter=blob:none --no-checkout --depth=1  --sparse $REPO .
+      #     git sparse-checkout set docs
+      #     git checkout
+
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          workflow: latex_cpp-review-dune-organization-ci.yml
+          name: PDF-artifact
+
+      - name: "Untar files"
+        run: |
+          tar -I zstd -xvf PDF.tar.zst
+          mkdir docs
+          mv src/TeX/*.pdf docs
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs
