@@ -11,10 +11,14 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
     version="1.0"
 
 
-ENV MAIN_PKGS="\
-    binutils gcc gcc-libs java-runtime texlive-core ttf-vista-fonts"
+ENV DEV_PKGS="\
+    binutils gcc gcc-libs lib32-glibc"
 
-RUN sudo -u aur yay --noconfirm -Sy $MAIN_PKGS && \
+ENV MAIN_PKGS="\    
+    java-runtime texlive-core ttf-vista-fonts"
+
+RUN sudo -u aur yay --noconfirm -Sy $DEV_PKGS && \
+    sudo -u aur yay --noconfirm -S $MAIN_PKGS && \
     sudo -u aur yay --afterclean --removemake --save && \
     sudo -u aur yay -Qtdq | xargs -r sudo -u aur yay --noconfirm -Rcns && \
     rm -rf /home/aur/.cache
