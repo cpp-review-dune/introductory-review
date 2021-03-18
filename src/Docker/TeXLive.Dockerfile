@@ -1,4 +1,4 @@
-# Copyleft (c) March, 2021, Oromion.
+# Copyleft (c) March, 2021, Oromion
 
 FROM oblique/archlinux-yay
 
