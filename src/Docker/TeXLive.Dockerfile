@@ -29,11 +29,11 @@ RUN echo '[multilib]' >> /etc/pacman.conf && \
     chown -R aur:aur /build && \
     cd /build && \
     sudo -u aur git clone --depth 1 "https://aur.archlinux.org/$FONT1_PACKAGE.git" && \
-    cd $AUR_PACKAGE && \
+    cd $FONT1_PACKAGE && \
     sudo -u aur makepkg --noconfirm -si && \
     cd /build && \
     sudo -u aur git clone --depth 1 "https://aur.archlinux.org/$FONT2_PACKAGE.git" && \
-    cd $AUR_PACKAGE && \
+    cd $FONT2_PACKAGE && \
     sudo -u aur makepkg --noconfirm -si && \
     pacman -Qtdq | xargs -r pacman --noconfirm -Rcns && \
     rm -rf /home/aur/.cache && \
