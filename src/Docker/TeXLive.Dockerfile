@@ -28,7 +28,7 @@ RUN echo '[multilib]' >> /etc/pacman.conf && \
     sudo -u aur git clone --depth 1 "https://aur.archlinux.org/$AUR_PACKAGE.git" && \
     cd $AUR_PACKAGE && \
     sudo -u aur makepkg --noconfirm -si && \
-    sudo -u aur yay --afterclean --removemake --save && \
+    # sudo -u aur yay --afterclean --removemake --save && \
     pacman -Qtdq | xargs -r pacman --noconfirm -Rcns && \
     rm -rf /home/aur/.cache && \
     rm -rf /build
