@@ -4,7 +4,7 @@
 
 Un repositorio donde compartir notas acerca de C++ con pdfs escritos en LaTeX.
 
-![Compiling LaTeX](https://github.com/cpp-review-dune/introductory-review/workflows/Compiling%20LaTeX/badge.svg)
+![Compiling LaTeX](https://github.com/cpp-review-dune/introductory-review/workflows/LaTeX%20C++%20Review%20Dune%20Organization%20CI/badge.svg)
 [![License](https://img.shields.io/github/license/cpp-review-dune/introductory-review.svg?style=flat-square&logo=opensourceinitiative)](https://github.com/cpp-review-dune/introductory-review/blob/master/LICENSE)
 [![Latest tag via GitHub](https://img.shields.io/github/v/tag/cpp-review-dune/introductory-review.svg?sort=semver&style=flat-square&logo=github)](https://github.com/cpp-review-dune/introductory-review/tags)
 

@@ -1,4 +1,4 @@
-name: C++ Review Dune Organization CI
+name: LaTeX C++ Review Dune Organization CI
 
 on:
   push:
