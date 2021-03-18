@@ -6,7 +6,7 @@ FROM archlinux:base-devel
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
     name="TeX Live Arch" \
-    description="TeX Live in Arch." \
+    description="TeX Live in Arch with Windows fonts and C++ compilers" \
     url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Ftexlive" \
     vcs-url="https://github.com/cpp-review-dune/introductory-review" \
     vendor="Oromion Aznarán" \
@@ -43,7 +43,7 @@ RUN echo '[multilib]' >> /etc/pacman.conf && \
 #     binutils gcc gcc-libs icu lib32-glibc lib32-icu"
 
 ENV MAIN_PKGS="\    
-    java-runtime texlive-core texlive-fontsextra texlive-latexextra texlive-science"
+    gcc java-runtime texlive-core texlive-fontsextra texlive-latexextra texlive-science"
 
 RUN pacman -Syu --noconfirm &&\
     pacman -S --noconfirm $MAIN_PKGS &&\
