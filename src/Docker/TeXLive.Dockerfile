@@ -51,3 +51,5 @@ RUN pacman -Syu --noconfirm &&\
 RUN sudo -u aur yay --afterclean --removemake --save && \
     sudo -u aur yay -Qtdq | xargs -r sudo -u aur yay --noconfirm -Rcns && \
     rm -rf /home/aur/.cache
+
+CMD ["/bin/bash"]
