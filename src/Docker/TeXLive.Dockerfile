@@ -17,7 +17,7 @@ ARG FONT2_PACKAGE=consolas-font
 
 RUN echo '[multilib]' >> /etc/pacman.conf && \
     echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf && \
-    ln -s /usr/share/zoneinfo/America/Lima /etc/localtime \
+    # ln -s /usr/share/zoneinfo/America/Lima /etc/localtime \
     pacman --noconfirm -Syyu git && \
     useradd -m -r -s /bin/bash aur && \
     passwd -d aur && \
