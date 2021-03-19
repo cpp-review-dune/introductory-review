@@ -1,7 +1,21 @@
-% arara: xelatex
+% arara: clean: {
+% arara: --> extensions:
+% arara: --> ['aux','log','lol','out',
+% arara: --> 'pdf','thm','toc']
+% arara: --> }
+% arara: xelatex: {
+% arara: --> shell: 1,
+% arara: --> interaction: batchmode
+% arara: --> }
 %! arara: bibtex
-% arara: xelatex
-% arara: xelatex
+% arara: xelatex: {
+% arara: --> interaction: batchmode
+% arara: --> }
+% arara: clean: {
+% arara: --> extensions:
+% arara: --> ['aux','log','lol','out',
+% arara: --> 'thm','toc']
+% arara: --> }
 % !TEX program = xelatex
 %%% !BIB program = default
 \documentclass[11pt]{book}
