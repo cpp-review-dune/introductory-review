@@ -10,6 +10,6 @@ c=40
 d=56
 e=84
 
-printf '%s\n' "$a" "$b" "$c" "$d" "$e" | ./programas/4
+printf '%s\n' "$a" "$b" "$c" "$d" "$e" | ./programas/5
 
 # (./4 <<<"$a"$'\n'"$b"$'\n'"$c"$'\n'"$d"$'\n'"$e" ) > salida4

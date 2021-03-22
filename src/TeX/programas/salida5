@@ -19,5 +19,10 @@ Tercer puntaje en índice 2:  40
 Cuarto puntaje en índice 3: 56
 Quinto puntaje en índice 4: 84
 
-Observe que el valor del nombre del arreglo es : 0x7ffd075c1530
+Observe que el valor del nombre del arreglo es : 0x7ffe08a5e7c0
 
+El valor del puntaje es 30
+El valor del puntaje es 20
+El valor del puntaje es 40
+El valor del puntaje es 56
+El valor del puntaje es 84
