@@ -57,6 +57,6 @@ jobs:
           file: ./introductory-review/src/Docker/Dune.Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/cpp-review-dune/introductory-review/texlive:latest
+          tags: ghcr.io/cpp-review-dune/introductory-review/dune:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
