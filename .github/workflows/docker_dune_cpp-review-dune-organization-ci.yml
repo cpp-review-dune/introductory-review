@@ -1,4 +1,4 @@
-name: TeXLive + Windows fonts
+name: Dune modules
 
 on:
   push:

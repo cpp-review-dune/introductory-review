@@ -34,6 +34,7 @@ jobs:
         run: |
           tar -I zstd -xvf PDF.tar.zst
           mkdir docs
+          wget https://docs.paraview.org/_/downloads/en/latest/pdf/ -O src/TeX/docs-paraview-org-en-latest.pdf
           mv src/TeX/*.pdf docs
 
       - name: Deploy
