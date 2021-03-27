@@ -26,8 +26,11 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
   echo '' >> /etc/pacman.conf && \
   pacman --noconfirm -Syyu
 
+ENV DEP_PKGS="\    
+  openblas-lapack parmetis psurface"
+
 ENV MAIN_PKGS="\    
   dune-common dune-geometry dune-grid dune-grid-howto dune-istl dune-localfunctions dune-uggrid"
 
-RUN pacman -S $MAIN_PKGS --noconfirm && \
+RUN pacman -S $DEP_PKGS $MAIN_PKGS --noconfirm && \
   pacman -Scc --noconfirm
