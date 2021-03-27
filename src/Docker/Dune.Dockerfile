@@ -10,10 +10,12 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   vendor="Oromion Aznarán" \
   version="1.0"
 
-RUN echo '[multilib]' >> /etc/pacman.conf && \
+RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
+  pacman-key --init && \
+  pacman-key --populate archlinux && \
+  echo '[multilib]' >> /etc/pacman.conf && \
   echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf && \
-  echo '' >> /etc/pacman.conf && \
-  ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
+  echo '' >> /etc/pacman.conf && \  
   echo '[dune-archiso-repository-core]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/dune-archiso-repository-core/$arch' >> /etc/pacman.conf && \
@@ -27,6 +29,5 @@ RUN echo '[multilib]' >> /etc/pacman.conf && \
 ENV MAIN_PKGS="\    
   dune-common dune-geometry dune-grid dune-grid-howto dune-istl dune-localfunctions dune-uggrid"
 
-RUN pacman -Syu --noconfirm &&\
-    pacman -S --noconfirm $MAIN_PKGS &&\
-    pacman -Scc --noconfirm
+RUN pacman -Sy --noconfirm $MAIN_PKGS &&\
+  pacman -Scc --noconfirm
