@@ -15,9 +15,12 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 ARG FONT1_PACKAGE=ttf-vista-fonts
 ARG FONT2_PACKAGE=consolas-font
 
-RUN echo '[multilib]' >> /etc/pacman.conf && \
+RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
+    pacman-key --init && \
+    pacman-key --populate archlinux && \
+    echo '[multilib]' >> /etc/pacman.conf && \
     echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf && \
-    ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
+    echo '' >> /etc/pacman.conf && \
     pacman --noconfirm -Syyu git && \
     useradd -m -r -s /bin/bash aur && \
     passwd -d aur && \

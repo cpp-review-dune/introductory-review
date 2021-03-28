@@ -1,0 +1,8 @@
+#+title: Carpeta Docker
+#+author: cpp-review-dune
+
+** Docker
+
+#+begin_src console
+$ docker pull ghcr.io/cpp-review-dune/introductory-review/texlive:latest
+#+end_src
