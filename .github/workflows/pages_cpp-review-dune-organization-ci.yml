@@ -15,15 +15,15 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      # - name: Partial Clone
-      #   shell: bash
-      #   run: |
-      #     REPO="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
-      #     git config --global user.email github-actions@github.com
-      #     git config --global user.name github-actions
-      #     git clone -q --filter=blob:none --no-checkout --depth=1  --sparse $REPO .
-      #     git sparse-checkout set docs
-      #     git checkout
+      - name: Partial Clone
+        shell: bash
+        run: |
+          REPO="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+          git config --global user.email github-actions@github.com
+          git config --global user.name github-actions
+          git clone -q --filter=blob:none --no-checkout --depth=1  --sparse $REPO .
+          git sparse-checkout set docs
+          git checkout
 
       - name: Download artifact
         uses: dawidd6/action-download-artifact@v2
@@ -35,12 +35,19 @@ jobs:
       - name: "Untar files"
         run: |
           tar -I zstd -xvf PDF.tar.zst
-          mkdir docs
-          wget https://docs.paraview.org/_/downloads/en/latest/pdf/ -O src/TeX/docs-paraview-org-en-latest.pdf
-          mv src/TeX/*.pdf docs
+          mkdir -p docs/public/files
+          wget https://docs.paraview.org/_/downloads/en/latest/pdf/ -O docs/public/files/docs-paraview-org-en-latest.pdf
+          mv src/TeX/*.pdf public/files
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: cd docs && npm ci && npm test && npm run build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs
+          publish_dir: docs/public
