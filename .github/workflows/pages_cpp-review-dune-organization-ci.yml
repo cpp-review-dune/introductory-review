@@ -37,7 +37,7 @@ jobs:
           tar -I zstd -xvf PDF.tar.zst
           mkdir -p docs/public/files
           wget https://docs.paraview.org/_/downloads/en/latest/pdf/ -O docs/public/files/docs-paraview-org-en-latest.pdf
-          mv src/TeX/*.pdf public/files
+          mv src/TeX/*.pdf docs/public/files
 
       - uses: actions/setup-node@v2
         with:
