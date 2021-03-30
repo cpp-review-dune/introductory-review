@@ -17,13 +17,13 @@ toc: true
 
 ## Ejemplo 1
 
-_Excerpt taken from [Supernova Neutrinos](https://neutrino.leima.is/book/introduction/supernova-neutrinos/)_
+Tomado de [Supernova Neutrinos](https://neutrino.leima.is/book/introduction/supernova-neutrinos/)_
 
-### Markdown
+### Subtítulo
 
 ```md
-The average energy of the neutrinos $\langle E \rangle$ emitted during a supernova explosion is of the order of 10MeV, and the neutrino luminosity at the early epoch of the explosion is approximately $10^{52}\mathrm{ergs\cdot s^{-1}}$.
-Therefore, the number density of the neutrinos at the radius $R$ is
+La energía promedio de los neutrinos $\langle E \rangle$ emitido durante la explosión de una supernova es del orden de 10MeV, y su luminosidad en la época de la explosión es aproximadamente $10^{52}\mathrm{ergs\cdot s^{-1}}$.
+Así, la densidad del número de neutrinos de radio $R$ es:
 
 $$
 \begin{equation*}
@@ -34,8 +34,8 @@ $$
 
 ### HTML
 
-The average energy of the neutrinos $\langle E \rangle$ emitted during a supernova explosion is of the order of 10MeV, and the neutrino luminosity at the early epoch of the explosion is approximately $10^{52}\mathrm{ergs\cdot s^{-1}}$.
-Therefore, the number density of the neutrinos at the radius $R$ is
+La energía promedio de los neutrinos $\langle E \rangle$ emitida durante la explosión es del orden de $10MeV$, y la luminosidad de los neutrinos es de aproximadamente $10^{52}\mathrm{ergs\cdot s^{-1}}$.
+Así, la densidad del número de neutrinos de radio $R$ es:
 
 $$
 \begin{equation*}
@@ -43,4 +43,4 @@ $$
 \end{equation*}
 $$
 
-It turns out that the ambient dense neutrino medium has a significant impact on neutrino oscillations, which has been intensely investigated in the last decade.
+Termina la prueba.
