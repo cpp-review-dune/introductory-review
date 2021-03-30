@@ -22,7 +22,7 @@ Tomado de [Supernova Neutrinos](https://neutrino.leima.is/book/introduction/supe
 ### Subtítulo
 
 ```md
-La energía promedio de los neutrinos $\langle E \rangle$ emitido durante la explosión de una supernova es del orden de 10MeV, y su luminosidad en la época de la explosión es aproximadamente $10^{52}\mathrm{ergs\cdot s^{-1}}$.
+Con tres comillas francesas, se visualiza lo que se escribe, no lo que quiero presentar.  La energía promedio de los neutrinos $\langle E \rangle$ emitido durante la explosión de una supernova es del orden de 10MeV, y su luminosidad en la época de la explosión es aproximadamente $10^{52}\mathrm{ergs\cdot s^{-1}}$.
 Así, la densidad del número de neutrinos de radio $R$ es:
 
 $$
