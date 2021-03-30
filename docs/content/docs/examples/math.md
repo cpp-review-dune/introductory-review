@@ -1,6 +1,6 @@
 ---
-title: "Math"
-description: "Math typesetting examples."
+title: "Matemática"
+description: "Cómo presentar ejemplos de matemáticas."
 lead: "Math typesetting examples."
 date: 2021-03-16T10:46:05+01:00
 lastmod: 2021-03-16T10:46:05+01:00
@@ -13,7 +13,7 @@ weight: 210
 toc: true
 ---
 
-[KaTeX](https://katex.org/) is switched off by default. Enable it by setting `kaTex = true` in the `[options]` section of `./config/_default/params.toml`.
+[KaTeX](https://katex.org/) está cambiado por defecto. Es posible habilitar ésto de la siguiente forma  `kaTex = true` en `[options]` sección  `./config/_default/params.toml`.
 
 ## Ejemplo 1
 
