@@ -17,7 +17,7 @@
   url = "/docs/help/"
 
 [[main]]
-  name = "Docs"
+  name = "Documentación"
   url = "/docs/prologue/introduction/"
   weight = 10
 
@@ -50,7 +50,7 @@
   post = "v0.1.0"
   weight = 20
 
-# [[footer]]
-#   name = "Privacy"
-#   url = "/privacy-policy/"
-#   weight = 10
+[[footer]]
+  name = "Privacidad"
+  url = "/privacy-policy/"
+  weight = 10
