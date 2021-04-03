@@ -30,12 +30,23 @@ Usamos la misma sintaxis si deseamos guardar información en el arreglo:
 \includeformula{3.cc}
 Veamos ahora un programa que resuma lo que hemos visto hasta el momento:
 \includecppinput{4.cc}
-Con ciclo incluido
-\includecppinput{5.cc}
-\immediate\write18{g++ -o programas/5 programas/5.cc}
-\immediate\write18{./programas/run5.sh > programas/salida5}
-\includecppoutput{salida5}
 Luego de compilar este archivo y e ingresar una data cuando el archivo es ejecutado, obtenemos:
 \immediate\write18{g++ -o programas/4 programas/4.cc}
 \immediate\write18{./programas/run.sh > programas/salida4}
 \includecppoutput{salida4}
+
+Manejo de Ciclos
+\includecppinput{5.cc}
+\immediate\write18{g++ -o programas/5 programas/5.cc}
+\immediate\write18{./programas/run5.sh > programas/salida5}
+\includecppoutput{salida5}
+% Para que latex compile el programa 6.cc y lo guarde en el archivo 6
+\immediate\write18{g++ -o programas/6 programas/6.cc}
+%Luego envía el resultado o la salida al archivo de texto salida6
+\immediate\write18{./programas/6 > programas/salida6}
+%Incluye la salida en el pdf
+\includecppoutput{salida6}
+%Incluir el texto del archivo 6.cc
+\includecppinput{6.cc}
+%Incluir el archivo Arreglos.tex para agregar datos y compilar
+\includetexinput{Arreglos.tex}
