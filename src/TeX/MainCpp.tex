@@ -606,6 +606,21 @@
 			}]
 }
 
+\providecommand*{\includetexinput}[1][]{%
+	\lstinputlisting[{
+				frame=shadowbox,
+				numbers=left,
+				stepnumber=1,
+				language=tex,
+				mathescape=true,
+				columns=fixed,%
+				backgroundcolor=\color{LavenderBlush1},
+				rulesepcolor=\color{black},
+				#1
+			}]
+}
+
+
 \hyphenation{mat-lab Su-pon-ga-mos ei-gen-es-pa-cio}
 \begin{document}
 \frontmatter %
