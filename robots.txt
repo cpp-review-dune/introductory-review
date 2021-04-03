@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cpp-review-dune.github.io/introductory-review/sitemap.xml
