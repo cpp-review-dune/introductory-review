@@ -291,3 +291,5 @@ public
 resources
 # Local Netlify folder
 .netlify
+
+!LICENSE
