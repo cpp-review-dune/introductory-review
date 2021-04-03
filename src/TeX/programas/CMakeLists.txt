@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.0)
+project(latex_docs)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_PROCESSOR x86_64)
+set(CMAKE_C_COMPILER clang)
+set(GCC_COVERAGE_COMPILE_FLAGS "-Wall")
+
+add_executable(4 4.cc)
+add_executable(5 5.cc)
+add_executable(Prueba1cin Prueba1cin.cc)
