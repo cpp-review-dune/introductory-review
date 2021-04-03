@@ -6,9 +6,13 @@
     </div>
     <div class="col-lg-9 col-xl-8 text-center">
       <p class="lead">{{ .Params.lead | safeHTML }}</p>
-      <a class="btn btn-primary btn-lg px-4 mb-2" href="{{ "docs/prologue/introduction/" | absURL }}" role="button">Empezar</a>
-      <!-- <p class="meta">Open-source MIT Licensed. <a href="https://github.com/h-enk/doks">GitHub v{{ .Site.Data.doks.version }}</a></p> -->
-      <p class="meta">Código abierto Licencia GPL2. <a href="https://github.com/cpp-review-dune/introductory-review">GitHub v{{ .Site.Data.doks.version }}</a></p>
+      <a class="btn btn-primary btn-lg px-4 mb-2"
+        href="{{ "docs/prologue/introduction/" | absURL }}"
+        role="button">Empezar</a>
+      <p class="meta"><a
+          href="https://github.com/cpp-review-dune/introductory-review">Código
+          abierto licencia GPL2</a>
+      </p>
     </div>
   </div>
 </section>
@@ -19,32 +23,38 @@
   <div class="container">
     <div class="row justify-content-center text-center">
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://cpp-review-dune.github.io/introductory-review/videos/zoom/meetings/">🎥</a> en español 🇲🇽 🇨🇴 🇵🇪</h2>
-        <p>Cada sesión en vivo es grabada y subida a <a href="https://diode.zone">Diode</a>.</p>
+        <h2 class="h4"><a
+            href="https://cpp-review-dune.github.io/introductory-review/videos/zoom/meetings/">🎥</a>
+          en español 🇲🇽 🇨🇴 🇵🇪</h2>
+        <p>Cada sesión grupal es subido al canal <a
+            href="https://diode.zone/video-channels/cpp_review_dune/videos"><tt>cpp-review-dune</tt></a>
+          de modo no listado,
+          <a href="https://diode.zone">diode.zone</a> está basado en
+          <a href="https://joinpeertube.org/">PeerTube</a>.
+        </p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4">Sobre <a href="https://www.docker.com/resources/what-container">contenedores</a> 🐳</h2>
-        <p>Se puede escribir dentro de <a href="http://gitpod.io">Gitpod</a> en su versión de 50h/mes. Además, cuenta con <tt>dune-ctest</tt>, <tt>duneproject</tt>, <tt>dunecontrol</tt> y <tt>dune-git-whitespace-hook</tt> fuera de la caja.</p>
+        <h2 class="h4">Sobre <a
+            href="https://www.docker.com/resources/what-container">contenedores</a>
+          🐳</h2>
+        <p>Utilizamos <a href="http://gitpod.io">Gitpod</a> como el
+          espacio de trabajo en su versión gratuita
+          de 50 horas/mes junto con las <a
+            href="https://github.com/orgs/cpp-review-dune/packages">imágenes</a>,
+          que cuentan con los comandos
+          <tt>dune-ctest</tt>,
+          <tt>duneproject</tt>, <tt>dunecontrol</tt> y
+          <tt>dune-git-whitespace-hook</tt> fuera de la caja.</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4">Corre sobre <a href="https://aur.archlinux.org/packages/dune-common">Arch Linux</a> 🐧</h2>
-        <p>Una distribución GNU/Linux comunitaria que se adhiere a los principios de simplicidad, modernidad, pragmatismo, centrado a las usuarias y usuarios; y versatilidad.</p>
+        <h2 class="h4">Corre sobre <a
+            href="https://aur.archlinux.org/packages/dune-common">Arch
+            Linux</a> 🐧</h2>
+        <p>Una distribución GNU/Linux comunitaria que se adhiere a los
+          principios de simplicidad, modernidad, pragmatismo, centrado
+          a las usuarias y usuarios; y versatilidad.</p>
       </div>
     </div>
-    <!-- <div class="row justify-content-center text-center">
-      <div class="col-lg-5">
-        <h2 class="h4">Full text search</h2>
-        <p>Search your Doks site with FlexSearch. Easily customize index settings and search options to your liking.</p>
-      </div>
-      <div class="col-lg-5">
-        <h2 class="h4">Page layouts</h2>
-        <p>Build pages with a landing page, blog, or documentation layout. Add custom sections and components to suit your needs.</p>
-      </div>
-      <div class="col-lg-5">
-        <h2 class="h4">Dark mode</h2>
-        <p>Switch to a low-light UI with the click of a button. Change colors with variables to match your branding.</p>
-      </div>
-    </div> -->
   </div>
 </section>
 {{ end }}

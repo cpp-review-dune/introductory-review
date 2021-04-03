@@ -2,8 +2,8 @@
 title: "Reuniones del grupo de Telegram DUNE-PDELAB Latin Group"
 description: "Reuniones del grupo de Telegram DUNE-PDELAB Latin Group."
 lead: "Reuniones del grupo de Telegram DUNE-PDELAB Latin Group."
-date: 2020-10-13T15:21:01+02:00
-lastmod: 2020-10-13T15:21:01+02:00
+date: 2021-04-02T15:21:01+02:00
+lastmod: 2021-04-02T15:21:01+02:00
 draft: false
 images: []
 menu:
@@ -28,3 +28,11 @@ toc: true
   src="https://diode.zone/videos/embed/d0b547c8-b4d7-4d46-aeb9-68a4a5dc626e?title=0&warningTitle=0&peertubeLink=0"
   frameborder="0" allowfullscreen>
 </iframe>
+
+<!-- #### Sesión 3 Cpp-review-dune XX/04/2021
+
+<iframe width="610" height="350"
+  sandbox="allow-same-origin allow-scripts allow-popups"
+  src="https://diode.zone/videos/embed/XXXXXXXXXXXXXXXXXXX?title=0&warningTitle=0&peertubeLink=0"
+  frameborder="0" allowfullscreen>
+</iframe> -->
