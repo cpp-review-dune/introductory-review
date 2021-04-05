@@ -16,9 +16,9 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
   echo '[multilib]' >> /etc/pacman.conf && \
   echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
-  echo '[dune-archiso-core]' >> /etc/pacman.conf && \
+  echo '[dune-core]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  echo 'Server = https://dune-archiso.gitlab.io/dune-archiso-core/$arch' >> /etc/pacman.conf && \
+  echo 'Server = https://dune-archiso.gitlab.io/dune-core/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
   # echo '[dune-archiso-repository-core]' >> /etc/pacman.conf && \
   # echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
