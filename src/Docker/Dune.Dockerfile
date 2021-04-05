@@ -35,6 +35,10 @@ ENV DEP_PKGS="openblas-lapack parmetis psurface"
 ENV MAIN_PKGS="\
   dune-common dune-geometry dune-grid dune-grid-howto dune-istl dune-localfunctions dune-uggrid"
 
-RUN pacman -S --noconfirm $DEP_PKGS && \
-  pacman -S --noconfirm $MAIN_PKGS && \
+ENV DUNE_PKGS="\
+  dune-common dune-geometry dune-grid dune-istl dune-localfunctions"
+
+RUN pacman -S --noconfirm $DUNE_PKGS && \
+  # pacman -S --noconfirm $DEP_PKGS && \
+  # pacman -S --noconfirm $MAIN_PKGS && \
   pacman -Scc --noconfirm
