@@ -11,6 +11,12 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   version="1.0"
 
 RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
+  sed -i 's/^#Color/Color/' /etc/pacman.conf && \
+  sed -i 's/^#CheckSpace/CheckSpace/' /etc/pacman.conf && \
+  sed -i '/CheckSpace/a ILoveCandy' /etc/pacman.conf && \
+  sed -i 's/ usr\/share\/doc\/\*//g' /etc/pacman.conf && \
+  sed -i 's/usr\/share\/man\/\* //g' /etc/pacman.conf && \
+  sed -i 's/^#MAKEFLAGS="-j2"/MAKEFLAGS="-j$(nproc)"/' /etc/makepkg.conf && \
   pacman-key --init && \
   pacman-key --populate archlinux && \
   echo '[multilib]' >> /etc/pacman.conf && \
