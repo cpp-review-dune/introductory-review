@@ -4,19 +4,14 @@ using std::cout;
 
 using std::cin;
 
-int main ()
+int main()
 
 {
-int slices;
+  int slices;
 
-cout << "You buddy how many pieces of pizza you eat?";
+  cout << "You buddy how many pieces of pizza you eat? ";
 
-cin>> slices;
+  cin >> slices;
 
-cout << "You have " << slices << " slices of pizza." << std::endl;
-
+  cout << "You have " << slices << " slices of pizza." << std::endl;
 }
-
-
-
-

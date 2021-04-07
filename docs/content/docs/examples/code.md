@@ -1,7 +1,7 @@
 ---
-title: "Code"
-description: "Code highlighting examples."
-lead: "Code highlighting examples."
+title: "Código"
+description: "Ejemplos de resaltado de código."
+lead: "Ejemplos de resaltado de código."
 date: 2021-03-16T08:43:34+01:00
 lastmod: 2021-03-16T08:43:34+01:00
 draft: false

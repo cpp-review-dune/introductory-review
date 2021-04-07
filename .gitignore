@@ -1,3 +1,12 @@
+# Ignore all
+*
+
+# Unignore all with extensions
+!*.*
+
+# Unignore all dirs
+!*/
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -282,3 +291,19 @@ public
 resources
 # Local Netlify folder
 .netlify
+
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps
+build
+
+
+!LICENSE

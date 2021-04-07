@@ -1,10 +1,10 @@
-baseurl = "https://cpp-review-dune.github.io/introductory-review"
+baseurl = "/" #"https://cpp-review-dune.github.io/introductory-review"
 disableAliases = true
 disableHugoGeneratorInject = true
 enableEmoji = true
-enableGitInfo = false
+enableGitInfo = true
 enableRobotsTXT = true
-languageCode = "en-US"
+languageCode = "es-PE"
 paginate = 7
 rssLimit = 10
 
@@ -76,9 +76,9 @@ rel  = "sitemap"
   blog = "/blog/:title/"
 
 [module]
-  [[module.mounts]]
-    source = "node_modules/@hyas/doks/archetypes"
-    target = "archetypes"
+  # [[module.mounts]]
+  #   source = "node_modules/@hyas/doks/archetypes"
+  #   target = "archetypes"
   [[module.mounts]]
     source = "node_modules/@hyas/doks/assets"
     target = "assets"

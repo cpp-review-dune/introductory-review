@@ -47,8 +47,9 @@ int main()
 
   cout << endl;
   //Utilizando un ciclo for
-  for (int i=0;i<5;i++){
-      cout<<"El valor del puntaje es "<<puntajes[i]<<'\n';
+  for (int i = 0; i < 5; i++)
+  {
+    cout << "El valor del puntaje es " << puntajes[i] << '\n';
   }
   return 0;
 }

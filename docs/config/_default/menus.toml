@@ -2,39 +2,38 @@
   name = "Prologue"
   weight = 10
   identifier = "prologue"
-  url = "/docs/prologue/"
+  url = "prologue"
 
 [[docs]]
-  name = "Examples"
+  name = "Ejemplos"
   weight = 20
   identifier = "examples"
-  url = "/docs/examples/"
-
-[[docs]]
-  name = "Help"
-  weight = 60
-  identifier = "help"
-  url = "/docs/help/"
+  url = "examples"
 
 [[main]]
   name = "Documentación"
-  url = "/docs/prologue/introduction/"
+  url = "docs/prologue/introduction"
   weight = 10
 
 [[main]]
   name = "Blog"
-  url = "/blog/"
+  url = "blog"
   weight = 20
 
 [[videos]]
   name = "Git"
   weight = 10
   identifier = "git"
-  url = "/videos/git/"
+  url = "videos/git"
 
 [[main]]
   name = "Vídeos"
-  url = "/videos/zoom/meetings/"
+  url = "videos/zoom/meetings"
+  weight = 20
+
+[[main]]
+  name = "Tutorial"
+  url = "tutorial/introduction"
   weight = 20
 
 [[social]]
@@ -52,5 +51,17 @@
 
 [[footer]]
   name = "Privacidad"
-  url = "/privacy-policy/"
+  url = "privacy-policy"
   weight = 10
+
+[[videos]]
+  name = "Vídeos"
+  weight = 10
+  identifier = "videos"
+  url = "videos"
+
+[[tutorial]]
+  name = "Tutorial"
+  weight = 10
+  identifier = "tutorial"
+  url = "tutorial"
