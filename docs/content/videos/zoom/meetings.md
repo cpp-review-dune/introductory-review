@@ -29,10 +29,10 @@ toc: true
   frameborder="0" allowfullscreen>
 </iframe>
 
-<!-- #### Sesión 3 Cpp-review-dune XX/04/2021
+#### Sesión 3 Cpp-review-dune 07/04/2021
 
 <iframe width="610" height="350"
   sandbox="allow-same-origin allow-scripts allow-popups"
-  src="https://diode.zone/videos/embed/XXXXXXXXXXXXXXXXXXX?title=0&warningTitle=0&peertubeLink=0"
+  src="https://diode.zone/videos/embed/6d4cda60-2d20-40bb-aec0-0b64e695f4b1?title=0&warningTitle=0&peertubeLink=0"
   frameborder="0" allowfullscreen>
-</iframe> -->
+</iframe>
