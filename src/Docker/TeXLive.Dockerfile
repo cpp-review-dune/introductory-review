@@ -16,11 +16,17 @@ ARG FONT1_PACKAGE=ttf-vista-fonts
 ARG FONT2_PACKAGE=consolas-font
 
 RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
-    pacman-key --init && \
-    pacman-key --populate archlinux && \
+    sed -i 's/^#Color/Color/' /etc/pacman.conf && \
+    sed -i 's/^#CheckSpace/CheckSpace/' /etc/pacman.conf && \
+    sed -i '/CheckSpace/a ILoveCandy' /etc/pacman.conf && \
+    sed -i 's/ usr\/share\/doc\/\*//g' /etc/pacman.conf && \
+    sed -i 's/usr\/share\/man\/\* //g' /etc/pacman.conf && \
+    sed -i 's/^#MAKEFLAGS="-j2"/MAKEFLAGS="-j$(nproc)"/' /etc/makepkg.conf && \
     echo '[multilib]' >> /etc/pacman.conf && \
     echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf && \
     echo '' >> /etc/pacman.conf && \
+    pacman-key --init && \
+    pacman-key --populate archlinux && \
     pacman --noconfirm -Syyu git && \
     useradd -m -r -s /bin/bash aur && \
     passwd -d aur && \
@@ -46,7 +52,7 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 #     binutils gcc gcc-libs icu lib32-glibc lib32-icu"
 
 ENV MAIN_PKGS="\    
-    gcc java-runtime texlive-core texlive-fontsextra texlive-latexextra texlive-science"
+    gcc java-runtime doxygen texlive-core texlive-fontsextra texlive-latexextra texlive-science"
 
 RUN pacman -Syu --noconfirm &&\
     pacman -S --noconfirm $MAIN_PKGS &&\
