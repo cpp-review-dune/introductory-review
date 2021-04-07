@@ -8,6 +8,8 @@ draft: false
 weight: 50
 images: ["say-hello-to-doks.png"]
 contributors: ["Henk Verlinde"]
-title: "Mi nombre es John Leal"
-description: "Me interesa mucho aprender sobre elementos finitos y métodos numéricos utilizando DUNE!"
 ---
+# Mi nombre es John Leal
+Me interesa mucho aprender sobre elementos finitos y métodos numéricos utilizando DUNE!
+
+Aquí se pueden escribir los comentarios o sugerencias.
