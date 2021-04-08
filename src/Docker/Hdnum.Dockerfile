@@ -33,7 +33,7 @@ ENV MAIN_PKGS="\
 RUN pacman -S --noconfirm $MAIN_PKGS && \
   pacman -Scc --noconfirm
 
-RUN git clone -q --depth=1 --filter=blob:none --no-checkout https://gitlab.com/courses-2020-1/abet-project.git
+# RUN git clone -q --depth=1 --filter=blob:none --no-checkout https://github.com/cpp-review-dune/hdnum
 
-echo -e "CC = clang++\nCCFLAGS = -I\$(HDNUMPATH) -std=c++11 -O3\nGMPCCFLAGS = -DHDNUM_HAS_GMP=1 -I/usr/include\nLFLAGS = -lm\nGMPLFLAGS = -L/usr/lib -lgmpxx -lgmp" > make.def
+# echo -e "CC = clang++\nCCFLAGS = -I\$(HDNUMPATH) -std=c++11 -O3\nGMPCCFLAGS = -DHDNUM_HAS_GMP=1 -I/usr/include\nLFLAGS = -lm\nGMPLFLAGS = -L/usr/lib -lgmpxx -lgmp" > make.def
 
