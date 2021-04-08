@@ -14,8 +14,6 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
   sed -i 's/^#Color/Color/' /etc/pacman.conf && \
   sed -i 's/^#CheckSpace/CheckSpace/' /etc/pacman.conf && \
   sed -i '/CheckSpace/a ILoveCandy' /etc/pacman.conf && \
-  sed -i 's/ usr\/share\/doc\/\*//g' /etc/pacman.conf && \
-  sed -i 's/usr\/share\/man\/\* //g' /etc/pacman.conf && \
   sed -i 's/^#MAKEFLAGS="-j2"/MAKEFLAGS="-j$(nproc)"/' /etc/makepkg.conf && \
   echo '[multilib]' >> /etc/pacman.conf && \
   echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf && \
@@ -24,7 +22,7 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
   pacman-key --populate archlinux && \
   pacman --noconfirm -Syyu git && \
   useradd -m -G wheel -s /bin/bash student && \
-  passwd -d dune && \
+  passwd -d student && \
   echo 'student ALL=(ALL) ALL' > /etc/sudoers.d/student
 
 ENV MAIN_PKGS="\
