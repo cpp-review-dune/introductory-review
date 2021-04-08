@@ -38,7 +38,7 @@ jobs:
             cd /work && doxygen -u Doxyfile && doxygen Doxyfile && cd doc/latex && make
             cd /work/tutorial && make
             sed -i 's/gs/gaussseidel/' /work/programmierkurs/HDNum.tex
-            cd /work/programmierkurs && pdflatex programmierkurs*.tex
+            cd /work/programmierkurs && pdflatex programmierkurs.tex && pdflatex programmierkurs_alt.tex
 
       - name: "Tar files"
         run: |
