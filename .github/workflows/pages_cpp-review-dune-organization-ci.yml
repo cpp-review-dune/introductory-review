@@ -39,13 +39,23 @@ jobs:
           workflow: latex_cpp-review-dune-organization-ci.yml
           name: PDF-artifact
 
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          workflow: latex_cpp-review-dune-organization-ci.yml
+          name: HDNUM_DOCS-artifact
+
       - name: "Untar files"
         run: |
           tar -I zstd -xvf PDF.tar.zst
+          tar -I zstd -xvf HDNUM_DOCS.tar.zst
           mkdir -p docs/public/files
           wget https://docs.paraview.org/_/downloads/en/latest/pdf/ -O docs/public/files/docs-paraview-org-en-latest.pdf
           wget https://dumux.org/docs/handbook/master/dumux-handbook.pdf -O docs/public/files/dumux-handbook.pdf
           # wget -O https://elib.uni-stuttgart.de/bitstream/11682/9377/1/simtech-tr2017-1_coupling-dumux-and-pdelab-to-investigate-evaporation.pdf docs/public/files/simtech-tr2017-1_coupling-dumux-and-pdelab-to-investigate-evaporation.pdf
+          mv doc/html docs/public/hdnum
+          mv doc/latex/refman.pdf docs/public/files
           mv src/TeX/*.pdf docs/public/files
 
       - name: Deploy
