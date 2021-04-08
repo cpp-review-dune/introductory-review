@@ -1,4 +1,4 @@
-name: TeXLive + Windows fonts
+name: TeXLive + Windows fonts + Doxygen
 
 on:
   push:

@@ -3,8 +3,8 @@ name: Hdnum docs C++ Review Dune Organization CI
 on:
   push:
     branches: [main]
-    # paths:
-    #   - src/TeX/**
+    paths:
+      - src/TeX/**
   pull_request:
     branches: [main]
   schedule:
@@ -36,10 +36,11 @@ jobs:
           shell: bash
           run: |
             cd /work && doxygen -u Doxyfile && doxygen Doxyfile && cd doc/latex && make
+            cd /work/tutorial && make
 
       - name: "Tar files"
         run: |
-          tar --zstd -cf HDNUM_DOCS.tar.zst doc/html doc/latex/refman.pdf
+          tar --zstd -cf HDNUM_DOCS.tar.zst doc/html doc/latex/refman.pdf doc/tutorial/hdnum.pdf
 
       - uses: actions/upload-artifact@v2
         with:
