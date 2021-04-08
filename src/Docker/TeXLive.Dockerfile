@@ -23,7 +23,7 @@ RUN pacman-key --init && \
     rm -rf /home/aur/.cache
 
 ENV MAIN_PKGS="\    
-    gcc java-runtime doxygen plantuml texlive-pictures ghostscript texlive-core texlive-fontsextra texlive-latexextra texlive-science"
+    gcc java-runtime doxygen plantuml texlive-pictures texlive-bibtexextra ghostscript texlive-core texlive-fontsextra texlive-latexextra texlive-science"
 
 RUN pacman -Syu --noconfirm &&\
     pacman -S --noconfirm $MAIN_PKGS &&\
