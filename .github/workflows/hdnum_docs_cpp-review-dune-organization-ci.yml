@@ -35,8 +35,7 @@ jobs:
           options: -v ${{github.workspace}}:/work
           shell: bash
           run: |
-            ls -R /work
-            cd /work && doxygen -u Doxyfile && cd doc/latex && make
+            cd /work && doxygen -u Doxyfile && doxygen -u Doxyfile && cd doc/latex && make
             cd /work/tutorial && arara --version # -L de [Ma]*.tex
             cd /work && ls doc/html/index.html doc/latex/refman.pdf
 
