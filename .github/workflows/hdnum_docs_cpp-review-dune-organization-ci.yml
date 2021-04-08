@@ -39,7 +39,7 @@ jobs:
 
       - name: "Tar files"
         run: |
-          tar --zstd -cf HDNUM_DOCS.tar.zst doc/html doc/latex/*.pdf
+          tar --zstd -cf HDNUM_DOCS.tar.zst doc/html doc/latex/refman.pdf
 
       - uses: actions/upload-artifact@v2
         with:
