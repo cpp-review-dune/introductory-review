@@ -43,7 +43,7 @@ jobs:
         uses: dawidd6/action-download-artifact@v2
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
-          workflow: latex_cpp-review-dune-organization-ci.yml
+          workflow: hdnum_docs_cpp-review-dune-organization-ci.yml
           name: HDNUM_DOCS-artifact
 
       - name: "Untar files"
