@@ -36,19 +36,14 @@ jobs:
           shell: bash
           run: |
             cd /work && doxygen -u Doxyfile && doxygen Doxyfile && cd doc/latex && make
-            cd /work && ls doc/html/index.html doc/latex/refman.pdf
 
-      # - name: Check pdf files
-      #   run: |
-      #     find src/TeX -type d \( -path src/TeX/img -o -path src/TeX/svg-inkscape \) -prune -false -o -type f -name "*.pdf" -exec file -- {} + | grep -q ' PDF '
+      - name: "Tar files"
+        run: |
+          tar --zstd -cf HDNUM_DOCS.tar.zst doc/html doc/latex/*.pdf
 
-      # - name: "Tar files"
-      #   run: |
-      #     tar --zstd -cf PDF.tar.zst src/TeX/*.pdf
-
-      # - uses: actions/upload-artifact@v2
-      #   with:
-      #     name: PDF-artifact
-      #     path: PDF.tar.zst
-      #     if-no-files-found: error
-      #     retention-days: 90
+      - uses: actions/upload-artifact@v2
+        with:
+          name: HDNUM_DOCS-artifact
+          path: HDNUM_DOCS.tar.zst
+          if-no-files-found: error
+          retention-days: 90
