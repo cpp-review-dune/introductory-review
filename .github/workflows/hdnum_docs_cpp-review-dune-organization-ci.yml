@@ -36,6 +36,9 @@ jobs:
           shell: bash
           run: |
             cd /work && doxygen -u Doxyfile && doxygen Doxyfile && cd doc/latex && make
+            print '\\documentclass[ignorenonframetext,12pt]{beamer}\n\\usepackage[ngerman]{babel}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\input{hdnum-tutorial-main}\n' > /work/tutorial/hdnum-tutorial-beamer.tex
+            print '\\documentclass[12pt,a4paper,DIV12,oneside,headings=normal,bibliography=totoc,headsepline=false,headinclude]{scrartcl}\n\\usepackage[ngerman]{babel}\n\\usepackage[utf8]{inputenc}\n\\usepackage[T1]{fontenc}\n\\usepackage[envcountsect,noamsthm]{beamerarticle}\n\\usepackage{amsthm}\n\\usepackage{amsmath}\n\\setjobnamebeamerversion{hdnum-tutorial-beamer}\n\\input{hdnum-tutorial-main}' > /work/tutorial/hdnum-tutorial-article.tex
+            cat hdnum-tutorial-beamer.tex && cat hdnum-tutorial-article.tex
             cd /work/tutorial && make
             sed -i 's/gs/gaussseidel/' /work/programmierkurs/HDNum.tex
             cd /work/programmierkurs && pdflatex programmierkurs.tex && pdflatex programmierkurs_alt.tex
