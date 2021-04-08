@@ -21,9 +21,9 @@ jobs:
           REPO="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/cpp-review-dune/hdnum.git"
           git config --global user.email github-actions@github.com
           git config --global user.name github-actions
-          git clone -q --filter=blob:none --no-checkout --depth=1  --sparse $REPO .
+          git clone -q -b practical --filter=blob:none --no-checkout --depth=1  --sparse $REPO .
           git sparse-checkout init --cone
-          git sparse-checkout set src tutorial
+          git sparse-checkout set src tutorial programmierkurs examples
           git checkout
 
       - uses: addnab/docker-run-action@v3
@@ -37,10 +37,13 @@ jobs:
           run: |
             cd /work && doxygen -u Doxyfile && doxygen Doxyfile && cd doc/latex && make
             cd /work/tutorial && make
+            sed -i 's/gs/gaussseidel/' /work/programmierkurs/HDNum.tex
+            cd /work/programmierkurs &&
+            && pdflatex programmierkurs_alt.tex && pdflatex programmierkurs.tex
 
       - name: "Tar files"
         run: |
-          tar --zstd -cf HDNUM_DOCS.tar.zst doc/html doc/latex/refman.pdf tutorial/hdnum.pdf
+          tar --zstd -cf HDNUM_DOCS.tar.zst doc/html doc/latex/refman.pdf tutorial/hdnum.pdf programmierkurs/programmierkurs*.pdf
 
       - uses: actions/upload-artifact@v2
         with:
