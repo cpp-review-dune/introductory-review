@@ -52,7 +52,7 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 #     binutils gcc gcc-libs icu lib32-glibc lib32-icu"
 
 ENV MAIN_PKGS="\    
-    gcc java-runtime doxygen texlive-core texlive-fontsextra texlive-latexextra texlive-science"
+    gcc java-runtime doxygen plantuml ghostscript texlive-core texlive-fontsextra texlive-latexextra texlive-science"
 
 RUN pacman -Syu --noconfirm &&\
     pacman -S --noconfirm $MAIN_PKGS &&\
