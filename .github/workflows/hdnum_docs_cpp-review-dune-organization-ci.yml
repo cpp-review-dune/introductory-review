@@ -40,23 +40,23 @@ jobs:
             ln -rs /work/programmierkurs/programmierkurs_alt.tex /work/tutorial/programmierkurs.tex
             ln -rs /work/programmierkurs/pendel.pdf /work/tutorial/pendel.pdf
             cat > /work/tutorial/hdnum-tutorial-beamer.tex <<EOF
-\documentclass[ignorenonframetext,12pt]{beamer} 
-\usepackage[ngerman]{babel} 
-\usepackage[T1]{fontenc} 
-\usepackage[utf8]{inputenc} 
-\input{hdnum-tutorial-main} 
-EOF
-            cat > /work/tutorial/hdnum-tutorial-article.tex <<EOF 
-\documentclass[12pt,a4paper,DIV12,oneside,headings=normal,bibliography=totoc,headsepline=false,headinclude]{scrartcl}
-\usepackage[ngerman]{babel}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage[envcountsect,noamsthm]{beamerarticle}
-\usepackage{amsthm}
-\usepackage{amsmath}
-\setjobnamebeamerversion{hdnum-tutorial-beamer}
-\input{hdnum-tutorial-main}
-EOF
+            \documentclass[ignorenonframetext,12pt]{beamer} 
+            \usepackage[ngerman]{babel} 
+            \usepackage[T1]{fontenc} 
+            \usepackage[utf8]{inputenc} 
+            \input{hdnum-tutorial-main} 
+            EOF
+            cat > /work/tutorial/hdnum-tutorial-article.tex <<EOF
+            \documentclass[12pt,a4paper,DIV12,oneside,headings=normal,bibliography=totoc,headsepline=false,headinclude]{scrartcl}
+            \usepackage[ngerman]{babel}
+            \usepackage[utf8]{inputenc}
+            \usepackage[T1]{fontenc}
+            \usepackage[envcountsect,noamsthm]{beamerarticle}
+            \usepackage{amsthm}
+            \usepackage{amsmath}
+            \setjobnamebeamerversion{hdnum-tutorial-beamer}
+            \input{hdnum-tutorial-main}
+            EOF
             sed -i 's/scrpage2/scrlayer-scrpage/' /work/tutorial/hdnum-tutorial-main.tex
             sed -i '0,/^% Die Kapitel$/d' /work/tutorial/programmierkurs.tex
             sed -i 's/\\end{document}//g' /work/tutorial/programmierkurs.tex
