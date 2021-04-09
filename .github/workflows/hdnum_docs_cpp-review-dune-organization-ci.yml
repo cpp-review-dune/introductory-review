@@ -39,7 +39,7 @@ jobs:
             ln -rs /work/examples/progkurs/hallohdnum.cc /work/examples/num0/hallohdnum.cc
             ln -rs /work/programmierkurs/programmierkurs_alt.tex /work/tutorial/programmierkurs.tex
             ln -rs /work/programmierkurs/pendel.pdf /work/tutorial/pendel.pdf
-            mkdir -p /work/tutorial/EPS && curl -o /work/tutorial/EPS https://raw.githubusercontent.com/cpp-review-dune/hdnum/6dc20dc97574d5361deb81f197804364359baf2b/tutorial/EPS/iwrlogo-klein.pdf
+            mkdir -p /work/tutorial/EPS && curl -o /work/tutorial/EPS/iwrlogo-klein.pdf https://raw.githubusercontent.com/cpp-review-dune/hdnum/6dc20dc97574d5361deb81f197804364359baf2b/tutorial/EPS/iwrlogo-klein.pdf
             cat > /work/tutorial/hdnum-tutorial-beamer.tex <<EOF
             \documentclass[ignorenonframetext,12pt]{beamer} 
             \usepackage[ngerman]{babel} 
