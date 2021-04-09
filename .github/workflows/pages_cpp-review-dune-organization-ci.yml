@@ -56,6 +56,7 @@ jobs:
           wget https://elib.uni-stuttgart.de/bitstream/11682/9377/1/simtech-tr2017-1_coupling-dumux-and-pdelab-to-investigate-evaporation.pdf -O docs/public/files/simtech-tr2017-1_coupling-dumux-and-pdelab-to-investigate-evaporation.pdf
           mv doc/html docs/public/hdnum
           mv tutorial/hdnum.pdf docs/public/files
+          mv tutorial/hdnum-tutorial-article.pdf docs/public/files
           mv doc/latex/refman.pdf docs/public/files
           mv programmierkurs/programmierkurs*.pdf docs/public/files
           mv src/TeX/*.pdf docs/public/files
