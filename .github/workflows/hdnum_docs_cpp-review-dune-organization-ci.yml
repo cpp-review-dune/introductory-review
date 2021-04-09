@@ -39,6 +39,7 @@ jobs:
             ln -rs /work/examples/progkurs/hallohdnum.cc /work/examples/num0/hallohdnum.cc
             ln -rs /work/programmierkurs/programmierkurs_alt.tex /work/tutorial/programmierkurs.tex
             ln -rs /work/programmierkurs/pendel.pdf /work/tutorial/pendel.pdf
+            mkdir -p /work/tutorial/EPS && curl -o /work/tutorial/EPS https://raw.githubusercontent.com/cpp-review-dune/hdnum/6dc20dc97574d5361deb81f197804364359baf2b/tutorial/EPS/iwrlogo-klein.pdf
             cat > /work/tutorial/hdnum-tutorial-beamer.tex <<EOF
             \documentclass[ignorenonframetext,12pt]{beamer} 
             \usepackage[ngerman]{babel} 
@@ -60,7 +61,7 @@ jobs:
             sed -i 's/scrpage2/scrlayer-scrpage/' /work/tutorial/hdnum-tutorial-main.tex
             sed -i '0,/^% Die Kapitel$/d' /work/tutorial/programmierkurs.tex
             sed -i 's/\\end{document}//g' /work/tutorial/programmierkurs.tex
-            cd /work/tutorial && make && pdflatex hdnum-tutorial-article.tex
+            cd /work/tutorial && make && pdflatex hdnum-tutorial-article.tex && bibtex hdnum-tutorial-article && pdflatex hdnum-tutorial-article.tex && pdflatex hdnum-tutorial-beamer.tex && bibtex hdnum-tutorial-beamer && pdflatex hdnum-tutorial-beamer.tex
             sed -i 's/gs/gaussseidel/' /work/programmierkurs/HDNum.tex
             cd /work/programmierkurs && pdflatex programmierkurs.tex && pdflatex programmierkurs_alt.tex
 

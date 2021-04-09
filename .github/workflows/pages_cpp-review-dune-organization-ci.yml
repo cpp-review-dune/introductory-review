@@ -57,6 +57,7 @@ jobs:
           mv doc/html docs/public/hdnum
           mv tutorial/hdnum.pdf docs/public/files
           mv tutorial/hdnum-tutorial-article.pdf docs/public/files
+          mv tutorial/hdnum-tutorial-beamer.pdf docs/public/files
           mv doc/latex/refman.pdf docs/public/files
           mv programmierkurs/programmierkurs*.pdf docs/public/files
           mv src/TeX/*.pdf docs/public/files
