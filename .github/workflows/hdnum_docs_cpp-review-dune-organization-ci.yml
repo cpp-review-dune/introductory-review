@@ -44,13 +44,11 @@ jobs:
             sed -i 's/scrpage2/scrlayer-scrpage/' /work/tutorial/hdnum-tutorial-main.tex
             sed -i '0,/^% Die Kapitel$/d' /work/tutorial/programmierkurs.tex
             sed -i 's/\\end{document}//g' /work/tutorial/programmierkurs.tex
-            # ls -l /work/examples/num0/hallohdnum.cc
-            # ls -l /work/tutorial/programmierkurs.tex
             # cat /work/tutorial/hdnum-tutorial-beamer.tex
             # cat /work/tutorial/hdnum-tutorial-article.tex
-            cd /work/tutorial && make
+            cd /work/tutorial && make && pdflatex hdnum-tutorial-article.tex
             sed -i 's/gs/gaussseidel/' /work/programmierkurs/HDNum.tex
-            cd /work/programmierkurs && pdflatex programmierkurs.tex && pdflatex programmierkurs_alt.tex && pdflatex hdnum-tutorial-article.tex
+            cd /work/programmierkurs && pdflatex programmierkurs.tex && pdflatex programmierkurs_alt.tex
 
       - name: "Tar files"
         run: |
