@@ -3,8 +3,8 @@ name: Hdnum docs C++ Review Dune Organization CI
 on:
   push:
     branches: [main]
-    # paths:
-    #   - src/TeX/**
+    paths:
+      - src/TeX/**
   pull_request:
     branches: [main]
   schedule:

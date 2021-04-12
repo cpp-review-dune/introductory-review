@@ -1,0 +1,9 @@
+image: ghcr.io/cpp-review-dune/introductory-review/dune
+
+# image:
+#   file: .gitpod.Dockerfile
+
+# alias docker-up sudo docker-up
+# alias update sudo apt-mark hold docker-ce && sudo apt update && sudo apt dist-upgrade && sudo apt auto-remove
+# alias start docker run -it --rm -h dune-tutorial -v $(pwd):/home/dune-student ghcr.io/cpp-review-dune/introductory-review/dune
+# docker run -it --rm -h hdnum-tutorial -v $(pwd):/home/hdnum-student ghcr.io/cpp-review-dune/introductory-review/hdnum
