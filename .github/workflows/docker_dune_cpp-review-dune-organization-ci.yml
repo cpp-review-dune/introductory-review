@@ -8,7 +8,7 @@ on:
   pull_request:
     branches: [main]
   schedule:
-    - cron: "0 11 * * *"
+    - cron: "0 13 * * 5"
 
 jobs:
   push_image:

@@ -1,106 +1,70 @@
 ---
-title: "Commands"
-description: "Doks comes with commands for common tasks."
+title: "Commandos GNU/Linux"
+description: "Paso a paso de cómo ejecutar un programa."
 lead: "Doks comes with commands for common tasks."
 date: 2020-10-13T15:21:01+02:00
 lastmod: 2020-10-13T15:21:01+02:00
 draft: false
 images: []
-menu: 
+menu:
   docs:
     parent: "prologue"
 weight: 130
 toc: true
 ---
+## Requisitos
 
-{{< alert icon="💡" text="You can change the commands in the scripts section of `./package.json`." >}}
-
-## start
-
-Start local development server:
+- [x] Tener una cuenta activa en [GitHub](http://github.com) (debe tener acceso a ella).
+- [x] Estar dado de alta en [gitpod](https://www.gitpod.io) y haber habilitado [`write publics repos`](https://gitpod.io/access-control).
 
 {{< btn-copy text="npm run start" >}}
 
-```bash
-npm run start
-```
+```console
+[user@host ~]$ git
+usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           [--super-prefix=<path>] [--config-env=<name>=<envvar>]
+           <command> [<args>]
 
-## lint
+These are common Git commands used in various situations:
 
-Check scripts, styles, and markdown for errors:
+start a working area (see also: git help tutorial)
+   clone             Clone a repository into a new directory
+   init              Create an empty Git repository or reinitialize an existing one
 
-{{< btn-copy text="npm run lint" >}}
+work on the current change (see also: git help everyday)
+   add               Add file contents to the index
+   mv                Move or rename a file, a directory, or a symlink
+   restore           Restore working tree files
+   rm                Remove files from the working tree and from the index
+   sparse-checkout   Initialize and modify the sparse-checkout
 
-```bash
-npm run lint
-```
+examine the history and state (see also: git help revisions)
+   bisect            Use binary search to find the commit that introduced a bug
+   diff              Show changes between commits, commit and working tree, etc
+   grep              Print lines matching a pattern
+   log               Show commit logs
+   show              Show various types of objects
+   status            Show the working tree status
 
-### scripts
+grow, mark and tweak your common history
+   branch            List, create, or delete branches
+   commit            Record changes to the repository
+   merge             Join two or more development histories together
+   rebase            Reapply commits on top of another base tip
+   reset             Reset current HEAD to the specified state
+   switch            Switch branches
+   tag               Create, list, delete or verify a tag object signed with GPG
 
-Check scripts for errors:
+collaborate (see also: git help workflows)
+   fetch             Download objects and refs from another repository
+   pull              Fetch from and integrate with another repository or a local branch
+   push              Update remote refs along with associated objects
 
-{{< btn-copy text="npm run lint:scripts" >}}
-
-```bash
-npm run lint:scripts [-- --fix]
-```
-
-### styles
-
-Check styles for errors:
-
-{{< btn-copy text="npm run lint:styles" >}}
-
-```bash
-npm run lint:styles [-- --fix]
-```
-
-### markdown
-
-Check markdown for errors:
-
-{{< btn-copy text="npm run lint:markdown" >}}
-
-```bash
-npm run lint:markdown [-- --fix]
-```
-
-## clean
-
-Delete temporary directories:
-
-{{< btn-copy text="npm run clean" >}}
-
-```bash
-npm run clean
-```
-
-## build
-
-Build production website:
-
-{{< btn-copy text="npm run build" >}}
-
-```bash
-npm run build
-```
-
-### functions
-
-Build Lambda functions:
-
-{{< btn-copy text="npm run build:functions" >}}
-
-```bash
-npm run build:functions
-```
-
-### preview
-
-Build production website including draft and future content:
-
-{{< btn-copy text="npm run build:preview" >}}
-
-```bash
-npm run build:preview
+'git help -a' and 'git help -g' list available subcommands and some
+concept guides. See 'git help <command>' or 'git help <concept>'
+to read about a specific subcommand or concept.
+See 'git help git' for an overview of the system.
 ```

@@ -1,9 +1,9 @@
 ---
-title: "Introduction"
-description: "Doks is a Hugo theme helping you build modern documentation websites that are secure, fast, and SEO-ready — by default."
-lead: "Doks is a Hugo theme helping you build modern documentation websites that are secure, fast, and SEO-ready — by default."
-date: 2020-10-06T08:48:57+00:00
-lastmod: 2020-10-06T08:48:57+00:00
+title: "Introducción"
+description: "Primeros pasos en C++ Review Dune."
+lead: "Primeros pasos en C++ Review Dune."
+date: 2021-04-02T08:48:57+00:00
+lastmod: 2021-04-02T08:48:57+00:00
 draft: false
 images: []
 menu:
@@ -13,42 +13,22 @@ weight: 100
 toc: true
 ---
 
-## Get started
+Creo que la mejor forma de aprender a resolver los ejercicios es seguir la metodología de [George Pólya](https://de.wikipedia.org/wiki/George_P%C3%B3lya).
 
-There are two main ways to get started with Doks:
+1. Comprender el problema.
+2. Concebir un plan.
+3. Ejecución del plan.
+4. Examinar la solución obtenida.
 
-### Tutorial
+Nuestro plan consiste en lo siguiente:
 
-{{< alert icon="👉" text="The Tutorial is intended for novice to intermediate users." >}}
+> **Situación:** No todos tenemos la memoria RAM suficiente en nuestro ordenador para poder emular un sistema operativo y tampoco tenemos la suficiente experiencia con un sistema GNU/Linux por lo que podríamos desestabilizar el sistema mientras aprendemos.
+>
+> **Solución:** Podríamos usar un servicio en la nube y vía un imagen con los programas instalados podríamos trabajar. No hay problema en malograr el sistema ya que los espacios de trabajo son efímeros (expira en $14$ días de inactividad) y podemos subir los cambios a GitHub.
+## ¿Qué es un control de versiones?
 
-Step-by-step instructions on how to start a new Doks project. [Tutorial →](https://getdoks.org/tutorial/introduction/)
-
-### Quick Start
-
-{{< alert icon="👉" text="The Quick Start is intended for intermediate to advanced users." >}}
-
-One page summary of how to start a new Doks project. [Quick Start →]({{< ref "quick-start" >}})
-
-## Go further
-
-Recipes, Reference Guides, Extensions, and Showcase.
-
-### Recipes
-
-Get instructions on how to accomplish common tasks with Doks. [Recipes →](https://getdoks.org/docs/recipes/project-configuration/)
-
-### Reference Guides
-
-Learn how to customize Doks to fully make it your own. [Reference Guides →](https://getdoks.org/docs/reference-guides/security/)
-
-### Extensions
-
-Get instructions on how to add even more to Doks. [Extensions →](https://getdoks.org/docs/extensions/add-google-fonts/)
-
-### Showcase
-
-See what others have build with Doks. [Showcase →](https://getdoks.org/showcase/parietal-numerics-documentation/)
-
-## Contributing
-
-Find out how to contribute to Doks. [Contributing →](https://getdoks.org/docs/contributing/how-to-contribute/)
+<iframe width="560" height="315"
+  sandbox="allow-same-origin allow-scripts allow-popups"
+  src="https://diode.zone/videos/embed/338bd9ff-61fd-4152-b01b-7a41d88ed06c?title=0&warningTitle=0"
+  frameborder="0" allowfullscreen>
+</iframe>
