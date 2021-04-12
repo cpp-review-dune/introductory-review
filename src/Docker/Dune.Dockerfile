@@ -35,6 +35,7 @@ RUN pacman -S --noconfirm $DUNE_PKGS && \
 RUN useradd -m -r -s /bin/bash dune-student && \
   passwd -d dune-student && \
   echo 'dune-student ALL=(ALL) ALL' > /etc/sudoers.d/dune-student && \
+  chown -R dune-student:dune-student /home/dune-student & \
   sudo -u dune-student bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 
 USER dune-student

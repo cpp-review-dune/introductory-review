@@ -27,6 +27,7 @@ RUN pacman -S --noconfirm $MAIN_PKGS && \
 RUN useradd -m -r -s /bin/bash hdnum-student && \
   passwd -d hdnum-student && \
   echo 'hdnum-student ALL=(ALL) ALL' > /etc/sudoers.d/hdnum-student && \
+  chown -R hdnum-student:hdnum-student /home/hdnum-student & \
   sudo -u hdnum-student bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 
 USER hdnum-student
