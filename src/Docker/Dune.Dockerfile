@@ -17,14 +17,6 @@ RUN echo '' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
   pacman-key --init && \
   pacman-key --populate archlinux && \
-  # echo '[dune-archiso-repository-core]' >> /etc/pacman.conf && \
-  # echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  # echo 'Server = https://dune-archiso.gitlab.io/dune-archiso-repository-core/$arch' >> /etc/pacman.conf && \
-  # echo '' >> /etc/pacman.conf && \
-  # echo '[dune-archiso-repository-extra]' >> /etc/pacman.conf && \
-  # echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  # echo 'Server = https://dune-archiso.gitlab.io/dune-archiso-repository-extra/$arch' >> /etc/pacman.conf && \
-  # echo '' >> /etc/pacman.conf && \
   pacman --noconfirm -Syyu
 
 ENV DEP_PKGS="openblas-lapack parmetis psurface"
@@ -39,3 +31,9 @@ RUN pacman -S --noconfirm $DUNE_PKGS && \
   # pacman -S --noconfirm $DEP_PKGS && \
   # pacman -S --noconfirm $MAIN_PKGS && \
   pacman -Scc --noconfirm
+
+RUN useradd -D -r -s /bin/bash dune-student
+
+RUN sudo -u dune-student bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+
+USER dune-student
