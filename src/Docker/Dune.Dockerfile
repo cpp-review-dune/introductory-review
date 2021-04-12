@@ -1,6 +1,6 @@
 # Copyleft (c) March, 2021, Oromion.
 
-FROM archlinux:base-devel
+FROM registry.gitlab.com/dune-archiso/dune-archiso-docker
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="Dune Arch" \
@@ -34,7 +34,6 @@ RUN pacman -S --noconfirm $DUNE_PKGS && \
 
 RUN useradd -m -r -s /bin/bash dune-student && \
   passwd -d dune-student && \
-  echo 'dune-student ALL=(ALL) ALL' > /etc/sudoers.d/dune-student && \
   sudo -u dune-student bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 
 USER dune-student
