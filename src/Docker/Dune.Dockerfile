@@ -32,7 +32,9 @@ RUN pacman -S --noconfirm $DUNE_PKGS && \
   # pacman -S --noconfirm $MAIN_PKGS && \
   pacman -Scc --noconfirm
 
-RUN useradd -m -r -s /bin/bash dune-student
-RUN sudo -u dune-student bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+RUN useradd -m -r -s /bin/bash dune-student && \
+  passwd -d dune-student && \
+  echo 'dune-student ALL=(ALL) ALL' > /etc/sudoers.d/dune-student && \
+  sudo -u dune-student bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 
 USER dune-student

@@ -12,10 +12,7 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 
 RUN pacman-key --init && \
   pacman-key --populate archlinux && \
-  pacman --noconfirm -Syyu && \
-  useradd -m -G wheel -s /bin/bash student && \
-  passwd -d student && \
-  echo 'student ALL=(ALL) ALL' > /etc/sudoers.d/student
+  pacman --noconfirm -Syyu
 
 ENV MAIN_PKGS="\
   ghostscript clang gnuplot"
@@ -26,3 +23,10 @@ RUN pacman -S --noconfirm $MAIN_PKGS && \
 # RUN git clone -q --depth=1 --filter=blob:none --no-checkout https://github.com/cpp-review-dune/hdnum
 
 # echo -e "CC = clang++\nCCFLAGS = -I\$(HDNUMPATH) -std=c++11 -O3\nGMPCCFLAGS = -DHDNUM_HAS_GMP=1 -I/usr/include\nLFLAGS = -lm\nGMPLFLAGS = -L/usr/lib -lgmpxx -lgmp" > make.def
+
+RUN useradd -m -r -s /bin/bash hdnum-student && \
+  passwd -d hdnum-student && \
+  echo 'hdnum-student ALL=(ALL) ALL' > /etc/sudoers.d/hdnum-student && \
+  sudo -u hdnum-student bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+
+USER hdnum-student
