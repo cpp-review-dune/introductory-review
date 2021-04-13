@@ -32,10 +32,12 @@ RUN pacman -S --noconfirm $DUNE_PKGS && \
   # pacman -S --noconfirm $MAIN_PKGS && \
   pacman -Scc --noconfirm
 
-RUN useradd -m -r -s /bin/bash dune-student && \
-  passwd -d dune-student && \
-  echo 'dune-student ALL=(ALL) ALL' > /etc/sudoers.d/dune-student && \
-  chown -R dune-student:dune-student /home/dune-student & \
-  sudo -u dune-student bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+RUN useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
+  passwd -d gitpod && \
+  echo 'gitpod ALL=(ALL) ALL' > /etc/sudoers.d/gitpod
+  # chown -R gitpod:gitpod /home/gitpod
+  # sudo -u gitpod bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 
-USER dune-student
+RUN { echo && echo "PS1='\[\e]0;\u \w\a\]\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \\\$ '" ; } >> /home/gitpod/.bashrc
+
+USER gitpod

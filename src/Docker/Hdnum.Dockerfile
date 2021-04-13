@@ -24,10 +24,10 @@ RUN pacman -S --noconfirm $MAIN_PKGS && \
 
 # echo -e "CC = clang++\nCCFLAGS = -I\$(HDNUMPATH) -std=c++11 -O3\nGMPCCFLAGS = -DHDNUM_HAS_GMP=1 -I/usr/include\nLFLAGS = -lm\nGMPLFLAGS = -L/usr/lib -lgmpxx -lgmp" > make.def
 
-RUN useradd -m -r -s /bin/bash hdnum-student && \
-  passwd -d hdnum-student && \
-  echo 'hdnum-student ALL=(ALL) ALL' > /etc/sudoers.d/hdnum-student && \
-  chown -R hdnum-student:hdnum-student /home/hdnum-student & \
-  sudo -u hdnum-student bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+RUN useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
+  passwd -d gitpod && \
+  echo 'gitpod ALL=(ALL) ALL' > /etc/sudoers.d/gitpod
+  # chown -R gitpod:gitpod /home/gitpod
+  # sudo -u gitpod bash -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
 
-USER hdnum-student
+USER gitpod
