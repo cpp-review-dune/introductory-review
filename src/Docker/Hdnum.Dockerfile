@@ -1,6 +1,6 @@
 # Copyleft (c) April, 2021, Oromion.
 
-FROM registry.gitlab.com/dune-archiso/dune-archiso-docker
+FROM registry.gitlab.com/dune-archiso/images/dune-archiso-docker
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="Hdnum Arch" \
