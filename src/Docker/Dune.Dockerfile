@@ -13,7 +13,11 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 RUN echo '' >> /etc/pacman.conf && \
   echo '[dune-core]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  echo 'Server = https://dune-archiso.gitlab.io/dune-core/$arch' >> /etc/pacman.conf && \
+  echo 'Server = https://dune-archiso.gitlab.io/pkgbuilds/dune-core/$arch' >> /etc/pacman.conf && \
+  echo '' >> /etc/pacman.conf && \
+  echo '[dune-core]' >> /etc/pacman.conf && \
+  echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
+  echo 'Server = https://dune-archiso.gitlab.io/pkgbuilds/dune-staging/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
   pacman-key --init && \
   pacman-key --populate archlinux && \
