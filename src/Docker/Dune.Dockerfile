@@ -19,6 +19,14 @@ RUN echo '' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/pkgbuilds/dune-staging/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
+  echo '[dune-extensions]' >> /etc/pacman.conf && \
+  echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
+  echo 'Server = https://dune-archiso.gitlab.io/pkgbuilds/dune-extensions/$arch' >> /etc/pacman.conf && \
+  echo '' >> /etc/pacman.conf && \
+  echo '[dune-fem]' >> /etc/pacman.conf && \
+  echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
+  echo 'Server = https://dune-archiso.gitlab.io/pkgbuilds/dune-fem/$arch' >> /etc/pacman.conf && \
+  echo '' >> /etc/pacman.conf && \
   pacman-key --init && \
   pacman-key --populate archlinux && \
   pacman --noconfirm -Syyu
