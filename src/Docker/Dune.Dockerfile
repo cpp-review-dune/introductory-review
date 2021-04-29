@@ -23,13 +23,13 @@ RUN echo '' >> /etc/pacman.conf && \
   pacman-key --populate archlinux && \
   pacman --noconfirm -Syyu
 
-ENV DEP_PKGS="openblas-lapack parmetis psurface"
+ENV EDITOR_PKGS="vim"
 
 ENV DUNE_PKGS="\
   dune-common dune-geometry dune-grid dune-grid-howto dune-istl dune-localfunctions dune-typetree dune-uggrid"
 
 RUN pacman -S --noconfirm $DUNE_PKGS && \
-  # pacman -S --noconfirm $DEP_PKGS && \
+  pacman -S --noconfirm $EDITOR_PKGS && \
   pacman -Scc --noconfirm
 
 RUN useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
