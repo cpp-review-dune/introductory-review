@@ -31,10 +31,10 @@ RUN echo '' >> /etc/pacman.conf && \
   pacman-key --populate archlinux && \
   pacman --noconfirm -Syyu
 
-ENV EDITOR_PKGS="vim"
+ENV EDITOR_PKGS="vim emacs-nox"
 
 ENV DUNE_PKGS="\
-  dune-common dune-geometry dune-grid dune-grid-howto dune-istl dune-localfunctions dune-typetree dune-uggrid"
+  dune-core dune-staging dune-extensions"
 
 RUN pacman -S --noconfirm $DUNE_PKGS && \
   pacman -S --noconfirm $EDITOR_PKGS && \
