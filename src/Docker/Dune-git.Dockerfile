@@ -11,6 +11,10 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   version="1.0"
 
 RUN echo '' >> /etc/pacman.conf && \
+  echo '[dune-archiso-repository-core]' >> /etc/pacman.conf && \
+  echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
+  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-archiso-repository-core/$arch' >> /etc/pacman.conf && \
+  echo '' >> /etc/pacman.conf && \
   echo '[dune-core-git]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/pkgbuilds/dune-core-git/$arch' >> /etc/pacman.conf && \

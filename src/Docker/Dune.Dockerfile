@@ -11,6 +11,10 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   version="1.0"
 
 RUN echo '' >> /etc/pacman.conf && \
+  echo '[dune-archiso-repository-core]' >> /etc/pacman.conf && \
+  echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
+  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-archiso-repository-core/$arch' >> /etc/pacman.conf && \
+  echo '' >> /etc/pacman.conf && \
   echo '[dune-core]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/pkgbuilds/dune-core/$arch' >> /etc/pacman.conf && \
@@ -27,6 +31,10 @@ RUN echo '' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/pkgbuilds/dune-fem/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
+  echo '[dumux]' >> /etc/pacman.conf && \
+  echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
+  echo 'Server = https://dune-archiso.gitlab.io/pkgbuilds/dumux/$arch' >> /etc/pacman.conf && \
+  echo '' >> /etc/pacman.conf && \
   pacman-key --init && \
   pacman-key --populate archlinux && \
   pacman --noconfirm -Syyu
@@ -35,6 +43,7 @@ ENV EDITOR_PKGS="vim emacs-nox"
 
 ENV DUNE_PKGS="\
   dune-core dune-staging dune-extensions dumux"
+# dune-extensions dune-fem
 
 RUN pacman -S --noconfirm $DUNE_PKGS && \
   pacman -S --noconfirm $EDITOR_PKGS && \
