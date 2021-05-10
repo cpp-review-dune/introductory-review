@@ -27,6 +27,10 @@ RUN echo '' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/pkgbuilds/dune-extensions/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
+  echo '[dune-pdelab-module]' >> /etc/pacman.conf && \
+  echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
+  echo 'Server = https://dune-archiso.gitlab.io/pkgbuilds/dune-pdelab-module/$arch' >> /etc/pacman.conf && \
+  echo '' >> /etc/pacman.conf && \
   echo '[dune-fem]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/pkgbuilds/dune-fem/$arch' >> /etc/pacman.conf && \
@@ -42,8 +46,7 @@ RUN echo '' >> /etc/pacman.conf && \
 ENV EDITOR_PKGS="vim emacs-nox"
 
 ENV DUNE_PKGS="\
-  dune-core dune-staging dune-extensions dumux"
-# dune-extensions dune-fem
+  dune-core dune-staging dune-extensions dune-quality dune-pdelab-module dune-fem dumux"
 
 RUN pacman -S --noconfirm $DUNE_PKGS && \
   pacman -S --noconfirm $EDITOR_PKGS && \
