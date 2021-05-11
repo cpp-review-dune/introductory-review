@@ -27,6 +27,10 @@ RUN echo '' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/pkgbuilds/dune-extensions/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
+  echo '[dune-quality]' >> /etc/pacman.conf && \
+  echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
+  echo 'Server = https://dune-archiso.gitlab.io/pkgbuilds/dune-quality/$arch' >> /etc/pacman.conf && \
+  echo '' >> /etc/pacman.conf && \
   echo '[dune-pdelab]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/pkgbuilds/dune-pdelab/$arch' >> /etc/pacman.conf && \
