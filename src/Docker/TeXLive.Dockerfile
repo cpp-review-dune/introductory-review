@@ -30,6 +30,7 @@ RUN pacman -Syu --noconfirm &&\
     # pacman -S --noconfirm texlive-{core,bin,bibtexextra,fontsextra,formatsextra,games,humanities,langchinese,langcyrillic,langextra,langgreek,langjapanese,langkorean,latexextra,music,pictures,pstricks,publishers,science} &&\
     # pacman -S --noconfirm biber ghostscript ruby perl-tk psutils dialog ed poppler-data &&\
     # pacman -S --noconfirm python python-{pandas,matplotlib,numpy,scipy,sympy} &&\
-    pacman -Scc --noconfirm
+    pacman -Qtdq | xargs -r pacman --noconfirm -Rcns && \
+    pacman -Scc <<< Y <<< Y
 
 CMD ["/bin/bash"]
