@@ -52,6 +52,7 @@ RUN useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
 
 RUN sed -i "s/PS1='\[\\\u\@\\\h \\\W\]\\\\\\$ '//g" /home/gitpod/.bashrc && \
   { echo && echo "PS1='\[\e]0;\u \w\a\]\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \\\$ '" ; } >> /home/gitpod/.bashrc && \
-  echo "alias cmake='cmake -Wno-dev" >> /home/gitpod/.bashrc
+  echo "alias cmake='cmake -Wno-dev'" >> /home/gitpod/.bashrc && \
+  echo "alias mpirun='mpirun --mca opal_warn_on_missing_libcuda 0'" >> /home/gitpod/.bashrc
 
 USER gitpod
