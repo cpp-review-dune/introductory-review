@@ -27,10 +27,10 @@ RUN echo '' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/repository/dune-extensions/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
-  # echo '[dune-quality]' >> /etc/pacman.conf && \
-  # echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  # echo 'Server = https://dune-archiso.gitlab.io/repository/dune-quality/$arch' >> /etc/pacman.conf && \
-  # echo '' >> /etc/pacman.conf && \
+  echo '[dune-quality]' >> /etc/pacman.conf && \
+  echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
+  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-quality/$arch' >> /etc/pacman.conf && \
+  echo '' >> /etc/pacman.conf && \
   echo '[dune-pdelab]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/repository/dune-pdelab/$arch' >> /etc/pacman.conf && \
@@ -39,10 +39,10 @@ RUN echo '' >> /etc/pacman.conf && \
   # echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   # echo 'Server = https://dune-archiso.gitlab.io/repository/dune-fem/$arch' >> /etc/pacman.conf && \
   # echo '' >> /etc/pacman.conf && \
-  # echo '[dune-agnumpde]' >> /etc/pacman.conf && \
-  # echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  # echo 'Server = https://dune-archiso.gitlab.io/repository/dune-agnumpde/$arch' >> /etc/pacman.conf && \
-  # echo '' >> /etc/pacman.conf && \
+  echo '[dune-agnumpde]' >> /etc/pacman.conf && \
+  echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
+  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-agnumpde/$arch' >> /etc/pacman.conf && \
+  echo '' >> /etc/pacman.conf && \
   echo '[dumux]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/repository/dumux/$arch' >> /etc/pacman.conf && \
