@@ -1,10 +1,10 @@
-# Copyleft (c) April, 2021, Oromion.
+# Copyleft (c) May, 2021, Oromion.
 
 FROM registry.gitlab.com/dune-archiso/images/dune-archiso-docker
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
-  name="Hdnum Arch" \
-  description="Hdnum in Arch." \
+  name="HDNum Arch" \
+  description="HDNum in Arch." \
   url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fhdnum" \
   vcs-url="https://github.com/cpp-review-dune/introductory-review" \
   vendor="Oromion Aznarán" \
@@ -21,8 +21,8 @@ RUN pacman -S --noconfirm $MAIN_PKGS && \
   pacman -Qtdq | xargs -r pacman --noconfirm -Rcns && \
   pacman -Scc <<< Y <<< Y
 
-# RUN git clone -q --depth=1 --filter=blob:none --no-checkout https://github.com/cpp-review-dune/hdnum
-# echo -e "CC = clang++\nCCFLAGS = -I\$(HDNUMPATH) -std=c++11 -O3\nGMPCCFLAGS = -DHDNUM_HAS_GMP=1 -I/usr/include\nLFLAGS = -lm\nGMPLFLAGS = -L/usr/lib -lgmpxx -lgmp" > make.def
+# RUN git clone -q --depth=1 --filter=blob:none --no-checkout https://github.com/cpp-review-dune/hdnum && \
+#   echo -e "CC = clang++\nCCFLAGS = -I\$(HDNUMPATH) -std=c++11 -O3\nGMPCCFLAGS = -DHDNUM_HAS_GMP=1 -I/usr/include\nLFLAGS = -lm\nGMPLFLAGS = -L/usr/lib -lgmpxx -lgmp" > make.def
 
 RUN useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
   passwd -d gitpod && \
