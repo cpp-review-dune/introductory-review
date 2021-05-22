@@ -17,19 +17,19 @@ RUN echo '' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
   echo '[dune-core-git]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  echo 'Server = https://dune-archiso.gitlab.io/pkgbuilds/dune-core-git/$arch' >> /etc/pacman.conf && \
+  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-core-git/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
   echo '[dune-staging-git]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  echo 'Server = https://dune-archiso.gitlab.io/pkgbuilds/dune-staging-git/$arch' >> /etc/pacman.conf && \
+  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-staging-git/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
   # echo '[dune-extensions-git]' >> /etc/pacman.conf && \
   # echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  # echo 'Server = https://dune-archiso.gitlab.io/pkgbuilds/dune-extensions-git/$arch' >> /etc/pacman.conf && \
+  # echo 'Server = https://dune-archiso.gitlab.io/repository/dune-extensions-git/$arch' >> /etc/pacman.conf && \
   # echo '' >> /etc/pacman.conf && \
   # echo '[dune-fem-git]' >> /etc/pacman.conf && \
   # echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  # echo 'Server = https://dune-archiso.gitlab.io/pkgbuilds/dune-fem-git/$arch' >> /etc/pacman.conf && \
+  # echo 'Server = https://dune-archiso.gitlab.io/repository/dune-fem-git/$arch' >> /etc/pacman.conf && \
   # echo '' >> /etc/pacman.conf && \
   pacman-key --init && \
   pacman-key --populate archlinux && \
@@ -43,7 +43,8 @@ ENV DUNE_PKGS="\
 
 RUN pacman -S --noconfirm $DUNE_PKGS && \
   pacman -S --noconfirm $EDITOR_PKGS && \
-  pacman -Scc --noconfirm
+  pacman -Qtdq | xargs -r pacman --noconfirm -Rcns && \
+  pacman -Scc <<< Y <<< Y
 
 RUN useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
   passwd -d gitpod && \
