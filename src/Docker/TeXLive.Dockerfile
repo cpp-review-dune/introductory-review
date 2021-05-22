@@ -1,4 +1,4 @@
-# Copyleft (c) March, 2021, Oromion.
+# Copyleft (c) May, 2021, Oromion.
 # https://dev.to/cloudx/testing-our-package-build-in-the-docker-world-34p0
 # https://github.com/alersrt/texlive-archlinux-docker/blob/master/Dockerfile
 
@@ -6,11 +6,12 @@ FROM registry.gitlab.com/dune-archiso/images/dune-archiso-docker
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
     name="TeX Live Arch" \
-    description="TeX Live in Arch with Windows fonts and C++ compilers" \
+    description="TeX Live in Arch with Windows fonts and g++ compiler." \
     url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Ftexlive" \
     vcs-url="https://github.com/cpp-review-dune/introductory-review" \
     vendor="Oromion Aznarán" \
     version="1.0"
+
 ENV FONT_PKGS="\
     ttf-vista-fonts consolas-font"
 

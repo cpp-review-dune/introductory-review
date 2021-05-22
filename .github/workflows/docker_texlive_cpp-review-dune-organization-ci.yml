@@ -1,4 +1,4 @@
-name: TeXLive + Windows fonts + Doxygen
+name: Publish Docker image based on TeXLive, Windows fonts and Doxygen
 
 on:
   push:
@@ -37,13 +37,13 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
-      # - name: Cache Docker layers
-      #   uses: actions/cache@v2
-      #   with:
-      #     path: /tmp/.buildx-cache
-      #     key: ${{ runner.os }}-buildx-${{ github.sha }}
-      #     restore-keys: |
-      #       ${{ runner.os }}-buildx-
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-texlive-cache
+          key: ${{ runner.os }}-buildx-texlive-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-texlive-
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
@@ -60,5 +60,10 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: ghcr.io/cpp-review-dune/introductory-review/texlive:latest
-          # cache-from: type=local,src=/tmp/.buildx-cache
-          # cache-to: type=local,dest=/tmp/.buildx-cache
+          cache-from: type=local,src=/tmp/.buildx-texlive-cache
+          cache-to: type=local,mode=max,dest=/tmp/.buildx-main-cache
+
+      - name: Move cache
+        run: |
+          rm -rf /tmp/.buildx-texlive-cache
+          mv /tmp/.buildx-main-cache /tmp/.buildx-texlive-cache
