@@ -18,10 +18,10 @@ ENV MAIN_PKGS="\
   ghostscript clang gnuplot"
 
 RUN pacman -S --noconfirm $MAIN_PKGS && \
-  pacman -Scc --noconfirm
+  pacman -Qtdq | xargs -r pacman --noconfirm -Rcns && \
+  pacman -Scc <<< Y <<< Y
 
 # RUN git clone -q --depth=1 --filter=blob:none --no-checkout https://github.com/cpp-review-dune/hdnum
-
 # echo -e "CC = clang++\nCCFLAGS = -I\$(HDNUMPATH) -std=c++11 -O3\nGMPCCFLAGS = -DHDNUM_HAS_GMP=1 -I/usr/include\nLFLAGS = -lm\nGMPLFLAGS = -L/usr/lib -lgmpxx -lgmp" > make.def
 
 RUN useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
