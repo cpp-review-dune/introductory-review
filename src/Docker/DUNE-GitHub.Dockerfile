@@ -3,8 +3,8 @@
 FROM registry.gitlab.com/dune-archiso/images/dune-archiso-docker
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
-  name="Dune-git Arch" \
-  description="Dune-git in Arch" \
+  name="Dune-GitHub Arch" \
+  description="Dune-GitHub in Arch." \
   url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fdune-git" \
   vcs-url="https://github.com/cpp-review-dune/introductory-review" \
   vendor="Oromion Aznarán" \
