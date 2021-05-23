@@ -3,9 +3,9 @@
 FROM registry.gitlab.com/dune-archiso/images/dune-archiso-docker
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
-  name="Dune Arch" \
-  description="Dune in Arch." \
-  url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fdune" \
+  name="DUNEPDELab Arch" \
+  description="DUNEPDELab in Arch." \
+  url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fdunepdelab" \
   vcs-url="https://github.com/cpp-review-dune/introductory-review" \
   vendor="Oromion Aznarán" \
   version="1.0"
@@ -35,22 +35,6 @@ RUN echo '' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/repository/dune-pdelab/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
-  # echo '[dune-fem]' >> /etc/pacman.conf && \
-  # echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  # echo 'Server = https://dune-archiso.gitlab.io/repository/dune-fem/$arch' >> /etc/pacman.conf && \
-  # echo '' >> /etc/pacman.conf && \
-  # echo '[dune-agnumpde]' >> /etc/pacman.conf && \
-  # echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  # echo 'Server = https://dune-archiso.gitlab.io/repository/dune-agnumpde/$arch' >> /etc/pacman.conf && \
-  # echo '' >> /etc/pacman.conf && \
-  # echo '[opm]' >> /etc/pacman.conf && \
-  # echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  # echo 'Server = https://dune-archiso.gitlab.io/repository/opm/$arch' >> /etc/pacman.conf && \
-  # echo '' >> /etc/pacman.conf && \
-  # echo '[dumux]' >> /etc/pacman.conf && \
-  # echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  # echo 'Server = https://dune-archiso.gitlab.io/repository/dumux/$arch' >> /etc/pacman.conf && \
-  # echo '' >> /etc/pacman.conf && \
   pacman-key --init && \
   pacman-key --populate archlinux && \
   pacman --noconfirm -Syyu
@@ -59,7 +43,6 @@ ENV EDITOR_PKGS="vim emacs-nox"
 
 ENV DUNE_PKGS="\
   dune-core dune-staging dune-extensions dune-quality dune-pdelab-module"
-# dumux dune-fem dune-agnumpde-module
 
 RUN pacman -S --noconfirm $DUNE_PKGS && \
   pacman -S --noconfirm $EDITOR_PKGS && \
