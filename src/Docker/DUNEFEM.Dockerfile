@@ -38,7 +38,7 @@ RUN echo '' >> /etc/pacman.conf && \
 ENV EDITOR_PKGS="vim emacs-nox"
 
 ENV DUNE_PKGS="\
-  dune-core dune-staging dune-extensions dune-fem"
+  dune-core dune-staging dune-fem"
 
 RUN pacman -S --noconfirm $DUNE_PKGS && \
   pacman -S --noconfirm $EDITOR_PKGS && \
