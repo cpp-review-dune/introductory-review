@@ -46,7 +46,7 @@ RUN echo '' >> /etc/pacman.conf && \
 ENV EDITOR_PKGS="vim emacs-nox"
 
 ENV DUNE_PKGS="\
-  dune-core dune-staging dune-extensions dune-agnumpde-module dumux"
+  dune-core dune-staging dune-extensions dune-agnumpde dumux"
 
 RUN pacman -S --noconfirm $DUNE_PKGS && \
   pacman -S --noconfirm $EDITOR_PKGS && \
