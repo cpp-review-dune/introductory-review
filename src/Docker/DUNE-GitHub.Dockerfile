@@ -10,6 +10,11 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   vendor="Oromion Aznarán" \
   version="1.0"
 
+ENV EDITOR_PKGS="vim emacs-nox"
+
+ENV DUNE_PKGS="\
+  dune-core-git dune-staging-git"
+
 RUN echo '' >> /etc/pacman.conf && \
   echo '[dune-archiso-repository-core]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
@@ -25,25 +30,19 @@ RUN echo '' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
   pacman-key --init && \
   pacman-key --populate archlinux && \
-  pacman --noconfirm -Syyu
-
-ENV EDITOR_PKGS="vim emacs-nox"
-
-ENV DUNE_PKGS="\
-  dune-core-git dune-staging-git"
-
-RUN pacman -S --noconfirm $DUNE_PKGS && \
+  pacman --noconfirm -Syyu && \
+  pacman -S --noconfirm $DUNE_PKGS && \
   pacman -S --noconfirm $EDITOR_PKGS && \
   pacman -Qtdq | xargs -r pacman --noconfirm -Rcns && \
-  pacman -Scc <<< Y <<< Y
-
-RUN useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
+  pacman -Scc <<< Y <<< Y && \
+  useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
   passwd -d gitpod && \
-  echo 'gitpod ALL=(ALL) ALL' > /etc/sudoers.d/gitpod
-
-RUN sed -i "s/PS1='\[\\\u\@\\\h \\\W\]\\\\\\$ '//g" /home/gitpod/.bashrc && \
+  echo 'gitpod ALL=(ALL) ALL' > /etc/sudoers.d/gitpod && \
+  sed -i "s/PS1='\[\\\u\@\\\h \\\W\]\\\\\\$ '//g" /home/gitpod/.bashrc && \
   { echo && echo "PS1='\[\e]0;\u \w\a\]\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \\\$ '" ; } >> /home/gitpod/.bashrc && \
   echo "alias cmake='cmake -Wno-dev'" >> /home/gitpod/.bashrc && \
   echo "alias mpirun='mpirun --mca opal_warn_on_missing_libcuda 0'" >> /home/gitpod/.bashrc
 
 USER gitpod
+
+WORKDIR /home/gitpod
