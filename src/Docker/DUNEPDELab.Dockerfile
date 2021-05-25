@@ -45,7 +45,9 @@ RUN echo '' >> /etc/pacman.conf && \
   pacman --noconfirm -Syyu && \
   pacman -S --noconfirm $DUNE_PKGS && \
   pacman -S --noconfirm $EDITOR_PKGS && \
-  pacman -Qtdq | xargs -r pacman --noconfirm -Rcns && \
+  sudo -u aur yay -S --noconfirm ansiweather && \
+  sudo -u aur yay -Qtdq | xargs -r sudo -u aur --noconfirm -Rcns && \
+  rm -rf /home/aur/.cache && \
   pacman -Scc <<< Y <<< Y && \
   useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
   passwd -d gitpod && \
