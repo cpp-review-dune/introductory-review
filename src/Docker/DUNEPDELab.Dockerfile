@@ -57,6 +57,6 @@ RUN echo '' >> /etc/pacman.conf && \
   echo "alias cmake='cmake -Wno-dev'" >> /home/gitpod/.bashrc && \
   echo "alias mpirun='mpirun --mca opal_warn_on_missing_libcuda 0'" >> /home/gitpod/.bashrc && \
   curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh | bash -e -x && \
-  cat /etc/motd >> /home/gitpod/.bashrc
+  echo 'cat /etc/motd' >> /home/gitpod/.bashrc
 
 USER gitpod
