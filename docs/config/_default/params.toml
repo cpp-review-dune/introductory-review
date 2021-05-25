@@ -8,10 +8,10 @@ description = "Introductory Review es un repositorio para compartir lo aprendido
 
 ## Open Graph + Twitter Cards
 images = ["doks.png"]
-twitterSite = "henkverlinde"
-twitterCreator = "henkverlinde"
-facebookAuthor = "verlinde.henk"
-facebookPublisher = "verlinde.henk"
+twitterSite = ""
+twitterCreator = ""
+facebookAuthor = ""
+facebookPublisher = ""
 ogLocale = "es_PE"
 
 ## JSON-LD
