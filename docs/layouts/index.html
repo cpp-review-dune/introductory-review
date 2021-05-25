@@ -11,7 +11,7 @@
         role="button">Empezar</a>
       <p class="meta"><a
           href="https://github.com/cpp-review-dune/introductory-review">Código
-          abierto licencia GPL2</a>
+          abierto GNU General Public License v2</a>
       </p>
     </div>
   </div>
@@ -19,6 +19,11 @@
 {{ end }}
 
 {{ define "sidebar-prefooter" }}
+<div class="d-flex justify-content-start">
+  <div class="bg-dots"></div>
+</div>
+
+{{/*  {{ define "sidebar-prefooter" }} */}}
 <section class="section section-sm">
   <div class="container">
     <div class="row justify-content-center text-center">
@@ -37,7 +42,8 @@
         <h2 class="h4">Sobre <a
             href="https://www.docker.com/resources/what-container">contenedores</a>
           🐳</h2>
-        <p>Utilizamos <a href="http://gitpod.io">Gitpod</a> como el
+        <p>Utilizamos <a href="https://www.gitpod.io">Gitpod</a> como
+          el
           espacio de trabajo en su plan open source de 100 horas/mes
           junto con las <a
             href="https://github.com/orgs/cpp-review-dune/packages">imágenes</a>,

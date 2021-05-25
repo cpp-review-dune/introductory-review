@@ -1,10 +1,10 @@
 # Meta Data for SEO
 
 ## Homepage
-title = "C++ Review Dune"
+title = "C++ Review DUNE"
 titleSeparator = "-"
 titleAddition = "Introductory Review"
-description = "Introductory Review es un repositorio para compartir lo aprendido y seguir aprendiendo del curso virtual de Dune."
+description = "Introductory Review es un repositorio para compartir lo aprendido y seguir aprendiendo del curso virtual de DUNE."
 
 ## Open Graph + Twitter Cards
 images = ["doks.png"]
@@ -17,8 +17,8 @@ ogLocale = "es_PE"
 ## JSON-LD
 schemaType = "Organization"
 schemaLogo = "logo-doks.png"
-schemaTwitter = "https://twitter.com/henkverlinde"
-schemaLinkedIn = "https://www.linkedin.com/in/henkverlinde/"
+schemaTwitter = ""
+schemaLinkedIn = ""
 schemaGitHub = "https://github.com/cpp-review-dune/introductory-review"
 schemaSection = "blog"
 
@@ -41,7 +41,7 @@ footer = ""
 
 # Alert
 alert = false
-alertText = "Like Doks? <a class=\"alert-link\" href=\"https://github.com/h-enk/doks/stargazers\">Star on GitHub</a>. Thanks!</a>"
+alertText = "Like C++ Review DUNE? <a class=\"alert-link\" href=\"https://github.com/cpp-review-dune/introductory-review/stargazers\">Star on GitHub</a>. Thanks!</a>"
 
 # Edit Page
 docsRepo = "https://github.com/cpp-review-dune/introductory-review"

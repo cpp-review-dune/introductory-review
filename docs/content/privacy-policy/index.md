@@ -22,4 +22,4 @@ images: []
 
 [Contáctanos]({{< ref "contact/index.md" >}}) si tienes alguna pregunta.
 
-Fecha efectiva: _2 de abril del 2021_
+Fecha efectiva: _2 de mayo del 2021_.
