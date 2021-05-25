@@ -60,3 +60,5 @@ RUN echo '' >> /etc/pacman.conf && \
   echo 'cat /etc/motd' >> /home/gitpod/.bashrc
 
 USER gitpod
+
+WORKDIR /home/gitpod
