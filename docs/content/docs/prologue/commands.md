@@ -1,7 +1,7 @@
 ---
-title: "Commandos GNU/Linux"
+title: "Comandos GNU/Linux"
 description: "Paso a paso de cómo ejecutar un programa."
-lead: "Doks comes with commands for common tasks."
+lead: "Paso a paso de cómo ejecutar un programa."
 date: 2020-10-13T15:21:01+02:00
 lastmod: 2020-10-13T15:21:01+02:00
 draft: false
@@ -14,8 +14,8 @@ toc: true
 ---
 ## Requisitos
 
-- [x] Tener una cuenta activa en [GitHub](http://github.com) (debe tener acceso a ella).
-- [x] Estar dado de alta en [gitpod](https://www.gitpod.io) y haber habilitado [`write publics repos`](https://gitpod.io/access-control).
+- [x] Cuenta activa en [GitHub](http://github.com) (debe tener acceso a ella).
+- [x] Dado de alta en [Gitpod](https://www.gitpod.io) y habilitar [`write publics repos`](https://gitpod.io/access-control).
 
 {{< btn-copy text="npm run start" >}}
 

@@ -17,7 +17,7 @@ toc: true
 
 ## Ejemplo 1
 
-Tomado de [Supernova Neutrinos](https://neutrino.leima.is/book/introduction/supernova-neutrinos/)_
+Tomado de [Supernova Neutrinos](https://neutrino.leima.is/book/introduction/supernova-neutrinos).
 
 ### Subtítulo
 

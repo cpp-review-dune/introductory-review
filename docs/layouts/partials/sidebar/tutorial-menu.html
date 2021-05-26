@@ -1,14 +1,16 @@
 {{ $currentPage := . -}}
 {{ range .Site.Menus.tutorial -}}
-  <h3>{{ .Name }}</h3>
-  {{ if .HasChildren -}}
-  <ul class="list-unstyled">
-    {{ range .Children -}}
-      {{- $active := or ($currentPage.IsMenuCurrent "tutorial" .) ($currentPage.HasMenuCurrent "tutorial" .) -}}
-      {{- $active = or $active (eq .Name $currentPage.Title) -}}
-      <li><a class="docs-link{{ if $active }} active{{ end }}" href="{{ .URL | relURL }}">{{ .Name }}</a></li>
-    {{ end -}}
-  </ul>
+<h3>{{ .Name }}</h3>
+{{ if .HasChildren -}}
+<ul class="list-unstyled">
+  {{ range .Children -}}
+  {{- $active := or ($currentPage.IsMenuCurrent "tutorial" .) ($currentPage.HasMenuCurrent "tutorial" .) -}}
+  {{- $active = or $active (eq .Name $currentPage.Title) -}}
+  <li><a class="docs-link{{ if $active }} active{{ end }}"
+      href="{{ .URL | relURL }}">{{ .Name }}</a></li>
   {{ end -}}
+</ul>
 {{ end -}}
-<h3 class="sidebar-link"><a href="/docs/help/faq/#can-i-get-support">Get Support →</a></h3>
+{{ end -}}
+<h3 class="sidebar-link"><a
+    href="/docs/help/faq/#can-i-get-support">Get Support →</a></h3>

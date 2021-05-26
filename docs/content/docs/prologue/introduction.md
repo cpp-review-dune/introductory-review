@@ -22,12 +22,13 @@ Creo que la mejor forma de aprender a resolver los ejercicios es seguir la metod
 
 Nuestro plan consiste en lo siguiente:
 
-> **Situación:** No todos tenemos la memoria RAM suficiente en nuestro ordenador para poder emular un sistema operativo y tampoco tenemos la suficiente experiencia con un sistema GNU/Linux por lo que podríamos desestabilizar el sistema mientras aprendemos.
+> **Situación:** No contamos con un ordenador que tenga la memoria RAM suficiente para emular un sistema operativo y estamos estudiando la administración de un sistema GNU/Linux.
 >
-> **Solución:** Podríamos usar un servicio en la nube y vía un imagen con los programas instalados podríamos trabajar. No hay problema en malograr el sistema ya que los espacios de trabajo son efímeros (expira en $14$ días de inactividad) y podemos subir los cambios a GitHub.
+> **Solución:** Dado que un sistema Unix está dividido en dos componentes primarios, el espacio del núcleo y el espacio de usuario. Practicaremos los ejercicios en un servicio en la nube basado en contenedores que nos otorga una parte del espacio de usuario de un sistema operativo Linux, incluidos los programas, las configuraciones personalizadas y el entorno.
+
 ## ¿Qué es un control de versiones?
 
-<iframe width="560" height="315"
+<iframe width="610" height="350"
   sandbox="allow-same-origin allow-scripts allow-popups"
   src="https://diode.zone/videos/embed/338bd9ff-61fd-4152-b01b-7a41d88ed06c?title=0&warningTitle=0"
   frameborder="0" allowfullscreen>
