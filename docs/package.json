@@ -64,6 +64,7 @@
     "stylelint-config-standard": "^21.0"
   },
   "dependencies": {
-    "docsearch.js": "^2.6.3"
+    "docsearch.js": "^2.6.3",
+    "dotenv": "^10.0.0"
   }
 }
