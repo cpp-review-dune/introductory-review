@@ -1,4 +1,5 @@
-baseurl = "/" #"https://cpp-review-dune.github.io/introductory-review"
+baseurl = "/"
+canonifyURLs = false
 disableAliases = true
 disableHugoGeneratorInject = true
 enableEmoji = true
@@ -85,15 +86,15 @@ rel  = "sitemap"
 #  [[module.mounts]]
 #    source = "node_modules/@hyas/doks/content"
 #    target = "content"
-  [[module.mounts]]
-    source = "node_modules/@hyas/doks/data"
-    target = "data"
+  # [[module.mounts]]
+  #   source = "node_modules/@hyas/doks/data"
+  #   target = "data"
   [[module.mounts]]
     source = "node_modules/@hyas/doks/layouts"
     target = "layouts"
-  [[module.mounts]]
-    source = "node_modules/@hyas/doks/static"
-    target = "static"
+  # [[module.mounts]]
+  #   source = "node_modules/@hyas/doks/static"
+  #   target = "static"
   [[module.mounts]]
     source = "node_modules/flexsearch"
     target = "assets/js/vendor/flexsearch"
@@ -112,9 +113,9 @@ rel  = "sitemap"
   [[module.mounts]]
     source = "layouts"
     target = "layouts"
-  [[module.mounts]]
-    source = "archetypes"
-    target = "archetypes"
-  [[module.mounts]]
-    source = "data"
-    target = "data"
+  # [[module.mounts]]
+  #   source = "archetypes"
+  #   target = "archetypes"
+  # [[module.mounts]]
+  #   source = "data"
+  #   target = "data"
