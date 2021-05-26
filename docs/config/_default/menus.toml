@@ -1,30 +1,25 @@
-[[docs]]
-  name = "Prólogo"
-  weight = 10
-  identifier = "prologue"
-  url = "/docs/prologue/"
+# [[videos]]
+#   name = "Vídeos"
+#   weight = 10
+#   identifier = "videos"
+#   url = "/videos/"
 
-[[docs]]
-  name = "Ejemplos"
-  weight = 20
-  identifier = "examples"
-  url = "/docs/examples/"
+# [[videos]]
+#   name = "Git"
+#   weight = 10
+#   identifier = "git"
+#   url = "/videos/git/"
+
+# [[tutorial]]
+#   name = "Tutorial"
+#   weight = 10
+#   identifier = "tutorial"
+#   url = "/tutorial/"
 
 [[main]]
-  name = "Documentación"
-  url = "/docs/prologue/introduction/"
+  name = "Tutorial"
+  url = "/tutorial/introduction/"
   weight = 10
-
-[[main]]
-  name = "Blog"
-  url = "/blog/"
-  weight = 20
-
-[[videos]]
-  name = "Git"
-  weight = 10
-  identifier = "git"
-  url = "/videos/git/"
 
 [[main]]
   name = "Vídeos"
@@ -32,28 +27,28 @@
   weight = 20
 
 [[main]]
-  name = "Tutorial"
-  url = "/tutorial/introduction/"
-  weight = 20
+  name = "Blog"
+  url = "/blog/"
+  weight = 30
 
 [[social]]
   name = "Telegram"
   pre = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"-1 0 26 26\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-telegram\"><path d=\"M9.028 20.837c-.714 0-.593-.271-.839-.949l-2.103-6.92L22.263 3.37\"></path><path d=\"M9.028 20.837c.552 0 .795-.252 1.105-.553l2.941-2.857-3.671-2.214\"></path><path d=\"M9.403 15.213l8.89 6.568c1.015.56 1.748.271 2-.942l3.62-17.053c.372-1.487-.564-2.159-1.534-1.72L1.125 10.263c-1.45.582-1.443 1.392-.264 1.753l5.455 1.7L18.94 5.753c.595-.36 1.143-.167.694.232\"></path></svg>"
   url = "https://t.me/joinchat/OsfYP1xnFlxjN2Ix"
-  weight = 10
+  weight = 30
 
 [[social]]
   name = "GitHub"
   pre = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-github\"><path d=\"M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22\"></path></svg>"
   url = "https://github.com/cpp-review-dune/introductory-review"
   post = "v0.1.0"
-  weight = 20
+  weight = 40
 
 [[social]]
   name = "Standard C++"
   pre = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"21.327\" height=\"24\"><g stroke-width=\"14.348\"><path fill=\"#00599c\" d=\"M21.056 18c.167-.29.271-.616.271-.91V6.91c0-.294-.104-.62-.271-.91l-10.392 6z\"/><path fill=\"#004482\" d=\"M11.587 23.78l8.817-5.09c.254-.147.485-.4.652-.69l-10.392-6L.27 18c.168.29.399.543.652.69l8.817 5.09c.508.293 1.34.293 1.847 0z\"/><path fill=\"#659ad2\" d=\"M21.056 6c-.167-.29-.398-.543-.652-.69L11.587.22c-.508-.293-1.339-.293-1.847 0L.923 5.31C.416 5.603 0 6.323 0 6.91v10.18c0 .294.104.62.271.91l10.393-6z\"/><path fill=\"#fff\" d=\"M10.664 19.11c-3.92 0-7.11-3.19-7.11-7.11 0-3.92 3.19-7.109 7.11-7.109a7.135 7.135 0 016.156 3.552l-3.077 1.78a3.57 3.57 0 00-3.08-1.777A3.559 3.559 0 007.11 12a3.559 3.559 0 003.555 3.555 3.57 3.57 0 003.08-1.779l3.076 1.78a7.135 7.135 0 01-6.156 3.553z\"/><path fill=\"#fff\" d=\"M15.403 12.395h.79v.79h.79v-.79h.79v-.79h-.79v-.79h-.79v.79h-.79zM18.365 12.395h.79v.79h.79v-.79h.79v-.79h-.79v-.79h-.79v.79h-.79z\"/></g></svg>"
   url = "https://isocpp.org"
-  weight = 10
+  weight = 20
 
 [[social]]
   name = "DUNE/PDELab Course Material"
@@ -66,14 +61,7 @@
   url = "/privacy-policy/"
   weight = 10
 
-[[videos]]
-  name = "Vídeos"
-  weight = 10
-  identifier = "videos"
-  url = "/videos/"
-
-[[tutorial]]
-  name = "Tutorial"
-  weight = 10
-  identifier = "tutorial"
-  url = "/tutorial/"
+[[footer]]
+  name = "Comunidad"
+  url = "https://github.com/cpp-review-dune/introductory-review/discussions"
+  weight = 20

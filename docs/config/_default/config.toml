@@ -86,24 +86,24 @@ rel  = "sitemap"
 #  [[module.mounts]]
 #    source = "node_modules/@hyas/doks/content"
 #    target = "content"
-  # [[module.mounts]]
-  #   source = "node_modules/@hyas/doks/data"
-  #   target = "data"
+  [[module.mounts]]
+    source = "node_modules/@hyas/doks/data"
+    target = "data"
   [[module.mounts]]
     source = "node_modules/@hyas/doks/layouts"
     target = "layouts"
-  # [[module.mounts]]
-  #   source = "node_modules/@hyas/doks/static"
-  #   target = "static"
+  [[module.mounts]]
+    source = "node_modules/@hyas/doks/static"
+    target = "static"
   [[module.mounts]]
     source = "node_modules/flexsearch"
     target = "assets/js/vendor/flexsearch"
   [[module.mounts]]
     source = "node_modules/katex"
     target = "assets/js/vendor/katex"
-  [[module.mounts]]
-    source = "assets"
-    target = "assets"
+  # [[module.mounts]]
+  #   source = "assets"
+  #   target = "assets"
   [[module.mounts]]
     source = "static"
     target = "static"
@@ -113,9 +113,9 @@ rel  = "sitemap"
   [[module.mounts]]
     source = "layouts"
     target = "layouts"
-  # [[module.mounts]]
-  #   source = "archetypes"
-  #   target = "archetypes"
-  # [[module.mounts]]
-  #   source = "data"
-  #   target = "data"
+  [[module.mounts]]
+    source = "archetypes"
+    target = "archetypes"
+  [[module.mounts]]
+    source = "data"
+    target = "data"

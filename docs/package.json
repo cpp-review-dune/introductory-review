@@ -62,5 +62,8 @@
     "standard-version": "^9.3.0",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0"
+  },
+  "dependencies": {
+    "docsearch.js": "^2.6.3"
   }
 }
