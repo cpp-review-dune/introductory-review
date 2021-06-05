@@ -55,7 +55,8 @@ RUN echo '' >> /etc/pacman.conf && \
   sed -i "s/PS1='\[\\\u\@\\\h \\\W\]\\\\\\$ '//g" /home/gitpod/.bashrc && \
   { echo && echo "PS1='\[\e]0;\u \w\a\]\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \\\$ '" ; } >> /home/gitpod/.bashrc && \
   echo "alias man='man -Les'" >> /home/gitpod/.bashrc && \
-  echo "alias tldr='tldr -Les'" >> /home/gitpod/.bashrc && \
+  # echo "alias biber='/usr/bin/vendor_perl/biber'" >> /home/gitpod/.bashrc && \
+  # echo "alias tldr='tldr -Les'" >> /home/gitpod/.bashrc && \
   echo "alias cmake='cmake -Wno-dev'" >> /home/gitpod/.bashrc && \
   echo "alias mpirun='mpirun --mca opal_warn_on_missing_libcuda 0'" >> /home/gitpod/.bashrc && \
   curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh | bash -e -x && \

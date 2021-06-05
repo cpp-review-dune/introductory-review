@@ -7,7 +7,22 @@ draft: false
 images: []
 ---
 
-[KaTeX](https://katex.org/) está cambiado por defecto. Es posible habilitar ésto de la siguiente forma  `kaTex = true` en `[options]` sección  `./config/_default/params.toml`.
+| Lectura | Tópico                  |    Diapositivas    |          Tutoriales           |     Ejercicios      |  Soluciones   | Lecturas sugereridas |
+| ------- | ----------------------- | :----------------: | :---------------------------: | :-----------------: | :-----------: | -------------------: |
+| 1       | `bash`, `linux`         | [lectura-1](.pdf)  | [](cpp-review-dune.github.io) | [ejercicio-1](.pdf) | right-aligned |                      |
+| 2       | `g++`, `gnuplot`        | [lectura-2](.pdf)  | [](cpp-review-dune.github.io) | [ejercicio-1](.pdf) | right-aligned |                      |
+| 3       | `make`, `cmake`         | [lectura-3](.pdf)  | [](cpp-review-dune.github.io) | [ejercicio-1](.pdf) |   centered    |                      |
+| 4       | `git`, `markdown`       | [lectura-4](.pdf)  | [](cpp-review-dune.github.io) | [ejercicio-1](.pdf) | right-aligned |                      |
+| 5       | `doxygen`               | [lectura-5](.pdf)  | [](cpp-review-dune.github.io) | [ejercicio-1](.pdf) |               |                      |
+| 6       | `docker`, `gitpod.io`   | [lectura-6](.pdf)  | [](cpp-review-dune.github.io) | [ejercicio-1](.pdf) |               |                      |
+| 7       | `C++17`                 | [lectura-7](.pdf)  | [](cpp-review-dune.github.io) | [ejercicio-1](.pdf) |               |                      |
+| 8       | `gmsh`                  | [lectura-8](.pdf)  | [](cpp-review-dune.github.io) | [ejercicio-1](.pdf) |               |                      |
+| 9       | `paraview`              | [lectura-9](.pdf)  | [](cpp-review-dune.github.io) | [ejercicio-1](.pdf) |               |                      |
+| 10      | `dune-pdelab-tutorials` | [lectura-10](.pdf) | [](cpp-review-dune.github.io) | [ejercicio-1](.pdf) |               |                      |
+
+- Consideraremos python si usamos dune-fem-python
+
+[KaTeX](https://katex.org/) está cambiado por defecto. Es posible habilitar ésto de la siguiente forma `kaTex = true` en `[options]` sección `./config/_default/params.toml`.
 
 ## Ejemplo 1
 
@@ -16,7 +31,7 @@ Tomado de [Supernova Neutrinos](https://neutrino.leima.is/book/introduction/supe
 ### Subtítulo
 
 ```md
-Con tres comillas francesas, se visualiza lo que se escribe, no lo que quiero presentar.  La energía promedio de los neutrinos $\langle E \rangle$ emitido durante la explosión de una supernova es del orden de 10MeV, y su luminosidad en la época de la explosión es aproximadamente $10^{52}\mathrm{ergs\cdot s^{-1}}$.
+Con tres comillas francesas, se visualiza lo que se escribe, no lo que quiero presentar. La energía promedio de los neutrinos $\langle E \rangle$ emitido durante la explosión de una supernova es del orden de 10MeV, y su luminosidad en la época de la explosión es aproximadamente $10^{52}\mathrm{ergs\cdot s^{-1}}$.
 Así, la densidad del número de neutrinos de radio $R$ es:
 
 $$
