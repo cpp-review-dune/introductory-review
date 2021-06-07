@@ -7,8 +7,11 @@ draft: false
 images: []
 ---
 
+[por qué usar gitpod]()
+
 | Lectura | Tópico                  |    Diapositivas    |          Tutoriales           |     Ejercicios      |  Soluciones   | Lecturas sugereridas |
 | ------- | ----------------------- | :----------------: | :---------------------------: | :-----------------: | :-----------: | -------------------: |
+| 0       | `gitpod-intro`          | [lectura-0](.pdf)  | [](cpp-review-dune.github.io) | [ejercicio-1](.pdf) | right-aligned |                      |
 | 1       | `bash`, `linux`         | [lectura-1](.pdf)  | [](cpp-review-dune.github.io) | [ejercicio-1](.pdf) | right-aligned |                      |
 | 2       | `g++`, `gnuplot`        | [lectura-2](.pdf)  | [](cpp-review-dune.github.io) | [ejercicio-1](.pdf) | right-aligned |                      |
 | 3       | `make`, `cmake`         | [lectura-3](.pdf)  | [](cpp-review-dune.github.io) | [ejercicio-1](.pdf) |   centered    |                      |
