@@ -20,13 +20,13 @@ RUN echo '' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/repository/dune-archiso-repository-core/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
-  echo '[dune-core-git]' >> /etc/pacman.conf && \
+  echo '[dune-core]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-core-git/$arch' >> /etc/pacman.conf && \
+  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-core/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
-  echo '[dune-staging-git]' >> /etc/pacman.conf && \
+  echo '[dune-staging]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-staging-git/$arch' >> /etc/pacman.conf && \
+  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-staging/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
   pacman-key --init && \
   pacman-key --populate archlinux && \
