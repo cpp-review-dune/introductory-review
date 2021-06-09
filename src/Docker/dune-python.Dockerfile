@@ -10,7 +10,7 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   vendor="Oromion Aznarán" \
   version="1.0"
 
-ENV EDITOR_PKGS="vim emacs-nox"
+ENV EDITOR_PKGS="vim emacs-nox jupyter-notebook"
 
 ENV DUNE_PKGS="\
   dune-python"
@@ -46,3 +46,5 @@ RUN echo '' >> /etc/pacman.conf && \
 USER gitpod
 
 WORKDIR /home/gitpod
+
+EXPOSE 8888
