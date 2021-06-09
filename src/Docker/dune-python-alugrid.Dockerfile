@@ -28,6 +28,10 @@ RUN echo '' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/repository/dune-staging/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
+  echo '[dune-extensions]' >> /etc/pacman.conf && \
+  echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
+  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-extensions/$arch' >> /etc/pacman.conf && \
+  echo '' >> /etc/pacman.conf && \
   pacman-key --init && \
   pacman-key --populate archlinux && \
   pacman --noconfirm -Syyu && \
