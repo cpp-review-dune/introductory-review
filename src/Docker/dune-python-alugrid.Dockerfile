@@ -3,8 +3,8 @@
 FROM registry.gitlab.com/dune-archiso/images/dune-archiso-docker
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
-  name="dune-python-alugrid Arch" \
-  description="dune-python-alugrid in Arch." \
+  name="dune-alugrid Arch" \
+  description="dune-alugrid in Arch." \
   url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fdune-python-alugrid" \
   vcs-url="https://github.com/cpp-review-dune/introductory-review" \
   vendor="Oromion Aznarán" \
@@ -13,7 +13,7 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 ENV EDITOR_PKGS="vim emacs-nox jupyter-notebook"
 
 ENV DUNE_PKGS="\
-  dune-python-alugrid"
+  dune-alugrid"
 
 RUN echo '' >> /etc/pacman.conf && \
   echo '[dune-archiso-repository-core]' >> /etc/pacman.conf && \
