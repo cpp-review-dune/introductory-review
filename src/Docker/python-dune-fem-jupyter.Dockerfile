@@ -13,7 +13,7 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 ENV EDITOR_PKGS="vim emacs-nox jupyter-notebook"
 
 ENV DUNE_PKGS="\
-  dune-fem-git"
+  dune-alugrid-git dune-fem-git"
 
 RUN echo '' >> /etc/pacman.conf && \
   echo '[dune-archiso-repository-core]' >> /etc/pacman.conf && \
