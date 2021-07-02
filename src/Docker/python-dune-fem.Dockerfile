@@ -20,9 +20,9 @@ RUN echo '' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/repository/dune-archiso-repository-core/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
-  echo '[dune-archiso-repository-pdelab-git]' >> /etc/pacman.conf && \
+  echo '[dune-archiso-repository-fem-git]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-archiso-repository-pdelab-git/$arch' >> /etc/pacman.conf && \
+  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-archiso-repository-fem-git/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
   pacman-key --init && \
   pacman-key --populate archlinux && \
