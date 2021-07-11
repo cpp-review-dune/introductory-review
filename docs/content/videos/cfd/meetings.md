@@ -76,3 +76,59 @@ toc: true
   src="https://diode.zone/videos/embed/3b2129ff-f93a-470d-b25f-d379ae9033f4?title=0&warningTitle=0&peertubeLink=0"
   frameborder="0" allowfullscreen>
 </iframe>
+
+#### Sesión $9$ CFD $28/05/2021$
+
+<iframe width="610" height="350"
+  sandbox="allow-same-origin allow-scripts allow-popups"
+  src="https://diode.zone/videos/embed/19d2fa19-8083-4a6e-b9dd-4d6d5828b56c?title=0&warningTitle=0&peertubeLink=0"
+  frameborder="0" allowfullscreen>
+</iframe>
+
+#### Sesión $10$ CFD $04/06/2021$
+
+<iframe width="610" height="350"
+  sandbox="allow-same-origin allow-scripts allow-popups"
+  src="https://diode.zone/videos/embed/2520f6de-a093-4274-beac-f726ec490be7?title=0&warningTitle=0&peertubeLink=0"
+  frameborder="0" allowfullscreen>
+</iframe>
+
+#### Sesión $11$ CFD $18/06/2021$
+
+<iframe width="610" height="350"
+  sandbox="allow-same-origin allow-scripts allow-popups"
+  src="https://diode.zone/videos/embed/8ac72e86-0899-463c-8b6b-696884586e3c?title=0&warningTitle=0&peertubeLink=0"
+  frameborder="0" allowfullscreen>
+</iframe>
+
+#### Sesión $12$ CFD $25/06/2021$
+
+<iframe width="610" height="350"
+  sandbox="allow-same-origin allow-scripts allow-popups"
+  src="https://diode.zone/videos/embed/a20fec7d-24c9-4bc8-b2e2-b1291096034e?title=0&warningTitle=0&peertubeLink=0"
+  frameborder="0" allowfullscreen>
+</iframe>
+
+#### Sesión $13$ CFD $02/07/2021$
+
+<iframe width="610" height="350"
+  sandbox="allow-same-origin allow-scripts allow-popups"
+  src="https://diode.zone/videos/embed/80c57ebd-7a99-45ff-9795-c78c95892d87?title=0&warningTitle=0&peertubeLink=0"
+  frameborder="0" allowfullscreen>
+</iframe>
+
+#### Sesión $14$ CFD $09/07/2021$
+
+<iframe width="610" height="350"
+  sandbox="allow-same-origin allow-scripts allow-popups"
+  src="https://diode.zone/videos/embed/41b12a12-beb7-49c4-a92f-624c163f0186?title=0&warningTitle=0&peertubeLink=0"
+  frameborder="0" allowfullscreen>
+</iframe>
+
+#### Sesión $15$ CFD $24/07/2021$
+
+<!-- <iframe width="610" height="350"
+  sandbox="allow-same-origin allow-scripts allow-popups"
+  src="https://diode.zone/videos/embed/41b12a12-beb7-49c4-a92f-624c163f0186?title=0&warningTitle=0&peertubeLink=0"
+  frameborder="0" allowfullscreen>
+</iframe> -->
