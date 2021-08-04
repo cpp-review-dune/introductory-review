@@ -132,11 +132,3 @@ toc: true
   src="https://diode.zone/videos/embed/a902db25-d2d6-489a-ba58-1b7a9b8f2ded?title=0&warningTitle=0&peertubeLink=0"
   frameborder="0" allowfullscreen>
 </iframe>
-
-#### Sesión $16$ CFD $30/07/2021$
-
-<!-- <iframe width="610" height="350"
-  sandbox="allow-same-origin allow-scripts allow-popups"
-  src="https://diode.zone/videos/embed/a902db25-d2d6-489a-ba58-1b7a9b8f2ded?title=0&warningTitle=0&peertubeLink=0"
-  frameborder="0" allowfullscreen>
-</iframe> -->
