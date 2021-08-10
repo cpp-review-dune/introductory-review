@@ -1,4 +1,4 @@
-# Copyleft (c) May, 2021, Oromion.
+# Copyleft (c) August, 2021, Oromion.
 
 FROM registry.gitlab.com/dune-archiso/images/dune-archiso-docker
 
@@ -13,7 +13,7 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 ENV EDITOR_PKGS="vim emacs-nox"
 
 ENV DUNE_PKGS="\
-  dune-core dune-staging dune-extensions dune-quality dune-pdelab-module"
+  dune-pdelab-tutorials"
 
 RUN echo '' >> /etc/pacman.conf && \
   echo '[dune-archiso-repository-core]' >> /etc/pacman.conf && \
@@ -32,10 +32,10 @@ RUN echo '' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/repository/dune-extensions/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
-  echo '[dune-quality]' >> /etc/pacman.conf && \
-  echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-quality/$arch' >> /etc/pacman.conf && \
-  echo '' >> /etc/pacman.conf && \
+  # echo '[dune-quality]' >> /etc/pacman.conf && \
+  # echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
+  # echo 'Server = https://dune-archiso.gitlab.io/repository/dune-quality/$arch' >> /etc/pacman.conf && \
+  # echo '' >> /etc/pacman.conf && \
   echo '[dune-pdelab]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/repository/dune-pdelab/$arch' >> /etc/pacman.conf && \

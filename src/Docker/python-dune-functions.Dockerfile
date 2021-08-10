@@ -1,4 +1,4 @@
-# Copyleft (c) May, 2021, Oromion.
+# Copyleft (c) August, 2021, Oromion.
 
 FROM registry.gitlab.com/dune-archiso/images/dune-archiso-docker
 
