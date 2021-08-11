@@ -1,7 +1,7 @@
 # https://evilmartians.com/chronicles/build-images-on-github-actions-with-docker-layer-caching
 # https://github.com/docker/build-push-action/issues/252#issuecomment-744400434
 # https://github.com/MarcelCoding/docker-desktop-vnc/blob/main/.github/workflows/ci.yaml
-name: Publish Docker image based on DUNEPDELab Tutorials 2021 module v2.7.1
+name: Publish Docker image based on Dune-basics module 2.8.0
 
 on:
   # release:
@@ -9,7 +9,7 @@ on:
   push:
     branches: [main]
     paths:
-      - src/Docker/DUNEPDELabTutorials.Dockerfile
+      - src/Docker/DUNEBasics.Dockerfile
   pull_request:
     branches: [main]
   schedule:
@@ -23,7 +23,7 @@ jobs:
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
         with:
-          root-reserve-mb: 52295
+          root-reserve-mb: 51295
           swap-size-mb: 1024
           remove-dotnet: "true"
           remove-android: "true"
@@ -45,10 +45,10 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v2
         with:
-          path: /tmp/.buildx-dunepdelabtutorials-cache
-          key: ${{ runner.os }}-buildx-dunepdelabtutorials-${{ github.sha }}
+          path: /tmp/.buildx-dunebasics-cache
+          key: ${{ runner.os }}-buildx-dunebasics-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-buildx-dunepdelabtutorials-
+            ${{ runner.os }}-buildx-dunebasics-
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
@@ -61,14 +61,14 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./introductory-review/src/Docker/DUNEPDELabTutorials.Dockerfile
+          file: ./introductory-review/src/Docker/DUNEBasics.Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/cpp-review-dune/introductory-review/dunepdelabtutorials:latest
-          cache-from: type=local,src=/tmp/.buildx-dunepdelabtutorials-cache
+          tags: ghcr.io/cpp-review-dune/introductory-review/dunebasics:latest
+          cache-from: type=local,src=/tmp/.buildx-dunebasics-cache
           cache-to: type=local,mode=max,dest=/tmp/.buildx-main-cache
 
       - name: Move cache
         run: |
-          rm -rf /tmp/.buildx-dunepdelabtutorials-cache
-          mv /tmp/.buildx-main-cache /tmp/.buildx-dunepdelabtutorials-cache
+          rm -rf /tmp/.buildx-dunebasics-cache
+          mv /tmp/.buildx-main-cache /tmp/.buildx-dunebasics-cache

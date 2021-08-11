@@ -3,9 +3,9 @@
 FROM registry.gitlab.com/dune-archiso/images/dune-archiso-docker
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
-  name="DUNEPDELabTutorials Arch" \
-  description="DUNEPDELab in Arch." \
-  url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fdunepdelabtutorials" \
+  name="DUNEBasics Arch" \
+  description="DUNEBasics in Arch." \
+  url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fdunebasics" \
   vcs-url="https://github.com/cpp-review-dune/introductory-review" \
   vendor="Oromion Aznarán" \
   version="1.0"
@@ -13,7 +13,7 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 ENV EDITOR_PKGS="vim emacs-nox"
 
 ENV DUNE_PKGS="\
-  dune-pdelab dune-alugrid texlive-latexextra texlive-pictures texlive-science texlive-bibtexextra texlive-fontsextra"
+  dune-common texlive-latexextra texlive-pictures texlive-science texlive-fontsextra texlive-bibtexextra biber inkscape doxygen python-sphinx ttf-fira-code tldr man-pages man-pages-es"
 
 RUN echo '' >> /etc/pacman.conf && \
   echo '[dune-archiso-repository-core]' >> /etc/pacman.conf && \
@@ -23,23 +23,19 @@ RUN echo '' >> /etc/pacman.conf && \
   echo '[dune-core]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/repository/dune-core/$arch' >> /etc/pacman.conf && \
-  echo '' >> /etc/pacman.conf && \
-  echo '[dune-staging]' >> /etc/pacman.conf && \
-  echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-staging/$arch' >> /etc/pacman.conf && \
-  echo '' >> /etc/pacman.conf && \
-  echo '[dune-extensions]' >> /etc/pacman.conf && \
-  echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-extensions/$arch' >> /etc/pacman.conf && \
-  echo '' >> /etc/pacman.conf && \
-  # echo '[dune-quality]' >> /etc/pacman.conf && \
-  # echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  # echo 'Server = https://dune-archiso.gitlab.io/repository/dune-quality/$arch' >> /etc/pacman.conf && \
   # echo '' >> /etc/pacman.conf && \
-  echo '[dune-pdelab]' >> /etc/pacman.conf && \
-  echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-pdelab/$arch' >> /etc/pacman.conf && \
-  echo '' >> /etc/pacman.conf && \
+  # echo '[dune-staging]' >> /etc/pacman.conf && \
+  # echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
+  # echo 'Server = https://dune-archiso.gitlab.io/repository/dune-staging/$arch' >> /etc/pacman.conf && \
+  # echo '' >> /etc/pacman.conf && \
+  # echo '[dune-extensions]' >> /etc/pacman.conf && \
+  # echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
+  # echo 'Server = https://dune-archiso.gitlab.io/repository/dune-extensions/$arch' >> /etc/pacman.conf && \
+  # echo '' >> /etc/pacman.conf && \
+  # echo '[dune-pdelab]' >> /etc/pacman.conf && \
+  # echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
+  # echo 'Server = https://dune-archiso.gitlab.io/repository/dune-pdelab/$arch' >> /etc/pacman.conf && \
+  # echo '' >> /etc/pacman.conf && \
   pacman-key --init && \
   pacman-key --populate archlinux && \
   pacman --noconfirm -Syyu && \
