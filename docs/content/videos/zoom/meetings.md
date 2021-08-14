@@ -37,10 +37,34 @@ toc: true
   frameborder="0" allowfullscreen>
 </iframe>
 
-<!-- #### Sesión 4 Cpp-review-dune 1X/04/2021
+#### Sesión 4 Cpp-review-dune 17/04/2021
 
 <iframe width="610" height="350"
   sandbox="allow-same-origin allow-scripts allow-popups"
-  src="https://diode.zone/videos/embed/XXXXXXXXXXXXXXXXXXXXXXXX?title=0&warningTitle=0&peertubeLink=0"
+  src="https://diode.zone/videos/embed/cd32f7f5-4bf6-47e2-a8ec-c4f0c4271a6b?title=0&warningTitle=0&peertubeLink=0"
+  frameborder="0" allowfullscreen>
+</iframe>
+
+#### Sesión 5 Cpp-review-dune 08/08/2021
+
+<iframe width="610" height="350"
+  sandbox="allow-same-origin allow-scripts allow-popups"
+  src="https://diode.zone/videos/embed/f6QHdJEK1j97xpQQ1dMKuk?title=0&warningTitle=0&peertubeLink=0"
+  frameborder="0" allowfullscreen>
+</iframe>
+
+#### Sesión 6 Cpp-review-dune 14/08/2021
+
+<iframe width="610" height="350"
+  sandbox="allow-same-origin allow-scripts allow-popups"
+  src="https://diode.zone/videos/embed/cpiiodfrnwAbjsV5BxRRi8?title=0&warningTitle=0&peertubeLink=0"
+  frameborder="0" allowfullscreen>
+</iframe>
+
+#### Sesión 7 Cpp-review-dune 1X/08/2021
+
+<!-- <iframe width="610" height="350"
+  sandbox="allow-same-origin allow-scripts allow-popups"
+  src="https://diode.zone/videos/embed/cpiiodfrnwAbjsV5BxRRi8?title=0&warningTitle=0&peertubeLink=0"
   frameborder="0" allowfullscreen>
 </iframe> -->
