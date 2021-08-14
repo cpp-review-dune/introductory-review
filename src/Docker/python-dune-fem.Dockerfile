@@ -42,3 +42,4 @@ RUN echo '' >> /etc/pacman.conf && \
 USER gitpod
 
 WORKDIR /home/gitpod
+
