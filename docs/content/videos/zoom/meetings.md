@@ -61,7 +61,16 @@ toc: true
   frameborder="0" allowfullscreen>
 </iframe>
 
-#### Sesión 7 Cpp-review-dune 1X/08/2021
+[Estructura de directorios en `dune-pdelab-tutorials`](https://cpp-review-dune.github.io/dune-basics/structure.pdf)
+#### Sesión 7 Cpp-review-dune 15/08/2021
+
+<iframe width="610" height="350"
+  sandbox="allow-same-origin allow-scripts allow-popups"
+  src="https://diode.zone/videos/embed/gs5V7zp5S5dPKPP8tMLVeb?title=0&warningTitle=0&peertubeLink=0"
+  frameborder="0" allowfullscreen>
+</iframe>
+
+#### Sesión 8 Cpp-review-dune 1X/08/2021
 
 <!-- <iframe width="610" height="350"
   sandbox="allow-same-origin allow-scripts allow-popups"
