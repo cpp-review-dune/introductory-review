@@ -1,4 +1,4 @@
-# Copyleft (c) August, 2021, Oromion.
+# Copyleft (c) September, 2021, Oromion.
 # https://dev.to/cloudx/testing-our-package-build-in-the-docker-world-34p0
 # https://github.com/alersrt/texlive-archlinux-docker/blob/master/Dockerfile
 
@@ -24,13 +24,12 @@ RUN pacman-key --init && \
     rm -rf /home/aur/.cache
 
 ENV MAIN_PKGS="\    
-    gcc java-runtime doxygen plantuml texlive-pictures texlive-bibtexextra ghostscript texlive-core texlive-fontsextra texlive-latexextra texlive-science"
+    gcc java-runtime doxygen plantuml texlive-pictures texlive-bibtexextra ghostscript texlive-core texlive-fontsextra texlive-latexextra texlive-science biber"
 
 RUN pacman -Syu --noconfirm &&\
     pacman -S --noconfirm $MAIN_PKGS &&\
-    # pacman -S --noconfirm texlive-{core,bin,bibtexextra,fontsextra,formatsextra,games,humanities,langchinese,langcyrillic,langextra,langgreek,langjapanese,langkorean,latexextra,music,pictures,pstricks,publishers,science} &&\
-    # pacman -S --noconfirm biber ghostscript ruby perl-tk psutils dialog ed poppler-data &&\
-    # pacman -S --noconfirm python python-{pandas,matplotlib,numpy,scipy,sympy} &&\
+    echo 'export PATH="/usr/bin/vendor_perl:$PATH"' >>~/.bash_profile &&\
+    # pacman -S --noconfirm texlive-{core,bin,bibtexextra,fontsextra,formatsextra,games,humanities,langchinese,langcyrillic,langextra,langgreek,langjapanese,langkorean,latexextra,music,pictures,pstricks,publishers,science} ghostscript ruby perl-tk psutils dialog ed poppler-data python python-{pandas,matplotlib,numpy,scipy,sympy} &&\
     pacman -Qtdq | xargs -r pacman --noconfirm -Rcns && \
     pacman -Scc <<< Y <<< Y
 
