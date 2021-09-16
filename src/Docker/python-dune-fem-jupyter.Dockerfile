@@ -1,4 +1,4 @@
-# Copyleft (c) August, 2021, Oromion.
+# Copyleft (c) September, 2021, Oromion.
 
 FROM registry.gitlab.com/dune-archiso/images/dune-archiso-docker
 
@@ -13,7 +13,7 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 ENV EDITOR_PKGS="vim emacs-nox jupyter-notebook"
 
 ENV DUNE_PKGS="\
-  dune-polygongrid-git dune-spgrid-git dune-alugrid-git dune-fem-git"
+  dune-polygongrid-git dune-spgrid-git dune-alugrid dune-fem"
 
 RUN echo '' >> /etc/pacman.conf && \
   echo '[dune-archiso-repository-core]' >> /etc/pacman.conf && \
