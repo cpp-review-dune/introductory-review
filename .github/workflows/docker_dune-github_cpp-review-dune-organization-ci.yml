@@ -1,4 +1,4 @@
-name: Publish Docker image based on DUNE modules v2.8.0-dev (GitHub)
+name: Publish Docker image based on DUNE modules v2.9.0-dev (GitHub)
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
         with:
-          root-reserve-mb: 53295
+          root-reserve-mb: 52295
           swap-size-mb: 1024
           remove-dotnet: "true"
           remove-android: "true"

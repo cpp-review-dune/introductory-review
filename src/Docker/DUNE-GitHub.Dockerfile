@@ -1,4 +1,4 @@
-# Copyleft (c) August, 2021, Oromion.
+# Copyleft (c) September, 2021, Oromion.
 
 FROM registry.gitlab.com/dune-archiso/images/dune-archiso-docker
 
@@ -15,6 +15,8 @@ ENV EDITOR_PKGS="vim emacs-nox"
 ENV DUNE_PKGS="\
   dune-core-git dune-staging-git"
 
+# dune-extensions-git
+
 RUN echo '' >> /etc/pacman.conf && \
   echo '[dune-archiso-repository-core]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
@@ -28,6 +30,10 @@ RUN echo '' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/repository/dune-staging-git/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
+  # echo '[dune-extensions-git]' >> /etc/pacman.conf && \
+  # echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
+  # echo 'Server = https://dune-archiso.gitlab.io/repository/dune-extensions-git/$arch' >> /etc/pacman.conf && \
+  # echo '' >> /etc/pacman.conf && \
   pacman-key --init && \
   pacman-key --populate archlinux && \
   pacman --noconfirm -Syyu && \
