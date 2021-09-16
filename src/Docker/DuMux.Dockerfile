@@ -1,4 +1,4 @@
-# Copyleft (c) August, 2021, Oromion.
+# Copyleft (c) September, 2021, Oromion.
 
 FROM registry.gitlab.com/dune-archiso/images/dune-archiso-docker
 
@@ -13,7 +13,9 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 ENV EDITOR_PKGS="vim emacs-nox"
 
 ENV DUNE_PKGS="\
-  dune-core dune-staging dune-extensions dune-agnumpde dumux"
+  dune-core dune-staging dune-extensions dumux"
+
+# dune-agnumpde
 
 RUN echo '' >> /etc/pacman.conf && \
   echo '[dune-archiso-repository-core]' >> /etc/pacman.conf && \
@@ -32,10 +34,10 @@ RUN echo '' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/repository/dune-extensions/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
-  echo '[dune-agnumpde]' >> /etc/pacman.conf && \
-  echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-agnumpde/$arch' >> /etc/pacman.conf && \
-  echo '' >> /etc/pacman.conf && \
+  # echo '[dune-agnumpde]' >> /etc/pacman.conf && \
+  # echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
+  # echo 'Server = https://dune-archiso.gitlab.io/repository/dune-agnumpde/$arch' >> /etc/pacman.conf && \
+  # echo '' >> /etc/pacman.conf && \
   echo '[opm]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/repository/opm/$arch' >> /etc/pacman.conf && \
