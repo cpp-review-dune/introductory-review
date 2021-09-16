@@ -28,7 +28,7 @@ ENV MAIN_PKGS="\
 
 RUN pacman -Syu --noconfirm &&\
     pacman -S --noconfirm $MAIN_PKGS &&\
-    echo 'export PATH="/usr/bin/vendor_perl:$PATH"' >>~/.bash_profile &&\
+    echo 'export PATH="/usr/bin/vendor_perl:$PATH"' >> /etc/profile &&\
     # pacman -S --noconfirm texlive-{core,bin,bibtexextra,fontsextra,formatsextra,games,humanities,langchinese,langcyrillic,langextra,langgreek,langjapanese,langkorean,latexextra,music,pictures,pstricks,publishers,science} ghostscript ruby perl-tk psutils dialog ed poppler-data python python-{pandas,matplotlib,numpy,scipy,sympy} &&\
     pacman -Qtdq | xargs -r pacman --noconfirm -Rcns && \
     pacman -Scc <<< Y <<< Y
