@@ -10,10 +10,11 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   vendor="Oromion Aznarán" \
   version="1.0"
 
-RUN sudo -u aur yay -Syyu --noconfirm ansiweather vim emacs-nox python-dune-common texlive-latexextra texlive-pictures texlive-science texlive-fontsextra texlive-bibtexextra biber inkscape doxygen python-sphinx ttf-fira-code tldr man-pages man-pages-es && \
+RUN sudo -u aur yay --noconfirm -Syyu && \
+  sudo -u aur yay -S --noconfirm ansiweather vim emacs-nox python-dune-common texlive-latexextra texlive-pictures texlive-science texlive-fontsextra texlive-bibtexextra biber inkscape doxygen python-sphinx ttf-fira-code tldr man-pages man-pages-es && \
   sudo -u aur yay -Qtdq | xargs -r sudo -u aur --noconfirm -Rcns && \
   rm -rf /home/aur/.cache && \
-  pacman -Scc <<< Y <<< Y && \
+  yay -Scc <<< Y <<< Y && \
   useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
   passwd -d gitpod && \
   echo 'gitpod ALL=(ALL) ALL' > /etc/sudoers.d/gitpod && \
