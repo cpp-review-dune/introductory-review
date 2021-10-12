@@ -39,7 +39,7 @@ RUN useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
   echo '[dune-pdelab]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/repository/dune-pdelab/$arch' >> /etc/pacman.conf && \
-  echo '' >> /etc/pacman.conf && \
+  echo '' >> /etc/pacman.conf
 
 USER aur
 
