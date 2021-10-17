@@ -5,7 +5,7 @@ FROM registry.gitlab.com/dune-archiso/images/dune-archiso-docker
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="DUNE-preCICE Arch" \
   description="DUNE-preCICE in Arch." \
-  url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fdunepdelabtutorials" \
+  url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fduneprecice" \
   vcs-url="https://github.com/cpp-review-dune/introductory-review" \
   vendor="Oromion Aznarán" \
   version="1.0"
