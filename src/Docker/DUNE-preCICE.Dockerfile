@@ -39,7 +39,7 @@ RUN useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
 
 USER aur
 
-RUN yay --noconfirm -Syyu ansiweather vim emacs-nox dune-adapter-git && \
+RUN yay --noconfirm -Syyu ansiweather vim emacs-nox dune-precice-git && \
   yay -Qtdq | xargs -r yay --noconfirm -Rcns && \
   rm -rf /home/aur/.cache && \
   yay -Scc <<< Y <<< Y <<< Y
