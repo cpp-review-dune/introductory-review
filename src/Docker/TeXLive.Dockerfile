@@ -2,7 +2,7 @@
 # https://dev.to/cloudx/testing-our-package-build-in-the-docker-world-34p0
 # https://github.com/alersrt/texlive-archlinux-docker/blob/master/Dockerfile
 
-FROM registry.gitlab.com/dune-archiso/images/dune-archiso-docker
+FROM registry.gitlab.com/dune-archiso/images/dune-archiso-yay
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
     name="TeX Live Arch" \

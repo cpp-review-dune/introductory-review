@@ -1,6 +1,6 @@
 # Copyleft (c) October, 2021, Oromion.
 
-FROM registry.gitlab.com/dune-archiso/images/dune-archiso-docker-arch4edu
+FROM registry.gitlab.com/dune-archiso/images/dune-archiso-arch4edu
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="Meshes Arch" \
@@ -23,7 +23,8 @@ RUN useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
 
 USER aur
 
-RUN yay --noconfirm -Syyu ansiweather vim emacs-nox julia python-meshzoo python-pygmsh python-meshpy && \
+RUN pacman --noconfirm -Syyu vim emacs-nox julia yay && \
+  yay -S ansiweather python-meshzoo python-pygmsh python-meshpy && \
   yay -Qtdq | xargs -r yay --noconfirm -Rcns && \
   rm -rf /home/aur/.cache && \
   yay -Scc <<< Y <<< Y <<< Y

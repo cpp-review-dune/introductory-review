@@ -3,9 +3,9 @@
 FROM registry.gitlab.com/dune-archiso/images/dune-archiso-yay
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
-  name="DuMux Arch" \
-  description="DuMux in Arch." \
-  url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fdumux" \
+  name="AMDiS Arch" \
+  description="AMDiS in Arch." \
+  url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Famdis" \
   vcs-url="https://github.com/cpp-review-dune/introductory-review" \
   vendor="Oromion Aznarán" \
   version="1.0"
@@ -32,22 +32,14 @@ RUN useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/repository/dune-extensions/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf && \
-  # echo '[dune-agnumpde]' >> /etc/pacman.conf && \
-  # echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  # echo 'Server = https://dune-archiso.gitlab.io/repository/dune-agnumpde/$arch' >> /etc/pacman.conf && \
-  # echo '' >> /etc/pacman.conf && \
-  echo '[opm]' >> /etc/pacman.conf && \
+  echo '[amdis]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  echo 'Server = https://dune-archiso.gitlab.io/repository/opm/$arch' >> /etc/pacman.conf && \
-  echo '' >> /etc/pacman.conf && \
-  echo '[dumux]' >> /etc/pacman.conf && \
-  echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
-  echo 'Server = https://dune-archiso.gitlab.io/repository/dumux/$arch' >> /etc/pacman.conf && \
+  echo 'Server = https://dune-archiso.gitlab.io/repository/amdis/$arch' >> /etc/pacman.conf && \
   echo '' >> /etc/pacman.conf
 
 USER aur
 # dune-agnumpde
-RUN yay --noconfirm -Syyu ansiweather vim emacs-nox dune-core dune-staging dune-extensions dumux && \
+RUN yay --noconfirm -Syyu ansiweather vim emacs-nox dune-core amdis && \
   yay -Qtdq | xargs -r yay --noconfirm -Rcns && \
   rm -rf /home/aur/.cache && \
   yay -Scc <<< Y <<< Y <<< Y
