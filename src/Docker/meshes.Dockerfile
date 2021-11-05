@@ -19,12 +19,12 @@ RUN useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
   echo '[dune-archiso-repository-core]' >> /etc/pacman.conf && \
   echo 'SigLevel = Optional TrustAll' >> /etc/pacman.conf && \
   echo 'Server = https://dune-archiso.gitlab.io/repository/dune-archiso-repository-core/$arch' >> /etc/pacman.conf && \
-  echo '' >> /etc/pacman.conf
+  echo '' >> /etc/pacman.conf && \
+  pacman --noconfirm -Syyu vim emacs-nox julia yay
 
 USER aur
 
-RUN pacman --noconfirm -Syyu vim emacs-nox julia yay && \
-  yay -S ansiweather python-meshzoo python-pygmsh python-meshpy && \
+RUN yay -S ansiweather python-meshzoo python-pygmsh python-meshpy && \
   yay -Qtdq | xargs -r yay --noconfirm -Rcns && \
   rm -rf /home/aur/.cache && \
   yay -Scc <<< Y <<< Y <<< Y
