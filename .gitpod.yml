@@ -5,3 +5,4 @@ tasks:
     command: |
       echo "Bienvenido(a) $(whoami)!"
       echo 'alias update="yay -Syyu --noconfirm"' >>~/.bashrc
+      source ~/.bashrc
