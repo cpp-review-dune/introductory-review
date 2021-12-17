@@ -4,5 +4,6 @@ tasks:
   - name: Say welcome
     command: |
       echo "Bienvenido(a) $(whoami)!"
+      echo 'unset JAVA_TOOL_OPTIONS' >>~/.bashrc
       echo 'alias update="yay -Syyu --noconfirm"' >>~/.bashrc
       source ~/.bashrc
