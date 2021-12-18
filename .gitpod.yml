@@ -7,3 +7,22 @@ tasks:
       echo 'unset JAVA_TOOL_OPTIONS' >>~/.bashrc
       echo 'alias update="yay -Syyu --noconfirm"' >>~/.bashrc
       source ~/.bashrc
+
+vscode:
+  extensions:
+    - ms-python.python
+    - anwar.papyrus-pdf
+    - twxs.cmake
+    - ms-vscode.cmake-tools
+    - cschlosser.doxdocgen
+    - xaver.clang-format
+    - TabNine.tabnine-vscode
+    # - ms-vscode.cpptools@0.26.2:Pq/tmf2WN3SanVzB4xZc1g==
+    # - bungcip.better-toml
+    # - EditorConfig.EditorConfig
+    # - kevinkyang.auto-comment-blocks
+    # - ms-azuretools.vscode-docker
+    # - wmaurer.change-case
+    # - skellock.just
+    # - wholroyd.hcl
+    # - gruntfuggly.todo-tree
