@@ -2,7 +2,14 @@
 # https://dev.to/cloudx/testing-our-package-build-in-the-docker-world-34p0
 # https://github.com/alersrt/texlive-archlinux-docker/blob/master/Dockerfile
 
-FROM archlinux:base-devel
+FROM ghcr.io/cpp-review-dune/introductory-review/texlive AS build
+
+ARG FONT_PACKAGES="\
+    ttf-vista-fonts \
+    consolas-font \
+    "
+
+RUN yay -Syyuq --noconfirm ${FONT_PACKAGES}
 
 LABEL maintainer="C++ Review Dune" \
     name="TeX Live in Gitpod" \
@@ -11,6 +18,8 @@ LABEL maintainer="C++ Review Dune" \
     vcs-url="https://github.com/cpp-review-dune/introductory-review" \
     vendor="C++ Review Dune" \
     version="1.0"
+
+FROM archlinux:base-devel
 
 RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
     sed -i 's/^#Color/Color/' /etc/pacman.conf && \
@@ -29,26 +38,25 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 
 USER gitpod
 
-RUN sudo pacman --noconfirm -Syyu \
-    git gcc java-runtime doxygen plantuml \
-    texlive-pictures texlive-bibtexextra ghostscript \
-    texlive-core texlive-fontsextra texlive-latexextra \
-    texlive-science biber && \
-    mkdir ~/build && \
-    cd ~/build && \
-    git clone --depth 1 "https://aur.archlinux.org/yay.git" && \
-    cd yay && \
-    makepkg --noconfirm -si && \
-    rm -rf ~/.cache && \
-    rm -rf ~/go && \
-    rm -rf ~/build && \
-    yay --noconfirm -Sy ttf-vista-fonts consolas-font && \
-    yay --afterclean --removemake --save && \
-    yay -Qtdq | xargs -r yay --noconfirm -Rcns && \
-    rm -rf /home/aur/.cache && \
-    yay -Scc <<< Y <<< Y <<< Y
+ARG PACKAGES="\
+    git \
+    java-runtime \
+    ghostscript \
+    biber \
+    doxygen \
+    plantuml \
+    texlive-pictures \
+    texlive-bibtexextra \
+    texlive-fontsextra \
+    texlive-latexextra \
+    texlive-science \
+    "
 
-# pacman -S --noconfirm texlive-{core,bin,bibtexextra,fontsextra,formatsextra,games,humanities,langchinese,langcyrillic,langextra,langgreek,langjapanese,langkorean,latexextra,music,pictures,pstricks,publishers,science} ghostscript ruby perl-tk psutils dialog ed poppler-data python python-{pandas,matplotlib,numpy,scipy,sympy}
+COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
+
+RUN sudo pacman --needed --noconfirm -Syyuq ${PACKAGES} && \
+    sudo pacman --needed --noconfirm -U /tmp/*.pkg.tar.zst
+# texlive-{core,bin,bibtexextra,fontsextra,formatsextra,games,humanities,langchinese,langcyrillic,langextra,langgreek,langjapanese,langkorean,latexextra,music,pictures,pstricks,publishers,science} ruby perl-tk psutils dialog ed poppler-data
 
 ENV PATH="/usr/bin/vendor_perl:${PATH}"
 
