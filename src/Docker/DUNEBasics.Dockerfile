@@ -28,10 +28,10 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 RUN sudo pacman --noconfirm -Syyu \
-    vim nano emacs-nox python-dune-common \
+    vim nano emacs-nox python-sphinx \
     texlive-latexextra texlive-pictures texlive-fontsextra \
     texlive-science texlive-bibtexextra biber inkscape doxygen \
-    python-sphinx ttf-fira-code tldr man-pages man-pages-es && \
+    ttf-fira-code tldr man-pages man-pages-es && \
     mkdir ~/build && \
     cd ~/build && \
     git clone --depth 1 "https://aur.archlinux.org/yay.git" && \
@@ -40,14 +40,13 @@ RUN sudo pacman --noconfirm -Syyu \
     rm -rf ~/.cache && \
     rm -rf ~/go && \
     rm -rf ~/build && \
-    yay --noconfirm -Sy ansiweather && \
+    yay --noconfirm -Sy ansiweather python-dune-common && \
     yay --afterclean --removemake --save && \
     yay -Qtdq | xargs -r yay --noconfirm -Rcns && \
     rm -rf /home/aur/.cache && \
-    yay -Scc <<< Y <<< Y <<< Y
-
-RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh | bash -e -x && \
-  echo 'cat /etc/motd' >> /home/gitpod/.bashrc
+    yay -Scc <<< Y <<< Y <<< Y && \
+    curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh | bash -e -x && \
+    echo 'cat /etc/motd' >> ~/.bashrc
 
 ENV PATH="/usr/bin/vendor_perl:${PATH}"
 
