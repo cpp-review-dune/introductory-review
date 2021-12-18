@@ -31,7 +31,7 @@ RUN sudo pacman --noconfirm -Syyu \
     vim nano emacs-nox python-sphinx \
     texlive-latexextra texlive-pictures texlive-fontsextra \
     texlive-science texlive-bibtexextra biber inkscape doxygen \
-    ttf-fira-code tldr man-pages man-pages-es && \
+    ttf-fira-code tldr man-pages man-pages-es git && \
     mkdir ~/build && \
     cd ~/build && \
     git clone --depth 1 "https://aur.archlinux.org/yay.git" && \
