@@ -23,7 +23,7 @@ RUN sed -i 's/^#Color/Color/' /etc/pacman.conf && \
     printf '\n[multilib]\nInclude = /etc/pacman.d/mirrorlist\n' >> /etc/pacman.conf && \
     useradd -l -md /home/${USER} -s /bin/bash ${USER} && \
     passwd -d ${USER} && \
-    echo 'builder ALL=(ALL) ALL' > /etc/sudoers.d/${USER} && \
+    printf "${USER} ALL=(ALL) ALL" > /etc/sudoers.d/${USER} && \
     pacman-key --init && \
     pacman-key --populate archlinux && \
     pacman -Syyuq --needed --noconfirm && \
@@ -33,3 +33,5 @@ RUN sed -i 's/^#Color/Color/' /etc/pacman.conf && \
     cd yay && \
     sudo -u ${USER} makepkg -srci --cleanbuild --noconfirm && \
     rm -rf /tmp/* /home/${USER}/.cache/
+
+USER ${USER}
