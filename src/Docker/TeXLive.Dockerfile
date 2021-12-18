@@ -2,7 +2,7 @@
 # https://dev.to/cloudx/testing-our-package-build-in-the-docker-world-34p0
 # https://github.com/alersrt/texlive-archlinux-docker/blob/master/Dockerfile
 
-FROM ghcr.io/cpp-review-dune/introductory-review/texlive AS build
+FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG FONT_PACKAGES="\
     ttf-vista-fonts \
