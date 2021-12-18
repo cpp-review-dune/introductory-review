@@ -28,9 +28,9 @@ RUN sed -i 's/^#Color/Color/' /etc/pacman.conf && \
     pacman-key --populate archlinux && \
     pacman -Syyuq --needed --noconfirm && \
     curl -LO "https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz" && \
-    pwd && \
-    ls -la && \
     tar -xvf yay.tar.gz && \
+    chown -R ${USER}:${USER} /tmp/yay && \
     cd yay && \
-    sudo -u builder makepkg -src --cleanbuild --noconfirm && \
-    rm -rf go /tmp/yay
+    sudo -u ${USER} makepkg -srci --cleanbuild --noconfirm && \
+    ls -lR /tmp
+# rm -rf go /tmp/yay
