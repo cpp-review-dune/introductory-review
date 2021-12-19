@@ -10,7 +10,7 @@ ARG FONT_PACKAGES="\
     "
 
 RUN yay -Syyuq --builddir=/tmp --noconfirm ${FONT_PACKAGES} && \
-    rm -rf !(/tmp/*.install|/tmp/*.pkg.tar.zst) && \
+    find /tmp -type f -not -name '*.install' -name '*.pkg.tar.zst' | xargs -0  -I {} rm {} && \
     ls -lR /tmp
 
 LABEL maintainer="C++ Review Dune" \
