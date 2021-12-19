@@ -49,7 +49,7 @@ ARG PACKAGES="\
     texlive-science \
     "
 
-COPY --from=build /home/builder/.cache/yay/*/*{.pkg.tar.zst,.install} /tmp/
+COPY --from=build ["/home/builder/.cache/yay/*/*.pkg.tar.zst", "/home/builder/.cache/yay/*/*.install"] /tmp/
 
 RUN ls -lR /tmp && \
     sudo pacman --needed --noconfirm -Syyuq ${PACKAGES} && \
