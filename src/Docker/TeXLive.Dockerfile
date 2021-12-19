@@ -51,7 +51,7 @@ ARG PACKAGES="\
     texlive-science \
     "
 
-COPY --from=build ~/.cache/yay /tmp/yay
+COPY --from=build /home/builder/.cache/yay /tmp/yay
 
 RUN sudo pacman --needed --noconfirm -Syyuq ${PACKAGES} && \
     sudo pacman --needed --noconfirm -U /tmp/yay/ttf-vista-fonts/ttf-vista-fonts-*.pkg.tar.zst /tmp/yay/consolas-fonts/consolas-fonts-*.pkg.tar.zst 
