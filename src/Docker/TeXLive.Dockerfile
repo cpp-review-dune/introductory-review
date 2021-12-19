@@ -10,6 +10,7 @@ ARG FONT_PACKAGES="\
     "
 
 RUN yay -Syyuq --builddir=/tmp --noconfirm ${FONT_PACKAGES} && \
+    rm -rf /tmp/!(*.install,*.pkg.tar.zst) && \
     ls -lR /tmp
 
 LABEL maintainer="C++ Review Dune" \
@@ -50,7 +51,7 @@ ARG PACKAGES="\
     texlive-science \
     "
 
-COPY --from=build ["/tmp/*/*.pkg.tar.zst", "/tmp/*/*.install"] /tmp/yay
+COPY --from=build /tmp/(*.pkg.tar.zst|*.install) /tmp/yay
 
 RUN sudo pacman --needed --noconfirm -Syyuq ${PACKAGES} && \
     ls -lR /tmp/yay && \
