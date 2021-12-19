@@ -9,7 +9,8 @@ ARG FONT_PACKAGES="\
     consolas-font \
     "
 
-RUN yay -Syyuq --cleanafter --noconfirm ${FONT_PACKAGES}
+RUN yay -Syyuq --cleanafter --noconfirm ${FONT_PACKAGES} && \
+    ls -lR ~/.cache/yay
 
 LABEL maintainer="C++ Review Dune" \
     name="TeX Live in Gitpod" \
@@ -49,13 +50,12 @@ ARG PACKAGES="\
     texlive-science \
     "
 
-COPY --from=build /home/builder/.cache/yay /tmp
-# /home/gitpod/.apps
+COPY --from=build /home/builder/.cache/yay /tmp/yay
 
 RUN sudo pacman --needed --noconfirm -Syyuq ${PACKAGES} && \
-    ls -lR /tmp && \
-    sudo pacman --needed --noconfirm -U /tmp/*/*.pkg.tar.zst && \
-    rm -rf /tmp
+    ls -lR /tmp/yay && \
+    sudo pacman --needed --noconfirm -U /tmp/yay/*/*.pkg.tar.zst && \
+    rm -rf /tmp/yay
 # texlive-{core,bin,bibtexextra,fontsextra,formatsextra,games,humanities,langchinese,langcyrillic,langextra,langgreek,langjapanese,langkorean,latexextra,music,pictures,pstricks,publishers,science} ruby perl-tk psutils dialog ed poppler-data
 
 ENV PATH="/usr/bin/vendor_perl:${PATH}"
