@@ -9,8 +9,8 @@ ARG FONT_PACKAGES="\
     consolas-font \
     "
 
-RUN yay -Syyuq --builddir=/tmp/apps --noconfirm ${FONT_PACKAGES} && \
-    ls -lR /tmp/apps
+RUN yay -Syyuq --builddir=/tmp --noconfirm ${FONT_PACKAGES} && \
+    ls -lR /tmp
 
 LABEL maintainer="C++ Review Dune" \
     name="TeX Live in Gitpod" \
@@ -50,7 +50,7 @@ ARG PACKAGES="\
     texlive-science \
     "
 
-COPY --from=build /tmp/apps /tmp/yay
+COPY --from=build ["/tmp/*/*.pkg.tar.zst", "/tmp/*/*.install"] /tmp/yay
 
 RUN sudo pacman --needed --noconfirm -Syyuq ${PACKAGES} && \
     ls -lR /tmp/yay && \
