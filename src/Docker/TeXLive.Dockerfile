@@ -54,7 +54,7 @@ ARG PACKAGES="\
 COPY --from=build /home/builder/.cache/yay /tmp/yay
 
 RUN sudo pacman --needed --noconfirm -Syyuq ${PACKAGES} && \
-    sudo pacman --needed --noconfirm -U /tmp/yay/ttf-vista-fonts/ttf-vista-fonts-*.pkg.tar.zst /tmp/yay/consolas-fonts/consolas-fonts-*.pkg.tar.zst 
+    sudo pacman --needed --noconfirm -U /tmp/yay/ttf-vista-fonts/ttf-vista-fonts-1-11-any.pkg.tar.zst /tmp/yay/consolas-fonts/consolas-fonts-1-11-any.pkg.tar.zst 
 # ls -lR /tmp/yay && \
 # && \ rm -rf /tmp/yay
 # texlive-{core,bin,bibtexextra,fontsextra,formatsextra,games,humanities,langchinese,langcyrillic,langextra,langgreek,langjapanese,langkorean,latexextra,music,pictures,pstricks,publishers,science} ruby perl-tk psutils dialog ed poppler-data
