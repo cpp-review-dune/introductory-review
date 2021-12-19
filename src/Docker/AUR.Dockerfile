@@ -12,7 +12,7 @@ LABEL maintainer="C++ Review Dune" \
 
 WORKDIR /tmp/
 
-ARG USER="gitpod"
+ARG USER="builder"
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -21,7 +21,7 @@ RUN sed -i 's/^#Color/Color/' /etc/pacman.conf && \
     sed -i '/ILoveCandy/a ParallelDownloads = 30' /etc/pacman.conf && \
     sed -i 's/^#BUILDDIR/BUILDDIR/' /etc/makepkg.conf && \
     printf '\n[multilib]\nInclude = /etc/pacman.d/mirrorlist\n' >> /etc/pacman.conf && \
-    useradd -l -u 33333 -md /home/${USER} -s /bin/bash ${USER} && \
+    useradd -l -md /home/${USER} -s /bin/bash ${USER} && \
     passwd -d ${USER} && \
     printf "${USER} ALL=(ALL) ALL" > /etc/sudoers.d/${USER} && \
     pacman-key --init && \
