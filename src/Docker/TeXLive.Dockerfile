@@ -49,11 +49,12 @@ ARG PACKAGES="\
     texlive-science \
     "
 
-COPY --from=build /home/builder/.cache/yay /tmp/
+COPY --from=build /home/builder/.cache/yay ~/.apps
 
 RUN sudo pacman --needed --noconfirm -Syyuq ${PACKAGES} && \
-    ls -laR /tmp && \
-    sudo pacman --needed --noconfirm -U /tmp/*/*.pkg.tar.zst
+    ls -lR ~/.apps && \
+    sudo pacman --needed --noconfirm -U ~/.apps/*/*.pkg.tar.zst && \
+    rm -rf ~/.apps
 # texlive-{core,bin,bibtexextra,fontsextra,formatsextra,games,humanities,langchinese,langcyrillic,langextra,langgreek,langjapanese,langkorean,latexextra,music,pictures,pstricks,publishers,science} ruby perl-tk psutils dialog ed poppler-data
 
 ENV PATH="/usr/bin/vendor_perl:${PATH}"
