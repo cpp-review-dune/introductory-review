@@ -56,8 +56,6 @@ COPY --from=build /home/builder/.cache/yay/*/*.install /tmp/
 
 RUN sudo pacman --noconfirm -Syyuq ${PACKAGES} && \
     sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst
-# ls -lR /tmp/yay && \
-# && \ rm -rf /tmp/yay
 # texlive-{core,bin,bibtexextra,fontsextra,formatsextra,games,humanities,langchinese,langcyrillic,langextra,langgreek,langjapanese,langkorean,latexextra,music,pictures,pstricks,publishers,science} ruby perl-tk psutils dialog ed poppler-data
 
 ENV PATH="/usr/bin/vendor_perl:${PATH}"

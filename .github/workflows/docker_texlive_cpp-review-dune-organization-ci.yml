@@ -67,3 +67,9 @@ jobs:
         run: |
           rm -rf /tmp/.buildx-texlive-cache
           mv /tmp/.buildx-main-cache /tmp/.buildx-texlive-cache
+
+      - name: Scan for vulnerabilities
+        uses: crazy-max/ghaction-container-scan@v1
+        with:
+          image: ghcr.io/cpp-review-dune/introductory-review/texlive:latest
+          annotations: true
