@@ -9,7 +9,9 @@ ARG FONT_PACKAGES="\
     consolas-font \
     "
 
-RUN yay -Syyuq --noconfirm ${FONT_PACKAGES}
+RUN yay -Syyuq --cleanafter --noconfirm ${FONT_PACKAGES} && \
+    ls -lR ~/.cache/yay
+# rm ~/.cache/yay/*/PKGBUILD
 
 LABEL maintainer="C++ Review Dune" \
     name="TeX Live in Gitpod" \
