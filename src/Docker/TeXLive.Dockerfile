@@ -51,8 +51,8 @@ ARG PACKAGES="\
 
 COPY --from=build /home/builder/.cache/yay /tmp/
 
-RUN ls -lR /tmp && \
-    sudo pacman --needed --noconfirm -Syyuq ${PACKAGES} && \
+RUN sudo pacman --needed --noconfirm -Syyuq ${PACKAGES} && \
+    ls -l /tmp/*/*.pkg.tar.zst && \
     sudo pacman --needed --noconfirm -U /tmp/*/*.pkg.tar.zst
 # texlive-{core,bin,bibtexextra,fontsextra,formatsextra,games,humanities,langchinese,langcyrillic,langextra,langgreek,langjapanese,langkorean,latexextra,music,pictures,pstricks,publishers,science} ruby perl-tk psutils dialog ed poppler-data
 
