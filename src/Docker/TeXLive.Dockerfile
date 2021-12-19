@@ -49,7 +49,7 @@ ARG PACKAGES="\
     texlive-science \
     "
 
-COPY --from=build /home/builder/.cache/yay ~/.apps
+COPY --from=build /home/builder/.cache/yay /home/gitpod/.apps
 
 RUN sudo pacman --needed --noconfirm -Syyuq ${PACKAGES} && \
     ls -lR ~/.apps && \
