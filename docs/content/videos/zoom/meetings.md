@@ -77,3 +77,8 @@ toc: true
   src="https://diode.zone/videos/embed/cpiiodfrnwAbjsV5BxRRi8?title=0&warningTitle=0&peertubeLink=0"
   frameborder="0" allowfullscreen>
 </iframe> -->
+
+#### Sesión 9 Cpp-review-dune 1X/XX/2021
+
+
+#### Sesión 10 Cpp-review-dune 1X/XX/2021
