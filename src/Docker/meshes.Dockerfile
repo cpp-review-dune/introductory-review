@@ -41,10 +41,9 @@ ARG PACKAGES="\
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
-COPY --from=build /home/builder/.cache/yay/*/*.install /tmp/
 
 RUN sudo pacman --noconfirm -Syyuq ${PACKAGES} && \
-    sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst
+  sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst
 
 ENV PYTHONPATH="/usr/share/gmsh/api/python:${PYTHONPATH}"
 
