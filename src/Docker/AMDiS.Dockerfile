@@ -16,6 +16,8 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   vendor="Oromion Aznarán" \
   version="1.0"
 
+FROM archlinux:base-devel
+
 RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
   sed -i 's/^#Color/Color/' /etc/pacman.conf && \
   sed -i '/#CheckSpace/a ILoveCandy' /etc/pacman.conf && \
