@@ -31,16 +31,16 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
   { echo && echo "PS1='\[\e]0;\u \w\a\]\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \\\$ '" ; } >> /home/gitpod/.bashrc && \
   echo -e '\n[dune-archiso-repository-core]\n' >> /etc/pacman.conf && \
   echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
-  echo -e 'Server = https://dune-archiso.gitlab.io/repository/dune-archiso-repository-core/$arch\n' >> /etc/pacman.conf && \
+  echo -e 'Server = https://dune-archiso.gitlab.io/repository/dune-archiso-repository-core/$arch' >> /etc/pacman.conf && \
   echo -e '\n[dune-core]\n' >> /etc/pacman.conf && \
   echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
-  echo -e 'Server = https://dune-archiso.gitlab.io/repository/dune-core/$arch\n' >> /etc/pacman.conf && \
+  echo -e 'Server = https://dune-archiso.gitlab.io/repository/dune-core/$arch' >> /etc/pacman.conf && \
   echo -e '\n[dune-staging]\n' >> /etc/pacman.conf && \
   echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
-  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-staging/$arch\n' >> /etc/pacman.conf && \
+  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-staging/$arch' >> /etc/pacman.conf && \
   echo -e '\n[dune-extensions]\n' >> /etc/pacman.conf && \
   echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
-  echo -e 'Server = https://dune-archiso.gitlab.io/repository/dune-extensions/$arch\n' >> /etc/pacman.conf && \
+  echo -e 'Server = https://dune-archiso.gitlab.io/repository/dune-extensions/$arch' >> /etc/pacman.conf && \
   echo -e '\n[amdis]\n' >> /etc/pacman.conf && \
   echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
   echo -e 'Server = https://dune-archiso.gitlab.io/repository/amdis/$arch\n' >> /etc/pacman.conf
