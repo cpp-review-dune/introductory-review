@@ -60,7 +60,7 @@ RUN sudo pacman --noconfirm -Syyuq ${PACKAGES} && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst
 
 RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh | sudo bash -e -x && \
-  echo $(cat /etc/motd) >> ~/.bashrc
+  echo 'cat /etc/motd' >> ~/.bashrc
 
 ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
 
