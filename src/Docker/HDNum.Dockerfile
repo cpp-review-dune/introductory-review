@@ -1,6 +1,6 @@
 # Copyleft (c) December, 2021, Oromion.
 
-FROM archlinux:base
+FROM archlinux:base-devel
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="HDNum Arch" \
