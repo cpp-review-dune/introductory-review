@@ -54,7 +54,7 @@ COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 RUN sudo pacman --noconfirm -Syyuq ${PACKAGES} && \
     sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
-    yay -S ttf-vista-fonts consolas-font && \
+    yay --noconfirm  -S ttf-vista-fonts consolas-font && \
     yay -Qtdq | xargs -r yay --noconfirm -Rcns && \
     rm -rf ~/.cache && \
     yay -Scc <<< Y <<< Y <<< Y
