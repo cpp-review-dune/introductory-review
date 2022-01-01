@@ -73,3 +73,4 @@ jobs:
         with:
           image: ghcr.io/cpp-review-dune/introductory-review/texlive:latest
           annotations: true
+          dockerfile: ./src/Docker/TeXLive.Dockerfile

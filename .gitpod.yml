@@ -3,7 +3,7 @@ image: ghcr.io/cpp-review-dune/introductory-review/texlive
 tasks:
   - name: Say welcome
     command: |
-      echo "Bienvenido(a) $(whoami)!"
+      echo "Bienvenido(a) $USER!"
       echo 'unset JAVA_TOOL_OPTIONS' >>~/.bashrc
       echo 'alias update="yay -Syyu --noconfirm"' >>~/.bashrc
       source ~/.bashrc

@@ -35,6 +35,7 @@ jobs:
           options: -v ${{github.workspace}}:/work
           shell: bash
           run: |
+            sudo chown -R gitpod:gitpod /work
             cd /work && doxygen -u Doxyfile && doxygen Doxyfile && cd doc/latex && make
             ln -rs /work/examples/progkurs/hallohdnum.cc /work/examples/num0/hallohdnum.cc
             ln -rs /work/programmierkurs/programmierkurs_alt.tex /work/tutorial/programmierkurs.tex
