@@ -68,6 +68,7 @@ jobs:
 
       - name: "Tar files"
         run: |
+          sudo chown runner:docker -R .
           tar --zstd -cf HDNUM_DOCS.tar.zst doc/html doc/latex/refman.pdf tutorial/hdnum.pdf programmierkurs/programmierkurs*.pdf tutorial/hdnum-tutorial-article.pdf tutorial/hdnum-tutorial-beamer.pdf
 
       - uses: actions/upload-artifact@v2
