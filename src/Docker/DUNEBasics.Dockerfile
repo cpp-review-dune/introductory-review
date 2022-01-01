@@ -1,6 +1,13 @@
 # Copyleft (c) December, 2021, Oromion.
 
-FROM archlinux:base-devel
+FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
+
+ARG AUR_PACKAGES="\
+  ansiweather \
+  python-dune-common \
+  "
+
+RUN yay -Syyuq --noconfirm ${AUR_PACKAGES}
 
 LABEL maintainer="C++ Review Dune" \
   name="DUNEBasics in Gitpod" \
@@ -10,44 +17,50 @@ LABEL maintainer="C++ Review Dune" \
   vendor="C++ Review Dune" \
   version="1.0"
 
+FROM archlinux:base-devel
+
 RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
-    sed -i 's/^#Color/Color/' /etc/pacman.conf && \
-    sed -i '/#CheckSpace/a ILoveCandy' /etc/pacman.conf && \
-    sed -i '/ILoveCandy/a ParallelDownloads = 30' /etc/pacman.conf && \
-    sed -i 's/^#BUILDDIR/BUILDDIR/' /etc/makepkg.conf && \
-    echo '' >> /etc/pacman.conf && \
-    echo '[multilib]' >> /etc/pacman.conf && \
-    echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf && \
-    echo '' >> /etc/pacman.conf && \
-    useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
-    passwd -d gitpod && \
-    echo 'gitpod ALL=(ALL) ALL' > /etc/sudoers.d/gitpod && \
-    sed -i "s/PS1='\[\\\u\@\\\h \\\W\]\\\\\\$ '//g" /home/gitpod/.bashrc && \
-    { echo && echo "PS1='\[\e]0;\u \w\a\]\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \\\$ '" ; } >> /home/gitpod/.bashrc
+  sed -i 's/^#Color/Color/' /etc/pacman.conf && \
+  sed -i '/#CheckSpace/a ILoveCandy' /etc/pacman.conf && \
+  sed -i '/ILoveCandy/a ParallelDownloads = 30' /etc/pacman.conf && \
+  sed -i 's/^#BUILDDIR/BUILDDIR/' /etc/makepkg.conf && \
+  printf '\n[multilib]\nInclude = /etc/pacman.d/mirrorlist\n' >> /etc/pacman.conf && \
+  useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
+  passwd -d gitpod && \
+  echo 'gitpod ALL=(ALL) ALL' > /etc/sudoers.d/gitpod && \
+  sed -i "s/PS1='\[\\\u\@\\\h \\\W\]\\\\\\$ '//g" /home/gitpod/.bashrc && \
+  { echo && echo "PS1='\[\e]0;\u \w\a\]\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \\\$ '" ; } >> /home/gitpod/.bashrc
 
 USER gitpod
 
-RUN sudo pacman --noconfirm -Syyu \
-    vim nano emacs-nox python-sphinx \
-    texlive-latexextra texlive-pictures texlive-fontsextra \
-    texlive-science texlive-bibtexextra biber inkscape doxygen \
-    ttf-fira-code tldr man-pages man-pages-es git && \
-    mkdir ~/build && \
-    cd ~/build && \
-    git clone --depth 1 "https://aur.archlinux.org/yay.git" && \
-    cd yay && \
-    makepkg --noconfirm -si && \
-    rm -rf ~/.cache && \
-    rm -rf ~/go && \
-    rm -rf ~/build && \
-    yay --noconfirm -Sy ansiweather python-dune-common && \
-    yay --afterclean --removemake --save && \
-    yay -Qtdq | xargs -r yay --noconfirm -Rcns && \
-    rm -rf /home/aur/.cache && \
-    yay -Scc <<< Y <<< Y <<< Y && \
-    curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh | bash -e -x && \
-    echo 'cat /etc/motd' >> ~/.bashrc
+ARG PACKAGES="\
+  vim \
+  nano \
+  emacs-nox \
+  python-sphinx \
+  texlive-latexextra \
+  texlive-pictures \
+  texlive-fontsextra \
+  texlive-science \
+  texlive-bibtexextra \
+  biber \
+  inkscape \
+  doxygen \
+  ttf-fira-code \
+  tldr \
+  man-pages \
+  man-pages-es \
+  "
+
+COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
+
+RUN sudo pacman --noconfirm -Syyuq ${PACKAGES} && \
+  sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
+  curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh | sudo bash -e -x && \
+  echo 'cat /etc/motd' >> ~/.bashrc
 
 ENV PATH="/usr/bin/vendor_perl:${PATH}"
+
+ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
 
 CMD ["/bin/bash"]
