@@ -45,11 +45,12 @@ COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 RUN sudo pacman --noconfirm -Syyuq ${PACKAGES} && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh | sudo bash -e -x && \
-  echo 'cat /etc/motd' >> ~/.bashrc && \
-  echo "alias jupyter-notebook='jupyter-notebook --port=8888 --no-browser --ip=0.0.0.0'" >> ~/.bashrc
+  echo 'cat /etc/motd' >> ~/.bashrc
 
 ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
 
 EXPOSE 8888
 
-CMD ["/bin/bash"]
+WORKDIR /workspaces/notebook/
+
+CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0"]
