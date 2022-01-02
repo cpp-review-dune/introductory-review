@@ -35,6 +35,7 @@ jobs:
           options: -v ${{github.workspace}}:/work
           shell: bash
           run: |
+            sudo chown -R gitpod:gitpod /work
             cd /work/src/TeX && arara -L de [Ma]*.tex
 
       - name: Check pdf files
