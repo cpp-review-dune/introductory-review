@@ -44,7 +44,7 @@ jobs:
 
       - name: "Tar files"
         run: |
-          sudo chown runner:docker -R src/TeX
+          sudo chown runner:docker -R .
           tar --zstd -cf PDF.tar.zst src/TeX/*.pdf
 
       - uses: actions/upload-artifact@v2
