@@ -72,3 +72,10 @@ jobs:
         run: |
           rm -rf /tmp/.buildx-duneprecice-cache
           mv /tmp/.buildx-main-cache /tmp/.buildx-duneprecice-cache
+
+      - name: Scan for vulnerabilities
+        uses: crazy-max/ghaction-container-scan@v1
+        with:
+          image: ghcr.io/cpp-review-dune/introductory-review/texlive:latest
+          annotations: true
+          dockerfile: ./src/Docker/DUNE-preCICE.Dockerfile
