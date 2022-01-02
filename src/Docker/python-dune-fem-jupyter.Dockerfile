@@ -53,4 +53,4 @@ EXPOSE 8888
 
 WORKDIR /workspaces/notebook/
 
-CMD ["jupyter", "notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0"]
+CMD ["jupyter-notebook", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--NotebookApp.allow_origin='*'", "--NotebookApp.token=''", "--NotebookApp.password=''"]

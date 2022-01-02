@@ -69,3 +69,10 @@ jobs:
         run: |
           rm -rf /tmp/.buildx-dumux-cache
           mv /tmp/.buildx-main-cache /tmp/.buildx-dumux-cache
+
+      - name: Scan for vulnerabilities
+        uses: crazy-max/ghaction-container-scan@v1
+        with:
+          image: ghcr.io/cpp-review-dune/introductory-review/texlive:latest
+          annotations: true
+          dockerfile: ./src/Docker/DuMux.Dockerfile
