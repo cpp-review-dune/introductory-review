@@ -6,6 +6,7 @@ ARG AUR_PACKAGES="\
   ansiweather \
   python-dune-spgrid \
   python-dune-fem \
+  petsc \
   "
 
 RUN yay -Syyuq --noconfirm ${AUR_PACKAGES}
@@ -38,6 +39,7 @@ ARG PACKAGES="\
   vim \
   emacs-nox \
   jupyter-notebook \
+  python-matplotlib \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
