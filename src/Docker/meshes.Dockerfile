@@ -6,6 +6,7 @@ ARG MESHES_PACKAGES="\
   python-meshzoo \
   python-pygmsh \
   python-meshpy \
+  python-meshio \
   "
 
 RUN yay -Syyuq --noconfirm ${MESHES_PACKAGES}
