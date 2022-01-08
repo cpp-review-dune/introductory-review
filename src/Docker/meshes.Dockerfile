@@ -37,6 +37,7 @@ USER gitpod
 ARG PACKAGES="\
   vim \
   emacs-nox \
+  jupyter-notebook \
   julia \
   "
 
