@@ -43,8 +43,11 @@ ARG PACKAGES="\
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 RUN sudo pacman --noconfirm -Syyuq ${PACKAGES} && \
-  sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst
+  sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
+  echo "alias startJupyter=\"jupyter-notebook --port=8888 --no-browser --ip=0.0.0.0 --NotebookApp.allow_origin='\$(gp url 8888)' --NotebookApp.token='' --NotebookApp.password=''\"" >> ~/.bashrc
 
 ENV PYTHONPATH="/usr/share/gmsh/api/python:${PYTHONPATH}"
 
-CMD ["/bin/bash"]
+EXPOSE 8888
+
+WORKDIR /workspaces/meshes/
