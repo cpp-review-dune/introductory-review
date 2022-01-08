@@ -38,6 +38,7 @@ ARG PACKAGES="\
   vim \
   emacs-nox \
   jupyter-notebook \
+  python-matplotlib \
   julia \
   "
 
