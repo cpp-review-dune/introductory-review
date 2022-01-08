@@ -56,4 +56,4 @@ ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
 
 EXPOSE 8888
 
-WORKDIR /workspaces/notebook/
+WORKDIR /workspace/notebook/

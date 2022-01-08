@@ -51,4 +51,4 @@ ENV PYTHONPATH="/usr/share/gmsh/api/python:${PYTHONPATH}"
 
 EXPOSE 8888
 
-WORKDIR /workspaces/meshes/
+WORKDIR /workspace/meshes/
