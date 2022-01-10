@@ -16,6 +16,8 @@ ARG USER="builder"
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
+ARG YAY_URL="https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz"
+
 RUN sed -i 's/^#Color/Color/' /etc/pacman.conf && \
   sed -i '/#CheckSpace/a ILoveCandy' /etc/pacman.conf && \
   sed -i '/ILoveCandy/a ParallelDownloads = 30' /etc/pacman.conf && \
@@ -27,7 +29,7 @@ RUN sed -i 's/^#Color/Color/' /etc/pacman.conf && \
   pacman-key --init && \
   pacman-key --populate archlinux && \
   pacman -Syyuq --needed --noconfirm && \
-  curl -LO "https://aur.archlinux.org/cgit/aur.git/snapshot/yay.tar.gz" && \
+  curl -LO ${YAY_URL} && \
   tar -xvf yay.tar.gz && \
   chown -R ${USER}:${USER} /tmp/yay && \
   cd yay && \

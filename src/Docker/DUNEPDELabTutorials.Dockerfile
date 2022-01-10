@@ -29,11 +29,9 @@ ARG PACKAGES="\
   texlive-fontsextra \
   "
 
-RUN sudo pacman --noconfirm -Syyuq ${PACKAGES} && \
-  sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst
-
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
-ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
+RUN sudo pacman --noconfirm -Syyuq ${PACKAGES} && \
+  sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst
 
 ENV LANGUAGE=es:pe

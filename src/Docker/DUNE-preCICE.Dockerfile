@@ -4,9 +4,8 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
   ansiweather \
+  # python-pyprecice \
   "
-
-# python-pyprecice \
 
 RUN yay -Syyuq --noconfirm ${AUR_PACKAGES}
 
@@ -57,9 +56,11 @@ ARG PACKAGES="\
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
+ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh
+
 RUN sudo pacman --noconfirm -Syyuq ${PACKAGES} && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
-  curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh | sudo bash -e -x && \
+  curl -s ${BANNER} | sudo bash -e -x && \
   echo 'cat /etc/motd' >> ~/.bashrc
 
 ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
