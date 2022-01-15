@@ -174,3 +174,13 @@ toc: true
   src="https://diode.zone/videos/embed/a6MbuXM5oq5xUxYi7scMRq?title=0&warningTitle=0&peertubeLink=0"
   frameborder="0" allowfullscreen>
 </iframe>
+
+#### Sesión 21 Cpp-review-dune 15/01/2022
+
+<iframe width="610" height="350"
+  sandbox="allow-same-origin allow-scripts allow-popups"
+  src="https://diode.zone/videos/embed/7rtrnTpMmF6F7Ka3mftyqt?title=0&warningTitle=0&peertubeLink=0"
+  frameborder="0" allowfullscreen>
+</iframe>
+
+[Diapositiva](https://cpp-review-dune.github.io/meetings-2022/2022-01-15.pdf)
