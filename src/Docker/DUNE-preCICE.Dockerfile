@@ -1,10 +1,9 @@
-# Copyleft (c) December, 2021, Oromion.
+# Copyleft (c) January, 2022, Oromion.
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
   ansiweather \
-  # python-pyprecice \
   "
 
 RUN yay -Syyuq --noconfirm ${AUR_PACKAGES}
