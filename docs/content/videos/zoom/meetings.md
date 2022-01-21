@@ -194,3 +194,27 @@ toc: true
 </iframe>
 
 [Diapositiva](https://cpp-review-dune.github.io/meetings-2022/2022-01-16.pdf)
+
+#### Sesión 23 Cpp-review-dune 20/01/2022
+
+<iframe width="610" height="350"
+  sandbox="allow-same-origin allow-scripts allow-popups"
+  src="https://diode.zone/videos/embed/4nDD2sJitFXxEaKGUF8evB?title=0&warningTitle=0&peertubeLink=0"
+  frameborder="0" allowfullscreen>
+</iframe>
+
+<!-- #### Sesión 24 Cpp-review-dune 22/01/2022
+
+<iframe width="610" height="350"
+  sandbox="allow-same-origin allow-scripts allow-popups"
+  src="https://diode.zone/videos/embed/4nDD2sJitFXxEaKGUF8evB?title=0&warningTitle=0&peertubeLink=0"
+  frameborder="0" allowfullscreen>
+</iframe>
+
+#### Sesión 25 Cpp-review-dune 23/01/2022
+
+<iframe width="610" height="350"
+  sandbox="allow-same-origin allow-scripts allow-popups"
+  src="https://diode.zone/videos/embed/4nDD2sJitFXxEaKGUF8evB?title=0&warningTitle=0&peertubeLink=0"
+  frameborder="0" allowfullscreen>
+</iframe> -->
