@@ -203,11 +203,11 @@ toc: true
   frameborder="0" allowfullscreen>
 </iframe>
 
-<!-- #### Sesión 24 Cpp-review-dune 22/01/2022
+#### Sesión 24 Cpp-review-dune 22/01/2022
 
 <iframe width="610" height="350"
   sandbox="allow-same-origin allow-scripts allow-popups"
-  src="https://diode.zone/videos/embed/4nDD2sJitFXxEaKGUF8evB?title=0&warningTitle=0&peertubeLink=0"
+  src="https://diode.zone/videos/embed/eM6offwkEcSCGci2FC8v83?title=0&warningTitle=0&peertubeLink=0"
   frameborder="0" allowfullscreen>
 </iframe>
 
@@ -215,6 +215,16 @@ toc: true
 
 <iframe width="610" height="350"
   sandbox="allow-same-origin allow-scripts allow-popups"
-  src="https://diode.zone/videos/embed/4nDD2sJitFXxEaKGUF8evB?title=0&warningTitle=0&peertubeLink=0"
+  src="https://diode.zone/videos/embed/mgJd6BNDvUt7FqZDAfGG1U?title=0&warningTitle=0&peertubeLink=0"
   frameborder="0" allowfullscreen>
-</iframe> -->
+</iframe>
+
+<!--
+#### Sesión 26 Cpp-review-dune 29/01/2022
+
+<iframe width="610" height="350"
+  sandbox="allow-same-origin allow-scripts allow-popups"
+  src="https://diode.zone/videos/embed/eM6offwkEcSCGci2FC8v83?title=0&warningTitle=0&peertubeLink=0"
+  frameborder="0" allowfullscreen>
+</iframe>
+ -->
