@@ -23,7 +23,7 @@
 
 [[main]]
   name = "Vídeos"
-  url = "/videos/zoom/meetings/"
+  url = "/videos/"
   weight = 20
 
 [[main]]
