@@ -12,6 +12,7 @@ menu:
 weight: 20
 toc: true
 ---
+
 #### Introducción, clonar un repositorio en Windows 10 con Visual Studio Community
 
 <iframe width="610" height="350"
@@ -20,9 +21,6 @@ toc: true
   frameborder="0" allowfullscreen>
 </iframe>
 
-
-
-
 #### Información sobre el repositorio introductory-review, más preguntas y respuestas
 
 <iframe width="610" height="350"
@@ -30,8 +28,6 @@ toc: true
   src="https://diode.zone/videos/embed/69965aeb-eaad-4b51-8487-8a032c3f1e70?title=0&warningTitle=0"
   frameborder="0" allowfullscreen>
 </iframe>
-
-
 
 #### Clonar un repositorio, añadir cambios, hacer confirmación y subir objetos a GitHub
 
