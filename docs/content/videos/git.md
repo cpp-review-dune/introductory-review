@@ -7,7 +7,7 @@ lastmod: 2021-04-02T08:48:45+00:00
 draft: false
 images: []
 menu:
-  videos:
+  tutorial:
     parent: "videos"
 weight: 030
 toc: true

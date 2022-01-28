@@ -4,11 +4,11 @@
 #   identifier = "videos"
 #   url = "/videos/"
 
-# [[videos]]
-#   name = "Git"
-#   weight = 10
-#   identifier = "git"
-#   url = "/videos/git/"
+[[videos]]
+  name = "Git"
+  weight = 10
+  identifier = "git"
+  url = "/videos/git/"
 
 # [[tutorial]]
 #   name = "Tutorial"
