@@ -6,3 +6,22 @@ lastmod: 2021-04-02T08:49:55+00:00
 draft: false
 images: []
 ---
+
+- [Zoom]({{< relref "zoom" >}})
+- [CFD]({{< relref "cfd" >}})
+- [Git]({{< relref "git" >}})
+- [C++]({{< relref "cpp" >}})
+
+<iframe width="560" height="315"
+  src="https://www.youtube-nocookie.com/embed/m5HuDgRj5Bk"
+  title="YouTube video player" frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
+<iframe width="560" height="315"
+  src="https://www.youtube-nocookie.com/embed/z1CpO1F78V4"
+  title="YouTube video player" frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
