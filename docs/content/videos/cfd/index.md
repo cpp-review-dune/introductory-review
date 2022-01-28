@@ -6,10 +6,10 @@ date: 2021-04-02T08:48:45+00:00
 lastmod: 2021-04-02T08:48:45+00:00
 draft: false
 images: []
-# menu:
-#   tutorial:
-#     parent: "videos"
-weight: 030
+menu:
+  videos:
+    parent: "videos"
+weight: 070
 toc: true
 ---
 
