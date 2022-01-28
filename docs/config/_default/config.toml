@@ -1,13 +1,18 @@
-baseurl = "/"
+baseurl = "https://doks-child-theme.netlify.app/"
 canonifyURLs = false
 disableAliases = true
 disableHugoGeneratorInject = true
 enableEmoji = true
-enableGitInfo = true
+enableGitInfo = false
 enableRobotsTXT = true
 languageCode = "es-PE"
 paginate = 7
 rssLimit = 10
+
+# Multilingual
+defaultContentLanguage = "es"
+disableLanguages = ["de", "nl"]
+# defaultContentLanguageInSubdir = true
 
 # add redirects/headers
 [outputs]
@@ -40,82 +45,75 @@ baseName = "sitemap"
 isHTML = false
 isPlainText = true
 noUgly = true
-rel  = "sitemap"
+rel = "sitemap"
 
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.extensions]
-      linkify = false
-    [markup.goldmark.parser]
-      autoHeadingID = true
-      autoHeadingIDType = "github"
-      [markup.goldmark.parser.attribute]
-        block = true
-        title = true
-    [markup.goldmark.renderer]
-      unsafe = true
-  [markup.highlight]
-    codeFences = false
-    guessSyntax = false
-    hl_Lines = ""
-    lineNoStart = 1
-    lineNos = false
-    lineNumbersInTable = true
-    noClasses = false
-    style = "dracula"
-    tabWidth = 4
+[caches]
+[caches.getjson]
+dir = ":cacheDir/:project"
+maxAge = "10s"
 
 [sitemap]
-  changefreq = "weekly"
-  filename = "sitemap.xml"
-  priority = 0.5
+changefreq = "weekly"
+filename = "sitemap.xml"
+priority = 0.5
 
 [taxonomies]
-  contributor = "contributors"
+contributor = "contributors"
 
 [permalinks]
-  blog = "/blog/:title/"
+blog = "/blog/:title/"
+# docs = "/docs/1.0/:sections[1:]/:title/"
+
+[minify.tdewolff.html]
+keepWhitespace = false
 
 [module]
-  # [[module.mounts]]
-  #   source = "node_modules/@hyas/doks/archetypes"
-  #   target = "archetypes"
-  [[module.mounts]]
-    source = "node_modules/@hyas/doks/assets"
-    target = "assets"
+[module.hugoVersion]
+extended = true
+min = "0.80.0"
+max = ""
+[[module.mounts]]
+source = "node_modules/@hyas/doks/archetypes"
+target = "archetypes"
+[[module.mounts]]
+source = "node_modules/@hyas/doks/assets"
+target = "assets"
 #  [[module.mounts]]
 #    source = "node_modules/@hyas/doks/content"
 #    target = "content"
-  [[module.mounts]]
-    source = "node_modules/@hyas/doks/data"
-    target = "data"
-  [[module.mounts]]
-    source = "node_modules/@hyas/doks/layouts"
-    target = "layouts"
-  [[module.mounts]]
-    source = "node_modules/@hyas/doks/static"
-    target = "static"
-  [[module.mounts]]
-    source = "node_modules/flexsearch"
-    target = "assets/js/vendor/flexsearch"
-  [[module.mounts]]
-    source = "node_modules/katex"
-    target = "assets/js/vendor/katex"
-  # [[module.mounts]]
-  #   source = "assets"
-  #   target = "assets"
-  [[module.mounts]]
-    source = "static"
-    target = "static"
-  [[module.mounts]]
-    source = "content"
-    target = "content"
-  [[module.mounts]]
-    source = "layouts"
-    target = "layouts"
-  [[module.mounts]]
-    source = "archetypes"
-    target = "archetypes"
-  [[module.mounts]]
-    source = "data"
-    target = "data"
+[[module.mounts]]
+source = "node_modules/@hyas/doks/data"
+target = "data"
+[[module.mounts]]
+source = "node_modules/@hyas/doks/layouts"
+target = "layouts"
+[[module.mounts]]
+source = "node_modules/@hyas/doks/static"
+target = "static"
+[[module.mounts]]
+source = "node_modules/flexsearch"
+target = "assets/js/vendor/flexsearch"
+[[module.mounts]]
+source = "node_modules/katex"
+target = "assets/js/vendor/katex"
+[[module.mounts]]
+source = "node_modules/mermaid"
+target = "assets/js/vendor/mermaid"
+[[module.mounts]]
+source = "assets"
+target = "assets"
+[[module.mounts]]
+source = "static"
+target = "static"
+#  [[module.mounts]]
+#    source = "content"
+#    target = "content"
+[[module.mounts]]
+source = "layouts"
+target = "layouts"
+[[module.mounts]]
+source = "archetypes"
+target = "archetypes"
+[[module.mounts]]
+source = "data"
+target = "data"
