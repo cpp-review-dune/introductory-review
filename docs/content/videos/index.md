@@ -5,12 +5,18 @@ date: 2021-04-02T08:49:55+00:00
 lastmod: 2021-04-02T08:49:55+00:00
 draft: false
 images: []
+# menu:
+#   tutorial:
+#     parent: "videos"
+weight: 010
+toc: true
 ---
 
-- [Zoom]({{< relref "zoom" >}})
-- [CFD]({{< relref "cfd" >}})
-- [Git]({{< relref "git" >}})
-- [C++]({{< relref "cpp" >}})
+<!--
+- [CFD]({)
+- [Git]()
+- [C++]()
+ -->
 
 <iframe width="560" height="315"
   src="https://www.youtube-nocookie.com/embed/m5HuDgRj5Bk"
