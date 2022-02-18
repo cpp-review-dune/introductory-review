@@ -48,7 +48,7 @@ ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/tem
 RUN sudo pacman --needed --noconfirm -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   echo -e '\n[dune-precice]\nSigLevel = Optional TrustAll\nServer = https://dune-archiso.gitlab.io/testing/dune-precice/$arch\n' | sudo tee -a /etc/pacman.conf && \
-  sudo pacman --needed --noconfirm -S ${PACKAGES} && \
+  sudo pacman --needed --noconfirm -Sy ${PACKAGES} && \
   curl -s ${BANNER} | sudo bash -e -x && \
   echo 'cat /etc/motd' >> ~/.bashrc
 

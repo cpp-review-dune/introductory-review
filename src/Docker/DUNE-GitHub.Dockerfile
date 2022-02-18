@@ -49,7 +49,7 @@ RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   echo -e '\n[dune-core-git]\nSigLevel = Optional TrustAll\nServer = https://dune-archiso.gitlab.io/repository/dune-core-git/$arch\n' | sudo tee -a /etc/pacman.conf && \
   echo -e '\n[dune-staging-git]\nSigLevel = Optional TrustAll\nServer = https://dune-archiso.gitlab.io/repository/dune-staging-git/$arch\n' | sudo tee -a /etc/pacman.conf && \
   echo -e '\n[dune-extensions-git]\nSigLevel = Optional TrustAll\nServer = https://dune-archiso.gitlab.io/repository/dune-extensions-git/$arch\n' | sudo tee -a /etc/pacman.conf && \
-  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
+  sudo pacman --needed --noconfirm --noprogressbar -Sy ${PACKAGES} && \
   curl -s ${BANNER} | sudo bash -e -x && \
   echo 'cat /etc/motd' >> ~/.bashrc
 
