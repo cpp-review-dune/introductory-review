@@ -48,8 +48,9 @@ COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh
 
-RUN sudo pacman --noconfirm -Syyuq ${PACKAGES} && \
+RUN sudo pacman --needed --noconfirm -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
+  sudo pacman --needed --noconfirm -S ${PACKAGES} && \
   curl -s ${BANNER} | sudo bash -e -x && \
   echo 'cat /etc/motd' >> ~/.bashrc
 
