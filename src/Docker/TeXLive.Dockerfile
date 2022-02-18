@@ -8,7 +8,7 @@ ARG FONT_PACKAGES="\
   yay \
   "
 
-RUN yay --needed --noconfirm --noprogressbar -Syyuq ${FONT_PACKAGES}
+RUN yay --noconfirm --noprogressbar -Syyuq ${FONT_PACKAGES}
 # && \ find -maxdepth=2 /tmp -type f -not -name '*.install' -not -name '*.pkg.tar.zst' | xargs -0 -I {} rm {} && \
 # ls -lR /tmp --builddir=/tmp
 
@@ -53,7 +53,7 @@ ARG PACKAGES="\
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
-  sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst || true && \
+  sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   yay --noconfirm  -S ttf-vista-fonts consolas-font && \
   yay -Qtdq | xargs -r yay --noconfirm -Rcns && \
