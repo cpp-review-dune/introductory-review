@@ -6,7 +6,7 @@ ARG AUR_PACKAGES="\
   python-py-pde \
   "
 
-RUN yay -Syyuq --noconfirm ${AUR_PACKAGES}
+RUN yay --needed --noconfirm --noprogressbar -Syyuq ${AUR_PACKAGES}
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="python-py-pde Arch" \
@@ -38,8 +38,9 @@ ARG PACKAGES="\
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
-RUN sudo pacman --noconfirm -Syyuq ${PACKAGES} && \
+RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
+  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   echo "alias startJupyter=\"jupyter-notebook --port=8888 --no-browser --ip=0.0.0.0 --NotebookApp.allow_origin='\$(gp url 8888)' --NotebookApp.token='' --NotebookApp.password=''\"" >> ~/.bashrc
 
 EXPOSE 8888

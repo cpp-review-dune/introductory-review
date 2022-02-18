@@ -28,7 +28,7 @@ RUN sed -i 's/^#Color/Color/' /etc/pacman.conf && \
   printf "${USER} ALL=(ALL) ALL" > /etc/sudoers.d/${USER} && \
   pacman-key --init && \
   pacman-key --populate archlinux && \
-  pacman -Syyuq --needed --noconfirm && \
+  pacman --needed --noconfirm --noprogressbar -Syyuq && \
   curl -LO ${YAY_URL} && \
   tar -xvf yay.tar.gz && \
   chown -R ${USER}:${USER} /tmp/yay && \

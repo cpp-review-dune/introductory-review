@@ -9,7 +9,7 @@ ARG AUR_PACKAGES="\
   ansiweather \
   "
 
-RUN yay -Syyuq --noconfirm ${AUR_PACKAGES}
+RUN yay --needed --noconfirm --noprogressbar -Syyuq ${AUR_PACKAGES}
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="AMDiS Arch" \
@@ -45,12 +45,12 @@ COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh
 
-RUN sudo pacman --needed --noconfirm -Syyuq && \
+RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   echo -e '\n[amdis]\n' >> /etc/pacman.conf && \
   echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
   echo -e 'Server = https://dune-archiso.gitlab.io/repository/amdis/$arch\n' >> /etc/pacman.conf && \
-  sudo pacman --needed --noconfirm -S ${PACKAGES} && \
+  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   curl -s ${BANNER} | sudo bash -e -x && \
   echo 'cat /etc/motd' >> ~/.bashrc
 

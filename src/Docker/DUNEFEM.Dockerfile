@@ -3,11 +3,11 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
-  ansiweather \
   dune-fem \
+  ansiweather \
   "
 
-RUN yay -Syyuq --noconfirm ${AUR_PACKAGES}
+RUN yay --needed --noconfirm --noprogressbar -Syyuq ${AUR_PACKAGES}
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="DUNEFEM Arch" \
@@ -42,8 +42,9 @@ COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh
 
-RUN sudo pacman --noconfirm -Syyuq ${PACKAGES} && \
+RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
+  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   curl -s ${BANNER} | sudo bash -e -x && \
   echo 'cat /etc/motd' >> ~/.bashrc
 

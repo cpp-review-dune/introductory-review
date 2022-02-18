@@ -9,7 +9,7 @@ ARG AUR_PACKAGES="\
   ansiweather \
   "
 
-RUN yay -Syyuq --noconfirm ${AUR_PACKAGES}
+RUN yay --needed --noconfirm --noprogressbar -Syyuq ${AUR_PACKAGES}
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="DUNE-preCICE Arch" \
