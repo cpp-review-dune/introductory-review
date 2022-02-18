@@ -22,7 +22,7 @@ RUN sed -i 's/^#Color/Color/' /etc/pacman.conf && \
   sed -i '/#CheckSpace/a ILoveCandy' /etc/pacman.conf && \
   sed -i '/ILoveCandy/a ParallelDownloads = 30' /etc/pacman.conf && \
   sed -i 's/^#BUILDDIR/BUILDDIR/' /etc/makepkg.conf && \
-  printf '\n[multilib]\nInclude = /etc/pacman.d/mirrorlist\n' >> /etc/pacman.conf && \
+  echo -e '\n[multilib]\nInclude = /etc/pacman.d/mirrorlist' | tee -a /etc/pacman.conf && \
   useradd -l -u 33333 -md /home/${USER} -s /bin/bash ${USER} && \
   passwd -d ${USER} && \
   printf "${USER} ALL=(ALL) ALL" > /etc/sudoers.d/${USER} && \
