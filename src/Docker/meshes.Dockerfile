@@ -40,9 +40,8 @@ ARG PACKAGES="\
   emacs-nox \
   jupyter-notebook \
   python-matplotlib \
-  julia \
   "
-
+# julia \
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
