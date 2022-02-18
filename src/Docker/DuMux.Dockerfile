@@ -47,16 +47,15 @@ ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/tem
 
 RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
-  # sudo echo -e '\n[opm]\n' >> /etc/pacman.conf && \
-  # sudo echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
-  # sudo echo -e 'Server = https://dune-archiso.gitlab.io/repository/opm/$arch' >> /etc/pacman.conf && \
   sudo echo -e '\n[dumux]\n' >> /etc/pacman.conf && \
   sudo echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
   sudo echo -e 'Server = https://dune-archiso.gitlab.io/repository/dumux/$arch\n' >> /etc/pacman.conf && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   curl -s ${BANNER} | sudo bash -e -x && \
   echo 'cat /etc/motd' >> ~/.bashrc
-
+# sudo echo -e '\n[opm]\n' >> /etc/pacman.conf && \
+# sudo echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
+# sudo echo -e 'Server = https://dune-archiso.gitlab.io/repository/opm/$arch' >> /etc/pacman.conf && \
 ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
 
 CMD ["/bin/bash"]
