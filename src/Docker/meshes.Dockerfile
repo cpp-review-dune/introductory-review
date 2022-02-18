@@ -9,7 +9,7 @@ ARG MESHES_PACKAGES="\
   python-meshio \
   "
 
-RUN yay --needed --noconfirm --noprogressbar -Syyuq ${MESHES_PACKAGES}
+RUN yay --noconfirm --noprogressbar -Syyuq ${MESHES_PACKAGES}
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="Meshes Arch" \

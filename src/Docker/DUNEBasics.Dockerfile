@@ -7,7 +7,7 @@ ARG AUR_PACKAGES="\
   ansiweather \
   "
 
-RUN yay --needed --noconfirm --noprogressbar -Syyuq ${AUR_PACKAGES}
+RUN yay --noconfirm --noprogressbar -Syyuq ${AUR_PACKAGES}
 
 LABEL maintainer="C++ Review Dune" \
   name="DUNEBasics in Gitpod" \

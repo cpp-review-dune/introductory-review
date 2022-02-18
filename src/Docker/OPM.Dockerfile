@@ -7,7 +7,7 @@ ARG AUR_PACKAGES="\
   ansiweather \
   "
 # TODO: Complete dependencies to opm
-RUN yay --needed --noconfirm --noprogressbar -Syyuq ${AUR_PACKAGES}
+RUN yay --noconfirm --noprogressbar -Syyuq ${AUR_PACKAGES}
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="OPM Arch" \
