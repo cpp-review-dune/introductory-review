@@ -31,10 +31,7 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
   passwd -d gitpod && \
   echo 'gitpod ALL=(ALL) ALL' > /etc/sudoers.d/gitpod && \
   sed -i "s/PS1='\[\\\u\@\\\h \\\W\]\\\\\\$ '//g" /home/gitpod/.bashrc && \
-  { echo && echo "PS1='\[\e]0;\u \w\a\]\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \\\$ '" ; } >> /home/gitpod/.bashrc && \
-  echo -e '\n[dune-precice]\n' >> /etc/pacman.conf && \
-  echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
-  echo -e 'Server = https://dune-archiso.gitlab.io/testing/dune-precice/$arch\n' >> /etc/pacman.conf
+  { echo && echo "PS1='\[\e]0;\u \w\a\]\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \\\$ '" ; } >> /home/gitpod/.bashrc
 
 USER gitpod
 
@@ -50,6 +47,9 @@ ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/tem
 
 RUN sudo pacman --needed --noconfirm -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
+  echo -e '\n[dune-precice]\n' >> /etc/pacman.conf && \
+  echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
+  echo -e 'Server = https://dune-archiso.gitlab.io/testing/dune-precice/$arch\n' >> /etc/pacman.conf && \
   sudo pacman --needed --noconfirm -S ${PACKAGES} && \
   curl -s ${BANNER} | sudo bash -e -x && \
   echo 'cat /etc/motd' >> ~/.bashrc

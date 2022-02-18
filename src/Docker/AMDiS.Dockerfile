@@ -3,6 +3,9 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
+  dune-functions \
+  dune-typetree \
+  dune-alugrid \
   ansiweather \
   "
 
@@ -28,22 +31,7 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
   passwd -d gitpod && \
   echo 'gitpod ALL=(ALL) ALL' > /etc/sudoers.d/gitpod && \
   sed -i "s/PS1='\[\\\u\@\\\h \\\W\]\\\\\\$ '//g" /home/gitpod/.bashrc && \
-  { echo && echo "PS1='\[\e]0;\u \w\a\]\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \\\$ '" ; } >> /home/gitpod/.bashrc && \
-  echo -e '\n[dune-archiso-repository-core]\n' >> /etc/pacman.conf && \
-  echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
-  echo -e 'Server = https://dune-archiso.gitlab.io/repository/dune-archiso-repository-core/$arch' >> /etc/pacman.conf && \
-  echo -e '\n[dune-core]\n' >> /etc/pacman.conf && \
-  echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
-  echo -e 'Server = https://dune-archiso.gitlab.io/repository/dune-core/$arch' >> /etc/pacman.conf && \
-  echo -e '\n[dune-staging]\n' >> /etc/pacman.conf && \
-  echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
-  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-staging/$arch' >> /etc/pacman.conf && \
-  echo -e '\n[dune-extensions]\n' >> /etc/pacman.conf && \
-  echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
-  echo -e 'Server = https://dune-archiso.gitlab.io/repository/dune-extensions/$arch' >> /etc/pacman.conf && \
-  echo -e '\n[amdis]\n' >> /etc/pacman.conf && \
-  echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
-  echo -e 'Server = https://dune-archiso.gitlab.io/repository/amdis/$arch\n' >> /etc/pacman.conf
+  { echo && echo "PS1='\[\e]0;\u \w\a\]\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \\\$ '" ; } >> /home/gitpod/.bashrc
 
 USER gitpod
 
@@ -58,8 +46,12 @@ COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh
 
-RUN sudo pacman --noconfirm -Syyuq ${PACKAGES} && \
+RUN sudo pacman --needed --noconfirm -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
+  echo -e '\n[amdis]\n' >> /etc/pacman.conf && \
+  echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
+  echo -e 'Server = https://dune-archiso.gitlab.io/repository/amdis/$arch\n' >> /etc/pacman.conf && \
+  sudo pacman --needed --noconfirm -S ${PACKAGES} && \
   curl -s ${BANNER} | sudo bash -e -x && \
   echo 'cat /etc/motd' >> ~/.bashrc
 
