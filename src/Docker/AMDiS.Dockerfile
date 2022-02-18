@@ -1,4 +1,4 @@
-# Copyleft (c) January, 2022, Oromion.
+# Copyleft (c) February, 2022, Oromion.
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
@@ -38,7 +38,6 @@ USER gitpod
 ARG PACKAGES="\
   vim \
   emacs-nox \
-  dune-core \
   amdis \
   "
 
