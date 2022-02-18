@@ -53,7 +53,7 @@ ARG PACKAGES="\
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
-  sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
+  sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst || true && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   yay --noconfirm  -S ttf-vista-fonts consolas-font && \
   yay -Qtdq | xargs -r yay --noconfirm -Rcns && \
