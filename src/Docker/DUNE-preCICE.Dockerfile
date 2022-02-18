@@ -3,6 +3,9 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
+  dune-functions \
+  precice \
+  dune-foamgrid \
   ansiweather \
   "
 
@@ -29,18 +32,6 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
   echo 'gitpod ALL=(ALL) ALL' > /etc/sudoers.d/gitpod && \
   sed -i "s/PS1='\[\\\u\@\\\h \\\W\]\\\\\\$ '//g" /home/gitpod/.bashrc && \
   { echo && echo "PS1='\[\e]0;\u \w\a\]\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \\\$ '" ; } >> /home/gitpod/.bashrc && \
-  echo -e '\n[dune-archiso-repository-core]\n' >> /etc/pacman.conf && \
-  echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
-  echo -e 'Server = https://dune-archiso.gitlab.io/repository/dune-archiso-repository-core/$arch' >> /etc/pacman.conf && \
-  echo -e '\n[dune-core]\n' >> /etc/pacman.conf && \
-  echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
-  echo -e 'Server = https://dune-archiso.gitlab.io/repository/dune-core/$arch' >> /etc/pacman.conf && \
-  echo -e '\n[dune-staging]\n' >> /etc/pacman.conf && \
-  echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
-  echo 'Server = https://dune-archiso.gitlab.io/repository/dune-staging/$arch' >> /etc/pacman.conf && \
-  echo -e '\n[dune-extensions]\n' >> /etc/pacman.conf && \
-  echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
-  echo -e 'Server = https://dune-archiso.gitlab.io/repository/dune-extensions/$arch' >> /etc/pacman.conf && \
   echo -e '\n[dune-precice]\n' >> /etc/pacman.conf && \
   echo -e 'SigLevel = Optional TrustAll\n' >> /etc/pacman.conf && \
   echo -e 'Server = https://dune-archiso.gitlab.io/testing/dune-precice/$arch\n' >> /etc/pacman.conf
