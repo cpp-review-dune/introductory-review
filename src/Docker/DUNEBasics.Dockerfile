@@ -48,6 +48,7 @@ ARG PACKAGES="\
   doxygen \
   ttf-fira-code \
   tldr \
+  man-db \
   man-pages \
   man-pages-es \
   "
