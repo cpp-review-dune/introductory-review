@@ -5,6 +5,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 ARG AUR_PACKAGES="\
   dune-functions \
   precice \
+  precice-config-visualizer-git \
   dune-foamgrid \
   ansiweather \
   "
@@ -43,7 +44,6 @@ ARG PACKAGES="\
   vim \
   emacs-nox \
   dune-precice-git \
-  precice-config-visualizer-git \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
