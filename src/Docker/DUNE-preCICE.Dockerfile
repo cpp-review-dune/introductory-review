@@ -43,6 +43,7 @@ ARG PACKAGES="\
   vim \
   emacs-nox \
   dune-precice-git \
+  precice-config-visualizer-git \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
@@ -51,7 +52,7 @@ ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/tem
 
 RUN sudo pacman --needed --noconfirm -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
-  echo -e '\n[dune-precice]\nSigLevel = Optional TrustAll\nServer = https://dune-archiso.gitlab.io/testing/dune-precice/$arch\n' | sudo tee -a /etc/pacman.conf && \
+  echo -e '\n[precice-arch]\nSigLevel = Optional TrustAll\nServer = https://dune-archiso.gitlab.io/testing/precice-arch/$arch\n' | sudo tee -a /etc/pacman.conf && \
   sudo pacman --needed --noconfirm -Sy ${PACKAGES} && \
   curl -s ${BANNER} | sudo bash -e -x && \
   echo 'cat /etc/motd' >> ~/.bashrc
