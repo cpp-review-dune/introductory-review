@@ -22,6 +22,7 @@ ARG PACKAGES="\
   man-db \
   tldr \
   eigen \
+  gnuplot \
   texlive-latexextra \
   texlive-pictures \
   texlive-science \
