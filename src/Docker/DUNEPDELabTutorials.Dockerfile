@@ -1,12 +1,6 @@
 # Copyleft (c) March, 2022, Oromion.
 
-FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
-
-ARG AUR_PACKAGES="\
-  petsc \
-  "
-
-RUN yay --noconfirm --noprogressbar -Syyuq ${AUR_PACKAGES}
+FROM ghcr.io/cpp-review-dune/introductory-review/dunepdelab
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="DUNEPDELabTutorials Arch" \
@@ -15,8 +9,6 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   vcs-url="https://github.com/cpp-review-dune/introductory-review" \
   vendor="Oromion Aznarán" \
   version="1.0"
-
-FROM ghcr.io/cpp-review-dune/introductory-review/dunepdelab
 
 ARG PACKAGES="\
   man-db \
@@ -30,10 +22,6 @@ ARG PACKAGES="\
   texlive-fontsextra \
   "
 
-COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
-
-RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
-  sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
-  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES}
+RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq
 
 ENV LANGUAGE=es:pe
