@@ -22,6 +22,7 @@ ARG PACKAGES="\
   texlive-fontsextra \
   "
 
-RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq
+RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
+  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES}
 
 ENV LANGUAGE=es:pe
