@@ -4,6 +4,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
   python-dune-common \
+  exam-terminal \
   ansiweather \
   "
 
@@ -54,8 +55,11 @@ ARG PACKAGES="\
   tldr \
   man-pages \
   man-pages-es \
+  python-sphinx \
+  minted \
+  fmt \
   "
-
+# http://fpliu-blog.chinacloudsites.cn/it/software/man
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh
