@@ -1,0 +1,76 @@
+name: Publish Docker image based on pandoc
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - src/Docker/pandoc.Dockerfile
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: "0 13 * * 5"
+
+jobs:
+  push_image:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Maximize build space
+        uses: easimon/maximize-build-space@master
+        with:
+          root-reserve-mb: 50295
+          swap-size-mb: 1024
+          remove-dotnet: "true"
+          remove-android: "true"
+          remove-haskell: "true"
+
+      - name: Partial Clone
+        shell: bash
+        run: |
+          REPO="https://${GITHUB_ACTOR}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git"
+          git config --global user.email github-actions@github.com
+          git config --global user.name github-actions
+          git clone -q --filter=blob:none --no-checkout --depth=1 --sparse $REPO && cd introductory-review
+          git sparse-checkout set src/Docker
+          git checkout
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-pandoc-cache
+          key: ${{ runner.os }}-buildx-pandoc-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-pandoc-
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.GH_USERNAME }}
+          password: ${{ secrets.CR_PAT }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./introductory-review/src/Docker/pandoc.Dockerfile
+          platforms: linux/amd64
+          push: true
+          tags: ghcr.io/cpp-review-dune/introductory-review/pandoc:latest
+          cache-from: type=local,src=/tmp/.buildx-pandoc-cache
+          cache-to: type=local,mode=max,dest=/tmp/.buildx-main-cache
+
+      - name: Move cache
+        run: |
+          rm -rf /tmp/.buildx-pandoc-cache
+          mv /tmp/.buildx-main-cache /tmp/.buildx-pandoc-cache
+
+      - name: Scan for vulnerabilities
+        uses: crazy-max/ghaction-container-scan@v1
+        with:
+          image: ghcr.io/cpp-review-dune/introductory-review/texlive:latest
+          annotations: true
+          dockerfile: ./src/Docker/pandoc.Dockerfile
