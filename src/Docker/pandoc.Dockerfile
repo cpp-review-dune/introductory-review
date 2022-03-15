@@ -42,6 +42,7 @@ ARG PACKAGES="\
   texlive-latexextra \
   texlive-pictures \
   ttf-fira-code \
+  minted \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
