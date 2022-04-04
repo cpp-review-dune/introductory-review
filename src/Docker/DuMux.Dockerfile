@@ -54,6 +54,7 @@ RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   rm /tmp/*.pkg.tar.zst && \
   echo -e '\n[dumux]\nSigLevel = Optional TrustAll\nServer = https://dune-archiso.gitlab.io/repository/dumux/$arch\n' | sudo tee -a /etc/pacman.conf && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy ${PACKAGES} && \
+  sudo pacman -Scc <<< Y <<< Y && \
   curl -s ${BANNER} | sudo bash -e -x && \
   echo 'cat /etc/motd' >> ~/.bashrc
 # echo -e '\n[opm]\nSigLevel = Optional TrustAll\nServer = https://dune-archiso.gitlab.io/repository/opm/$arch' | sudo tee -a /etc/pacman.conf && \

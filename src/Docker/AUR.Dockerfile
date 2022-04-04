@@ -39,6 +39,7 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
   chown -R ${USER}:${USER} /tmp/yay && \
   cd yay && \
   sudo -u ${USER} makepkg -srci --cleanbuild --noconfirm && \
-  rm -rf /tmp/* /home/${USER}/.cache/
+  rm -rf /tmp/* /home/${USER}/.cache/ && \
+  sudo pacman -Scc <<< Y <<< Y
 
 USER ${USER}
