@@ -24,6 +24,7 @@ ARG PACKAGES="\
 
 RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
-  sudo pacman -Scc <<< Y <<< Y
+  sudo pacman -Scc <<< Y <<< Y && \
+  rm -r /var/lib/pacman/sync/*
 
 ENV LANGUAGE=es:pe

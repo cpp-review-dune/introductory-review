@@ -55,6 +55,7 @@ RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   echo -e '\n[amdis]\nSigLevel = Optional TrustAll\nServer = https://dune-archiso.gitlab.io/repository/amdis/$arch\n' | sudo tee -a /etc/pacman.conf && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
+  rm -r /var/lib/pacman/sync/* && \
   curl -s ${BANNER} | sudo bash -e -x && \
   echo 'cat /etc/motd' >> ~/.bashrc
 

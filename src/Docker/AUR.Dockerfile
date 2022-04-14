@@ -40,6 +40,7 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
   cd yay && \
   sudo -u ${USER} makepkg -srci --cleanbuild --noconfirm && \
   rm -rf /tmp/* /home/${USER}/.cache/ && \
-  sudo pacman -Scc <<< Y <<< Y
+  sudo pacman -Scc <<< Y <<< Y && \
+  rm -r /var/lib/pacman/sync/*
 
 USER ${USER}

@@ -51,4 +51,5 @@ RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
-  sudo pacman -Scc <<< Y <<< Y
+  sudo pacman -Scc <<< Y <<< Y && \
+  rm -r /var/lib/pacman/sync/*
