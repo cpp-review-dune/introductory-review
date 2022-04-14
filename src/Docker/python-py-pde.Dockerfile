@@ -47,7 +47,7 @@ RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   rm /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
-  rm -r /var/lib/pacman/sync/* && \
+  sudo rm -r /var/lib/pacman/sync/* && \
   echo "alias startJupyter=\"jupyter-notebook --port=8888 --no-browser --ip=0.0.0.0 --NotebookApp.allow_origin='\$(gp url 8888)' --NotebookApp.token='' --NotebookApp.password=''\"" >> ~/.bashrc
 
 EXPOSE 8888

@@ -30,6 +30,6 @@ RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   rm /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
-  rm -r /var/lib/pacman/sync/*
+  sudo rm -r /var/lib/pacman/sync/*
 
 ENV LANGUAGE=es:pe

@@ -64,7 +64,7 @@ RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   yay -Qtdq | xargs -r yay --noconfirm -Rcns && \
   rm -rf ~/.cache && \
   yay -Scc <<< Y <<< Y <<< Y && \
-  rm -r /var/lib/pacman/sync/*
+  sudo rm -r /var/lib/pacman/sync/*
   # texlive-{core,bin,bibtexextra,fontsextra,formatsextra,games,humanities,langchinese,langcyrillic,langextra,langgreek,langjapanese,langkorean,latexextra,music,pictures,pstricks,publishers,science} ruby perl-tk psutils dialog ed poppler-data
 
 ENV PATH="/usr/bin/vendor_perl:${PATH}"

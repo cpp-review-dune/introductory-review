@@ -69,7 +69,7 @@ RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   rm /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
-  rm -r /var/lib/pacman/sync/* && \
+  sudo rm -r /var/lib/pacman/sync/* && \
   curl -s ${BANNER} | sudo bash -e -x && \
   echo 'cat /etc/motd' >> ~/.bashrc
 

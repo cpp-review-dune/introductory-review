@@ -57,7 +57,7 @@ RUN sudo pacman --needed --noconfirm -Syyuq && \
   echo -e '\n[dune-archiso-repository-core]\nSigLevel = Optional TrustAll\nServer = https://dune-archiso.gitlab.io/repository/dune-archiso-repository-core/$arch\n[precice-arch]\nSigLevel = Optional TrustAll\nServer = https://dune-archiso.gitlab.io/testing/precice-arch/$arch\n' | sudo tee -a /etc/pacman.conf && \
   sudo pacman --needed --noconfirm -Sy ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
-  rm -r /var/lib/pacman/sync/* && \
+  sudo rm -r /var/lib/pacman/sync/* && \
   curl -s ${BANNER} | sudo bash -e -x && \
   echo 'cat /etc/motd' >> ~/.bashrc
 
