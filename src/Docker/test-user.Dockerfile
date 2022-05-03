@@ -43,7 +43,7 @@ USER gitpod
 ARG PACKAGES="\
   catch2 \
   cmake \
-  dune-matrixvector \
+  dune-matrix-vector \
   fmt \
   "
 
@@ -60,6 +60,6 @@ RUN sudo pacman-key --init && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
   echo -e '\n[dune-agnumpde]\nSigLevel = Required DatabaseOptional\nServer = https://dune-archiso.gitlab.io/repository/dune-agnumpde/$arch\n' | sudo tee -a /etc/pacman.conf && \
-  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
+  sudo pacman --needed --noconfirm --noprogressbar -Sy ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
-  rm -r /var/lib/pacman/sync/*
+  sudo rm -r /var/lib/pacman/sync/*
