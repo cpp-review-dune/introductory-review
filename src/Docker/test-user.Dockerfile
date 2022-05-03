@@ -42,6 +42,7 @@ USER gitpod
 
 ARG PACKAGES="\
   catch2 \
+  clang \
   cmake \
   dune-matrix-vector \
   fmt \
