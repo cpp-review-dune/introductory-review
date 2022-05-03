@@ -1,5 +1,4 @@
-name: Publish Docker image based on test with Jupyter
-
+name: Publish Docker image based on test
 on:
   push:
     branches: [main]
