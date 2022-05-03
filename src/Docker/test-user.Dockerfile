@@ -63,3 +63,5 @@ RUN sudo pacman-key --init && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/*
+
+ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
