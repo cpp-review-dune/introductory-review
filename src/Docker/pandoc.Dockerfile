@@ -39,6 +39,7 @@ USER gitpod
 
 ARG PACKAGES="\
   pandoc \
+  texlive-fontsextra \
   texlive-latexextra \
   texlive-pictures \
   ttf-fira-code \
