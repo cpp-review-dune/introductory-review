@@ -3,6 +3,7 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
+  autodiff \
   sciplot-git \
   matplotplusplus \
   matplotlib-cpp-git \
