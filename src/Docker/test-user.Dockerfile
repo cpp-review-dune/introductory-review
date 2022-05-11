@@ -47,6 +47,7 @@ ARG PACKAGES="\
   cmake \
   dune-matrix-vector \
   fmt \
+  symengine \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
