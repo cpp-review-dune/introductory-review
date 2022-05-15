@@ -4,11 +4,12 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
   autodiff \
-  sciplot-git \
-  matplotplusplus \
-  matplotlib-cpp-git \
-  python-termplotlib \
   dune-functions \
+  matplotlib-cpp-git \
+  matplotplusplus \
+  python-termplotlib \
+  sciplot-git \
+  tabulate \
   "
 
 RUN yay --noconfirm --noprogressbar -Syyuq ${AUR_PACKAGES}
@@ -46,6 +47,7 @@ ARG PACKAGES="\
   clang \
   cmake \
   dune-matrix-vector \
+  eigen \
   fmt \
   symengine \
   "
