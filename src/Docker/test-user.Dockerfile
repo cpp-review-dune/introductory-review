@@ -4,6 +4,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
   autodiff \
+  conan \
   dune-functions \
   matplotlib-cpp-git \
   matplotplusplus \
