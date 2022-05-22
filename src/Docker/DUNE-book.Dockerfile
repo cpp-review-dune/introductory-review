@@ -20,6 +20,8 @@ FROM ghcr.io/cpp-review-dune/introductory-review/dunepdelab
 
 ARG PACKAGES="\
   man-db \
+  clang \
+  fmt \
   gnuplot \
   "
 
