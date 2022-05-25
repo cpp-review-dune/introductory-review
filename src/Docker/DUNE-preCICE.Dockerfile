@@ -47,15 +47,22 @@ ARG PACKAGES="\
   dune-precice-git \
   "
 
+ARG GPG_KEY="8C43C00BA8F06ECA"
+
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh
 
-RUN sudo pacman --needed --noconfirm -Syyuq && \
+RUN sudo pacman-key --init && \
+  sudo pacman-key --populate archlinux && \
+  sudo pacman-key --recv-keys ${GPG_KEY} && \
+  sudo pacman-key --finger ${GPG_KEY} && \
+  sudo pacman-key --lsign-key ${GPG_KEY} && \
+  sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
-  echo -e '\n[dune-archiso-repository-core]\nSigLevel = Optional TrustAll\nServer = https://dune-archiso.gitlab.io/repository/dune-archiso-repository-core/$arch\n[precice-arch]\nSigLevel = Optional TrustAll\nServer = https://dune-archiso.gitlab.io/testing/precice-arch/$arch\n' | sudo tee -a /etc/pacman.conf && \
-  sudo pacman --needed --noconfirm -Sy ${PACKAGES} && \
+  echo -e '\n[dune-archiso-repository-core]\nSigLevel = Required DatabaseOptional\nServer = https://dune-archiso.gitlab.io/repository/dune-archiso-repository-core/$arch\n[precice-arch]\nSigLevel = Required DatabaseOptional\nServer = https://dune-archiso.gitlab.io/testing/precice-arch/$arch\n' | sudo tee -a /etc/pacman.conf && \
+  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
   curl -s ${BANNER} | sudo bash -e -x && \
