@@ -1,5 +1,15 @@
 # Copyleft (c) May, 2022, Oromion.
 
+FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
+
+ARG PKGBUILD="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/hdnum-git/PKGBUILD"
+
+RUN yay --needed --noconfirm --noprogressbar -Syyuq && \
+  curl -LO ${PKGBUILD} && \
+  makepkg --noconfirm -src && \
+  mkdir -p /home/builder/.cache/yay/hdnum-git && \
+  mv hdnum-git-*-x86_64.pkg.tar.zst /home/builder/.cache/yay/hdnum-git
+
 FROM archlinux:base-devel
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
@@ -28,17 +38,11 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 
 USER gitpod
 
-ARG PACKAGES="\
-  ghostscript \
-  clang \
-  gnuplot \
-  "
+COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
+  sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
+  rm /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/*
-
-# RUN git clone -q --depth=1 --filter=blob:none --no-checkout https://github.com/cpp-review-dune/hdnum && \
-#   echo -e "CC = clang++\nCCFLAGS = -I\$(HDNUMPATH) -std=c++11 -O3\nGMPCCFLAGS = -DHDNUM_HAS_GMP=1 -I/usr/include\nLFLAGS = -lm\nGMPLFLAGS = -L/usr/lib -lgmpxx -lgmp" > make.def
-CMD ["/bin/bash"]
