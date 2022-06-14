@@ -1,4 +1,4 @@
-# Copyleft (c) May, 2022, Oromion.
+# Copyleft (c) June, 2022, Oromion.
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
@@ -6,13 +6,15 @@ ARG OPT_PACKAGES="\
   dune-alugrid \
   dune-foamgrid \
   dune-functions \
+  dune-mmesh \
+  dune-spgrid \
   dune-subgrid \
+  opm-grid \
+  openssh \
   "
 
 ARG AUR_PACKAGES="\
-  dune-grid \
-  dune-istl \
-  dune-localfunctions \
+  dumux \
   ansiweather \
   "
 
@@ -49,28 +51,18 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
-  dumux \
   emacs-nox \
-  gnuplot \
-  opm-grid \
+  nano \
   vim \
   "
-
+# gnuplot
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh
 
-ARG GPG_KEY="8C43C00BA8F06ECA"
-
-RUN sudo pacman-key --init && \
-  sudo pacman-key --populate archlinux && \
-  sudo pacman-key --recv-keys ${GPG_KEY} && \
-  sudo pacman-key --finger ${GPG_KEY} && \
-  sudo pacman-key --lsign-key ${GPG_KEY} && \
-  sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
+RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
-  echo -e '\n[opm]\nSigLevel = Required DatabaseOptional\nServer = https://dune-archiso.gitlab.io/repository/opm/$arch\n[dumux]\nSigLevel = Required DatabaseOptional\nServer = https://dune-archiso.gitlab.io/repository/dumux/$arch\n' | sudo tee -a /etc/pacman.conf && \
   sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
