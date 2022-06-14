@@ -51,6 +51,7 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
+  clang \
   emacs-nox \
   nano \
   vim \
