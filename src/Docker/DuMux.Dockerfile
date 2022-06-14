@@ -54,6 +54,7 @@ ARG PACKAGES="\
   emacs-nox \
   nano \
   vim \
+  openssh \
   "
 # gnuplot
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
