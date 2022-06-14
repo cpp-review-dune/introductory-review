@@ -3,10 +3,11 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
-  dune-alugrid \
+  opm-models \
+  opm-upscaling \
   ansiweather \
   "
-# TODO: Complete dependencies to opm
+
 RUN yay --noconfirm --noprogressbar -Syyuq ${AUR_PACKAGES}
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
@@ -41,24 +42,15 @@ USER gitpod
 ARG PACKAGES="\
   vim \
   emacs-nox \
-  opm \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh
 
-ARG GPG_KEY="8C43C00BA8F06ECA"
-
-RUN sudo pacman-key --init && \
-  sudo pacman-key --populate archlinux && \
-  sudo pacman-key --recv-keys ${GPG_KEY} && \
-  sudo pacman-key --finger ${GPG_KEY} && \
-  sudo pacman-key --lsign-key ${GPG_KEY} && \
-  sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
+RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
-  echo -e '\n[opm]\nSigLevel = Required DatabaseOptional\nServer = https://dune-archiso.gitlab.io/repository/opm/$arch\n' | sudo tee -a /etc/pacman.conf && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
