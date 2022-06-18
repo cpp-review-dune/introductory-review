@@ -1,4 +1,4 @@
-# Copyleft (c) May, 2022, Oromion.
+# Copyleft (c) July, 2022, Oromion.
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
@@ -6,6 +6,7 @@ ARG AUR_PACKAGES="\
   dune-functions \
   dune-typetree \
   dune-alugrid \
+  openssh \
   ansiweather \
   "
 

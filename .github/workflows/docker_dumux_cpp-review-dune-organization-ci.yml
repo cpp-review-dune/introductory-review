@@ -1,4 +1,4 @@
-name: Publish Docker image based on DuMux module v3.5 (dune v2.8.0)
+name: Publish Docker image based on DuMux module v3.5.0 (dune v2.8.0)
 
 on:
   # release:
@@ -14,7 +14,7 @@ on:
 
 jobs:
   push_image:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Maximize build space
