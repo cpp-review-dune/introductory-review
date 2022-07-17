@@ -44,6 +44,7 @@ ARG PACKAGES="\
   vim \
   emacs-nox \
   openssh \
+  libx11 \
   jupyter-notebook \
   python-matplotlib \
   python-scipy \
@@ -51,21 +52,17 @@ ARG PACKAGES="\
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
-ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh
-
 RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
-  curl -s ${BANNER} | sudo bash -e -x && \
-  echo 'cat /etc/motd' >> ~/.bashrc && \
-  echo 'source /etc/profile.d/petsc.sh' >> ~/.bashrc && \
   echo "alias startJupyter=\"jupyter-notebook --port=8888 --no-browser --ip=0.0.0.0 --NotebookApp.allow_origin='\$(gp url 8888)' --NotebookApp.token='' --NotebookApp.password=''\"" >> ~/.bashrc
 
 ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
-
+ENV PETSC_DIR=/opt/petsc/linux-c-opt
+ENV PYTHONPATH=${PYTHONPATH}:${PETSC_DIR}/lib
 EXPOSE 8888
 
 WORKDIR /workspace/notebook/
