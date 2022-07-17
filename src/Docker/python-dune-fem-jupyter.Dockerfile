@@ -43,6 +43,7 @@ USER gitpod
 ARG PACKAGES="\
   vim \
   emacs-nox \
+  openssh \
   jupyter-notebook \
   python-matplotlib \
   python-scipy \
