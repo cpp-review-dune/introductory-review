@@ -69,7 +69,7 @@ RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
 
 ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
 ENV PETSC_DIR=/opt/petsc/linux-c-opt
-ENV PYTHONPATH=${PYTHONPATH}:${PETSC_DIR}/lib
+ENV PYTHONPATH=${PYTHONPATH}:${PETSC_DIR}/lib:/usr/share/gmsh/api/python
 EXPOSE 8888
 
 WORKDIR /workspace/notebook/
