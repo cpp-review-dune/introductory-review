@@ -50,6 +50,10 @@ ARG PACKAGES="\
   jupyter-notebook \
   python-matplotlib \
   python-scipy \
+  mayavi \
+  glew \
+  python-pyvirtualdisplay \
+  qt5-svg \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
