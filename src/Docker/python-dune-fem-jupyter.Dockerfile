@@ -4,11 +4,12 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
   ansiweather \
-  openssh \
   jupyterthemes \
+  openssh \
+  petsc \
   python-dune-spgrid \
   python-dune-fem \
-  petsc \
+  python-pygmsh \
   "
 
 RUN yay --noconfirm --noprogressbar -Syyuq ${AUR_PACKAGES}
