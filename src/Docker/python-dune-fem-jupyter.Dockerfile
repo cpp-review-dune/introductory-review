@@ -54,6 +54,7 @@ ARG PACKAGES="\
   glew \
   python-pyvirtualdisplay \
   qt5-svg \
+  qt5-tools \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
