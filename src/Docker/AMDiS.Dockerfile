@@ -61,7 +61,7 @@ RUN sudo pacman-key --init && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
   echo -e '\n[amdis]\nSigLevel = Required DatabaseOptional\nServer = https://dune-archiso.gitlab.io/repository/amdis/$arch\n' | sudo tee -a /etc/pacman.conf && \
-  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
+  sudo pacman --needed --noconfirm --noprogressbar -Sy ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
   curl -s ${BANNER} | sudo bash -e -x && \

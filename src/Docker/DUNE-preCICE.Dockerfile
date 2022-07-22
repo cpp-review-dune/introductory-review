@@ -8,6 +8,7 @@ ARG AUR_PACKAGES="\
   precice-config-visualizer-git \
   dune-foamgrid \
   python-dune-fem \
+  openssh \
   ansiweather \
   "
 
@@ -62,7 +63,7 @@ RUN sudo pacman-key --init && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
   echo -e '\n[dune-archiso-repository-core]\nSigLevel = Required DatabaseOptional\nServer = https://dune-archiso.gitlab.io/repository/dune-archiso-repository-core/$arch\n[precice-arch]\nSigLevel = Required DatabaseOptional\nServer = https://dune-archiso.gitlab.io/testing/precice-arch/$arch\n' | sudo tee -a /etc/pacman.conf && \
-  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
+  sudo pacman --needed --noconfirm --noprogressbar -Sy ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
   curl -s ${BANNER} | sudo bash -e -x && \

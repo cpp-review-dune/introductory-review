@@ -61,7 +61,7 @@ RUN sudo pacman-key --init && \
   echo -e '\n[dune-core-git]\nSigLevel = Required DatabaseOptional\nServer = https://dune-archiso.gitlab.io/repository/dune-core-git/$arch\n' | sudo tee -a /etc/pacman.conf && \
   echo -e '\n[dune-staging-git]\nSigLevel = Required DatabaseOptional\nServer = https://dune-archiso.gitlab.io/repository/dune-staging-git/$arch\n' | sudo tee -a /etc/pacman.conf && \
   echo -e '\n[dune-extensions-git]\nSigLevel = Required DatabaseOptional\nServer = https://dune-archiso.gitlab.io/repository/dune-extensions-git/$arch\n' | sudo tee -a /etc/pacman.conf && \
-  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
+  sudo pacman --needed --noconfirm --noprogressbar -Sy ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
   curl -s ${BANNER} | sudo bash -e -x && \
