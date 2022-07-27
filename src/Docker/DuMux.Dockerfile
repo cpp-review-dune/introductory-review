@@ -18,9 +18,15 @@ ARG AUR_PACKAGES="\
   ansiweather \
   "
 
+ARG PKGBUILD="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/dumux-lecture/PKGBUILD"
+
 RUN yay --needed --noconfirm --noprogressbar -Syyuq && \
   yay --noconfirm --noprogressbar -S ${OPT_PACKAGES} && \
-  yay --noconfirm --noprogressbar -S ${AUR_PACKAGES}
+  yay --noconfirm --noprogressbar -S ${AUR_PACKAGES} && \
+  curl -LO ${PKGBUILD} && \
+  makepkg --noconfirm -src && \
+  mkdir -p /home/builder/.cache/yay/dumux-lecture && \
+  mv dumux-lecture-*-x86_64.pkg.tar.zst /home/builder/.cache/yay/dumux-lecture
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="DuMux Arch" \
