@@ -3,6 +3,7 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
+  med-openmpi \
   gmsh \
   "
 
@@ -22,6 +23,7 @@ ARG PACKAGES="\
   man-db \
   clang \
   fmt \
+  openssh \
   gnuplot \
   "
 
