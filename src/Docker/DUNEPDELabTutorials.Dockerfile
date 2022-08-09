@@ -14,7 +14,6 @@ ARG PACKAGES="\
   man-db \
   tldr \
   eigen \
-  openssh \
   gnuplot \
   texlive-latexextra \
   texlive-pictures \
