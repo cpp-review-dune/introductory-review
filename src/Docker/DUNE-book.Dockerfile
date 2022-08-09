@@ -23,7 +23,6 @@ ARG PACKAGES="\
   man-db \
   clang \
   fmt \
-  openssh \
   gnuplot \
   "
 
