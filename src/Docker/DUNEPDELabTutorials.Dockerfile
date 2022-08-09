@@ -1,4 +1,4 @@
-# Copyleft (c) May, 2022, Oromion.
+# Copyleft (c) July, 2022, Oromion.
 
 FROM ghcr.io/cpp-review-dune/introductory-review/dunepdelab
 
@@ -14,6 +14,7 @@ ARG PACKAGES="\
   man-db \
   tldr \
   eigen \
+  openssh \
   gnuplot \
   texlive-latexextra \
   texlive-pictures \
