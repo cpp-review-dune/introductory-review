@@ -41,6 +41,7 @@ USER gitpod
 ARG PACKAGES="\
   vim \
   emacs-nox \
+  openssh \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
