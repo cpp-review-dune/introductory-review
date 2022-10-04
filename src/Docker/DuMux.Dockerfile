@@ -20,7 +20,7 @@ ARG AUR_PACKAGES="\
 
 ARG PKGBUILD="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/dumux-lecture/PKGBUILD"
 
-RUN yay --needed --noconfirm --noprogressbar -Syyuq && \
+RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
   yay --noconfirm --noprogressbar -S ${OPT_PACKAGES} && \
   yay --noconfirm --noprogressbar -S ${AUR_PACKAGES} && \
   curl -LO ${PKGBUILD} && \
@@ -68,10 +68,12 @@ COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh
 
-RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
+RUN sudo pacman-key --init && \
+  sudo pacman-key --populate archlinux && \
+  sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring && \
+  sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
-  sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \

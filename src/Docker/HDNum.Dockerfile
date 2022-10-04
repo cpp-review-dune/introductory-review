@@ -4,7 +4,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG PKGBUILD="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/hdnum-git/PKGBUILD"
 
-RUN yay --needed --noconfirm --noprogressbar -Syyuq && \
+RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
   curl -LO ${PKGBUILD} && \
   makepkg --noconfirm -src && \
   mkdir -p /home/builder/.cache/yay/hdnum-git && \
@@ -44,7 +44,10 @@ ARG PACKAGES="\
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
-RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
+RUN sudo pacman-key --init && \
+  sudo pacman-key --populate archlinux && \
+  sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring && \
+  sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \

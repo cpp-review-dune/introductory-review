@@ -8,7 +8,8 @@ ARG MESHES_PACKAGES="\
   python-meshio \
   "
 
-RUN yay --noconfirm --noprogressbar -Syyuq ${MESHES_PACKAGES}
+RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
+  yay --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="Meshes Arch" \
@@ -47,7 +48,10 @@ ARG PACKAGES="\
 # julia \
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
-RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
+RUN sudo pacman-key --init && \
+  sudo pacman-key --populate archlinux && \
+  sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring && \
+  sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \

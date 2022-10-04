@@ -13,7 +13,8 @@ ARG AUR_PACKAGES="\
   tabulate \
   "
 
-RUN yay --noconfirm --noprogressbar -Syyuq ${AUR_PACKAGES}
+RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
+  yay --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="test Arch" \
@@ -62,11 +63,12 @@ RUN sudo pacman-key --init && \
   sudo pacman-key --recv-keys ${GPG_KEY} && \
   sudo pacman-key --finger ${GPG_KEY} && \
   sudo pacman-key --lsign-key ${GPG_KEY} && \
+  sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring && \
   sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
   echo -e '\n[dune-agnumpde]\nSigLevel = Required DatabaseOptional\nServer = https://dune-archiso.gitlab.io/repository/dune-agnumpde/$arch\n' | sudo tee -a /etc/pacman.conf && \
-  sudo pacman --needed --noconfirm --noprogressbar -Sy ${PACKAGES} && \
+  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/*
 
