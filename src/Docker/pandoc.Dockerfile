@@ -39,6 +39,7 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
+  biber \
   pandoc \
   texlive-fontsextra \
   texlive-latexextra \
@@ -58,3 +59,5 @@ RUN sudo pacman-key --init && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/*
+
+ENV PATH="/usr/bin/vendor_perl:${PATH}"
