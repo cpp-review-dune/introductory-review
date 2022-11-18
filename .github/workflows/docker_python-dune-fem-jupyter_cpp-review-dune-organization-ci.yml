@@ -1,4 +1,4 @@
-name: Publish Docker image based on python-dune-fem v2.8.0 with Jupyter
+name: Publish Docker image based on python-dune-fem v2.9.0 with Jupyter
 
 on:
   push:

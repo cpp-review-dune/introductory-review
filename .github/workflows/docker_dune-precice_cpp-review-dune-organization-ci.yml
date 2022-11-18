@@ -1,7 +1,7 @@
 # https://evilmartians.com/chronicles/build-images-on-github-actions-with-docker-layer-caching
 # https://github.com/docker/build-push-action/issues/252#issuecomment-744400434
 # https://github.com/MarcelCoding/docker-desktop-vnc/blob/main/.github/workflows/ci.yaml
-name: Publish Docker image based on DUNE-preCICE module v2.8.0
+name: Publish Docker image based on DUNE-preCICE module v2.9.0
 
 on:
   # release:
