@@ -1,9 +1,9 @@
-# Copyleft (c) July, 2022, Oromion.
+# Copyleft (c) December, 2023, Oromion.
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
-  python-dune-common \
+  dune-common \
   exam-terminal \
   ansiweather \
   "

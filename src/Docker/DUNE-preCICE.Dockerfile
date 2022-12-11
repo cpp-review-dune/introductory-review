@@ -7,7 +7,7 @@ ARG AUR_PACKAGES="\
   python-pyprecice \
   precice-config-visualizer-git \
   dune-foamgrid \
-  python-dune-fem \
+  dune-fem \
   openssh \
   ansiweather \
   "

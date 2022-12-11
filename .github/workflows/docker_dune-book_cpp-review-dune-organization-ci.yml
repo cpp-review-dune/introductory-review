@@ -1,4 +1,4 @@
-name: Publish Docker image based on DUNE-book v2.8
+name: Publish Docker image based on DUNE-book v2.9
 
 on:
   # release:

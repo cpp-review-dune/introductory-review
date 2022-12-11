@@ -18,7 +18,7 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="dune-fem Arch" \
   description="dune-fem in Arch." \
-  url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fpython-dune-fem" \
+  url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fdune-fem" \
   vcs-url="https://github.com/cpp-review-dune/introductory-review" \
   vendor="Oromion Aznarán" \
   version="1.0"
