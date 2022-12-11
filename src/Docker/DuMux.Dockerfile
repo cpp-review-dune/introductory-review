@@ -6,13 +6,12 @@ ARG OPT_PACKAGES="\
   dune-alugrid \
   dune-foamgrid \
   dune-functions \
-  dune-mmesh \
   dune-spgrid \
   dune-subgrid \
   opm-grid \
   openssh \
   "
-
+# dune-mmesh \
 ARG AUR_PACKAGES="\
   dumux \
   ansiweather \
