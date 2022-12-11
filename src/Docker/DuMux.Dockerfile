@@ -6,12 +6,12 @@ ARG OPT_PACKAGES="\
   dune-alugrid \
   dune-foamgrid \
   dune-functions \
+  dune-mmesh \
   dune-spgrid \
   dune-subgrid \
   opm-grid \
   openssh \
   "
-# dune-mmesh \
 ARG AUR_PACKAGES="\
   dumux \
   ansiweather \
@@ -20,7 +20,7 @@ ARG AUR_PACKAGES="\
 # ARG PKGBUILD="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/dumux-lecture/PKGBUILD"
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
-  yay --noconfirm --noprogressbar -S ${OPT_PACKAGES} && \
+  # yay --noconfirm --noprogressbar -S ${OPT_PACKAGES} && \
   yay --noconfirm --noprogressbar -S ${AUR_PACKAGES}
 # && \  curl -LO ${PKGBUILD} && \
 # makepkg --noconfirm -src && \
