@@ -1,4 +1,4 @@
-# Copyleft (c) July, 2022, Oromion.
+# Copyleft (c) December, 2022, Oromion.
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
@@ -7,8 +7,8 @@ ARG AUR_PACKAGES="\
   jupyterthemes \
   openssh \
   petsc \
-  python-dune-spgrid \
-  python-dune-fem \
+  dune-spgrid \
+  dune-fem \
   python-pygmsh \
   "
 
@@ -16,8 +16,8 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
   yay --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
-  name="python-dune-fem Arch" \
-  description="python-dune-fem in Arch." \
+  name="dune-fem Arch" \
+  description="dune-fem in Arch." \
   url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fpython-dune-fem" \
   vcs-url="https://github.com/cpp-review-dune/introductory-review" \
   vendor="Oromion Aznarán" \
