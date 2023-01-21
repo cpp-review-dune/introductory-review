@@ -1,10 +1,10 @@
-name: Publish Docker image based on dune-fem v2.9.0 with Jupyter
+name: Publish Docker image based on lfortran-jupyter with Jupyter
 
 on:
   push:
     branches: [main]
     paths:
-      - src/Docker/dune-fem-jupyter.Dockerfile
+      - src/Docker/lfortran-jupyter.Dockerfile
   pull_request:
     branches: [main]
   schedule:
@@ -41,9 +41,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-dune-fem-jupyter-${{ github.sha }}
+          key: ${{ runner.os }}-buildx-lfortran-jupyter-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-buildx-dune-fem-jupyter-
+            ${{ runner.os }}-buildx-lfortran-jupyter-
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
@@ -56,21 +56,21 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./introductory-review/src/Docker/dune-fem-jupyter.Dockerfile
+          file: ./introductory-review/src/Docker/lfortran-jupyter.Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/cpp-review-dune/introductory-review/dune-fem-jupyter:latest
-          cache-from: type=local,src=/tmp/.buildx-dune-fem-jupyter-cache
+          tags: ghcr.io/cpp-review-dune/introductory-review/lfortran-jupyter:latest
+          cache-from: type=local,src=/tmp/.buildx-lfortran-jupyter-cache
           cache-to: type=local,mode=max,dest=/tmp/.buildx-main-cache
 
       - name: Move cache
         run: |
-          rm -rf /tmp/.buildx-dune-fem-jupyter-cache
-          mv /tmp/.buildx-main-cache /tmp/.buildx-dune-fem-jupyter-cache
+          rm -rf /tmp/.buildx-lfortran-jupyter-cache
+          mv /tmp/.buildx-main-cache /tmp/.buildx-lfortran-jupyter-cache
 
       - name: Scan for vulnerabilities
         uses: crazy-max/ghaction-container-scan@v1
         with:
-          image: ghcr.io/cpp-review-dune/introductory-review/dune-fem-jupyter:latest
+          image: ghcr.io/cpp-review-dune/introductory-review/lfortran-jupyter:latest
           annotations: true
-          dockerfile: ./src/Docker/dune-fem-jupyter.Dockerfile
+          dockerfile: ./src/Docker/lfortran-jupyter.Dockerfile
