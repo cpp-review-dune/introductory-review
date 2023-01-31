@@ -41,6 +41,7 @@ USER gitpod
 
 ARG PACKAGES="\
   cmake \
+  git \
   gcc-fortran \
   jupyter-notebook \
   "
