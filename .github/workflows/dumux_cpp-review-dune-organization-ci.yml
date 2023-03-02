@@ -1,7 +1,4 @@
-# https://evilmartians.com/chronicles/build-images-on-github-actions-with-docker-layer-caching
-# https://github.com/docker/build-push-action/issues/252#issuecomment-744400434
-# https://github.com/MarcelCoding/docker-desktop-vnc/blob/main/.github/workflows/ci.yaml
-name: Publish Docker image based on DUNEPDELab module v2.9
+name: Publish Docker image based on DuMux module v3.6.0 (dune v2.9.0)
 
 on:
   # release:
@@ -9,7 +6,7 @@ on:
   push:
     branches: [main]
     paths:
-      - src/Docker/DUNEPDELab.Dockerfile
+      - src/Docker/DuMux.Dockerfile
   pull_request:
     branches: [main]
   schedule:
@@ -23,7 +20,7 @@ jobs:
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
         with:
-          root-reserve-mb: 45000
+          root-reserve-mb: 35000
           swap-size-mb: 1024
           remove-dotnet: "true"
           remove-android: "true"
@@ -45,10 +42,10 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v3
         with:
-          path: /tmp/.buildx-dunepdelab-cache
-          key: ${{ runner.os }}-buildx-dunepdelab-${{ github.sha }}
+          path: /tmp/.buildx-dumux-cache
+          key: ${{ runner.os }}-buildx-dumux-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-buildx-dunepdelab-
+            ${{ runner.os }}-buildx-dumux-
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
@@ -61,21 +58,21 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./introductory-review/src/Docker/DUNEPDELab.Dockerfile
+          file: ./introductory-review/src/Docker/DuMux.Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/cpp-review-dune/introductory-review/dunepdelab:latest
-          cache-from: type=local,src=/tmp/.buildx-dunepdelab-cache
+          tags: ghcr.io/cpp-review-dune/introductory-review/dumux:latest
+          cache-from: type=local,src=/tmp/.buildx-dumux-cache
           cache-to: type=local,mode=max,dest=/tmp/.buildx-main-cache
 
       - name: Move cache
         run: |
-          rm -rf /tmp/.buildx-dunepdelab-cache
-          mv /tmp/.buildx-main-cache /tmp/.buildx-dunepdelab-cache
+          rm -rf /tmp/.buildx-dumux-cache
+          mv /tmp/.buildx-main-cache /tmp/.buildx-dumux-cache
 
       - name: Scan for vulnerabilities
         uses: crazy-max/ghaction-container-scan@v1
         with:
-          image: ghcr.io/cpp-review-dune/introductory-review/dunepdelab:latest
+          image: ghcr.io/cpp-review-dune/introductory-review/dumux:latest
           annotations: true
-          dockerfile: ./src/Docker/DUNEPDELab.Dockerfile
+          dockerfile: ./src/Docker/DuMux.Dockerfile

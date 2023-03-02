@@ -1,12 +1,10 @@
-name: Publish Docker image based on DUNEFEM module v2.9.0
+name: Publish Docker image based on dune-fem v2.9.0 with Jupyter
 
 on:
-  # release:
-  #   types: [published]
   push:
     branches: [main]
     paths:
-      - src/Docker/DUNEFEM.Dockerfile
+      - src/Docker/dune-fem-jupyter.Dockerfile
   pull_request:
     branches: [main]
   schedule:
@@ -20,7 +18,7 @@ jobs:
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
         with:
-          root-reserve-mb: 45000
+          root-reserve-mb: 35000
           swap-size-mb: 1024
           remove-dotnet: "true"
           remove-android: "true"
@@ -42,10 +40,10 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v3
         with:
-          path: /tmp/.buildx-dunefem-cache
-          key: ${{ runner.os }}-buildx-dunefem-${{ github.sha }}
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-dune-fem-jupyter-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-buildx-dunefem-
+            ${{ runner.os }}-buildx-dune-fem-jupyter-
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
@@ -58,21 +56,21 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./introductory-review/src/Docker/DUNEFEM.Dockerfile
+          file: ./introductory-review/src/Docker/dune-fem-jupyter.Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/cpp-review-dune/introductory-review/dunefem:latest
-          cache-from: type=local,src=/tmp/.buildx-dunefem-cache
+          tags: ghcr.io/cpp-review-dune/introductory-review/dune-fem-jupyter:latest
+          cache-from: type=local,src=/tmp/.buildx-dune-fem-jupyter-cache
           cache-to: type=local,mode=max,dest=/tmp/.buildx-main-cache
 
       - name: Move cache
         run: |
-          rm -rf /tmp/.buildx-dunefem-cache
-          mv /tmp/.buildx-main-cache /tmp/.buildx-dunefem-cache
+          rm -rf /tmp/.buildx-dune-fem-jupyter-cache
+          mv /tmp/.buildx-main-cache /tmp/.buildx-dune-fem-jupyter-cache
 
       - name: Scan for vulnerabilities
         uses: crazy-max/ghaction-container-scan@v1
         with:
-          image: ghcr.io/cpp-review-dune/introductory-review/dunefem:latest
+          image: ghcr.io/cpp-review-dune/introductory-review/dune-fem-jupyter:latest
           annotations: true
-          dockerfile: ./src/Docker/DUNEFEM.Dockerfile
+          dockerfile: ./src/Docker/dune-fem-jupyter.Dockerfile
