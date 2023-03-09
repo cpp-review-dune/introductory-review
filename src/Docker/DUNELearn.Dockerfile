@@ -9,12 +9,12 @@ ARG AUR_PACKAGES="\
 RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
   yay --noconfirm --noprogressbar -S ${AUR_PACKAGES}
 
-FROM ghcr.io/cpp-review-dune/introductory-review/dunepdelab
+FROM ghcr.io/cpp-review-dune/introductory-review/dunefem
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
-  name="DUNEPDELabTutorials Arch" \
-  description="DUNEPDELab in Arch." \
-  url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fdunepdelabtutorials" \
+  name="DUNELearnTutorials Arch" \
+  description="DUNELearn in Arch." \
+  url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fdunelearntutorials" \
   vcs-url="https://github.com/cpp-review-dune/introductory-review" \
   vendor="Oromion Aznarán" \
   version="1.0"
@@ -23,7 +23,10 @@ ARG PACKAGES="\
   minted \
   "
 
-COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
+COPY --from=build /home/builder/.cache/yay/arpackpp/*.pkg.tar.zst /tmp/
+COPY --from=build /home/builder/.cache/yay/dune-typetree/*.pkg.tar.zst /tmp/
+COPY --from=build /home/builder/.cache/yay/dune-functions/*.pkg.tar.zst /tmp/
+COPY --from=build /home/builder/.cache/yay/dune-pdelab/*.pkg.tar.zst /tmp/
 
 RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
