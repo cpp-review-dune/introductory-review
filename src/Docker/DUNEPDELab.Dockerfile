@@ -40,8 +40,6 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
-  vim \
-  emacs-nox \
   openssh \
   "
 

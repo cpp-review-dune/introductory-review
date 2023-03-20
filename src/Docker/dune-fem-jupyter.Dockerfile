@@ -9,10 +9,9 @@ ARG AUR_PACKAGES="\
   dune-fem \
   python-pygmsh \
   "
-# openssh jupyterthemes
+
 RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
-  yay --noconfirm -S ${AUR_PACKAGES}
-#2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+  yay --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="dune-fem Arch" \
   description="dune-fem in Arch." \
@@ -42,9 +41,6 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
-  vim \
-  emacs-nox \
-  openssh \
   libx11 \
   jupyterlab \
   python-matplotlib \

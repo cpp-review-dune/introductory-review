@@ -57,12 +57,9 @@ USER gitpod
 
 ARG PACKAGES="\
   clang \
-  emacs-nox \
-  nano \
-  vim \
-  openssh \
+  gnuplot \
   "
-# gnuplot
+
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh

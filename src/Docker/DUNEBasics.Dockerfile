@@ -40,9 +40,6 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
-  vim \
-  nano \
-  emacs-nox \
   python-sphinx \
   texlive-latexextra \
   texlive-pictures \

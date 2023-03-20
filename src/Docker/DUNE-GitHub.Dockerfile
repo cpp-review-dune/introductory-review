@@ -37,8 +37,6 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
-  vim \
-  emacs-nox \
   dune-core-git \
   dune-staging-git \
   dune-extensions-git \
