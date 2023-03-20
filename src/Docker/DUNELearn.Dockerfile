@@ -3,6 +3,7 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
+  nbqa \
   dune-pdelab \
   "
 
@@ -22,6 +23,7 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 ARG PACKAGES="\
   jupyterlab \
   minted \
+  pandoc \
   "
 
 COPY --from=build /home/builder/.cache/yay/arpackpp/*.pkg.tar.zst /tmp/
