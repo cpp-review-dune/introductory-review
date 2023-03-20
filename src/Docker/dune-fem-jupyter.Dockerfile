@@ -4,18 +4,15 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
   ansiweather \
-  jupyterthemes \
-  openssh \
   petsc \
   dune-spgrid \
   dune-fem \
   python-pygmsh \
   "
-
+# openssh jupyterthemes
 RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
   yay --noconfirm -S ${AUR_PACKAGES}
 #2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
-
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="dune-fem Arch" \
   description="dune-fem in Arch." \
@@ -49,7 +46,7 @@ ARG PACKAGES="\
   emacs-nox \
   openssh \
   libx11 \
-  jupyter-notebook \
+  jupyterlab \
   python-matplotlib \
   python-scipy \
   mayavi \
@@ -70,7 +67,7 @@ RUN sudo pacman-key --init && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
-  echo "alias startJupyter=\"jupyter-notebook --port=8888 --no-browser --ip=0.0.0.0 --NotebookApp.allow_origin='\$(gp url 8888)' --NotebookApp.token='' --NotebookApp.password=''\"" >> ~/.bashrc
+  echo "alias startJupyter=\"jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --ServerApp.allow_origin='\$(gp url 8888)' --ServerApp.token='' --ServerApp.password=''\"" >> ~/.bashrc
 
 ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
 ENV PETSC_DIR=/opt/petsc/linux-c-opt
