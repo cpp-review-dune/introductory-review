@@ -20,6 +20,7 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   version="1.0"
 
 ARG PACKAGES="\
+  jupyterlab \
   minted \
   "
 
@@ -33,4 +34,7 @@ RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
   sudo pacman -Scc <<< Y <<< Y && \
-  sudo rm -r /var/lib/pacman/sync/*
+  sudo rm -r /var/lib/pacman/sync/* && \
+  echo "alias startJupyter=\"jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --ServerApp.allow_origin='\$(gp url 8888)' --ServerApp.token='' --ServerApp.password=''\"" >> ~/.bashrc
+
+EXPOSE 8888
