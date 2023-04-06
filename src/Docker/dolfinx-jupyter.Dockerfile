@@ -1,21 +1,19 @@
-# Copyleft (c) December, 2023, Oromion.
+# Copyleft (c) December, 2022, Oromion.
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
-  dune-common \
-  exam-terminal \
+  python-fenics-dolfinx \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
   yay --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
-
-LABEL maintainer="C++ Review Dune" \
-  name="DUNEBasics in Gitpod" \
-  description="DUNEBasics in Gitpod." \
-  url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fdunebasics" \
+LABEL maintainer="Oromion <caznaranl@uni.pe>" \
+  name="dolfinx Arch" \
+  description="dolfinx in Arch." \
+  url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fdolfinx" \
   vcs-url="https://github.com/cpp-review-dune/introductory-review" \
-  vendor="C++ Review Dune" \
+  vendor="Oromion Aznarán" \
   version="1.0"
 
 FROM archlinux:base-devel
@@ -39,27 +37,12 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
-  python-sphinx \
-  texlive-latexextra \
-  texlive-pictures \
-  texlive-fontsextra \
-  texlive-science \
-  texlive-bibtexextra \
-  biber \
-  inkscape \
-  doxygen \
-  ttf-fira-code \
-  tldr \
-  man-pages \
-  man-pages-es \
-  python-sphinx \
-  minted \
-  fmt \
+  libx11 \
+  jupyterlab \
   "
-# http://fpliu-blog.chinacloudsites.cn/it/software/man
+# python-matplotlib \
+# python-scipy \
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
-
-ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh
 
 RUN sudo pacman-key --init && \
   sudo pacman-key --populate archlinux && \
@@ -70,11 +53,11 @@ RUN sudo pacman-key --init && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
-  curl -s ${BANNER} | sudo bash -e -x && \
-  echo 'cat /etc/motd' >> ~/.bashrc
-
-ENV PATH="/usr/bin/vendor_perl:${PATH}"
+  echo "alias startJupyter=\"jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --ServerApp.allow_origin='\$(gp url 8888)' --ServerApp.token='' --ServerApp.password=''\"" >> ~/.bashrc
 
 ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
+ENV PETSC_DIR=/opt/petsc/linux-c-opt
+ENV PYTHONPATH=${PYTHONPATH}:${PETSC_DIR}/lib:/usr/share/gmsh/api/python
+EXPOSE 8888
 
-CMD ["/bin/bash"]
+WORKDIR /workspace/notebook/

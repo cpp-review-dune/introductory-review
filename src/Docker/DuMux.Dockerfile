@@ -10,11 +10,10 @@ ARG OPT_PACKAGES="\
   dune-spgrid \
   dune-subgrid \
   opm-grid \
-  openssh \
   "
+
 ARG AUR_PACKAGES="\
   dumux \
-  ansiweather \
   "
 
 # ARG PKGBUILD="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/dumux-lecture/PKGBUILD"

@@ -3,7 +3,6 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
-  ansiweather \
   petsc \
   dune-spgrid \
   dune-fem \

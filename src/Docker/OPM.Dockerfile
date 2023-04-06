@@ -5,8 +5,6 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 ARG AUR_PACKAGES="\
   opm-models \
   opm-upscaling \
-  openssh \
-  ansiweather \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
