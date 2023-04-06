@@ -40,8 +40,7 @@ ARG PACKAGES="\
   libx11 \
   jupyterlab \
   "
-# python-matplotlib \
-# python-scipy \
+
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 RUN sudo pacman-key --init && \
