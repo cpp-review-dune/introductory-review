@@ -50,6 +50,7 @@ ARG PACKAGES="\
   autopep8 \
   python-black \
   python-matplotlib \
+  jupyterlab-widgets \
   fmt \
   verdict \
   libxcursor \
