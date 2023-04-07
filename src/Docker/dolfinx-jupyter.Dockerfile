@@ -46,6 +46,12 @@ ARG PACKAGES="\
   jupyterlab \
   autopep8 \
   python-black \
+  fmt \
+  openmpi \
+  verdict \
+  libx11 \
+  libxcursor \
+  glew \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
