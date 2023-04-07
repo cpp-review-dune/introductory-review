@@ -41,15 +41,16 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 
 USER gitpod
 
+# openmpi \
+# libx11 \
+
 ARG PACKAGES="\
   git \
   jupyterlab \
   autopep8 \
   python-black \
   fmt \
-  openmpi \
   verdict \
-  libx11 \
   libxcursor \
   glew \
   "
