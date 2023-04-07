@@ -3,6 +3,7 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
+  python-meshio \
   python-fenics-dolfinx \
   python-pyvista \
   python-trame \
