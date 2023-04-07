@@ -40,10 +40,9 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
   { echo && echo "PS1='\[\e]0;\u \w\a\]\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \\\$ '" ; } >> /home/gitpod/.bashrc
 
 USER gitpod
-
 # openmpi \
 # libx11 \
-
+# https://docs.pyvista.org/user-guide/jupyter/ipyvtk_plotting.html
 ARG PACKAGES="\
   git \
   jupyterlab \
