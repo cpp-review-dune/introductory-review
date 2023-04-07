@@ -3,6 +3,7 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
+  nbqa \
   python-meshio \
   python-fenics-dolfinx \
   python-pyvista \
@@ -42,6 +43,7 @@ USER gitpod
 ARG PACKAGES="\
   git \
   jupyterlab \
+  python-black \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
