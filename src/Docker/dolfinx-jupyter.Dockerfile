@@ -44,6 +44,7 @@ USER gitpod
 ARG PACKAGES="\
   git \
   jupyterlab \
+  autopep8 \
   python-black \
   "
 
@@ -62,6 +63,7 @@ RUN sudo pacman-key --init && \
 
 ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
 ENV PETSC_DIR=/opt/petsc/linux-c-opt
+ENV PYTHONPATH=${PYTHONPATH}:${PETSC_DIR}/lib
 EXPOSE 8888
 
 WORKDIR /workspace/notebook/
