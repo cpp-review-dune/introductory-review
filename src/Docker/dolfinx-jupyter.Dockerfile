@@ -4,6 +4,8 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
   python-fenics-dolfinx \
+  python-pyvista \
+  python-trame \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
@@ -38,7 +40,6 @@ USER gitpod
 
 ARG PACKAGES="\
   git \
-  libx11 \
   jupyterlab \
   "
 
@@ -57,7 +58,6 @@ RUN sudo pacman-key --init && \
 
 ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
 ENV PETSC_DIR=/opt/petsc/linux-c-opt
-ENV PYTHONPATH=${PYTHONPATH}:${PETSC_DIR}/lib:/usr/share/gmsh/api/python
 EXPOSE 8888
 
 WORKDIR /workspace/notebook/
