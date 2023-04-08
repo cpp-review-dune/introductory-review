@@ -9,11 +9,10 @@ ARG AUR_PACKAGES="\
   python-pyvista \
   python-trame \
   "
-
+# https://docs.pyvista.org/user-guide/jupyter/ipyvtk_plotting.html
 RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
   yay --noconfirm -S ${AUR_PACKAGES}
 #2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
-
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="dolfinx Arch" \
   description="dolfinx in Arch." \
@@ -41,9 +40,7 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
   { echo && echo "PS1='\[\e]0;\u \w\a\]\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \\\$ '" ; } >> /home/gitpod/.bashrc
 
 USER gitpod
-# openmpi \
-# libx11 \
-# https://docs.pyvista.org/user-guide/jupyter/ipyvtk_plotting.html
+
 ARG PACKAGES="\
   git \
   jupyterlab \
