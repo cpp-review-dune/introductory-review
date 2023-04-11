@@ -11,7 +11,7 @@ ARG AUR_PACKAGES="\
   "
 # https://docs.pyvista.org/user-guide/jupyter/ipyvtk_plotting.html
 RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
-  yay --noconfirm -S ${AUR_PACKAGES}
+  yay --mflags --nocheck --noconfirm -S ${AUR_PACKAGES}
 #2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="dolfinx Arch" \
