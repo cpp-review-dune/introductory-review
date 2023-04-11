@@ -41,6 +41,29 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 
 USER gitpod
 
+ARG VTK_PACKAGES="\
+  fmt \
+  verdict \
+  libxcursor \
+  glew \
+  jsoncpp \
+  ospray \
+  qt5-base \
+  openxr \
+  openvr \
+  ffmpeg \
+  hdf5-openmpi \
+  postgresql-libs \
+  netcdf \
+  pdal \
+  mariadb-libs \
+  liblas \
+  cgns \
+  adios2 \
+  libharu \
+  gl2ps \
+  "
+
 ARG PACKAGES="\
   git \
   jupyterlab \
@@ -48,10 +71,7 @@ ARG PACKAGES="\
   python-black \
   python-matplotlib \
   jupyterlab-widgets \
-  fmt \
-  verdict \
-  libxcursor \
-  glew \
+  xorg-server-xvfb \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
@@ -62,7 +82,7 @@ RUN sudo pacman-key --init && \
   sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
-  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
+  sudo pacman --needed --noconfirm --noprogressbar -S ${VTK_PACKAGES} ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
   echo "alias startJupyter=\"jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --ServerApp.allow_origin='\$(gp url 8888)' --ServerApp.token='' --ServerApp.password=''\"" >> ~/.bashrc
