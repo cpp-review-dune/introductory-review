@@ -1,4 +1,4 @@
-name: Publish Docker image based on OPM module v2022.10
+name: Publish Docker image based on OPM module v2023.04
 
 on:
   # release:
