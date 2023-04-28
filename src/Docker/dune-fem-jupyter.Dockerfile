@@ -44,7 +44,7 @@ ARG PACKAGES="\
   jupyterlab \
   python-matplotlib \
   python-scipy \
-  mayavi \
+  python-mayavi \
   glew \
   python-pyvirtualdisplay \
   qt5-svg \
