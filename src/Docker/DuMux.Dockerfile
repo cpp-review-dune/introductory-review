@@ -2,14 +2,15 @@
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
+# dune-alugrid \
+# dune-functions \
+# dune-mmesh \
+# dune-spgrid \
+# dune-subgrid \
+# opm-grid \
+
 ARG OPT_PACKAGES="\
-  dune-alugrid \
   dune-foamgrid \
-  dune-functions \
-  dune-mmesh \
-  dune-spgrid \
-  dune-subgrid \
-  opm-grid \
   "
 
 ARG AUR_PACKAGES="\
