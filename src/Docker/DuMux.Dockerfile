@@ -19,16 +19,18 @@ ARG AUR_PACKAGES="\
   dumux \
   "
 
-ARG DUMUX_LECTURE="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/dumux-lecture/PKGBUILD"
+# ARG DUMUX_LECTURE="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/dumux-lecture/PKGBUILD"
+
 RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
   yay --noconfirm --noprogressbar -S ${OPT_PRE_PACKAGES} && \
   yay --noconfirm --noprogressbar -S ${AUR_PACKAGES} && \
-  yay --noconfirm --noprogressbar -S ${OPT_POST_PACKAGES} && \
-  mkdir -p dumux-lecture && \
-  curl -LO ${DUMUX_LECTURE} && \
-  makepkg --noconfirm --nocheck -src && \
-  mkdir -p /home/builder/.cache/yay/dumux-lecture && \
-  mv dumux-lecture-*-x86_64.pkg.tar.zst /home/builder/.cache/yay/dumux-lecture
+  yay --noconfirm --noprogressbar -S ${OPT_POST_PACKAGES}
+
+# mkdir -p dumux-lecture && \
+# curl -LO ${DUMUX_LECTURE} && \
+# makepkg --noconfirm --nocheck -src && \
+# mkdir -p /home/builder/.cache/yay/dumux-lecture && \
+# mv dumux-lecture-*-x86_64.pkg.tar.zst /home/builder/.cache/yay/dumux-lecture
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="DuMux Arch" \
