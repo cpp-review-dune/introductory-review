@@ -4,7 +4,6 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PRE_PACKAGES="\
   dune-alugrid \
-  dune-mmesh \
   dune-spgrid \
   dune-subgrid \
   opm-grid \
@@ -13,6 +12,7 @@ ARG OPT_PRE_PACKAGES="\
 ARG OPT_POST_PACKAGES="\
   dune-foamgrid \
   dune-functions \
+  dune-mmesh \
   "
 
 ARG AUR_PACKAGES="\
