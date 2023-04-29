@@ -4,6 +4,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
   petsc \
+  python-mayavi \
   dune-spgrid \
   dune-fem \
   python-pygmsh \
@@ -44,7 +45,6 @@ ARG PACKAGES="\
   jupyterlab \
   python-matplotlib \
   python-scipy \
-  python-mayavi \
   glew \
   python-pyvirtualdisplay \
   qt5-svg \
