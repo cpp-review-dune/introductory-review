@@ -2,14 +2,14 @@
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
-# ARG OPT_PRE_PACKAGES="\
-#   dune-alugrid \
-#   dune-functions \
-#   dune-mmesh \
-#   dune-spgrid \
-#   dune-subgrid \
-#   opm-grid \
-#   "
+ARG OPT_PRE_PACKAGES="\
+  dune-alugrid \
+  dune-functions \
+  dune-mmesh \
+  dune-spgrid \
+  dune-subgrid \
+  opm-grid \
+  "
 
 ARG OPT_POST_PACKAGES="\
   dune-foamgrid \
@@ -20,13 +20,13 @@ ARG AUR_PACKAGES="\
   "
 
 ARG DUMUX_LECTURE="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/dumux-lecture/PKGBUILD"
-# yay --noconfirm --noprogressbar -S ${OPT_PRE_PACKAGES} && \
 RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
+  yay --noconfirm --noprogressbar -S ${OPT_PRE_PACKAGES} && \
   yay --noconfirm --noprogressbar -S ${AUR_PACKAGES} && \
   yay --noconfirm --noprogressbar -S ${OPT_POST_PACKAGES} && \
   mkdir -p dumux-lecture && \
   curl -LO ${DUMUX_LECTURE} && \
-  makepkg --noconfirm -src && \
+  makepkg --noconfirm --nocheck -src && \
   mkdir -p /home/builder/.cache/yay/dumux-lecture && \
   mv dumux-lecture-*-x86_64.pkg.tar.zst /home/builder/.cache/yay/dumux-lecture
 
