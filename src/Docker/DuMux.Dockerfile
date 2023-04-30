@@ -6,7 +6,7 @@ ARG AUR_PACKAGES="\
   dumux \
   "
 
-RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
+RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   yay --needed --noconfirm --noprogressbar -S ${AUR_PACKAGES}
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
@@ -26,7 +26,8 @@ ARG OPT_POST_PACKAGES="\
 
 # ARG DUMUX_LECTURE="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/dumux-lecture/PKGBUILD"
 
-RUN yay --needed --noconfirm --noprogressbar -S ${OPT_PRE_PACKAGES} && \
+RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
+  yay --needed --noconfirm --noprogressbar -S ${OPT_PRE_PACKAGES} && \
   yay --needed --noconfirm --noprogressbar -S ${OPT_POST_PACKAGES}
 
 # mkdir -p dumux-lecture
