@@ -1,5 +1,14 @@
 # Copyleft (c) August, 2022, Oromion.
 
+FROM ghcr.io/cpp-review-dune/introductory-review/aur AS dumux
+
+ARG AUR_PACKAGES="\
+  dumux \
+  "
+
+RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
+  yay --needed --noconfirm --noprogressbar -S ${AUR_PACKAGES}
+
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PRE_PACKAGES="\
@@ -15,15 +24,12 @@ ARG OPT_POST_PACKAGES="\
   dune-mmesh \
   "
 
-ARG AUR_PACKAGES="\
-  dumux \
-  "
 # ARG DUMUX_LECTURE="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/dumux-lecture/PKGBUILD"
-RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
-  yay --noconfirm --noprogressbar -S ${OPT_PRE_PACKAGES} && \
-  yay --noconfirm --noprogressbar -S ${AUR_PACKAGES} && \
-  yay --noconfirm --noprogressbar -S ${OPT_POST_PACKAGES} && \
-  mkdir -p dumux-lecture
+
+RUN yay --needed --noconfirm --noprogressbar -S ${OPT_PRE_PACKAGES} && \
+  yay --needed --noconfirm --noprogressbar -S ${OPT_POST_PACKAGES}
+
+# mkdir -p dumux-lecture
 # curl -LO ${DUMUX_LECTURE} && \
 # makepkg --noconfirm --nocheck -src && \
 # mkdir -p /home/builder/.cache/yay/dumux-lecture && \
@@ -57,12 +63,14 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 
 USER gitpod
 
+# autopep8 \
+
 ARG PACKAGES="\
-  autopep8 \
   clang \
   gnuplot \
   "
 
+COPY --from=dumux /home/builder/.cache/yay/dumux/dumux-*.pkg.tar.zst /tmp/
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh
