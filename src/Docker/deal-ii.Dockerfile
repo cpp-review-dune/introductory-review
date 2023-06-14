@@ -3,8 +3,8 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
-  suitesparse \
   python \
+  suitesparse \
   "
 
 ARG AUR_PACKAGES="\
@@ -56,6 +56,8 @@ USER gitpod
 ARG PACKAGES="\
   clang \
   gtest \
+  python \
+  suitesparse \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
