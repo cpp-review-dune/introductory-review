@@ -1,0 +1,25 @@
+From a295abdeb6d0c8957c6d1bd6aba70bd28496d5fc Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Carlos=20Aznar=C3=A1n=20Laos?= <caznaranl@uni.pe>
+Date: Tue, 13 Jun 2023 20:20:21 -0500
+Subject: [PATCH] Enable python bindings
+
+---
+ PKGBUILD | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/PKGBUILD b/PKGBUILD
+index c7364c7..84144c6 100644
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -103,6 +103,8 @@ build() {
+      cmake_configuration_flags+=" -DLAPACK_INCLUDE_DIRS=${MKLROOT}/include"
+   fi
+ 
++  cmake_configuration_flags+=" -DDEAL_II_WITH_UMFPACK=ON -DDEAL_II_WITH_THREADS=ON -DDEAL_II_COMPONENT_EXAMPLES=ON -DDEAL_II_COMPONENT_PYTHON_BINDINGS=ON"
++
+   # For GSL compatibility we need the full link interface, which includes
+   # libgslcblas, so disable --as-needed with GCC:
+   sed -i '/ENABLE_IF_LINKS(DEAL_II_LINKER_FLAGS "-Wl,--as-needed")/d' \
+-- 
+2.41.0
+

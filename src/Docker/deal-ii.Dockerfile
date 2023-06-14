@@ -2,12 +2,28 @@
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
+ARG OPT_PACKAGES="\
+  suitesparse \
+  python \
+  "
+
 ARG AUR_PACKAGES="\
   deal-ii \
   "
 
+ARG PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/0001-Enable-python-bindings.patch"
+
 RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
-  yay --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+  yay --noconfirm -S ${OPT_PACKAGES} && \
+  yay -G ${AUR_PACKAGES} && \
+  cd deal-ii && \
+  git config --global user.email github-actions@github.com && \
+  git config --global user.name github-actions && \
+  curl -O ${PATCH} && \
+  git am --signoff < 0001-Enable-options-for-work-with-preCICE.patch && \
+  makepkg -s --noconfirm 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  mkdir -p ~/.cache/yay/deal-ii && \
+  mv *.pkg.tar.zst ~/.cache/yay/deal-ii
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="deal.II Arch" \
