@@ -56,6 +56,7 @@ USER gitpod
 ARG PACKAGES="\
   clang \
   cmake \
+  git \
   gtest \
   python \
   suitesparse \
