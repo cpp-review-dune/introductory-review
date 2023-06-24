@@ -3,8 +3,12 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
+  openmpi \
+  p4est-deal-ii \
+  petsc \
   python \
   suitesparse \
+  trilinos \
   "
 
 ARG AUR_PACKAGES="\
