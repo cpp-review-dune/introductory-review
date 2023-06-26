@@ -53,6 +53,7 @@ ARG PACKAGES="\
   texlive-fontsextra \
   texlive-latexextra \
   texlive-science \
+  texlive-langgerman \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
@@ -69,7 +70,7 @@ RUN sudo pacman-key --init && \
   rm -rf ~/.cache && \
   yay -Scc <<< Y <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/*
-# texlive-{core,bin,bibtexextra,fontsextra,formatsextra,games,humanities,langchinese,langcyrillic,langextra,langgreek,langjapanese,langkorean,latexextra,music,pictures,pstricks,publishers,science} ruby perl-tk psutils dialog ed poppler-data
+# texlive-{core,bin} ruby perl-tk psutils dialog ed poppler-data
 
 ENV PATH="/usr/bin/vendor_perl:${PATH}"
 

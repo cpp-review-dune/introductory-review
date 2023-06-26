@@ -40,7 +40,7 @@ USER gitpod
 
 ARG PACKAGES="\
   biber \
-  pandoc \
+  pandoc-cli \
   texlive-fontsextra \
   texlive-latexextra \
   texlive-pictures \
