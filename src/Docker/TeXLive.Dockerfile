@@ -48,12 +48,14 @@ ARG PACKAGES="\
   biber \
   doxygen \
   plantuml \
+  texlive-binextra \
   texlive-pictures \
   texlive-bibtexextra \
   texlive-fontsextra \
   texlive-latexextra \
   texlive-science \
   texlive-langgerman \
+  texlive-xetex \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
