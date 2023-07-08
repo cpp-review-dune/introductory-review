@@ -8,8 +8,9 @@ ARG OPT_PACKAGES="\
   petsc \
   python \
   suitesparse \
-  trilinos \
   "
+
+#trilinos
 
 ARG AUR_PACKAGES="\
   deal-ii \
@@ -27,9 +28,7 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
   git am --signoff < 0001-Enable-python-bindings.patch && \
   makepkg -s --noconfirm && \
   mkdir -p ~/.cache/yay/deal-ii && \
-  mv *.pkg.tar.zst ~/.cache/yay/deal-ii
-
-# 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+  mv *.pkg.tar.zst ~/.cache/yay/deal-ii 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="deal.II Arch" \
