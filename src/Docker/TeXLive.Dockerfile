@@ -49,12 +49,12 @@ ARG PACKAGES="\
   doxygen \
   plantuml \
   texlive-binextra \
-  texlive-pictures \
   texlive-bibtexextra \
   texlive-fontsextra \
-  texlive-latexextra \
-  texlive-science \
   texlive-langgerman \
+  texlive-latexextra \
+  texlive-plaingeneric \
+  texlive-mathscience \
   texlive-xetex \
   "
 
