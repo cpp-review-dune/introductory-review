@@ -1,21 +1,38 @@
-From 2cfdc5d185491b2b728cb4bfaab422f11d94204e Mon Sep 17 00:00:00 2001
+From e1d693f4efc29eddfe4eed8fb34aa1ff963eb060 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Carlos=20Aznar=C3=A1n=20Laos?= <caznaranl@uni.pe>
-Date: Sat, 24 Jun 2023 16:35:36 -0500
+Date: Sat, 8 Jul 2023 20:44:35 -0500
 Subject: [PATCH] Enable python bindings
 
 ---
- PKGBUILD | 2 ++
- 1 file changed, 2 insertions(+)
+ PKGBUILD | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
 diff --git a/PKGBUILD b/PKGBUILD
-index c7364c7..04545fe 100644
+index c7364c7..3af3a64 100644
 --- a/PKGBUILD
 +++ b/PKGBUILD
+@@ -3,13 +3,13 @@
+ 
+ pkgname=deal-ii
+ _realname=dealii
+-pkgver=9.4.2
++pkgver=9.5.0
+ pkgrel=1
+ pkgdesc="An Open Source Finite Element Differential Equations Analysis Library"
+ arch=("i686" "x86_64")
+-url="http://www.dealii.org/"
++url="https://dealii.org"
+ license=('LGPL')
+-depends=('boost')
++depends=('boost' 'kokkos')
+ optdepends=(
+       # adol-c is not compatible with Trilinos - if both are installed then deal.II will use Trilinos
+       'adol-c: automatic differentiation library'
 @@ -103,6 +103,8 @@ build() {
       cmake_configuration_flags+=" -DLAPACK_INCLUDE_DIRS=${MKLROOT}/include"
    fi
  
-+  cmake_configuration_flags+=" -DDEAL_II_WITH_UMFPACK=ON -DDEAL_II_WITH_THREADS=ON -DDEAL_II_COMPONENT_EXAMPLES=ON -DDEAL_II_COMPONENT_PYTHON_BINDINGS=ON -DDEAL_II_WITH_PETSC=ON -DDEAL_II_WITH_TRILINOS=ON -DDEAL_II_WITH_P4EST=ON"
++  cmake_configuration_flags+=" -DDEAL_II_WITH_UMFPACK=ON -DDEAL_II_WITH_THREADS=ON -DDEAL_II_COMPONENT_EXAMPLES=ON -DDEAL_II_COMPONENT_PYTHON_BINDINGS=ON -DDEAL_II_WITH_PETSC=ON -DDEAL_II_WITH_TRILINOS=OFF -DDEAL_II_WITH_P4EST=ON"
 +
    # For GSL compatibility we need the full link interface, which includes
    # libgslcblas, so disable --as-needed with GCC:
