@@ -6,7 +6,8 @@ ARG AUR_PACKAGES="\
   petsc \
   python-mayavi \
   dune-spgrid \
-  dune-fem \
+  dune-fem-dg \
+  dune-vem \
   python-pygmsh \
   "
 
