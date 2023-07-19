@@ -1,10 +1,10 @@
-name: Publish Docker image based on dolfinx 0.7.0 with Jupyter
+name: Publish Docker image based on python-fenics-dolfinx with Jupyter
 
 on:
   push:
     branches: [main]
     paths:
-      - src/Docker/dolfinx-jupyter.Dockerfile
+      - src/Docker/python-fenics-dolfinx.Dockerfile
   pull_request:
     branches: [main]
   schedule:
@@ -41,9 +41,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-dolfinx-jupyter-${{ github.sha }}
+          key: ${{ runner.os }}-buildx-python-fenics-dolfinx-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-buildx-dolfinx-jupyter-
+            ${{ runner.os }}-buildx-python-fenics-dolfinx-
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
@@ -56,21 +56,21 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./introductory-review/src/Docker/dolfinx-jupyter.Dockerfile
+          file: ./introductory-review/src/Docker/python-fenics-dolfinx.Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/cpp-review-dune/introductory-review/dolfinx-jupyter:latest
-          cache-from: type=local,src=/tmp/.buildx-dolfinx-jupyter-cache
+          tags: ghcr.io/cpp-review-dune/introductory-review/python-fenics-dolfinx:latest
+          cache-from: type=local,src=/tmp/.buildx-python-fenics-dolfinx-cache
           cache-to: type=local,mode=max,dest=/tmp/.buildx-main-cache
 
       - name: Move cache
         run: |
-          rm -rf /tmp/.buildx-dolfinx-jupyter-cache
-          mv /tmp/.buildx-main-cache /tmp/.buildx-dolfinx-jupyter-cache
+          rm -rf /tmp/.buildx-python-fenics-dolfinx-cache
+          mv /tmp/.buildx-main-cache /tmp/.buildx-python-fenics-dolfinx-cache
 
       - name: Scan for vulnerabilities
         uses: crazy-max/ghaction-container-scan@v1
         with:
-          image: ghcr.io/cpp-review-dune/introductory-review/dolfinx-jupyter:latest
+          image: ghcr.io/cpp-review-dune/introductory-review/python-fenics-dolfinx:latest
           annotations: true
-          dockerfile: ./src/Docker/dolfinx-jupyter.Dockerfile
+          dockerfile: ./src/Docker/python-fenics-dolfinx.Dockerfile
