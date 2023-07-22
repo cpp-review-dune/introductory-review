@@ -4,14 +4,11 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
   openmpi \
-  kokkos \
   p4est-deal-ii \
   petsc \
   python \
   suitesparse \
   "
-
-#trilinos
 
 ARG AUR_PACKAGES="\
   deal-ii \
@@ -27,11 +24,9 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
   git config --global user.name github-actions && \
   curl -O ${PATCH} && \
   git am --signoff < 0001-Enable-python-bindings.patch && \
-  makepkg -s --noconfirm && \
+  makepkg -s --noconfirm 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   mkdir -p ~/.cache/yay/deal-ii && \
   mv *.pkg.tar.zst ~/.cache/yay/deal-ii
-
-# 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="deal.II Arch" \

@@ -1,47 +1,30 @@
-From ed6ac1a0676f5163d484721903eed2e982d74d67 Mon Sep 17 00:00:00 2001
+From c9091f74307023b133f1b87213a33640ef8ab6d4 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Carlos=20Aznar=C3=A1n=20Laos?= <caznaranl@uni.pe>
-Date: Sat, 8 Jul 2023 23:11:22 -0500
+Date: Sat, 22 Jul 2023 13:53:27 -0500
 Subject: [PATCH] Enable python bindings
 
 ---
- PKGBUILD | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+ PKGBUILD | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/PKGBUILD b/PKGBUILD
-index c7364c7..ec669a1 100644
+index 13e475c..9b23e20 100644
 --- a/PKGBUILD
 +++ b/PKGBUILD
-@@ -3,13 +3,13 @@
- 
- pkgname=deal-ii
- _realname=dealii
--pkgver=9.4.2
-+pkgver=9.5.0
+@@ -8,7 +8,7 @@ pkgver=9.5.1
  pkgrel=1
  pkgdesc="An Open Source Finite Element Differential Equations Analysis Library"
  arch=("i686" "x86_64")
 -url="http://www.dealii.org/"
 +url="https://dealii.org"
  license=('LGPL')
--depends=('boost')
-+depends=('boost' 'kokkos')
- optdepends=(
-       # adol-c is not compatible with Trilinos - if both are installed then deal.II will use Trilinos
-       'adol-c: automatic differentiation library'
-@@ -42,7 +42,7 @@ optdepends=(
- makedepends=('cmake')
- install=deal-ii.install
- source=(https://github.com/dealii/dealii/releases/download/v$pkgver/${_realname}-$pkgver.tar.gz)
--sha1sums=('ea4b5fadb45a34f4f9399d305548671a8059760b')
-+sha1sums=('93070f79afdfc4eb201bcd52a9bd5805385f5501')
- # where to install deal.II: change to something else (e.g., /opt/deal.II/)
- # if desired.
- _installation_prefix=/usr
-@@ -103,6 +103,8 @@ build() {
+ # deal.II depends on Kokkos which is implicitly provided by Trilinos. Trilinos
+ # does not yet support configuration with an external copy of Kokkos so do not
+@@ -99,6 +99,8 @@ build() {
       cmake_configuration_flags+=" -DLAPACK_INCLUDE_DIRS=${MKLROOT}/include"
    fi
  
-+  cmake_configuration_flags+=" -DDEAL_II_WITH_UMFPACK=ON -DDEAL_II_WITH_THREADS=ON -DDEAL_II_COMPONENT_EXAMPLES=ON -DDEAL_II_COMPONENT_PYTHON_BINDINGS=ON -DDEAL_II_WITH_PETSC=ON -DDEAL_II_WITH_TRILINOS=OFF -DDEAL_II_WITH_P4EST=ON"
++  cmake_configuration_flags+=" -DDEAL_II_WITH_UMFPACK=ON -DDEAL_II_COMPONENT_EXAMPLES=ON -DDEAL_II_COMPONENT_PYTHON_BINDINGS=ON -DDEAL_II_WITH_PETSC=ON -DDEAL_II_WITH_P4EST=ON"
 +
    # For GSL compatibility we need the full link interface, which includes
    # libgslcblas, so disable --as-needed with GCC:
