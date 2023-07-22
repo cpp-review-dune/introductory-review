@@ -15,13 +15,13 @@ ARG AUR_PACKAGES="\
 
 ARG PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/0001-Enable-python-bindings.patch"
 
-ARG PETSC_PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/docker/0001-Cython-3-compatibility.patch"
+ARG PETSC_PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/0001-Cython-3-compatibility.patch"
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
   yay --noconfirm -S ${OPT_PACKAGES} && \
   yay -G petsc && \
   cd petsc && \
-  curl -O ${PATCH} && \
+  curl -O ${PETSC_PATCH} && \
   git am --signoff < 0001-Cython-3-compatibility.patch && \
   git config --global user.email github-actions@github.com && \
   git config --global user.name github-actions && \
