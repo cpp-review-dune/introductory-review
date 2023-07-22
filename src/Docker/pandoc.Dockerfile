@@ -3,9 +3,10 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
-  otf-firamath \
   noto-fonts-emoji-apple \
   "
+
+# otf-firamath \
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
   yay --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
@@ -39,14 +40,19 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
+  git \
+  java-runtime \
   biber \
   pandoc-cli \
+  texlive-binextra \
   texlive-fontsextra \
   texlive-latexextra \
-  texlive-pictures \
+  texlive-luatex \
   ttf-fira-code \
   minted \
   "
+
+# texlive-pictures \
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
@@ -60,4 +66,4 @@ RUN sudo pacman-key --init && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/*
 
-ENV PATH="/usr/bin/vendor_perl:${PATH}"
+# ENV PATH="/usr/bin/vendor_perl:${PATH}"
