@@ -19,12 +19,12 @@ ARG PETSC_PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
   yay --noconfirm -S ${OPT_PACKAGES} && \
+  git config --global user.email github-actions@github.com && \
+  git config --global user.name github-actions && \
   yay -G petsc && \
   cd petsc && \
   curl -O ${PETSC_PATCH} && \
   git am --signoff < 0001-Cython-3-compatibility.patch && \
-  git config --global user.email github-actions@github.com && \
-  git config --global user.name github-actions && \
   makepkg -s --noconfirm && \
   sudo pacman --noconfirm -U /tmp/petsc-*.pkg.tar.zst && \
   mkdir -p ~/.cache/yay/petsc && \
