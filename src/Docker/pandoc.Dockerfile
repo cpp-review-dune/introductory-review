@@ -44,8 +44,10 @@ ARG PACKAGES="\
   java-runtime \
   biber \
   pandoc-cli \
+  tex-gyre-fonts \
   texlive-binextra \
   texlive-fontsextra \
+  texlive-fontsrecommended \
   texlive-latexextra \
   texlive-luatex \
   ttf-fira-code \
