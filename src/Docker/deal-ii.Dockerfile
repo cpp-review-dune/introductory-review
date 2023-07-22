@@ -5,7 +5,6 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 ARG OPT_PACKAGES="\
   openmpi \
   p4est-deal-ii \
-  petsc \
   python \
   suitesparse \
   "
@@ -16,12 +15,22 @@ ARG AUR_PACKAGES="\
 
 ARG PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/0001-Enable-python-bindings.patch"
 
+ARG PETSC_PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/docker/0001-Cython-3-compatibility.patch"
+
 RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
   yay --noconfirm -S ${OPT_PACKAGES} && \
-  yay -G ${AUR_PACKAGES} && \
-  cd deal-ii && \
+  yay -G petsc && \
+  cd petsc && \
+  curl -O ${PATCH} && \
+  git am --signoff < 0001-Cython-3-compatibility.patch && \
   git config --global user.email github-actions@github.com && \
   git config --global user.name github-actions && \
+  makepkg -s --noconfirm && \
+  sudo pacman --noconfirm -U /tmp/petsc-*.pkg.tar.zst && \
+  mkdir -p ~/.cache/yay/petsc && \
+  mv petsc-*.pkg.tar.zst ~/.cache/yay/petsc && \
+  yay -G ${AUR_PACKAGES} && \
+  cd deal-ii && \
   curl -O ${PATCH} && \
   git am --signoff < 0001-Enable-python-bindings.patch && \
   makepkg -s --noconfirm && \

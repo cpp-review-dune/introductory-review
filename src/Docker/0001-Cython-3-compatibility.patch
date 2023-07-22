@@ -1,0 +1,770 @@
+From d51198a6eec7395cd07439217745487c8ed12248 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Carlos=20Aznar=C3=A1n=20Laos?= <caznaranl@uni.pe>
+Date: Sat, 22 Jul 2023 14:36:47 -0500
+Subject: [PATCH] Cython 3 compatibility
+
+---
+ 6740.patch | 717 +++++++++++++++++++++++++++++++++++++++++++++++++++++
+ PKGBUILD   |   8 +-
+ 2 files changed, 724 insertions(+), 1 deletion(-)
+ create mode 100644 6740.patch
+
+diff --git a/6740.patch b/6740.patch
+new file mode 100644
+index 0000000..c593ff4
+--- /dev/null
++++ b/6740.patch
+@@ -0,0 +1,717 @@
++From b12f50eb112f916bb6f36986fae3f8302242f7a3 Mon Sep 17 00:00:00 2001
++From: Lisandro Dalcin <dalcinl@gmail.com>
++Date: Sat, 22 Jul 2023 21:37:30 +0300
++Subject: [PATCH 1/2] petsc4py: Update to Cython 3
++
++---
++ src/binding/petsc4py/conf/confpetsc.py        |  8 ++--
++ .../petsc4py/src/lib-petsc/compat/cuda.h      | 14 +++---
++ .../petsc4py/src/lib-petsc/compat/viennacl.h  |  4 +-
++ src/binding/petsc4py/src/petsc4py/PETSc.pxd   |  2 +-
++ src/binding/petsc4py/src/petsc4py/PETSc.pyx   |  6 +--
++ .../petsc4py/src/petsc4py/PETSc/Mat.pyx       | 43 +++++++++----------
++ .../petsc4py/src/petsc4py/PETSc/PETSc.pyx     | 22 +++++-----
++ .../petsc4py/src/petsc4py/PETSc/Vec.pyx       | 40 ++++++++---------
++ .../petsc4py/src/petsc4py/PETSc/cyclicgc.pxi  | 12 +++---
++ .../petsc4py/src/petsc4py/PETSc/dlpack.pxi    |  8 ++--
++ .../src/petsc4py/PETSc/libpetsc4py.pyx        | 20 ++++-----
++ .../petsc4py/src/petsc4py/PETSc/petscmat.pxi  | 25 ++++++-----
++ .../petsc4py/src/petsc4py/PETSc/petscobj.pxi  | 18 ++++----
++ .../petsc4py/src/petsc4py/PETSc/petscvec.pxi  | 12 +++---
++ 14 files changed, 118 insertions(+), 116 deletions(-)
++
++diff --git a/src/binding/petsc4py/conf/confpetsc.py b/src/binding/petsc4py/conf/confpetsc.py
++index 57e5c50c995..e7891d9da49 100644
++--- a/src/binding/petsc4py/conf/confpetsc.py
+++++ b/src/binding/petsc4py/conf/confpetsc.py
++@@ -68,7 +68,7 @@ except ImportError:
++ 
++ # Cython
++ 
++-CYTHON = '0.29.36'
+++CYTHON = '3.0.0'
++ 
++ def cython_req():
++     return CYTHON
++@@ -100,8 +100,8 @@ def cython_chk(VERSION, verbose=True):
++         return False
++     REQUIRED = Version(VERSION)
++     PROVIDED = Version(m.groups()[0])
++-    if PROVIDED != REQUIRED:
++-        warn("You need Cython == {0} (you have version {1})"
+++    if PROVIDED < REQUIRED:
+++        warn("You need Cython >= {0} (you have version {1})"
++              .format(VERSION, CYTHON_VERSION))
++         return False
++     #
++@@ -130,7 +130,7 @@ def cython_run(
++             return
++     finally:
++         os.chdir(cwd)
++-    require = 'Cython == %s' % VERSION
+++    require = 'Cython >= %s' % VERSION
++     if setuptools and not cython_chk(VERSION, verbose=False):
++         if sys.modules.get('Cython'):
++             removed = getattr(sys.modules['Cython'], '__version__', '')
++diff --git a/src/binding/petsc4py/src/lib-petsc/compat/cuda.h b/src/binding/petsc4py/src/lib-petsc/compat/cuda.h
++index 09ad53f295b..9674e0dc54a 100644
++--- a/src/binding/petsc4py/src/lib-petsc/compat/cuda.h
+++++ b/src/binding/petsc4py/src/lib-petsc/compat/cuda.h
++@@ -8,13 +8,13 @@
++     SETERRQ(PETSC_COMM_SELF,PETSC_ERR_SUP,"%s() requires CUDA",PETSC_FUNCTION_NAME); \
++     PetscFunctionReturn(PETSC_ERR_SUP);} while (0)
++ 
++-PetscErrorCode MatDenseCUDAGetArrayRead(Mat A, const PetscScalar **gpuarray) {PetscCUDAError;}
++-PetscErrorCode MatDenseCUDARestoreArrayRead(Mat A, const PetscScalar **gpuarray) {PetscCUDAError;}
++-PetscErrorCode MatDenseCUDAGetArrayWrite(Mat A, PetscScalar **gpuarray) {PetscCUDAError;}
++-PetscErrorCode MatDenseCUDARestoreArrayWrite(Mat A, PetscScalar **gpuarray) {PetscCUDAError;}
++-PetscErrorCode MatDenseCUDAGetArray(Mat A, PetscScalar **gpuarray) {PetscCUDAError;}
++-PetscErrorCode MatDenseCUDARestoreArray(Mat A, PetscScalar **gpuarray) {PetscCUDAError;}
++-PetscErrorCode MatCreateDenseCUDA(MPI_Comm comm, PetscInt m, PetscInt n, PetscInt M, PetscInt N, PetscScalar gpuarray[], Mat *A) {PetscCUDAError;}
+++PetscErrorCode MatDenseCUDAGetArrayRead(PETSC_UNUSED Mat A, PETSC_UNUSED const PetscScalar **gpuarray) {PetscCUDAError;}
+++PetscErrorCode MatDenseCUDARestoreArrayRead(PETSC_UNUSED Mat A, PETSC_UNUSED const PetscScalar **gpuarray) {PetscCUDAError;}
+++PetscErrorCode MatDenseCUDAGetArrayWrite(PETSC_UNUSED Mat A, PETSC_UNUSED PetscScalar **gpuarray) {PetscCUDAError;}
+++PetscErrorCode MatDenseCUDARestoreArrayWrite(PETSC_UNUSED Mat A, PETSC_UNUSED PetscScalar **gpuarray) {PetscCUDAError;}
+++PetscErrorCode MatDenseCUDAGetArray(PETSC_UNUSED Mat A, PETSC_UNUSED PetscScalar **gpuarray) {PetscCUDAError;}
+++PetscErrorCode MatDenseCUDARestoreArray(PETSC_UNUSED Mat A, PETSC_UNUSED PetscScalar **gpuarray) {PetscCUDAError;}
+++PetscErrorCode MatCreateDenseCUDA(PETSC_UNUSED MPI_Comm comm, PETSC_UNUSED PetscInt m, PETSC_UNUSED PetscInt n, PETSC_UNUSED PetscInt M, PETSC_UNUSED PetscInt N, PETSC_UNUSED PetscScalar gpuarray[], PETSC_UNUSED Mat *A) {PetscCUDAError;}
++ 
++ #undef PetscCUDAError
++ 
++diff --git a/src/binding/petsc4py/src/lib-petsc/compat/viennacl.h b/src/binding/petsc4py/src/lib-petsc/compat/viennacl.h
++index 4bdafff5062..9d1000cee4c 100644
++--- a/src/binding/petsc4py/src/lib-petsc/compat/viennacl.h
+++++ b/src/binding/petsc4py/src/lib-petsc/compat/viennacl.h
++@@ -8,8 +8,8 @@
++     SETERRQ(PETSC_COMM_SELF,PETSC_ERR_SUP,"%s() requires ViennaCL",PETSC_FUNCTION_NAME); \
++     PetscFunctionReturn(PETSC_ERR_SUP);} while (0)
++ 
++-PetscErrorCode  VecCreateSeqViennaCLWithArrays(MPI_Comm comm,PetscInt bs,PetscInt n,PetscScalar cpuarray[],PetscScalar* viennaclvec,Vec *V) {PetscViennaCLError;}
++-PetscErrorCode VecCreateMPIViennaCLWithArrays(MPI_Comm comm,PetscInt bs,PetscInt n,PetscInt N,PetscScalar cpuarray[],PetscScalar *viennaclvec,Vec *vv) {PetscViennaCLError;}
+++PetscErrorCode VecCreateSeqViennaCLWithArrays(PETSC_UNUSED MPI_Comm comm,PETSC_UNUSED PetscInt bs,PETSC_UNUSED PetscInt n,PETSC_UNUSED PetscScalar cpuarray[],PETSC_UNUSED PetscScalar* viennaclvec,PETSC_UNUSED Vec *V) {PetscViennaCLError;}
+++PetscErrorCode VecCreateMPIViennaCLWithArrays(PETSC_UNUSED MPI_Comm comm,PETSC_UNUSED PetscInt bs,PETSC_UNUSED PetscInt n,PETSC_UNUSED PetscInt N,PETSC_UNUSED PetscScalar cpuarray[],PETSC_UNUSED PetscScalar *viennaclvec,PETSC_UNUSED Vec *vv) {PetscViennaCLError;}
++ 
++ #undef PetscViennaCLError
++ 
++diff --git a/src/binding/petsc4py/src/petsc4py/PETSc.pxd b/src/binding/petsc4py/src/petsc4py/PETSc.pxd
++index be9170bd106..6b8df2a8181 100644
++--- a/src/binding/petsc4py/src/petsc4py/PETSc.pxd
+++++ b/src/binding/petsc4py/src/petsc4py/PETSc.pxd
++@@ -329,4 +329,4 @@ cdef extern from * nogil:
++     PETSC_ERROR_INITIAL
++     PETSC_ERROR_REPEAT
++ 
++-cdef PetscErrorCode CHKERR(PetscErrorCode) nogil except PETSC_ERR_PYTHON
+++cdef PetscErrorCode CHKERR(PetscErrorCode) except PETSC_ERR_PYTHON nogil
++diff --git a/src/binding/petsc4py/src/petsc4py/PETSc.pyx b/src/binding/petsc4py/src/petsc4py/PETSc.pyx
++index 3801f064e14..7dbd471db8d 100644
++--- a/src/binding/petsc4py/src/petsc4py/PETSc.pyx
+++++ b/src/binding/petsc4py/src/petsc4py/PETSc.pyx
++@@ -1,5 +1,6 @@
++ #cython: language_level=3str
++ #cython: embedsignature=True
+++#cython: embedsignature.format=python
++ #cython: annotation_typing=False
++ #cython: cdivision=True
++ #cython: auto_pickle=False
++@@ -8,10 +9,9 @@
++ #cython: autotestdict=False
++ #cython: warn.multiple_declarators=False
++ #cython: optimize.use_switch=False
++-
++ #cython: binding=False
++-#from __future__ import annotations
++ 
++-from __future__ import absolute_import
+++#from __future__ import annotations
++ cimport cython
+++
++ include "PETSc/PETSc.pyx"
++diff --git a/src/binding/petsc4py/src/petsc4py/PETSc/Mat.pyx b/src/binding/petsc4py/src/petsc4py/PETSc/Mat.pyx
++index 80005265c66..88e2a74bd36 100644
++--- a/src/binding/petsc4py/src/petsc4py/PETSc/Mat.pyx
+++++ b/src/binding/petsc4py/src/petsc4py/PETSc/Mat.pyx
++@@ -380,37 +380,34 @@ cdef class Mat(Object):
++     # binary operations
++ 
++     def __add__(self, other):
++-        if isinstance(self, Mat):
++-            return mat_add(self, other)
++-        else:
++-            return mat_radd(other, self)
+++        return mat_add(self, other)
+++
+++    def __radd__(self, other):
+++        return mat_radd(self, other)
++ 
++     def __sub__(self, other):
++-        if isinstance(self, Mat):
++-            return mat_sub(self, other)
++-        else:
++-            return mat_rsub(other, self)
+++        return mat_sub(self, other)
+++
+++    def __rsub__(self, other):
+++        return mat_rsub(self, other)
++ 
++     def __mul__(self, other):
++-        if isinstance(self, Mat):
++-            if isinstance(other, Vec):
++-                return mat_mul_vec(self, other)
++-            else:
++-                return mat_mul(self, other)
++-        else:
++-            return mat_rmul(other, self)
+++        return mat_mul(self, other)
+++
+++    def __rmul__(self, other):
+++        return mat_rmul(self, other)
++ 
++     def __div__(self, other):
++-        if isinstance(self, Mat):
++-            return mat_div(self, other)
++-        else:
++-            return mat_rdiv(other, self)
+++        return mat_div(self, other)
+++
+++    def __rdiv__(self, other):
+++        return mat_rdiv(self, other)
++ 
++     def __truediv__(self, other):
++-        if isinstance(self, Mat):
++-            return mat_div(self, other)
++-        else:
++-            return mat_rdiv(other, self)
+++        return mat_div(self, other)
+++
+++    def __rtruediv__(self, other):
+++        return mat_rdiv(self, other)
++ 
++     #
++ 
++diff --git a/src/binding/petsc4py/src/petsc4py/PETSc/PETSc.pyx b/src/binding/petsc4py/src/petsc4py/PETSc/PETSc.pyx
++index e5620dde18b..2f2178bbbc5 100644
++--- a/src/binding/petsc4py/src/petsc4py/PETSc/PETSc.pyx
+++++ b/src/binding/petsc4py/src/petsc4py/PETSc/PETSc.pyx
++@@ -58,7 +58,7 @@ cdef PetscErrorCode SETERR(PetscErrorCode ierr) with gil:
++         PyErr_SetObject(<object>PyExc_RuntimeError, <long>ierr)
++     return ierr
++ 
++-cdef inline PetscErrorCode CHKERR(PetscErrorCode ierr) nogil except PETSC_ERR_PYTHON:
+++cdef inline PetscErrorCode CHKERR(PetscErrorCode ierr) except PETSC_ERR_PYTHON nogil:
++     if ierr == PETSC_SUCCESS:
++         return ierr # no error
++     if ierr == PETSC_ERR_PYTHON:
++@@ -92,7 +92,7 @@ cdef inline int SETERRMPI(int ierr) with gil:
++     <void>SETERR(PETSC_ERR_MPI)
++     return ierr
++ 
++-cdef inline PetscErrorCode CHKERRMPI(int ierr) nogil except PETSC_ERR_PYTHON:
+++cdef inline PetscErrorCode CHKERRMPI(int ierr) except PETSC_ERR_PYTHON nogil:
++     if ierr == MPI_SUCCESS:
++       return PETSC_SUCCESS
++     <void>SETERRMPI(ierr)
++@@ -334,7 +334,7 @@ cdef extern from "<stdio.h>" nogil:
++     int fprintf(FILE *, char *, ...)
++ 
++ cdef extern from "Python.h":
++-    int Py_AtExit(void (*)())
+++    int Py_AtExit(void (*)() noexcept nogil)
++     void PySys_WriteStderr(char*,...)
++ 
++ cdef extern from * nogil:
++@@ -367,7 +367,7 @@ cdef int getinitargs(object args, int *argc, char **argv[]) except -1:
++     argc[0] = c; argv[0] = v
++     return 0
++ 
++-cdef void delinitargs(int *argc, char **argv[]) nogil:
+++cdef void delinitargs(int *argc, char **argv[]) noexcept nogil:
++     # dallocate command line arguments
++     cdef int i, c = argc[0]
++     cdef char** v = argv[0]
++@@ -377,7 +377,7 @@ cdef void delinitargs(int *argc, char **argv[]) nogil:
++             if  v[i] != NULL: free(v[i])
++         free(v)
++ 
++-cdef void finalize() nogil:
+++cdef void finalize() noexcept nogil:
++     cdef int ierr = 0
++     # deallocate command line arguments
++     global PyPetsc_Argc, PyPetsc_Argv
++@@ -406,15 +406,15 @@ cdef void finalize() nogil:
++ 
++ # --------------------------------------------------------------------
++ 
++-cdef extern from * nogil:
++-    PetscErrorCode (*PetscVFPrintf)(FILE*,const char*,va_list)
+++cdef extern from *:
+++    PetscErrorCode (*PetscVFPrintf)(FILE*,const char*,va_list) except PETSC_ERR_PYTHON nogil
++ 
++-cdef PetscErrorCode (*prevfprintf)(FILE*,const char*,va_list) nogil
+++cdef PetscErrorCode (*prevfprintf)(FILE*,const char*,va_list) except PETSC_ERR_PYTHON nogil
++ prevfprintf = NULL
++ 
++ cdef PetscErrorCode PetscVFPrintf_PythonStdStream(
++     FILE *fd, const char fmt[], va_list ap,
++-) with gil:
+++) except PETSC_ERR_PYTHON with gil:
++     import sys
++     cdef char cstring[8192]
++     cdef size_t stringlen = sizeof(cstring)
++@@ -432,11 +432,11 @@ cdef PetscErrorCode PetscVFPrintf_PythonStdStream(
++         ustring = cstring[:final_pos].decode('UTF-8')
++         sys.stderr.write(ustring)
++     else:
++-        PetscVFPrintfDefault(fd, fmt, ap)
+++        CHKERR( PetscVFPrintfDefault(fd, fmt, ap) )
++     return PETSC_SUCCESS
++ 
++ cdef int _push_vfprintf(
++-    PetscErrorCode (*vfprintf)(FILE*, const char*, va_list) nogil,
+++    PetscErrorCode (*vfprintf)(FILE*, const char*, va_list) except PETSC_ERR_PYTHON nogil,
++ ) except -1:
++     global PetscVFPrintf, prevfprintf
++     assert prevfprintf == NULL
++diff --git a/src/binding/petsc4py/src/petsc4py/PETSc/Vec.pyx b/src/binding/petsc4py/src/petsc4py/PETSc/Vec.pyx
++index 6103a575853..833bdc2098b 100644
++--- a/src/binding/petsc4py/src/petsc4py/PETSc/Vec.pyx
+++++ b/src/binding/petsc4py/src/petsc4py/PETSc/Vec.pyx
++@@ -75,34 +75,34 @@ cdef class Vec(Object):
++     # binary operations
++ 
++     def __add__(self, other):
++-        if isinstance(self, Vec):
++-            return vec_add(self, other)
++-        else:
++-            return vec_radd(other, self)
+++        return vec_add(self, other)
+++
+++    def __radd__(self, other):
+++        return vec_radd(self, other)
++ 
++     def __sub__(self, other):
++-        if isinstance(self, Vec):
++-            return vec_sub(self, other)
++-        else:
++-            return vec_rsub(other, self)
+++        return vec_sub(self, other)
+++
+++    def __rsub__(self, other):
+++        return vec_rsub(self, other)
++ 
++     def __mul__(self, other):
++-        if isinstance(self, Vec):
++-            return vec_mul(self, other)
++-        else:
++-            return vec_rmul(other, self)
+++        return vec_mul(self, other)
+++
+++    def __rmul__(self, other):
+++        return vec_rmul(self, other)
++ 
++     def __div__(self, other):
++-        if isinstance(self, Vec):
++-            return vec_div(self, other)
++-        else:
++-            return vec_rdiv(other, self)
+++        return vec_div(self, other)
+++
+++    def __rdiv__(self, other):
+++        return vec_rdiv(self, other)
++ 
++     def __truediv__(self, other):
++-        if isinstance(self, Vec):
++-            return vec_div(self, other)
++-        else:
++-            return vec_rdiv(other, self)
+++        return vec_div(self, other)
+++
+++    def __rtruediv__(self, other):
+++        return vec_rdiv(self, other)
++ 
++     #
++ 
++diff --git a/src/binding/petsc4py/src/petsc4py/PETSc/cyclicgc.pxi b/src/binding/petsc4py/src/petsc4py/PETSc/cyclicgc.pxi
++index d206b90f4cf..2cdfa6a0f04 100644
++--- a/src/binding/petsc4py/src/petsc4py/PETSc/cyclicgc.pxi
+++++ b/src/binding/petsc4py/src/petsc4py/PETSc/cyclicgc.pxi
++@@ -6,9 +6,9 @@ cdef extern from * nogil:
++ cdef extern from "Python.h":
++     ctypedef struct PyObject
++     ctypedef struct PyTypeObject
++-    ctypedef int visitproc(PyObject *, void *)
++-    ctypedef int traverseproc(PyObject *, visitproc, void *)
++-    ctypedef int inquiry(PyObject *)
+++    ctypedef int visitproc(PyObject *, void *) noexcept
+++    ctypedef int traverseproc(PyObject *, visitproc, void *) noexcept
+++    ctypedef int inquiry(PyObject *) noexcept
++     ctypedef struct PyTypeObject:
++        char*        tp_name
++        traverseproc tp_traverse
++@@ -19,7 +19,7 @@ cdef extern from "<petsc/private/garbagecollector.h>" nogil:
++     PetscErrorCode PetscGarbageCleanup(MPI_Comm)
++     PetscErrorCode PetscGarbageView(MPI_Comm,PetscViewer);
++ 
++-cdef int tp_traverse(PyObject *o, visitproc visit, void *arg):
+++cdef int tp_traverse(PyObject *o, visitproc visit, void *arg) noexcept:
++     ## printf("%s.tp_traverse(%p)\n", Py_TYPE(o).tp_name, <void*>o)
++     cdef PetscObject p = (<Object>o).obj[0]
++     if p == NULL: return 0
++@@ -27,13 +27,13 @@ cdef int tp_traverse(PyObject *o, visitproc visit, void *arg):
++     if d == NULL: return 0
++     return visit(d, arg)
++ 
++-cdef int tp_clear(PyObject *o):
+++cdef int tp_clear(PyObject *o) noexcept:
++     ## printf("%s.tp_clear(%p)\n", Py_TYPE(o).tp_name, <void*>o)
++     cdef PetscObject *p = (<Object>o).obj
++     PetscDEALLOC(p)
++     return 0
++ 
++-cdef inline void TypeEnableGC(PyTypeObject *t):
+++cdef inline void TypeEnableGC(PyTypeObject *t) noexcept:
++     ## printf("%s: enforcing GC support\n", t.tp_name)
++     t.tp_traverse = tp_traverse
++     t.tp_clear    = tp_clear
++diff --git a/src/binding/petsc4py/src/petsc4py/PETSc/dlpack.pxi b/src/binding/petsc4py/src/petsc4py/PETSc/dlpack.pxi
++index 981bd54525b..b8d04de05f4 100644
++--- a/src/binding/petsc4py/src/petsc4py/PETSc/dlpack.pxi
+++++ b/src/binding/petsc4py/src/petsc4py/PETSc/dlpack.pxi
++@@ -53,15 +53,15 @@ cdef struct DLTensor:
++     int64_t* strides
++     uint64_t byte_offset
++ 
++-ctypedef int (*dlpack_manager_del_obj)(void*) nogil
+++ctypedef int (*dlpack_manager_del_obj)(void*) noexcept nogil
++ 
++ cdef struct DLManagedTensor:
++     DLTensor dl_tensor
++     void* manager_ctx
++-    void (*manager_deleter)(DLManagedTensor*) nogil
+++    void (*manager_deleter)(DLManagedTensor*) noexcept nogil
++     dlpack_manager_del_obj del_obj
++ 
++-cdef void pycapsule_deleter(object dltensor):
+++cdef void pycapsule_deleter(object dltensor) noexcept with gil:
++     cdef DLManagedTensor* dlm_tensor = NULL
++     try:
++         dlm_tensor = <DLManagedTensor *>PyCapsule_GetPointer(dltensor, 'used_dltensor')
++@@ -70,7 +70,7 @@ cdef void pycapsule_deleter(object dltensor):
++         dlm_tensor = <DLManagedTensor *>PyCapsule_GetPointer(dltensor, 'dltensor')
++     manager_deleter(dlm_tensor)
++ 
++-cdef void manager_deleter(DLManagedTensor* tensor) nogil:
+++cdef void manager_deleter(DLManagedTensor* tensor) noexcept nogil:
++     if tensor.manager_ctx is NULL:
++         return
++     free(tensor.dl_tensor.shape)
++diff --git a/src/binding/petsc4py/src/petsc4py/PETSc/libpetsc4py.pyx b/src/binding/petsc4py/src/petsc4py/PETSc/libpetsc4py.pyx
++index 8026c9b3473..b5dfa1da97a 100644
++--- a/src/binding/petsc4py/src/petsc4py/PETSc/libpetsc4py.pyx
+++++ b/src/binding/petsc4py/src/petsc4py/PETSc/libpetsc4py.pyx
++@@ -490,7 +490,7 @@ cdef inline PetscErrorCode MatDestroy_Python_inner(
++ cdef PetscErrorCode MatDestroy_Python(
++     PetscMat mat,
++     ) \
++-    nogil except PETSC_ERR_PYTHON:
+++    except PETSC_ERR_PYTHON nogil:
++ 
++     FunctionBegin(b"MatDestroy_Python")
++     CHKERR( PetscObjectComposeFunction(
++@@ -1331,7 +1331,7 @@ cdef inline PetscErrorCode PCDestroy_Python_inner(
++ cdef PetscErrorCode PCDestroy_Python(
++     PetscPC pc,
++     ) \
++-    nogil except PETSC_ERR_PYTHON:
+++    except PETSC_ERR_PYTHON nogil:
++     FunctionBegin(b"PCDestroy_Python")
++     CHKERR( PetscObjectComposeFunction(
++             <PetscObject>pc, b"PCPythonSetType_C",
++@@ -1391,7 +1391,7 @@ cdef inline PetscErrorCode PCReset_Python_inner(
++ cdef PetscErrorCode PCReset_Python(
++     PetscPC pc,
++     ) \
++-    nogil except PETSC_ERR_PYTHON:
+++    except PETSC_ERR_PYTHON nogil:
++     if getRef(pc) == 0: return PETSC_SUCCESS
++     FunctionBegin(b"PCReset_Python")
++     if Py_IsInitialized(): PCReset_Python_inner(pc)
++@@ -1637,7 +1637,7 @@ cdef inline PetscErrorCode KSPDestroy_Python_inner(
++ cdef PetscErrorCode KSPDestroy_Python(
++     PetscKSP ksp,
++     ) \
++-    nogil except PETSC_ERR_PYTHON:
+++    except PETSC_ERR_PYTHON nogil:
++     FunctionBegin(b"KSPDestroy_Python")
++     CHKERR( PetscObjectComposeFunction(
++             <PetscObject>ksp, b"KSPPythonSetType_C",
++@@ -1687,7 +1687,7 @@ cdef inline PetscErrorCode KSPReset_Python_inner(
++ cdef PetscErrorCode KSPReset_Python(
++     PetscKSP ksp,
++     ) \
++-    nogil except PETSC_ERR_PYTHON:
+++    except PETSC_ERR_PYTHON nogil:
++     if getRef(ksp) == 0: return PETSC_SUCCESS
++     FunctionBegin(b"KSPReset_Python")
++     CHKERR( PetscObjectCompose(<PetscObject>ksp, b"@ksp.vec_work_sol", NULL) )
++@@ -1988,7 +1988,7 @@ cdef inline PetscErrorCode SNESDestroy_Python_inner(
++ cdef PetscErrorCode SNESDestroy_Python(
++     PetscSNES snes,
++     ) \
++-    nogil except PETSC_ERR_PYTHON:
+++    except PETSC_ERR_PYTHON nogil:
++     FunctionBegin(b"SNESDestroy_Python")
++     CHKERR( PetscObjectComposeFunction(
++             <PetscObject>snes, b"SNESPythonSetType_C",
++@@ -2040,7 +2040,7 @@ cdef inline PetscErrorCode SNESReset_Python_inner(
++ cdef PetscErrorCode SNESReset_Python(
++     PetscSNES snes,
++     ) \
++-    nogil except PETSC_ERR_PYTHON:
+++    except PETSC_ERR_PYTHON nogil:
++     if getRef(snes) == 0: return PETSC_SUCCESS
++     FunctionBegin(b"SNESReset_Python")
++     if Py_IsInitialized(): SNESReset_Python_inner(snes)
++@@ -2339,7 +2339,7 @@ cdef inline PetscErrorCode TSDestroy_Python_inner(
++ cdef PetscErrorCode TSDestroy_Python(
++     PetscTS ts,
++     ) \
++-    nogil except PETSC_ERR_PYTHON:
+++    except PETSC_ERR_PYTHON nogil:
++     FunctionBegin(b"TSDestroy_Python")
++     CHKERR( PetscObjectComposeFunction(
++             <PetscObject>ts, b"TSPythonSetType_C",
++@@ -2402,7 +2402,7 @@ cdef inline PetscErrorCode TSReset_Python_inner(
++ cdef PetscErrorCode TSReset_Python(
++     PetscTS ts,
++     ) \
++-    nogil except PETSC_ERR_PYTHON:
+++    except PETSC_ERR_PYTHON nogil:
++     if getRef(ts) == 0: return PETSC_SUCCESS
++     FunctionBegin(b"TSReset_Python")
++     CHKERR( PetscObjectCompose(<PetscObject>ts, b"@ts.vec_update", NULL) )
++@@ -2755,7 +2755,7 @@ cdef inline PetscErrorCode TaoDestroy_Python_inner(
++ cdef PetscErrorCode TaoDestroy_Python(
++     PetscTAO tao,
++     ) \
++-    nogil except PETSC_ERR_PYTHON:
+++    except PETSC_ERR_PYTHON nogil:
++     FunctionBegin(b"TaoDestroy_Python")
++     CHKERR( PetscObjectComposeFunction(
++             <PetscObject>tao, b"TaoPythonSetType_C",
++diff --git a/src/binding/petsc4py/src/petsc4py/PETSc/petscmat.pxi b/src/binding/petsc4py/src/petsc4py/PETSc/petscmat.pxi
++index c2d70337a60..d31b8271212 100644
++--- a/src/binding/petsc4py/src/petsc4py/PETSc/petscmat.pxi
+++++ b/src/binding/petsc4py/src/petsc4py/PETSc/petscmat.pxi
++@@ -594,12 +594,11 @@ cdef Mat mat_isub(Mat self, other):
++         self.setDiagonal(diag, PETSC_ADD_VALUES)
++         diag.destroy()
++     else:
++-        self.shift(other)
+++        self.shift(-other)
++     return self
++ 
++ cdef Mat mat_imul(Mat self, other):
++-    if (isinstance(other, tuple) or
++-        isinstance(other, list)):
+++    if isinstance(other, (tuple, list)):
++         L, R = other
++         self.diagonalScale(L, R)
++     else:
++@@ -629,17 +628,23 @@ cdef Mat mat_add(Mat self, other):
++ cdef Mat mat_sub(Mat self, other):
++     return mat_isub(mat_pos(self), other)
++ 
++-cdef Mat mat_mul(Mat self, other):
++-    if isinstance(other, Mat):
++-        return self.matMult(other)
++-    else:
++-        return mat_imul(mat_pos(self), other)
++-
++ cdef Vec mat_mul_vec(Mat self, Vec other):
+++    #CHKERR( MatMult(self.mat, other.vec, result.vec) )
++     cdef Vec result = self.createVecLeft()
++     self.mult(other, result)
++     return result
++ 
+++cdef Mat mat_mul_mat(Mat self, Mat other):
+++    return self.matMult(other)
+++
+++cdef Mat mat_mul(Mat self, other):
+++    if isinstance(other, Vec):
+++        return mat_mul_vec(self, <Vec>other)
+++    elif isinstance(other, Mat):
+++        return mat_mul_mat(self, <Mat>other)
+++    else:
+++        return mat_imul(mat_pos(self), other)
+++
++ cdef Mat mat_div(Mat self, other):
++     return mat_idiv(mat_pos(self), other)
++ 
++@@ -658,7 +663,7 @@ cdef Mat mat_rmul(Mat self, other):
++ 
++ cdef Mat mat_rdiv(Mat self, other):
++     <void>self; <void>other; # unused
++-    raise NotImplementedError
+++    return NotImplemented
++ 
++ # -----------------------------------------------------------------------------
++ 
++diff --git a/src/binding/petsc4py/src/petsc4py/PETSc/petscobj.pxi b/src/binding/petsc4py/src/petsc4py/PETSc/petscobj.pxi
++index b48af6612b9..c36db31742a 100644
++--- a/src/binding/petsc4py/src/petsc4py/PETSc/petscobj.pxi
+++++ b/src/binding/petsc4py/src/petsc4py/PETSc/petscobj.pxi
++@@ -47,19 +47,19 @@ cdef extern from "<petsc/private/garbagecollector.h>" nogil:
++ 
++ # --------------------------------------------------------------------
++ 
++-cdef inline PetscErrorCode PetscINCREF(PetscObject *obj) nogil:
+++cdef inline PetscErrorCode PetscINCREF(PetscObject *obj) noexcept nogil:
++     if obj    == NULL: return PETSC_SUCCESS
++     if obj[0] == NULL: return PETSC_SUCCESS
++     return PetscObjectReference(obj[0])
++ 
++-cdef inline PetscErrorCode PetscCLEAR(PetscObject* obj) nogil:
+++cdef inline PetscErrorCode PetscCLEAR(PetscObject* obj) noexcept nogil:
++     if obj    == NULL: return PETSC_SUCCESS
++     if obj[0] == NULL: return PETSC_SUCCESS
++     cdef PetscObject tmp
++     tmp = obj[0]; obj[0] = NULL
++     return PetscObjectDestroy(&tmp)
++ 
++-cdef inline PetscErrorCode PetscDEALLOC(PetscObject* obj) nogil:
+++cdef inline PetscErrorCode PetscDEALLOC(PetscObject* obj) noexcept nogil:
++     if obj    == NULL: return PETSC_SUCCESS
++     if obj[0] == NULL: return PETSC_SUCCESS
++     cdef PetscObject tmp
++@@ -68,7 +68,7 @@ cdef inline PetscErrorCode PetscDEALLOC(PetscObject* obj) nogil:
++     if     (<int>PetscFinalizeCalled):   return PETSC_SUCCESS
++     return PetscObjectDelayedDestroy(&tmp)
++ 
++-cdef inline PetscErrorCode PetscINCSTATE(PetscObject *obj) nogil:
+++cdef inline PetscErrorCode PetscINCSTATE(PetscObject *obj) noexcept nogil:
++     if obj    == NULL: return PETSC_SUCCESS
++     if obj[0] == NULL: return PETSC_SUCCESS
++     return PetscObjectStateIncrease(obj[0])
++@@ -89,12 +89,12 @@ cdef extern from * nogil:
++         const char *prefix
++         PetscInt refct
++         void *python_context
++-        PetscErrorCode (*python_destroy)(void*)
+++        PetscErrorCode (*python_destroy)(void*) noexcept nogil
++ 
++-cdef inline void Py_DecRef(PyObject *ob) with gil:
+++cdef inline void Py_DecRef(PyObject *ob) noexcept with gil:
++     _Py_DecRef(ob)
++ 
++-cdef PetscErrorCode PetscDelPyDict(void* ptr) nogil:
+++cdef PetscErrorCode PetscDelPyDict(void* ptr) noexcept nogil:
++     if ptr != NULL and Py_IsInitialized():
++         Py_DecRef(<PyObject*>ptr)
++     return PETSC_SUCCESS
++@@ -108,7 +108,7 @@ cdef object PetscGetPyDict(PetscObject obj, bint create):
++         return <object>obj.python_context
++     return None
++ 
++-cdef object PetscGetPyObj(PetscObject o, char name[]):
+++cdef inline object PetscGetPyObj(PetscObject o, char name[]):
++     cdef object dct = PetscGetPyDict(o, False)
++     if dct is None: return None
++     cdef object key = bytes2str(name)
++@@ -119,7 +119,7 @@ cdef object PetscGetPyObj(PetscObject o, char name[]):
++     if v != NULL: return <object>v
++     return None
++ 
++-cdef object PetscSetPyObj(PetscObject o, char name[], object p):
+++cdef inline object PetscSetPyObj(PetscObject o, char name[], object p):
++     cdef object dct
++     if p is not None:
++         dct = PetscGetPyDict(o, True)
++diff --git a/src/binding/petsc4py/src/petsc4py/PETSc/petscvec.pxi b/src/binding/petsc4py/src/petsc4py/PETSc/petscvec.pxi
++index 69f385876e8..46bc090841b 100644
++--- a/src/binding/petsc4py/src/petsc4py/PETSc/petscvec.pxi
+++++ b/src/binding/petsc4py/src/petsc4py/PETSc/petscvec.pxi
++@@ -250,7 +250,7 @@ cdef Vec vec_iadd(Vec self, other):
++     if isinstance(other, Vec):
++         alpha = 1; vec = other
++         CHKERR( VecAXPY(self.vec, alpha, vec.vec) )
++-    elif isinstance(other, tuple) or isinstance(other, list):
+++    elif isinstance(other, (tuple, list)):
++         other, vec = other
++         alpha = asScalar(other)
++         CHKERR( VecAXPY(self.vec, alpha, vec.vec) )
++@@ -265,7 +265,7 @@ cdef Vec vec_isub(Vec self, other):
++     if isinstance(other, Vec):
++         alpha = 1; vec = other
++         CHKERR( VecAXPY(self.vec, -alpha, vec.vec) )
++-    elif isinstance(other, tuple) or isinstance(other, list):
+++    elif isinstance(other, (tuple, list)):
++         other, vec = other
++         alpha = asScalar(other)
++         CHKERR( VecAXPY(self.vec, -alpha, vec.vec) )
++@@ -477,12 +477,12 @@ cdef vec_get_dlpack_ctx(Vec self):
++ 
++ # --------------------------------------------------------------------
++ 
++-cdef int Vec_AcquireArray(PetscVec v, PetscScalar *a[], int ro) nogil except -1:
+++cdef int Vec_AcquireArray(PetscVec v, PetscScalar *a[], int ro) except -1 nogil:
++     if ro: CHKERR( VecGetArrayRead(v, <const PetscScalar**>a) )
++     else:  CHKERR( VecGetArray(v, a) )
++     return 0
++ 
++-cdef int Vec_ReleaseArray(PetscVec v, PetscScalar *a[], int ro) nogil except -1:
+++cdef int Vec_ReleaseArray(PetscVec v, PetscScalar *a[], int ro) except -1 nogil:
++     if ro: CHKERR( VecRestoreArrayRead(v, <const PetscScalar**>a) )
++     else:  CHKERR( VecRestoreArray(v, a) )
++     return 0
++@@ -511,14 +511,14 @@ cdef class _Vec_buffer:
++ 
++     #
++ 
++-    cdef int acquire(self) nogil except -1:
+++    cdef int acquire(self) except -1 nogil:
++         if not self.hasarray and self.vec != NULL:
++             CHKERR( VecGetLocalSize(self.vec, &self.size) )
++             Vec_AcquireArray(self.vec, &self.data, self.readonly)
++             self.hasarray = 1
++         return 0
++ 
++-    cdef int release(self) nogil except -1:
+++    cdef int release(self) except -1 nogil:
++         if self.hasarray and self.vec != NULL:
++             self.size = 0
++             Vec_ReleaseArray(self.vec, &self.data, self.readonly)
++-- 
++GitLab
++
++
++From 7f8b0fd226aa292ce22805c77c19ae70bb912537 Mon Sep 17 00:00:00 2001
++From: Lisandro Dalcin <dalcinl@gmail.com>
++Date: Sat, 22 Jul 2023 21:37:32 +0300
++Subject: [PATCH 2/2] Silence Clang warnings in Cython-generated C code
++
++---
++ src/binding/petsc4py/src/petsc4py/PETSc/PETSc.pyx | 7 +++++++
++ 1 file changed, 7 insertions(+)
++
++diff --git a/src/binding/petsc4py/src/petsc4py/PETSc/PETSc.pyx b/src/binding/petsc4py/src/petsc4py/PETSc/PETSc.pyx
++index 2f2178bbbc5..b605c02bc14 100644
++--- a/src/binding/petsc4py/src/petsc4py/PETSc/PETSc.pyx
+++++ b/src/binding/petsc4py/src/petsc4py/PETSc/PETSc.pyx
++@@ -4,6 +4,13 @@ cdef extern from * nogil:
++     """
++     #include "lib-petsc/compat.h"
++     #include "lib-petsc/custom.h"
+++
+++    /* Silence Clang warnings in Cython-generated C code */
+++    #if defined(__clang__)
+++    #pragma clang diagnostic ignored "-Wextra-semi-stmt"
+++    #pragma clang diagnostic ignored "-Wparentheses-equality"
+++    #pragma clang diagnostic ignored "-Wunreachable-code-fallthrough"
+++    #endif
++     """
++ 
++ # --------------------------------------------------------------------
++-- 
++GitLab
++
+diff --git a/PKGBUILD b/PKGBUILD
+index ed2c3a3..cc56d19 100644
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -3,7 +3,7 @@
+ # Contributor: Myles English <myles at rockhead dot biz>
+ # Contributor: Lucas H. Gabrielli <heitzmann at gmail dot com>
+ pkgver=3.19.3
+-pkgrel=1
++pkgrel=2
+ pkgname=petsc
+ _config=linux-c-opt
+ # if --with-debugging=yes is set then PETSC_ARCH is automatically set to
+@@ -35,13 +35,19 @@ optdepends=('trilinos: support for trilinos'
+ 
+ install=petsc.install
+ source=(http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/${pkgname}-${pkgver}.tar.gz
++        https://gitlab.com/petsc/petsc/-/merge_requests/6740.patch
+         test_optdepends.sh)
+ sha512sums=('7976b9c66668da9ed6d05f54ed1a5e11a9cc185b38acff712c0d21f929cff54f5751bea8ecbf8bda278780e4277b96b0b34061af1f28adf0824edb13763b8203'
++            '9c7e8ab51239bd06af2999ad1b225ba23206a2edb9954d732a5fe1a9e0a03d3734c3f54f2bd8f7ab1f632d1ad880e8dabce97ab677b16a7c8817d207ea6cd3b7'
+             'bdbff55c99205ae6edf574af319d19133aaf91eeae2dbb826f207be9f77ec08dfaf4afca6642b1536f159b7516c1fdeb29f35356dbc69c53c4ce506d44bf5e40')
+ 
+ _install_dir=/opt/petsc/${_config}
+ _petsc_arch=arch-${_config}
+ 
++prepare() {
++  cd ${srcdir}/${pkgname}-${pkgver}
++  patch --strip=1 --input=${srcdir}/6740.patch
++}
+ 
+ build() {
+   _build_dir=${srcdir}/${pkgname}-${pkgver}
+-- 
+2.41.0
+
