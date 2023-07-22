@@ -14,21 +14,12 @@ ARG AUR_PACKAGES="\
   "
 
 ARG PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/0001-Enable-python-bindings.patch"
-
-ARG PETSC_PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/0001-Cython-3-compatibility.patch"
+# ARG PETSC_PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/0001-Cython-3-compatibility.patch"
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
   yay --noconfirm -S ${OPT_PACKAGES} && \
   git config --global user.email github-actions@github.com && \
   git config --global user.name github-actions && \
-  yay -G petsc && \
-  cd petsc && \
-  curl -O ${PETSC_PATCH} && \
-  git am --signoff < 0001-Cython-3-compatibility.patch && \
-  makepkg -s --noconfirm && \
-  sudo pacman --noconfirm -U /tmp/petsc-*.pkg.tar.zst && \
-  mkdir -p ~/.cache/yay/petsc && \
-  mv petsc-*.pkg.tar.zst ~/.cache/yay/petsc && \
   yay -G ${AUR_PACKAGES} && \
   cd deal-ii && \
   curl -O ${PATCH} && \
@@ -37,6 +28,14 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
   mkdir -p ~/.cache/yay/deal-ii && \
   mv *.pkg.tar.zst ~/.cache/yay/deal-ii
 
+# yay -G petsc && \
+# cd petsc && \
+# curl -O ${PETSC_PATCH} && \
+# git am --signoff < 0001-Cython-3-compatibility.patch && \
+# makepkg -s --noconfirm && \
+# sudo pacman --noconfirm -U /tmp/petsc-*.pkg.tar.zst && \
+# mkdir -p ~/.cache/yay/petsc && \
+# mv petsc-*.pkg.tar.zst ~/.cache/yay/petsc && \
 # 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
