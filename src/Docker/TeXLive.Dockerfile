@@ -45,7 +45,6 @@ USER gitpod
 ARG PACKAGES="\
   git \
   java-runtime \
-  ghostscript \
   biber \
   doxygen \
   plantuml \
