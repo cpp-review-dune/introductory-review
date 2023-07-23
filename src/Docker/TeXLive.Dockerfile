@@ -49,7 +49,9 @@ ARG PACKAGES="\
   doxygen \
   plantuml \
   texlive-binextra \
+  texlive-bibtexextra \
   texlive-fontsextra \
+  texlive-fontutils \
   texlive-langgerman \
   texlive-latexextra \
   texlive-plaingeneric \
