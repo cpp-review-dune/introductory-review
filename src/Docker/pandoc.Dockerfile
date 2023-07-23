@@ -45,11 +45,13 @@ ARG PACKAGES="\
   biber \
   pandoc-cli \
   tex-gyre-fonts \
+  texlive-bibtexextra \
   texlive-binextra \
   texlive-fontsextra \
   texlive-fontsrecommended \
   texlive-latexextra \
   texlive-luatex \
+  texlive-meta \
   ttf-fira-code \
   minted \
   "
