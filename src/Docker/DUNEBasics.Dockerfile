@@ -48,6 +48,7 @@ ARG PACKAGES="\
   minted \
   python-sphinx \
   texlive-bibtexextra \
+  texlive-binextra \
   texlive-fontsextra \
   texlive-latexextra \
   texlive-langspanish \
