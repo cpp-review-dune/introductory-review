@@ -39,22 +39,24 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
-  python-sphinx \
-  texlive-latexextra \
-  texlive-pictures \
-  texlive-fontsextra \
-  texlive-science \
-  texlive-bibtexextra \
   biber \
-  inkscape \
   doxygen \
-  ttf-fira-code \
-  tldr \
+  fmt \
+  inkscape \
   man-pages \
   man-pages-es \
-  python-sphinx \
   minted \
-  fmt \
+  python-sphinx \
+  texlive-bibtexextra \
+  texlive-fontsextra \
+  texlive-latexextra \
+  texlive-langspanish \
+  texlive-luatex \
+  texlive-mathscience \
+  texlive-pictures \
+  texlive-plaingeneric \
+  tldr \
+  ttf-fira-code \
   "
 # http://fpliu-blog.chinacloudsites.cn/it/software/man
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
