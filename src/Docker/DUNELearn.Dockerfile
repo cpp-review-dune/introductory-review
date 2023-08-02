@@ -4,6 +4,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
   nbqa \
+  parmetis-git \
   dune-pdelab \
   "
 
@@ -24,12 +25,16 @@ ARG PACKAGES="\
   jupyterlab \
   minted \
   pandoc \
+  texlive-binextra \
   "
 
-COPY --from=build /home/builder/.cache/yay/arpackpp/*.pkg.tar.zst /tmp/
-COPY --from=build /home/builder/.cache/yay/dune-typetree/*.pkg.tar.zst /tmp/
-COPY --from=build /home/builder/.cache/yay/dune-functions/*.pkg.tar.zst /tmp/
-COPY --from=build /home/builder/.cache/yay/dune-pdelab/*.pkg.tar.zst /tmp/
+COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
+
+#COPY --from=build /home/builder/.cache/yay/arpackpp/*.pkg.tar.zst /tmp/
+#COPY --from=build /home/builder/.cache/yay/parmetis-git/*.pkg.tar.zst /tmp/
+#COPY --from=build /home/builder/.cache/yay/dune-typetree/*.pkg.tar.zst /tmp/
+#COPY --from=build /home/builder/.cache/yay/dune-functions/*.pkg.tar.zst /tmp/
+#COPY --from=build /home/builder/.cache/yay/dune-pdelab/*.pkg.tar.zst /tmp/
 
 RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
