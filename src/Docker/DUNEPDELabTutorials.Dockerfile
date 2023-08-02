@@ -22,7 +22,7 @@ ARG PACKAGES="\
   texlive-fontsextra \
   "
 
-RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
+RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/*

@@ -6,7 +6,7 @@ ARG AUR_PACKAGES="\
   ansiweather \
   "
 
-RUN yay --noconfirm --noprogressbar -Syyuq ${AUR_PACKAGES}
+RUN yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES}
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="DUNE-GitHub Arch" \
@@ -54,7 +54,7 @@ RUN sudo pacman-key --init && \
   sudo pacman-key --finger ${GPG_KEY} && \
   sudo pacman-key --lsign-key ${GPG_KEY} && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring && \
-  sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
+  sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
   echo -e '\n[dune-core-git]\nSigLevel = Required DatabaseOptional\nServer = https://dune-archiso.gitlab.io/repository/dune-core-git/$arch\n' | sudo tee -a /etc/pacman.conf && \

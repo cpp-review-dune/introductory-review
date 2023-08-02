@@ -6,7 +6,7 @@ ARG AUR_PACKAGES="\
   dumux \
   "
 
-RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
+RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
   yay --needed --noconfirm --noprogressbar -S ${AUR_PACKAGES}
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
@@ -26,7 +26,7 @@ ARG OPT_POST_PACKAGES="\
 
 # ARG DUMUX_LECTURE="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/dumux-lecture/PKGBUILD"
 
-RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
+RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
   yay --needed --noconfirm --noprogressbar -S ${OPT_PRE_PACKAGES} && \
   yay --needed --noconfirm --noprogressbar -S ${OPT_POST_PACKAGES}
 
@@ -79,7 +79,7 @@ ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/tem
 RUN sudo pacman-key --init && \
   sudo pacman-key --populate archlinux && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring && \
-  sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
+  sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \

@@ -8,7 +8,7 @@ ARG AUR_PACKAGES="\
 
 # nbqa parmetis-git
 
-RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
+RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   yay --noconfirm --noprogressbar -S parmetis-git && \
   yay --noconfirm --noprogressbar -S ${AUR_PACKAGES} && \
   ls -lR /home/builder
@@ -32,7 +32,7 @@ ARG PACKAGES="\
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
-RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
+RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
   ls /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --debug -U /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --debug --noprogressbar -S ${PACKAGES} && \

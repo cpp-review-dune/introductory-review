@@ -7,7 +7,7 @@ ARG AUR_PACKAGES="\
   gmsh \
   "
 
-RUN yay --noconfirm --noprogressbar -Syyuq ${AUR_PACKAGES}
+RUN yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES}
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="dune-book Arch" \
@@ -28,7 +28,7 @@ ARG PACKAGES="\
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
-RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
+RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
