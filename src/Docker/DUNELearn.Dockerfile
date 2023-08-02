@@ -11,7 +11,7 @@ ARG AUR_PACKAGES="\
 RUN yay --repo --needed --noconfirm --noprogressbar -Syyuq && \
   yay --noconfirm --noprogressbar -S parmetis-git && \
   yay --noconfirm --noprogressbar -S ${AUR_PACKAGES} && \
-  ls -lR /home/builder/.cache/yay
+  ls -lR /home/builder
 
 FROM ghcr.io/cpp-review-dune/introductory-review/dunefem
 
@@ -33,8 +33,9 @@ ARG PACKAGES="\
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 RUN sudo pacman --needed --noconfirm --noprogressbar -Syyuq && \
-  sudo pacman --needed --noconfirm  --debug -U /tmp/*.pkg.tar.zst && \
-  sudo pacman --needed --noconfirm  --debug --noprogressbar -S ${PACKAGES} && \
+  ls /tmp/*.pkg.tar.zst && \
+  sudo pacman --needed --noconfirm --debug -U /tmp/*.pkg.tar.zst && \
+  sudo pacman --needed --noconfirm --debug --noprogressbar -S ${PACKAGES} && \
   rm /tmp/*.pkg.tar.zst && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
