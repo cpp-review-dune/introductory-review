@@ -4,6 +4,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
   dune-fem \
+  parmetis-git \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
