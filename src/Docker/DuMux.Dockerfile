@@ -4,7 +4,6 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS dumux
 
 ARG AUR_PACKAGES="\
   dumux \
-  parmetis-git \
   "
 
 RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
@@ -13,6 +12,7 @@ RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PRE_PACKAGES="\
+  parmetis-git \
   dune-alugrid \
   dune-spgrid \
   dune-subgrid \
