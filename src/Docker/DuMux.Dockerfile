@@ -4,6 +4,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS dumux
 
 ARG AUR_PACKAGES="\
   dumux \
+  parmetis-git \
   "
 
 RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
