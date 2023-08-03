@@ -3,13 +3,12 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
+  parmetis-git \
   dune-pdelab \
+  nbqa \
   "
 
-# nbqa parmetis-git
-
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
-  yay --noconfirm --noprogressbar -S parmetis-git && \
   yay --noconfirm --noprogressbar -S ${AUR_PACKAGES} && \
   ls -lR /home/builder
 
