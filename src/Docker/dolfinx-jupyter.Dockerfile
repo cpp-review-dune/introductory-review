@@ -8,9 +8,10 @@ ARG AUR_PACKAGES="\
   python-fenics-dolfinx \
   python-pyvista \
   python-trame \
+  nbqa \
   "
 
-# https://docs.pyvista.org/user-guide/jupyter/ipyvtk_plotting.html nbqa
+# https://docs.pyvista.org/user-guide/jupyter/ipyvtk_plotting.html
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   yay --mflags --nocheck --noconfirm -S ${AUR_PACKAGES}
 
