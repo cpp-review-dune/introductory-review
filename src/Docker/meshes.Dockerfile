@@ -6,6 +6,8 @@ ARG MESHES_PACKAGES="\
   python-pygmsh \
   python-meshpy \
   python-meshio \
+  python-pyvista \
+  python-trame \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
