@@ -38,7 +38,7 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
-  neofetch \
+  git \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
