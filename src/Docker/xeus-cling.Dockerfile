@@ -3,6 +3,10 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
+  armadillo \
+	matplotlib-cpp-git \
+  matplotplusplus \
+  sciplot \
   xeus-cling \
   "
 
@@ -38,6 +42,8 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
+  eigen \
+  fmt \
   git \
   "
 
