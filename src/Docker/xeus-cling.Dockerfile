@@ -3,13 +3,10 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
-  armadillo \
-	matplotlib-cpp-git \
-  matplotplusplus \
-  sciplot \
+  dune-common \  
   xeus-cling \
   "
-
+#armadillo matplotlib-cpp-git matplotplusplus sciplot
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   yay --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
@@ -42,11 +39,9 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
-  eigen \
-  fmt \
   git \
   "
-
+# eigen fmt
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 RUN sudo pacman-key --init && \
