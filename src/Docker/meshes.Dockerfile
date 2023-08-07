@@ -8,6 +8,7 @@ ARG MESHES_PACKAGES="\
   python-meshio \
   python-pyvista \
   python-trame \
+  python-trame-vtk \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
@@ -61,6 +62,7 @@ RUN sudo pacman-key --init && \
   echo "alias startJupyter=\"jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --ServerApp.allow_origin='\$(gp url 8888)' --IdentityProvider.token='' --ServerApp.password=''\"" >> ~/.bashrc
 
 ENV PYTHONPATH="/usr/share/gmsh/api/python:${PYTHONPATH}"
+ENV JULIA_LOAD_PATH="/usr/share/gmsh/api/julia/:${JULIA_LOAD_PATH}"
 
 EXPOSE 8888
 
