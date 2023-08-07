@@ -9,6 +9,7 @@ ARG MESHES_PACKAGES="\
   python-pyvista \
   python-trame \
   python-trame-vtk \
+  python-trame-vuetify \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
@@ -48,6 +49,9 @@ ARG PACKAGES="\
   git \
   julia \
   "
+
+#python-setuptools
+
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 RUN sudo pacman-key --init && \
@@ -63,6 +67,7 @@ RUN sudo pacman-key --init && \
 
 ENV PYTHONPATH="/usr/share/gmsh/api/python:${PYTHONPATH}"
 ENV JULIA_LOAD_PATH="/usr/share/gmsh/api/julia/:${JULIA_LOAD_PATH}"
+ENV TRAME_DISABLE_V3_WARNING="1"
 
 EXPOSE 8888
 
