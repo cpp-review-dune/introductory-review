@@ -68,6 +68,9 @@ RUN sudo pacman-key --init && \
 ENV PYTHONPATH="/usr/share/gmsh/api/python:${PYTHONPATH}"
 ENV JULIA_LOAD_PATH="/usr/share/gmsh/api/julia/:${JULIA_LOAD_PATH}"
 ENV TRAME_DISABLE_V3_WARNING="1"
+ENV DISPLAY=":99.0"
+ENV PYVISTA_OFF_SCREEN="true"
+ENV PYVISTA_USE_IPYVTK="true"
 
 EXPOSE 8888
 
