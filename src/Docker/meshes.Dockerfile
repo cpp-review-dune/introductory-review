@@ -49,9 +49,8 @@ ARG PACKAGES="\
   git \
   julia \
   xorg-server-xvfb \
+  python-setuptools \
   "
-
-#python-setuptools
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
@@ -72,6 +71,8 @@ ENV TRAME_DISABLE_V3_WARNING="1"
 ENV DISPLAY=":99.0"
 ENV PYVISTA_OFF_SCREEN="true"
 ENV PYVISTA_USE_IPYVTK="true"
+ENV PYVISTA_TRAME_SERVER_PROXY_PREFIX="/proxy/"
+ENV PYVISTA_TRAME_SERVER_PROXY_ENABLED="True"
 
 EXPOSE 8888
 
