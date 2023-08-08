@@ -1,18 +1,22 @@
 # Copyleft (c) December, 2022, Oromion.
 
+FROM ghcr.io/cpp-review-dune/introductory-review/aur AS dune
+
+ARG DUNE_PACKAGES="\
+  dune-common \  
+  "
+
+RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
+  yay --noconfirm -S ${DUNE_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
-  dune-common \  
   xeus-cling \
   "
-
 #armadillo matplotlib-cpp-git matplotplusplus sciplot
-
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
-  yay --noconfirm -S ${AUR_PACKAGES}
-
-#2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+  yay --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="xeus-cling Arch" \
@@ -45,9 +49,8 @@ USER gitpod
 ARG PACKAGES="\
   git \
   "
-
 # eigen fmt
-
+COPY --from=dune /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 RUN sudo pacman-key --init && \
