@@ -44,10 +44,11 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
-  jupyterlab \
+  jupyterlab-widgets \
   python-matplotlib \
   git \
   julia \
+  xorg-server-xvfb \
   "
 
 #python-setuptools
