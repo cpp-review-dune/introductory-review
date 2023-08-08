@@ -3,7 +3,7 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS dune
 
 ARG DUNE_PACKAGES="\
-  dune-common \  
+  dune-istl \  
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
@@ -47,9 +47,10 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
+  fmt \
   git \
   "
-# eigen fmt
+# eigen
 COPY --from=dune /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
