@@ -3,7 +3,8 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS dune
 
 ARG DUNE_PACKAGES="\
-  dune-istl \  
+  dune-functions \
+  metis \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
