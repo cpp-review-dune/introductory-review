@@ -12,11 +12,22 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
+ARG PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/0001-Enable-redefinitions-great.patch"
+
 ARG AUR_PACKAGES="\
   xeus-cling \
   "
 #armadillo matplotlib-cpp-git matplotplusplus sciplot
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
+  git config --global user.email github-actions@github.com && \
+  git config --global user.name github-actions && \
+  yay -G cling && \
+  cd cling && \
+  curl -O ${PATCH} && \
+  git am --signoff < 0001-Enable-redefinitions-great.patch && \
+  makepkg -si --noconfirm && \
+  mkdir -p ~/.cache/yay/cling && \
+  mv *.pkg.tar.zst ~/.cache/yay/cling && \
   yay --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \

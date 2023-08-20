@@ -1,0 +1,47 @@
+From 89ae74b0f35d17a7b13e0127990f994ea03c00d8 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Carlos=20Aznar=C3=A1n=20Laos?= <caznaranl@uni.pe>
+Date: Sun, 20 Aug 2023 13:02:23 -0500
+Subject: [PATCH] Enable redefinitions, great
+
+---
+ PKGBUILD | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/PKGBUILD b/PKGBUILD
+index ee1048c..ebf9a32 100644
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -1,4 +1,5 @@
+ # Maintainer: archibald869 <archibald869 at web dot de>
++# Contributor: Carlos Aznarán <caznaranl@uni.pe>
+ 
+ pkgname=cling
+ pkgver=0.9
+@@ -21,11 +22,13 @@ source=(
+     "cling-llvm::git+http://root.cern/git/llvm.git#tag=cling-v$pkgver"
+     "cling-clang::git+http://root.cern/git/clang.git#tag=cling-v$pkgver"
+     "cling::git+http://root.cern/git/cling.git#tag=v$pkgver"
++    "https://raw.githubusercontent.com/conda-forge/cling-feedstock/main/recipe/patches/enable-redefinition-allowed.patch"
+ )
+ sha256sums=(
+     "SKIP"
+     "SKIP"
+     "SKIP"
++    "SKIP"
+ )
+ options=('!lto')
+ 
+@@ -42,6 +45,10 @@ prepare() {
+     # patch missing header file
+     sed -i '/^#include <vector>$/i #include <limits>' \
+         "$srcdir/cling-llvm/utils/benchmark/src/benchmark_register.h"
++
++    cd "$srcdir/cling-llvm"
++    # https://github.com/root-project/cling/issues/360
++    patch -p1 -i ../enable-redefinition-allowed.patch
+ }
+ 
+ build() {
+-- 
+2.41.0
+
