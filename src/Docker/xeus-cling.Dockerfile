@@ -15,6 +15,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 ARG PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/0001-Enable-redefinitions.patch"
 
 ARG AUR_PACKAGES="\
+  nbqa \
   xeus-cling \
   "
 #armadillo matplotlib-cpp-git matplotplusplus sciplot
