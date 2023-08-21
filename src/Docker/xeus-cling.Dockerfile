@@ -12,7 +12,7 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
-ARG PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/0001-Enable-redefinitions-great.patch"
+ARG PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/0001-Enable-redefinitions.patch"
 
 ARG AUR_PACKAGES="\
   xeus-cling \
@@ -24,7 +24,7 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   yay -G cling && \
   cd cling && \
   curl -O ${PATCH} && \
-  git am --signoff < 0001-Enable-redefinitions-great.patch && \
+  git am --signoff < 0001-Enable-redefinitions.patch && \
   makepkg -si --noconfirm && \
   mkdir -p ~/.cache/yay/cling && \
   mv *.pkg.tar.zst ~/.cache/yay/cling && \

@@ -1,0 +1,37 @@
+From a34dda8bef775e56f9ce861c15ca8d5ec2f3b892 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Carlos=20Aznar=C3=A1n=20Laos?= <caznaranl@uni.pe>
+Date: Sun, 20 Aug 2023 20:56:07 -0500
+Subject: [PATCH] Enable redefinitions
+
+---
+ PKGBUILD | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/PKGBUILD b/PKGBUILD
+index ee1048c..795753b 100644
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -1,8 +1,9 @@
+ # Maintainer: archibald869 <archibald869 at web dot de>
++# Contributor: Carlos Aznarán <caznaranl@uni.pe>
+ 
+ pkgname=cling
+ pkgver=0.9
+-pkgrel=5
++pkgrel=6
+ pkgdesc="Interactive C++ interpreter, built on the top of LLVM and Clang libraries"
+ arch=("i686" "x86_64")
+ url="https://root.cern.ch/cling"
+@@ -42,6 +43,9 @@ prepare() {
+     # patch missing header file
+     sed -i '/^#include <vector>$/i #include <limits>' \
+         "$srcdir/cling-llvm/utils/benchmark/src/benchmark_register.h"
++    # https://github.com/root-project/cling/issues/360
++    sed -i 's/AllowRedefinition(0)/AllowRedefinition(1)/' \
++        "$srcdir/cling/include/cling/Interpreter/RuntimeOptions.h"
+ }
+ 
+ build() {
+-- 
+2.41.0
+
