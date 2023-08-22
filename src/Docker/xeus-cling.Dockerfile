@@ -1,24 +1,13 @@
 # Copyleft (c) December, 2022, Oromion.
 
-FROM ghcr.io/cpp-review-dune/introductory-review/aur AS dune
-
-ARG DUNE_PACKAGES="\
-  dune-functions \
-  metis \
-  "
-
-RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
-  yay --noconfirm -S ${DUNE_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
-
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/0001-Enable-redefinitions.patch"
 
 ARG AUR_PACKAGES="\
-  nbqa \
   xeus-cling \
   "
-#armadillo matplotlib-cpp-git matplotplusplus sciplot
+
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   git config --global user.email github-actions@github.com && \
   git config --global user.name github-actions && \
@@ -60,11 +49,9 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
-  fmt \
   git \
   "
-# eigen
-COPY --from=dune /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
+
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 RUN sudo pacman-key --init && \
