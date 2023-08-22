@@ -7,6 +7,9 @@ ARG PKGBUILD="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILD
 ARG INTERPOLATION_PACKAGES="\
   python-bezier \
   python-gustaf \
+  python-seaborn \
+  python-splines \
+  python-sympy \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
