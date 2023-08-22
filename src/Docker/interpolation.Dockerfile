@@ -2,7 +2,7 @@
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
-ARG PKGBUILD="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/python-splines/PKGBUILD"
+ARG PKGBUILD="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/python-splinepy/PKGBUILD"
 
 ARG INTERPOLATION_PACKAGES="\
   python-bezier \
@@ -13,8 +13,8 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   yay --noconfirm -S ${INTERPOLATION_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   curl -LO ${PKGBUILD} && \
   makepkg --noconfirm -src && \
-  mkdir -p /home/builder/.cache/yay/python-splines && \
-  mv python-splines-*.pkg.tar.zst /home/builder/.cache/yay/python-splines
+  mkdir -p /home/builder/.cache/yay/python-splinepy && \
+  mv python-splinepy-*.pkg.tar.zst /home/builder/.cache/yay/python-splinepy
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="Interpolation Arch" \
