@@ -8,9 +8,7 @@ ARG INTERPOLATION_PACKAGES="\
   nbqa \
   python-bezier \
   python-gustaf \
-  python-seaborn \
   python-splines \
-  python-sympy \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
@@ -51,6 +49,9 @@ USER gitpod
 ARG PACKAGES="\
   jupyterlab \
   git \
+  python-black \
+  python-seaborn \
+  python-sympy \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
