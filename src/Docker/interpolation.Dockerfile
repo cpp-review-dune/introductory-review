@@ -5,6 +5,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 ARG PKGBUILD="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/python-splinepy/PKGBUILD"
 
 ARG INTERPOLATION_PACKAGES="\
+  nbqa \
   python-bezier \
   python-gustaf \
   python-seaborn \
