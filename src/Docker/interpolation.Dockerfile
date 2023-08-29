@@ -47,6 +47,7 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
+  autopep8 \
   jupyterlab \
   git \
   python-black \
