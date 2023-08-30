@@ -47,7 +47,7 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG _PACKAGES="\
-  blas-openblas
+  blas-openblas \
   "
 
 ARG PACKAGES="\
