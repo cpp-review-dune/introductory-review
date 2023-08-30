@@ -51,6 +51,7 @@ ARG PACKAGES="\
   jupyterlab \
   git \
   python-black \
+  python-distro \
   python-seaborn \
   python-sympy \
   texlive-fontsrecommended \
