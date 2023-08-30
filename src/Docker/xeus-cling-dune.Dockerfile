@@ -24,7 +24,6 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 ARG PACKAGES="\
   autopep8 \
   fmt \
-  git \
   "
 # eigen
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
