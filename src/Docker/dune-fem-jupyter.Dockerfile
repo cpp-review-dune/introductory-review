@@ -7,11 +7,10 @@ ARG AUR_PACKAGES="\
   python-mayavi \
   dune-spgrid \
   dune-fem-dg \
-  dune-vem \
   python-pygmsh \
   "
 
-# petsc
+# petsc dune-vem
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   yay --noconfirm -S ${AUR_PACKAGES}
