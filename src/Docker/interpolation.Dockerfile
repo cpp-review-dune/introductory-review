@@ -48,6 +48,7 @@ USER gitpod
 
 ARG _PACKAGES="\
   blas-openblas \
+  python-numpy \
   "
 
 ARG PACKAGES="\
