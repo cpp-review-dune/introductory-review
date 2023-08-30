@@ -48,8 +48,9 @@ USER gitpod
 
 ARG PACKAGES="\
   autopep8 \
-  jupyterlab \
   git \
+  jupyterlab \
+  blas-openblas \
   python-black \
   python-distro \
   python-seaborn \
