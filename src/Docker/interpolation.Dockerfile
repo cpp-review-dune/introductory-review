@@ -53,6 +53,8 @@ ARG PACKAGES="\
   python-black \
   python-seaborn \
   python-sympy \
+  texlive-fontsrecommended \
+  texlive-latexextra \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
