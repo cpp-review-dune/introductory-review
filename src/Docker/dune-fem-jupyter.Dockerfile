@@ -3,11 +3,10 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
-  python-mayavi \
   python-pygmsh \
   "
 
-# petsc dune-vem dune-fem-dg dune-spgrid
+# petsc dune-vem dune-fem-dg dune-spgrid python-mayavi
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   yay --noconfirm -S ${AUR_PACKAGES}
