@@ -15,28 +15,19 @@ ARG AUR_PACKAGES="\
   "
 
 ARG PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/0001-Enable-python-bindings.patch"
-# ARG PETSC_PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/0001-Cython-3-compatibility.patch"
 
-RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
-  yay --noconfirm -S ${OPT_PACKAGES} && \
-  git config --global user.email github-actions@github.com && \
-  git config --global user.name github-actions && \
-  yay -G ${AUR_PACKAGES} && \
-  cd deal-ii && \
-  curl -O ${PATCH} && \
-  git am --signoff < 0001-Enable-python-bindings.patch && \
-  makepkg -s --noconfirm && \
-  mkdir -p ~/.cache/yay/deal-ii && \
+RUN yay --repo --needed --noconfirm --noprogressbar -Syuq &&
+  yay --noconfirm -S ${OPT_PACKAGES} &&
+  git config --global user.email github-actions@github.com &&
+  git config --global user.name github-actions &&
+  yay -G ${AUR_PACKAGES} &&
+  cd deal-ii &&
+  curl -O ${PATCH} &&
+  git am --signoff <0001-Enable-python-bindings.patch &&
+  makepkg -s --noconfirm &&
+  mkdir -p ~/.cache/yay/deal-ii &&
   mv *.pkg.tar.zst ~/.cache/yay/deal-ii
 
-# yay -G petsc && \
-# cd petsc && \
-# curl -O ${PETSC_PATCH} && \
-# git am --signoff < 0001-Cython-3-compatibility.patch && \
-# makepkg -s --noconfirm && \
-# sudo pacman --noconfirm -U /tmp/petsc-*.pkg.tar.zst && \
-# mkdir -p ~/.cache/yay/petsc && \
-# mv petsc-*.pkg.tar.zst ~/.cache/yay/petsc && \
 # 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
@@ -49,21 +40,21 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 
 FROM archlinux:base-devel
 
-RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
-  sed -i 's/^#Color/Color/' /etc/pacman.conf && \
-  sed -i '/#CheckSpace/a ILoveCandy' /etc/pacman.conf && \
-  sed -i 's/^ParallelDownloads = 5/ParallelDownloads = 30/' /etc/pacman.conf && \
-  sed -i 's/^VerbosePkgLists/#VerbosePkgLists/' /etc/pacman.conf && \
-  sed -i 's/ usr\/share\/doc\/\*//g' /etc/pacman.conf && \
-  sed -i 's/usr\/share\/man\/\* //g' /etc/pacman.conf && \
-  sed -i 's/^#MAKEFLAGS="-j2"/MAKEFLAGS="-j$(nproc)"/' /etc/makepkg.conf && \
-  sed -i 's/^#BUILDDIR/BUILDDIR/' /etc/makepkg.conf && \
-  echo -e '\n[multilib]\nInclude = /etc/pacman.d/mirrorlist' | tee -a /etc/pacman.conf && \
-  useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
-  passwd -d gitpod && \
-  echo 'gitpod ALL=(ALL) ALL' > /etc/sudoers.d/gitpod && \
-  sed -i "s/PS1='\[\\\u\@\\\h \\\W\]\\\\\\$ '//g" /home/gitpod/.bashrc && \
-  { echo && echo "PS1='\[\e]0;\u \w\a\]\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \\\$ '" ; } >> /home/gitpod/.bashrc
+RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime &&
+  sed -i 's/^#Color/Color/' /etc/pacman.conf &&
+  sed -i '/#CheckSpace/a ILoveCandy' /etc/pacman.conf &&
+  sed -i 's/^ParallelDownloads = 5/ParallelDownloads = 30/' /etc/pacman.conf &&
+  sed -i 's/^VerbosePkgLists/#VerbosePkgLists/' /etc/pacman.conf &&
+  sed -i 's/ usr\/share\/doc\/\*//g' /etc/pacman.conf &&
+  sed -i 's/usr\/share\/man\/\* //g' /etc/pacman.conf &&
+  sed -i 's/^#MAKEFLAGS="-j2"/MAKEFLAGS="-j$(nproc)"/' /etc/makepkg.conf &&
+  sed -i 's/^#BUILDDIR/BUILDDIR/' /etc/makepkg.conf &&
+  echo -e '\n[multilib]\nInclude = /etc/pacman.d/mirrorlist' | tee -a /etc/pacman.conf &&
+  useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod &&
+  passwd -d gitpod &&
+  echo 'gitpod ALL=(ALL) ALL' >/etc/sudoers.d/gitpod &&
+  sed -i "s/PS1='\[\\\u\@\\\h \\\W\]\\\\\\$ '//g" /home/gitpod/.bashrc &&
+  { echo && echo "PS1='\[\e]0;\u \w\a\]\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \\\$ '"; } >>/home/gitpod/.bashrc
 
 USER gitpod
 
@@ -79,13 +70,12 @@ ARG PACKAGES="\
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
-RUN sudo pacman-key --init && \
-  sudo pacman-key --populate archlinux && \
-  sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring && \
-  sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
-  sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
-  rm /tmp/*.pkg.tar.zst && \
-  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
-  sudo pacman -Scc <<< Y <<< Y && \
+RUN sudo pacman-key --init &&
+  sudo pacman-key --populate archlinux &&
+  sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring &&
+  sudo pacman --needed --noconfirm --noprogressbar -Syuq &&
+  sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst &&
+  rm /tmp/*.pkg.tar.zst &&
+  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} &&
+  sudo pacman -Scc <<<Y <<<Y &&
   sudo rm -r /var/lib/pacman/sync/*
-
