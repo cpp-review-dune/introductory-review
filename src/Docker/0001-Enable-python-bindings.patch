@@ -1,17 +1,17 @@
-From c9091f74307023b133f1b87213a33640ef8ab6d4 Mon Sep 17 00:00:00 2001
-From: =?UTF-8?q?Carlos=20Aznar=C3=A1n=20Laos?= <caznaranl@uni.pe>
-Date: Sat, 22 Jul 2023 13:53:27 -0500
+From f39efb420d1fa84be2020df37c49812db08fafec Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Carlos=20Aznar=C3=A1n?= <caznaranl@uni.pe>
+Date: Sun, 24 Sep 2023 17:36:28 -0500
 Subject: [PATCH] Enable python bindings
 
 ---
- PKGBUILD | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ PKGBUILD | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/PKGBUILD b/PKGBUILD
-index 13e475c..9b23e20 100644
+index 13e475c..644e8ff 100644
 --- a/PKGBUILD
 +++ b/PKGBUILD
-@@ -8,7 +8,7 @@ pkgver=9.5.1
+@@ -8,12 +8,12 @@ pkgver=9.5.1
  pkgrel=1
  pkgdesc="An Open Source Finite Element Differential Equations Analysis Library"
  arch=("i686" "x86_64")
@@ -20,15 +20,21 @@ index 13e475c..9b23e20 100644
  license=('LGPL')
  # deal.II depends on Kokkos which is implicitly provided by Trilinos. Trilinos
  # does not yet support configuration with an external copy of Kokkos so do not
+ # yet depend on that package.
+-depends=('boost' 'trilinos')
++depends=('boost' 'kokkos')
+ optdepends=(
+       # adol-c is not compatible with Trilinos - if both are installed then deal.II will use Trilinos
+       'adol-c: automatic differentiation library'
 @@ -99,6 +99,8 @@ build() {
       cmake_configuration_flags+=" -DLAPACK_INCLUDE_DIRS=${MKLROOT}/include"
    fi
  
-+  cmake_configuration_flags+=" -DDEAL_II_WITH_UMFPACK=ON -DDEAL_II_COMPONENT_EXAMPLES=ON -DDEAL_II_COMPONENT_PYTHON_BINDINGS=ON -DDEAL_II_WITH_PETSC=OFF -DDEAL_II_WITH_P4EST=ON"
++  cmake_configuration_flags+=" -DDEAL_II_WITH_UMFPACK=ON -DDEAL_II_COMPONENT_EXAMPLES=ON -DDEAL_II_COMPONENT_PYTHON_BINDINGS=ON -DDEAL_II_WITH_PETSC=ON -DDEAL_II_WITH_P4EST=ON"
 +
    # For GSL compatibility we need the full link interface, which includes
    # libgslcblas, so disable --as-needed with GCC:
    sed -i '/ENABLE_IF_LINKS(DEAL_II_LINKER_FLAGS "-Wl,--as-needed")/d' \
 -- 
-2.41.0
+2.42.0
 
