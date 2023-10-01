@@ -4,6 +4,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
   openmpi \
+  petsc-complex \
   p4est-deal-ii \
   python \
   suitesparse \
