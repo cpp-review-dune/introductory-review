@@ -44,7 +44,7 @@ USER gitpod
 
 ARG PACKAGES="\
   git \
-  java-runtime \
+  jre17-openjdk \
   biber \
   doxygen \
   plantuml \
@@ -58,6 +58,8 @@ ARG PACKAGES="\
   texlive-mathscience \
   texlive-xetex \
   "
+
+# java-runtime
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
