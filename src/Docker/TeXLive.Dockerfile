@@ -43,6 +43,7 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
+  cmake \
   git \
   jre17-openjdk \
   biber \
@@ -58,8 +59,6 @@ ARG PACKAGES="\
   texlive-mathscience \
   texlive-xetex \
   "
-
-# java-runtime
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
