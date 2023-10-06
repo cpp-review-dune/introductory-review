@@ -1,10 +1,10 @@
-name: Publish Docker image based on dolfinx 0.7.0 with Jupyter
+name: Publish Docker image based on dune-fem v2.9.0 with Jupyter
 
 on:
   push:
     branches: [main]
     paths:
-      - src/Docker/dolfinx-jupyter.Dockerfile
+      - src/Docker/jupyter-dune-fem.Dockerfile
   pull_request:
     branches: [main]
   schedule:
@@ -41,9 +41,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-dolfinx-jupyter-${{ github.sha }}
+          key: ${{ runner.os }}-buildx-jupyter-dune-fem-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-buildx-dolfinx-jupyter-
+            ${{ runner.os }}-buildx-jupyter-dune-fem-
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
@@ -56,21 +56,21 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./introductory-review/src/Docker/dolfinx-jupyter.Dockerfile
+          file: ./introductory-review/src/Docker/jupyter-dune-fem.Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/cpp-review-dune/introductory-review/dolfinx-jupyter:latest
-          cache-from: type=local,src=/tmp/.buildx-dolfinx-jupyter-cache
+          tags: ghcr.io/cpp-review-dune/introductory-review/jupyter-dune-fem:latest
+          cache-from: type=local,src=/tmp/.buildx-jupyter-dune-fem-cache
           cache-to: type=local,mode=max,dest=/tmp/.buildx-main-cache
 
       - name: Move cache
         run: |
-          rm -rf /tmp/.buildx-dolfinx-jupyter-cache
-          mv /tmp/.buildx-main-cache /tmp/.buildx-dolfinx-jupyter-cache
+          rm -rf /tmp/.buildx-jupyter-dune-fem-cache
+          mv /tmp/.buildx-main-cache /tmp/.buildx-jupyter-dune-fem-cache
 
       - name: Scan for vulnerabilities
         uses: crazy-max/ghaction-container-scan@v1
         with:
-          image: ghcr.io/cpp-review-dune/introductory-review/dolfinx-jupyter:latest
+          image: ghcr.io/cpp-review-dune/introductory-review/jupyter-dune-fem:latest
           annotations: true
-          dockerfile: ./src/Docker/dolfinx-jupyter.Dockerfile
+          dockerfile: ./src/Docker/jupyter-dune-fem.Dockerfile

@@ -13,13 +13,11 @@ ARG AUR_PACKAGES="\
 
 # https://docs.pyvista.org/user-guide/jupyter/ipyvtk_plotting.html
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
-  yay --mflags --nocheck --noconfirm -S ${AUR_PACKAGES}
-
-#2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+  yay --mflags --nocheck --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
-  name="dolfinx Arch" \
-  description="dolfinx in Arch." \
+  name="Jupyter dolfinx Arch" \
+  description="Jupyter dolfinx in Arch." \
   url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fdolfinx" \
   vcs-url="https://github.com/cpp-review-dune/introductory-review" \
   vendor="Oromion Aznarán" \
@@ -69,12 +67,11 @@ ARG VTK_PACKAGES="\
   "
 
 ARG PACKAGES="\
-  git \
-  jupyterlab \
   autopep8 \
+  git \
+  jupyterlab-widgets \
   python-black \
   python-matplotlib \
-  jupyterlab-widgets \
   xorg-server-xvfb \
   "
 

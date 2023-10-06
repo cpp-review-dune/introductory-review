@@ -1,17 +1,26 @@
-# Copyleft (c) August, 2022, Oromion.
+# Copyleft (c) July, 2022, Oromion.
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
-ARG AUR_PACKAGES="\
-  python-py-pde \
+ARG MESHES_PACKAGES="\
+  python-pygmsh \
+  python-meshpy \
+  python-meshio \
+  python-pyvista \
+  python-trame \
+  python-trame-vtk \
+  python-trame-vuetify \
   "
 
-RUN yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES}
+RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
+  yay --noconfirm -S ${MESHES_PACKAGES}
+
+#2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
-  name="python-py-pde Arch" \
-  description="python-py-pde in Arch." \
-  url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fpython-py-pde" \
+  name="Meshes Arch" \
+  description="Jupyter Meshes in Arch." \
+  url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fmeshes" \
   vcs-url="https://github.com/cpp-review-dune/introductory-review" \
   vendor="Oromion Aznarán" \
   version="1.0"
@@ -37,20 +46,37 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
-  jupyterlab \
   git \
+  julia \
+  jupyterlab-widgets \
+  python-matplotlib \
+  python-setuptools \
+  xorg-server-xvfb \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
-RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
+RUN sudo pacman-key --init && \
+  sudo pacman-key --populate archlinux && \
+  sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring && \
+  sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
-  echo "alias startJupyter=\"jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --NotebookApp.allow_origin='\$(gp url 8888)' --NotebookApp.token='' --NotebookApp.password=''\"" >> ~/.bashrc
+  echo "alias startJupyter=\"jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --ServerApp.allow_origin='\$(gp url 8888)' --IdentityProvider.token='' --ServerApp.password=''\"" >> ~/.bashrc
+
+ENV PYTHONPATH="/usr/share/gmsh/api/python:${PYTHONPATH}"
+ENV JULIA_LOAD_PATH="/usr/share/gmsh/api/julia/:${JULIA_LOAD_PATH}"
+ENV TRAME_DISABLE_V3_WARNING="1"
+ENV DISPLAY=":99.0"
+ENV PYVISTA_OFF_SCREEN="true"
+ENV PYVISTA_USE_IPYVTK="true"
+ENV PYVISTA_TRAME_SERVER_PROXY_PREFIX="/proxy/"
+ENV PYVISTA_TRAME_SERVER_PROXY_ENABLED="True"
+ENV PYVISTA_JUPYTER_BACKEND="trame"
 
 EXPOSE 8888
 
-WORKDIR /workspace/notebook/
+WORKDIR /workspace/meshes/

@@ -13,7 +13,7 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
 #2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
-  name="dune-fem Arch" \
+  name="Jupyter lfortran Arch" \
   description="dune-fem in Arch." \
   url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Flfortran-jupyter" \
   vcs-url="https://github.com/cpp-review-dune/introductory-review" \
