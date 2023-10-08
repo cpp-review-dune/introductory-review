@@ -5,6 +5,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 ARG OPT_PACKAGES="\
   nbqa \
   openmpi \
+  parmetis-git \
   petsc \
   p4est-deal-ii \
   python \
