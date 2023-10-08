@@ -19,7 +19,7 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   yay --noconfirm -S ${OPT_PACKAGES} && \
   git config --global user.email github-actions@github.com && \
   git config --global user.name github-actions && \
-  yay -G ${AUR_PACKAGES} && \
+  yay -G deal-ii && \
   cd deal-ii && \
   curl -O ${PATCH} && \
   git am --signoff <0001-Enable-python-bindings.patch && \
