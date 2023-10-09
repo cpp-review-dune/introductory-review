@@ -8,6 +8,8 @@ ARG AUR_PACKAGES="\
   python-fenics-dolfinx \
   python-pyvista \
   python-trame \
+  python-trame-vtk \
+  python-trame-vuetify \
   nbqa \
   "
 
@@ -73,6 +75,13 @@ RUN sudo pacman-key --init && \
 ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
 ENV PETSC_DIR=/opt/petsc/linux-c-opt
 ENV PYTHONPATH=${PYTHONPATH}:${PETSC_DIR}/lib
+ENV TRAME_DISABLE_V3_WARNING="1"
+ENV DISPLAY=":99.0"
+ENV PYVISTA_OFF_SCREEN="true"
+ENV PYVISTA_USE_IPYVTK="true"
+ENV PYVISTA_TRAME_SERVER_PROXY_PREFIX="/proxy/"
+ENV PYVISTA_TRAME_SERVER_PROXY_ENABLED="True"
+ENV PYVISTA_JUPYTER_BACKEND="trame"
 EXPOSE 8888
 
 WORKDIR /workspace/notebook/
