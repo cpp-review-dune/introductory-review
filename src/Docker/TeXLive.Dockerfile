@@ -78,9 +78,9 @@ RUN sudo pacman-key --init && \
   rm -rf ~/.cache && \
   yay -Scc <<< Y <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
-  curl -O $UNI_TEMPLATE && \
+  echo $LOCAL_CLASS && \
   mkdir -p $LOCAL_CLASS && \
-  mv TesisUNI.cls $LOCAL_CLASS
+  curl $UNI_TEMPLATE -O $LOCAL_CLASS && \
 # texlive-{core,bin} ruby perl-tk psutils dialog ed poppler-data
 
 ENV PATH="/usr/bin/vendor_perl:${PATH}"
