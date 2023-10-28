@@ -64,8 +64,6 @@ COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 ARG UNI_TEMPLATE="https://raw.githubusercontent.com/KeyvinSV/Plantilla-Tesis-UNI-LaTeX/main/TesisUNI.cls"
 
-ARG LOCAL_CLASS="$(kpsewhich -var-value=TEXMFHOME)/tex/latex/local"
-
 RUN sudo pacman-key --init && \
   sudo pacman-key --populate archlinux && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring && \
@@ -79,8 +77,8 @@ RUN sudo pacman-key --init && \
   yay -Scc <<< Y <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
   echo $LOCAL_CLASS && \
-  mkdir -p $LOCAL_CLASS && \
-  curl $UNI_TEMPLATE -O $LOCAL_CLASS && \
+  mkdir -p $(kpsewhich -var-value=TEXMFHOME)/tex/latex/local && \
+  curl $UNI_TEMPLATE -O $(kpsewhich -var-value=TEXMFHOME)/tex/latex/local
 # texlive-{core,bin} ruby perl-tk psutils dialog ed poppler-data
 
 ENV PATH="/usr/bin/vendor_perl:${PATH}"
