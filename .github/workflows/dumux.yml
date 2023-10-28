@@ -1,4 +1,4 @@
-name: Publish Docker image based on DuMux module v3.7.0 (dune v2.9.0)
+name: Publish Docker image based on DuMux module v3.8.0 (dune v2.9.0)
 
 on:
   # release:
