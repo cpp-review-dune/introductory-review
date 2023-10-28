@@ -63,10 +63,6 @@ ARG PACKAGES="\
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
-ARG UNI_TEMPLATE="https://raw.githubusercontent.com/KeyvinSV/Plantilla-Tesis-UNI-LaTeX/main/TesisUNI.cls"
-
-ARG TEXMFHOME="$HOME/texmf"
-
 RUN sudo pacman-key --init && \
   sudo pacman-key --populate archlinux && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring && \
@@ -78,11 +74,7 @@ RUN sudo pacman-key --init && \
   yay -Qtdq | xargs -r yay --noconfirm -Rcns && \
   rm -rf ~/.cache && \
   yay -Scc <<< Y <<< Y <<< Y && \
-  sudo rm -r /var/lib/pacman/sync/* && \
-  curl -O $UNI_TEMPLATE && \
-  mkdir -p $TEXMFHOME && \
-  ls -l $HOME && \
-  mv TesisUNI.cls $TEXMFHOME
+  sudo rm -r /var/lib/pacman/sync/*
 # texlive-{core,bin} ruby perl-tk psutils dialog ed poppler-data
 
 ENV PATH="/usr/bin/vendor_perl:${PATH}"
