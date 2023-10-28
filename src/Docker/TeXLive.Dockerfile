@@ -60,6 +60,8 @@ ARG PACKAGES="\
   texlive-xetex \
   "
 
+COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
+
 ARG UNI_TEMPLATE="https://raw.githubusercontent.com/KeyvinSV/Plantilla-Tesis-UNI-LaTeX/main/TesisUNI.cls"
 
 ARG LOCAL_CLASS="$(kpsewhich -var-value=TEXMFHOME)/tex/latex/local"
@@ -79,8 +81,6 @@ RUN sudo pacman-key --init && \
   curl -O $UNI_TEMPLATE && \
   mkdir -p $LOCAL_CLASS && \
   mv TesisUNI.cls $LOCAL_CLASS
-
-COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 # texlive-{core,bin} ruby perl-tk psutils dialog ed poppler-data
 
 ENV PATH="/usr/bin/vendor_perl:${PATH}"
