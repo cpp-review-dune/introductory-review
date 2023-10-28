@@ -79,7 +79,7 @@ RUN sudo pacman-key --init && \
   yay -Scc <<< Y <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
   mkdir -p $LOCAL_CLASS && \
-  curl $UNI_TEMPLATE -O LOCAL_CLASS
+  curl --create-dirs -O --output-dir $LOCAL_CLASS $UNI_TEMPLATE
 # texlive-{core,bin} ruby perl-tk psutils dialog ed poppler-data
 
 ENV PATH="/usr/bin/vendor_perl:${PATH}"
