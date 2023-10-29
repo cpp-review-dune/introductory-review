@@ -54,7 +54,9 @@ ARG PACKAGES="\
   texlive-fontsextra \
   texlive-fontutils \
   texlive-langgerman \
+  texlive-langspanish \
   texlive-latexextra \
+  texlive-luatex \
   texlive-plaingeneric \
   texlive-mathscience \
   texlive-xetex \
