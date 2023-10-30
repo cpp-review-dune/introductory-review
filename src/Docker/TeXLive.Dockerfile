@@ -64,7 +64,7 @@ ARG PACKAGES="\
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
-ARG UNI_TEMPLATE="https://raw.githubusercontent.com/KeyvinSV/Plantilla-Tesis-UNI-LaTeX/main/TesisUNI.cls"
+ARG UNI_TEMPLATE="https://raw.githubusercontent.com/carlosal1015/Plantilla-Tesis-UNI-LaTeX/science/TesisUNI.cls"
 
 ARG LOCAL_CLASS="/home/gitpod/texmf/tex/latex/local"
 
