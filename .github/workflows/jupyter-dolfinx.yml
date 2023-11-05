@@ -1,4 +1,4 @@
-name: Publish Docker image based on dolfinx 0.7.0 with Jupyter
+name: Publish Docker image based on dolfinx 0.7.1 with Jupyter
 
 on:
   push:
