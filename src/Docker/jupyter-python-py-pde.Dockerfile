@@ -11,7 +11,7 @@ ARG AUR_PACKAGES="\
   python-py-pde \
   "
 
-RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && 
+RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   yay --mflags --skipinteg --noconfirm -S ${OPT_PACKAGES} && \
   yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES}
 
