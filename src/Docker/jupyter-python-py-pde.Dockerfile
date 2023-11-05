@@ -48,6 +48,10 @@ USER gitpod
 ARG PACKAGES="\
   git \
   jupyterlab \
+  jupyterlab-widgets \
+  python-h5py-openmpi \
+  python-mpi4py \
+  python-pandas \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
