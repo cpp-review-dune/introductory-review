@@ -3,19 +3,18 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
-  napari \
   python-numba-mpi \
   "
+
+# napari --mflags --skipinteg
 
 ARG AUR_PACKAGES="\
   python-py-pde \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
-  yay --mflags --skipinteg --noconfirm -S ${OPT_PACKAGES} && \
-  yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES}
-
-# 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+  yay --noconfirm -S ${OPT_PACKAGES} && \
+  yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="Jupyter python-py-pde Arch" \
