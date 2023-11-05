@@ -3,7 +3,7 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG PACKAGES="\
-  zstd-static
+  zstd-static \
   "
 
 ARG AUR_PACKAGES="\
