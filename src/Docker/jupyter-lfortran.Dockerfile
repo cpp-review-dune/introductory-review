@@ -1,6 +1,10 @@
-# Copyleft (c) December, 2022, Oromion.
+# Copyleft (c) December, 2023, Oromion.
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
+
+ARG PACKAGES="\
+  zstd-static
+  "
 
 ARG AUR_PACKAGES="\
   findent \
@@ -8,7 +12,8 @@ ARG AUR_PACKAGES="\
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
-  yay --noconfirm -S --mflags --skipinteg ${AUR_PACKAGES}
+  yay --noconfirm -S ${PACKAGES} && \
+  yay --noconfirm -S ${AUR_PACKAGES}
 #2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \

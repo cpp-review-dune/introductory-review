@@ -1,4 +1,4 @@
-# Copyleft (c) August, 2022, Oromion.
+# Copyleft (c) December, 2023, Oromion.
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
@@ -7,6 +7,8 @@ ARG AUR_PACKAGES="\
   "
 
 RUN yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES}
+
+# --mflags --skipinteg
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="Jupyter python-py-pde Arch" \

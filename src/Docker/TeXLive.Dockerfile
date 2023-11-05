@@ -1,4 +1,4 @@
-# Copyleft (c) May, 2022, Oromion.
+# Copyleft (c) December, 2023, Oromion.
 # https://dev.to/cloudx/testing-our-package-build-in-the-docker-world-34p0
 # https://github.com/alersrt/texlive-archlinux-docker/blob/master/Dockerfile
 
@@ -45,7 +45,7 @@ USER gitpod
 ARG PACKAGES="\
   cmake \
   git \
-  jre17-openjdk \
+  jdk17-openjdk \
   biber \
   doxygen \
   plantuml \
