@@ -2,13 +2,20 @@
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
+ARG OPT_PACKAGES="\
+  napari \
+  python-numba-mpi \
+  "
+
 ARG AUR_PACKAGES="\
   python-py-pde \
   "
 
-RUN yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES}
+RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && 
+  yay --mflags --skipinteg --noconfirm -S ${OPT_PACKAGES} && \
+  yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES}
 
-# --mflags --skipinteg
+# 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="Jupyter python-py-pde Arch" \
@@ -39,8 +46,8 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
-  jupyterlab \
   git \
+  jupyterlab \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
