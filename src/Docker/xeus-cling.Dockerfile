@@ -18,7 +18,9 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   makepkg -si --noconfirm && \
   mkdir -p ~/.cache/yay/cling && \
   mv *.pkg.tar.zst ~/.cache/yay/cling && \
-  yay --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+  yay --noconfirm -S ${AUR_PACKAGES}
+
+#2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="xeus-cling Arch" \
