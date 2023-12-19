@@ -1,4 +1,4 @@
-name: Publish Docker image based on DUNEFEM module v2.9.0
+name: Publish Docker image based on DUNEFEM module v2.9.1
 
 on:
   # release:
