@@ -6,41 +6,22 @@ ARG PKGBUILD="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILD
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   curl -LO ${PKGBUILD} && \
-  makepkg --noconfirm -src && \
+  makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   mkdir -p /home/builder/.cache/yay/hdnum-git && \
   mv hdnum-git-*-x86_64.pkg.tar.zst /home/builder/.cache/yay/hdnum-git
 
-FROM archlinux:base-devel
+FROM ghcr.io/cpp-review-dune/introductory-review/xeus-cling
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
-  name="HDNum Arch" \
+  name="xeus-cling-hdnum-git Arch" \
   description="HDNum in Arch." \
   url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fhdnum" \
   vcs-url="https://github.com/cpp-review-dune/introductory-review" \
   vendor="Oromion Aznarán" \
   version="1.0"
 
-RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
-  sed -i 's/^#Color/Color/' /etc/pacman.conf && \
-  sed -i '/#CheckSpace/a ILoveCandy' /etc/pacman.conf && \
-  sed -i 's/^ParallelDownloads = 5/ParallelDownloads = 30/' /etc/pacman.conf && \
-  sed -i 's/^VerbosePkgLists/#VerbosePkgLists/' /etc/pacman.conf && \
-  sed -i 's/ usr\/share\/doc\/\*//g' /etc/pacman.conf && \
-  sed -i 's/usr\/share\/man\/\* //g' /etc/pacman.conf && \
-  sed -i 's/^#MAKEFLAGS="-j2"/MAKEFLAGS="-j$(nproc)"/' /etc/makepkg.conf && \
-  sed -i 's/^#BUILDDIR/BUILDDIR/' /etc/makepkg.conf && \
-  echo -e '\n[multilib]\nInclude = /etc/pacman.d/mirrorlist' | tee -a /etc/pacman.conf && \
-  useradd -l -u 33333 -md /home/gitpod -s /bin/bash gitpod && \
-  passwd -d gitpod && \
-  echo 'gitpod ALL=(ALL) ALL' > /etc/sudoers.d/gitpod && \
-  sed -i "s/PS1='\[\\\u\@\\\h \\\W\]\\\\\\$ '//g" /home/gitpod/.bashrc && \
-  { echo && echo "PS1='\[\e]0;\u \w\a\]\[\033[01;32m\]\u\[\033[00m\] \[\033[01;34m\]\w\[\033[00m\] \\\$ '" ; } >> /home/gitpod/.bashrc
-
-USER gitpod
-
 ARG PACKAGES="\
   cmake \
-  git \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
