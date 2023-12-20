@@ -40,6 +40,7 @@ USER gitpod
 
 ARG PACKAGES="\
   cmake \
+  git \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
