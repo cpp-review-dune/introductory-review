@@ -5,7 +5,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 ARG DUNE_PACKAGES="\
   dune-pdelab \
   gmsh \
-  parmetis-git
+  parmetis-git \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
