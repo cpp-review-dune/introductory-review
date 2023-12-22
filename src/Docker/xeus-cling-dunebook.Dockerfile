@@ -22,7 +22,11 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   version="1.0"
 
 ARG PACKAGES="\
+  clang \
+  doxygen \
   fmt \
+  gnuplot \
+  man-db \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
