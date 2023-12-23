@@ -4,9 +4,9 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
   python-numba-mpi \
+  python-rocket-fft \
+  python-pyfftw \
   "
-
-# napari --mflags --skipinteg
 
 ARG AUR_PACKAGES="\
   python-py-pde \
@@ -14,6 +14,7 @@ ARG AUR_PACKAGES="\
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   yay --noconfirm -S ${OPT_PACKAGES} && \
+  yay --noconfirm --noprogressbar -S napari --mflags --skipinteg && \
   yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
@@ -48,6 +49,7 @@ ARG PACKAGES="\
   git \
   jupyterlab \
   jupyterlab-widgets \
+  ffmpeg \
   python-h5py-openmpi \
   python-mpi4py \
   python-pandas \
