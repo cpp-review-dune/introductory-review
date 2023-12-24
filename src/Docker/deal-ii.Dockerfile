@@ -3,12 +3,12 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
+  kokkos \
   openmpi \
   petsc \
   p4est-deal-ii \
   python \
   suitesparse \
-  kokkos \
   "
 # trilinos
 ARG AUR_PACKAGES="\

@@ -11,15 +11,16 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   version="1.0"
 
 ARG PACKAGES="\
-  man-db \
-  tldr \
   eigen \
   gnuplot \
+  man-pages \
+  man-pages-es \
   texlive-latexextra \
   texlive-pictures \
   texlive-science \
   texlive-bibtexextra \
   texlive-fontsextra \
+  tldr \
   "
 
 RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq && \

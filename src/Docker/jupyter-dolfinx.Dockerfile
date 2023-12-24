@@ -3,6 +3,7 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
+  nbqa \
   parmetis-git \
   python-meshio \
   python-fenics-dolfinx \
@@ -10,7 +11,6 @@ ARG AUR_PACKAGES="\
   python-trame \
   python-trame-vtk \
   python-trame-vuetify \
-  nbqa \
   "
 
 # https://docs.pyvista.org/user-guide/jupyter/ipyvtk_plotting.html
@@ -28,26 +28,26 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   version="1.0"
 
 ARG VTK_PACKAGES="\
-  fmt \
-  verdict \
-  libxcursor \
-  glew \
-  jsoncpp \
-  ospray \
-  qt5-base \
-  openxr \
-  openvr \
+  adios2 \
+  cgns \
   ffmpeg \
+  fmt \
+  gl2ps \
+  glew \
   hdf5-openmpi \
-  postgresql-libs \
+  jsoncpp \
+  libxcursor \
+  openvr \
+  openxr \
+  ospray \
   netcdf \
-  pdal \
   mariadb-libs \
   liblas \
-  cgns \
-  adios2 \
   libharu \
-  gl2ps \
+  pdal \
+  postgresql-libs \
+  qt5-base \
+  verdict \
   "
 
 ARG PACKAGES="\

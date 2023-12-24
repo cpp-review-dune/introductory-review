@@ -3,14 +3,14 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
+  kokkos \
   nbqa \
   openmpi \
+  p4est-deal-ii \
   parmetis-git \
   petsc \
-  p4est-deal-ii \
   python \
   suitesparse \
-  kokkos \
   "
 
 ARG PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/0001-Enable-python-bindings.patch"

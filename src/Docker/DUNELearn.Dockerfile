@@ -3,9 +3,9 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
-  parmetis-git \
   dune-pdelab \
   nbqa \
+  parmetis-git \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \

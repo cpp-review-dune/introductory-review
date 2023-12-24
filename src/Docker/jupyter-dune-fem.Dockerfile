@@ -24,11 +24,11 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   version="1.0"
 
 ARG PACKAGES="\
+  glew \
   libx11 \
   jupyterlab \
   python-matplotlib \
   python-scipy \
-  glew \
   python-pyvirtualdisplay \
   qt5-svg \
   qt5-tools \

@@ -49,9 +49,9 @@ USER gitpod
 
 ARG PACKAGES="\
   git \
+  ffmpeg \
   jupyterlab \
   jupyterlab-widgets \
-  ffmpeg \
   python-h5py-openmpi \
   python-mpi4py \
   python-pandas \

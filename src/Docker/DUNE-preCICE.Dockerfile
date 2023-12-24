@@ -3,12 +3,12 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
-  parmetis-git \
-  dune-functions \
-  python-pyprecice \
-  precice-config-visualizer-git \
-  dune-foamgrid \
   dune-fem \
+  dune-foamgrid \
+  dune-functions \
+  parmetis-git \
+  precice-config-visualizer-git \
+  python-pyprecice \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \

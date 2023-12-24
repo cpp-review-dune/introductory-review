@@ -5,6 +5,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 ARG DUNE_PACKAGES="\
   dune-pdelab \
   gmsh \
+  nbqa \
   parmetis-git \
   "
 
@@ -26,7 +27,8 @@ ARG PACKAGES="\
   doxygen \
   fmt \
   gnuplot \
-  man-db \
+  man-pages \
+  man-pages-es \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
