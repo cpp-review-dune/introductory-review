@@ -59,7 +59,7 @@ jobs:
           file: ./introductory-review/src/Docker/xeus-cling-deal-ii.Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/cpp-review-deal-ii/introductory-review/xeus-cling-deal-ii:latest
+          tags: ghcr.io/cpp-review-dune/introductory-review/xeus-cling-deal-ii:latest
           cache-from: type=local,src=/tmp/.buildx-xeus-cling-deal-ii-cache
           cache-to: type=local,mode=max,dest=/tmp/.buildx-main-cache
 
@@ -71,6 +71,6 @@ jobs:
       - name: Scan for vulnerabilities
         uses: crazy-max/ghaction-container-scan@v1
         with:
-          image: ghcr.io/cpp-review-deal-ii/introductory-review/xeus-cling-deal-ii:latest
+          image: ghcr.io/cpp-review-dune/introductory-review/xeus-cling-deal-ii:latest
           annotations: true
           dockerfile: ./src/Docker/xeus-cling-deal-ii.Dockerfile
