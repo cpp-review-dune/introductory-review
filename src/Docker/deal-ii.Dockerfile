@@ -9,6 +9,7 @@ ARG OPT_PACKAGES="\
   p4est-deal-ii \
   python \
   suitesparse \
+  trilinos \
   "
 # trilinos
 ARG AUR_PACKAGES="\

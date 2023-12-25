@@ -11,6 +11,7 @@ ARG OPT_PACKAGES="\
   petsc \
   python \
   suitesparse \
+  trilinos \
   "
 
 ARG PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/0001-Enable-python-bindings.patch"
