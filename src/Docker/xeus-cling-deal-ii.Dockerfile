@@ -39,7 +39,12 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 
 ARG PACKAGES="\
   autopep8 \
+  clang \
+  cmake \
   fmt \
+  gtest \
+  openmpi\
+  suitesparse\
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
