@@ -1,15 +1,15 @@
-From 6f8c9e511b5b232f83079d8f7be48b73cfc35abf Mon Sep 17 00:00:00 2001
+From c8d4c6ea5a8074688c5934d4480284ba0383e720 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Carlos=20Aznar=C3=A1n?= <caznaranl@uni.pe>
-Date: Mon, 25 Dec 2023 18:01:13 -0500
+Date: Mon, 25 Dec 2023 19:18:04 -0500
 Subject: [PATCH] Enable redefinitions
 
 ---
- .SRCINFO | 18 ++++++++----------
- PKGBUILD | 45 +++++++++++++++++++++------------------------
- 2 files changed, 29 insertions(+), 34 deletions(-)
+ .SRCINFO | 14 ++++++--------
+ PKGBUILD | 47 ++++++++++++++++++++++-------------------------
+ 2 files changed, 28 insertions(+), 33 deletions(-)
 
 diff --git a/.SRCINFO b/.SRCINFO
-index 05ba7c6..be09314 100644
+index 05ba7c6..b17edd5 100644
 --- a/.SRCINFO
 +++ b/.SRCINFO
 @@ -1,7 +1,7 @@
@@ -29,14 +29,12 @@ index 05ba7c6..be09314 100644
 -	provides = cling
 -	conflicts = cling
  	options = !lto
--	source = cling-llvm::git+http://root.cern/git/llvm.git#tag=cling-v0.9
--	source = cling-clang::git+http://root.cern/git/clang.git#tag=cling-v0.9
+ 	source = cling-llvm::git+http://root.cern/git/llvm.git#tag=cling-v0.9
+ 	source = cling-clang::git+http://root.cern/git/clang.git#tag=cling-v0.9
 -	source = cling::git+http://root.cern/git/cling.git#tag=v0.9
 -	sha256sums = SKIP
 -	sha256sums = SKIP
 -	sha256sums = SKIP
-+	source = cling-llvm::git+http://root.cern/git/llvm.git#tag=cling-v1.0
-+	source = cling-clang::git+http://root.cern/git/clang.git#tag=cling-v1.0
 +	source = cling::git+http://root.cern/git/cling.git#tag=v1.0
 +	sha512sums = SKIP
 +	sha512sums = SKIP
@@ -44,7 +42,7 @@ index 05ba7c6..be09314 100644
  
  pkgname = cling
 diff --git a/PKGBUILD b/PKGBUILD
-index ee1048c..e19d31e 100644
+index ee1048c..12c96a8 100644
 --- a/PKGBUILD
 +++ b/PKGBUILD
 @@ -1,35 +1,28 @@
@@ -74,20 +72,21 @@ index ee1048c..e19d31e 100644
 -)
 -source=(
 -    "cling-llvm::git+http://root.cern/git/llvm.git#tag=cling-v$pkgver"
-+depends=(libxml2)
-+makedepends=(git cmake ninja python)
-+optdepends=('perl: support for scan-build, ccc-analyzer and c++-analyzer'
-+    'python: support for scan-view and Jupyter'
-+    'python-pygments: support for opt-viewer'
-+    'python-yaml: support for opt-viewer')
-+source=("cling-llvm::git+http://root.cern/git/llvm.git#tag=cling-v$pkgver"
-     "cling-clang::git+http://root.cern/git/clang.git#tag=cling-v$pkgver"
+-    "cling-clang::git+http://root.cern/git/clang.git#tag=cling-v$pkgver"
 -    "cling::git+http://root.cern/git/cling.git#tag=v$pkgver"
 -)
 -sha256sums=(
 -    "SKIP"
 -    "SKIP"
 -    "SKIP"
++depends=(libxml2)
++makedepends=(git cmake ninja python)
++optdepends=('perl: support for scan-build, ccc-analyzer and c++-analyzer'
++    'python: support for scan-view and Jupyter'
++    'python-pygments: support for opt-viewer'
++    'python-yaml: support for opt-viewer')
++source=("cling-llvm::git+http://root.cern/git/llvm.git#tag=cling-v0.9"
++    "cling-clang::git+http://root.cern/git/clang.git#tag=cling-v0.9"
 +    "cling::git+http://root.cern/git/cling.git#tag=v$pkgver")
 +sha512sums=(
 +    'SKIP'
