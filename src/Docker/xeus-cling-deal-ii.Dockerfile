@@ -4,7 +4,6 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
   kokkos \
-  nbqa \
   openmpi \
   p4est-deal-ii \
   parmetis-git \
