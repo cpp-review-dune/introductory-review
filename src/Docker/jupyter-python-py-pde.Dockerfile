@@ -4,10 +4,10 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
   python-numba-mpi \
+  python-pyfftw \
   python-rocket-fft \
   "
 
-# python-pyfftw
 
 ARG AUR_PACKAGES="\
   python-py-pde \
