@@ -45,7 +45,10 @@ ARG PACKAGES="\
   fmt \
   gtest \
   openmpi\
-  suitesparse\
+  suitesparse \
+  python-h5py-openmpi \
+  python-matplotlib \
+  python-scipy
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
