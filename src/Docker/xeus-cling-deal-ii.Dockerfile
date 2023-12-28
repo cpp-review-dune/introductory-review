@@ -48,7 +48,7 @@ ARG PACKAGES="\
   suitesparse \
   python-h5py-openmpi \
   python-matplotlib \
-  python-scipy
+  python-scipy \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
