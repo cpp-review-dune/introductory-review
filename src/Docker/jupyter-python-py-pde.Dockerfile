@@ -53,6 +53,7 @@ ARG PACKAGES="\
   ffmpeg \
   jupyterlab \
   jupyterlab-widgets \
+  python-black \
   python-h5py-openmpi \
   python-mpi4py \
   python-pandas \
