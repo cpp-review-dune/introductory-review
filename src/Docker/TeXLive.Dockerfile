@@ -14,7 +14,7 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   yay --noconfirm -S ${FONT_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   yay -G mathtime-professional && \
   cd mathtime-professional && \
-  curl -O ${MTPRO2} && \
+  curl -O ${MTPRO2_LITE_SOURCE} && \
   mv mtp2lite.zip.tpm mtp2fonts.zip.tpm && \
   sed -i 's/MTPro2/MTPro2Lite/' PKGBUILD && \
   makepkg -s --noconfirm --skipchecksums && \
