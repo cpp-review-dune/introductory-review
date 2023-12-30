@@ -4,15 +4,15 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
   hdf5-openmpi \
-  kokkos \
   openmpi \
-  petsc-complex \
   p4est-deal-ii \
+  parmetis-git \
+  petsc-complex \
   python \
   suitesparse \
   trilinos \
   "
-# trilinos
+
 ARG AUR_PACKAGES="\
   deal-ii \
   "
