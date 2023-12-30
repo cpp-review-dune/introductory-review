@@ -3,9 +3,10 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
+  hdf5-openmpi \
   kokkos \
   openmpi \
-  petsc \
+  petsc-complex \
   p4est-deal-ii \
   python \
   suitesparse \
@@ -63,6 +64,7 @@ ARG PACKAGES="\
   cmake \
   git \
   gtest \
+  hdf5-openmpi \
   openmpi \
   python \
   suitesparse \

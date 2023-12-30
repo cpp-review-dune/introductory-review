@@ -3,10 +3,11 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
+  hdf5-openmpi \
   openmpi \
   p4est-deal-ii \
   parmetis-git \
-  petsc \
+  petsc-complex \
   python \
   suitesparse \
   trilinos \

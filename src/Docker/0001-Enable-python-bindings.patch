@@ -1,6 +1,6 @@
-From c1b178938808b99a5de06287d064c21592e7d828 Mon Sep 17 00:00:00 2001
+From ef60cd08127539d72cfa82b2715b01941549370d Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Carlos=20Aznar=C3=A1n?= <caznaranl@uni.pe>
-Date: Mon, 25 Dec 2023 15:45:56 -0500
+Date: Fri, 29 Dec 2023 21:06:55 -0500
 Subject: [PATCH] Enable python bindings
 
 ---
@@ -8,7 +8,7 @@ Subject: [PATCH] Enable python bindings
  1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/PKGBUILD b/PKGBUILD
-index 13e475c..9b23e20 100644
+index 13e475c..14ca52d 100644
 --- a/PKGBUILD
 +++ b/PKGBUILD
 @@ -8,7 +8,7 @@ pkgver=9.5.1
@@ -20,15 +20,15 @@ index 13e475c..9b23e20 100644
  license=('LGPL')
  # deal.II depends on Kokkos which is implicitly provided by Trilinos. Trilinos
  # does not yet support configuration with an external copy of Kokkos so do not
-@@ -99,6 +99,8 @@ build() {
+@@ -98,6 +98,8 @@ build() {
+   then
       cmake_configuration_flags+=" -DLAPACK_INCLUDE_DIRS=${MKLROOT}/include"
    fi
++  
++  cmake_configuration_flags+=" -DDEAL_II_WITH_UMFPACK=ON -DDEAL_II_COMPONENT_EXAMPLES=ON -DDEAL_II_COMPONENT_PYTHON_BINDINGS=ON -DDEAL_II_WITH_PETSC=ON -DDEAL_II_PETSC_WITH_COMPLEX=ON -DDEAL_II_WITH_P4EST=ON -DDEAL_II_WITH_HDF5=ON"
  
-+  cmake_configuration_flags+=" -DDEAL_II_WITH_UMFPACK=ON -DDEAL_II_COMPONENT_EXAMPLES=ON -DDEAL_II_COMPONENT_PYTHON_BINDINGS=ON -DDEAL_II_WITH_PETSC=ON -DDEAL_II_WITH_P4EST=ON"
-+
    # For GSL compatibility we need the full link interface, which includes
    # libgslcblas, so disable --as-needed with GCC:
-   sed -i '/ENABLE_IF_LINKS(DEAL_II_LINKER_FLAGS "-Wl,--as-needed")/d' \
 -- 
 2.43.0
 
