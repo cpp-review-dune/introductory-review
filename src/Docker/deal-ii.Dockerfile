@@ -2,11 +2,15 @@
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
-ARG OPT_PACKAGES="\
+ARG OPT_PETSC_PACKAGES="\
   hdf5-openmpi \
+  mumps \
+  parmetis-git \
+  "
+
+ARG OPT_PACKAGES="\
   openmpi \
   p4est-deal-ii \
-  parmetis-git \
   petsc-complex \
   python \
   suitesparse \
@@ -20,6 +24,7 @@ ARG AUR_PACKAGES="\
 ARG PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/0001-Enable-python-bindings.patch"
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
+  yay --noconfirm -S ${OPT_PETSC_PACKAGES} && \
   yay --noconfirm -S ${OPT_PACKAGES} && \
   git config --global user.email github-actions@github.com && \
   git config --global user.name github-actions && \
