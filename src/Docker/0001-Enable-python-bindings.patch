@@ -1,14 +1,37 @@
-From 11700da48b6f0a0b9523c63e863259398812be98 Mon Sep 17 00:00:00 2001
+From fc3d13cf6f443e207a8bcede130647e80cd7194a Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Carlos=20Aznar=C3=A1n?= <caznaranl@uni.pe>
-Date: Sat, 30 Dec 2023 10:20:35 -0500
+Date: Sun, 31 Dec 2023 00:24:18 -0500
 Subject: [PATCH] Enable python bindings
 
 ---
+ .SRCINFO |  4 +++-
  PKGBUILD | 14 +++++++++++---
- 1 file changed, 11 insertions(+), 3 deletions(-)
+ 2 files changed, 14 insertions(+), 4 deletions(-)
 
+diff --git a/.SRCINFO b/.SRCINFO
+index 10d0848..68444ce 100644
+--- a/.SRCINFO
++++ b/.SRCINFO
+@@ -2,7 +2,7 @@ pkgbase = deal-ii
+ 	pkgdesc = An Open Source Finite Element Differential Equations Analysis Library
+ 	pkgver = 9.5.1
+ 	pkgrel = 1
+-	url = http://www.dealii.org/
++	url = https://dealii.org
+ 	install = deal-ii.install
+ 	arch = i686
+ 	arch = x86_64
+@@ -34,6 +34,8 @@ pkgbase = deal-ii
+ 	optdepends = suitesparse: A collection of sparse matrix libraries
+ 	optdepends = zlib: Compression library implementing the deflate compression method found in gzip and PKZIP
+ 	source = https://github.com/dealii/dealii/releases/download/v9.5.1/dealii-9.5.1.tar.gz
++	source = https://github.com/dealii/dealii/pull/15856.patch
+ 	sha1sums = a94989a9e4c3b8599aceacf71d7156621c1d7426
++	sha1sums = 594a265dab26aaa99ad109a21ed1d98c19807a41
+ 
+ pkgname = deal-ii
 diff --git a/PKGBUILD b/PKGBUILD
-index 13e475c..6639203 100644
+index 13e475c..b7f9f1b 100644
 --- a/PKGBUILD
 +++ b/PKGBUILD
 @@ -8,7 +8,7 @@ pkgver=9.5.1
@@ -44,15 +67,15 @@ index 13e475c..6639203 100644
    cd "${srcdir}/build"
  
    # explicitly disallow bundled packages: this disables bundled copies of boost,
-@@ -99,6 +105,8 @@ build() {
+@@ -98,6 +104,8 @@ build() {
+   then
       cmake_configuration_flags+=" -DLAPACK_INCLUDE_DIRS=${MKLROOT}/include"
    fi
++  
++  cmake_configuration_flags+=" -DDEAL_II_WITH_UMFPACK=ON -DDEAL_II_COMPONENT_EXAMPLES=ON -DDEAL_II_COMPONENT_PYTHON_BINDINGS=ON -DDEAL_II_WITH_PETSC=ON -DDEAL_II_PETSC_WITH_COMPLEX=ON -DDEAL_II_WITH_P4EST=ON -DDEAL_II_WITH_HDF5=ON -DDEAL_II_WITH_MUMPS=ON"
  
-+  cmake_configuration_flags+=" -DDEAL_II_WITH_UMFPACK=ON -DDEAL_II_COMPONENT_EXAMPLES=ON -DDEAL_II_COMPONENT_PYTHON_BINDINGS=ON -DDEAL_II_WITH_PETSC=ON -DDEAL_II_PETSC_WITH_COMPLEX=ON -DDEAL_II_WITH_P4EST=ON -DDEAL_II_WITH_HDF5=ON"
-+
    # For GSL compatibility we need the full link interface, which includes
    # libgslcblas, so disable --as-needed with GCC:
-   sed -i '/ENABLE_IF_LINKS(DEAL_II_LINKER_FLAGS "-Wl,--as-needed")/d' \
 -- 
 2.43.0
 
