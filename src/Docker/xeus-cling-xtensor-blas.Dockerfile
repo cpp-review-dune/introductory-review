@@ -3,7 +3,7 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG DUNE_PACKAGES="\
-  xtensor \
+  xtensor-blas \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \

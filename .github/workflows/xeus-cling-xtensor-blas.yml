@@ -1,10 +1,10 @@
-name: Publish Docker image based on xeus-cling-xtensor
+name: Publish Docker image based on xeus-cling-xtensor-blas
 
 on:
   push:
     branches: [main]
     paths:
-      - src/Docker/xeus-cling-xtensor.Dockerfile
+      - src/Docker/xeus-cling-xtensor-blas.Dockerfile
   pull_request:
     branches: [main]
   schedule:
@@ -41,9 +41,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-xeus-cling-xtensor-${{ github.sha }}
+          key: ${{ runner.os }}-buildx-xeus-cling-xtensor-blas-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-buildx-xeus-cling-xtensor-
+            ${{ runner.os }}-buildx-xeus-cling-xtensor-blas-
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v2
@@ -56,21 +56,21 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ./introductory-review/src/Docker/xeus-cling-xtensor.Dockerfile
+          file: ./introductory-review/src/Docker/xeus-cling-xtensor-blas.Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/cpp-review-dune/introductory-review/xeus-cling-xtensor:latest
-          cache-from: type=local,src=/tmp/.buildx-xeus-cling-xtensor-cache
+          tags: ghcr.io/cpp-review-dune/introductory-review/xeus-cling-xtensor-blas:latest
+          cache-from: type=local,src=/tmp/.buildx-xeus-cling-xtensor-blas-cache
           cache-to: type=local,mode=max,dest=/tmp/.buildx-main-cache
 
       - name: Move cache
         run: |
-          rm -rf /tmp/.buildx-xeus-cling-xtensor-cache
-          mv /tmp/.buildx-main-cache /tmp/.buildx-xeus-cling-xtensor-cache
+          rm -rf /tmp/.buildx-xeus-cling-xtensor-blas-cache
+          mv /tmp/.buildx-main-cache /tmp/.buildx-xeus-cling-xtensor-blas-cache
 
       - name: Scan for vulnerabilities
         uses: crazy-max/ghaction-container-scan@v1
         with:
-          image: ghcr.io/cpp-review-dune/introductory-review/xeus-cling-xtensor:latest
+          image: ghcr.io/cpp-review-dune/introductory-review/xeus-cling-xtensor-blas:latest
           annotations: true
-          dockerfile: ./src/Docker/xeus-cling-xtensor.Dockerfile
+          dockerfile: ./src/Docker/xeus-cling-xtensor-blas.Dockerfile
