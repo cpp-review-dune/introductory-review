@@ -26,6 +26,7 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 ARG PACKAGES="\
   glew \
   libx11 \
+  jupyter-collaboration \
   jupyterlab \
   python-matplotlib \
   python-scipy \

@@ -48,6 +48,7 @@ USER gitpod
 ARG PACKAGES="\
   git \
   julia \
+  jupyter-collaboration \
   jupyterlab-widgets \
   python-matplotlib \
   python-setuptools \

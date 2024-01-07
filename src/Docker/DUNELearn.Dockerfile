@@ -24,6 +24,7 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   version="1.0"
 
 ARG PACKAGES="\
+  jupyter-collaboration \
   jupyterlab \
   minted \
   pandoc \

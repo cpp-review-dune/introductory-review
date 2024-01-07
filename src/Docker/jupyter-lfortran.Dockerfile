@@ -48,6 +48,7 @@ ARG PACKAGES="\
   cmake \
   gcc-fortran \
   git \
+  jupyter-collaboration \
   jupyterlab \
   "
 

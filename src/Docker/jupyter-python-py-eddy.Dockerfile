@@ -42,6 +42,7 @@ USER gitpod
 
 ARG PACKAGES="\
   git \
+  jupyter-collaboration \
   jupyterlab \
   "
 

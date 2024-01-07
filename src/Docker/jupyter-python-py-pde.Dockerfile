@@ -51,6 +51,7 @@ USER gitpod
 ARG PACKAGES="\
   git \
   ffmpeg \
+  jupyter-collaboration \
   jupyterlab \
   jupyterlab-widgets \
   python-black \

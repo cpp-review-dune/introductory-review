@@ -49,6 +49,7 @@ USER gitpod
 ARG PACKAGES="\
   autopep8 \
   git \
+  jupyter-collaboration \
   jupyterlab \
   python-black \
   python-distro \
