@@ -68,3 +68,4 @@ RUN sudo pacman-key --init && \
 EXPOSE 8888
 
 WORKDIR /workspace/notebook/
+
