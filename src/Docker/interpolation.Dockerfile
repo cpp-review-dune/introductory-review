@@ -62,6 +62,7 @@ ARG PACKAGES="\
   jupyterlab \
   python-black \
   python-distro \
+  python-ipympl \
   python-seaborn \
   python-sympy \
   python-tabulate \
