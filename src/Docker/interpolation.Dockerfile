@@ -16,7 +16,7 @@ ARG DIR_SPLINPY="/home/builder/.cache/yay/python-splinepy"
 ARG DIR_COVID19H="/home/builder/.cache/yay/python-covid19h"
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
-  yay --noconfirm -S ${INTERPOLATION_PACKAGES} && \
+  yay --noconfirm -S ${INTERPOLATION_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   mkdir -p ${DIR_SPLINPY} && \
   pushd ${DIR_SPLINPY} && \
   curl -LO ${PKGBUILD_SPLINEPY} && \
