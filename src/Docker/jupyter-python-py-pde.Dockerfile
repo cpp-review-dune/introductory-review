@@ -9,7 +9,6 @@ ARG OPT_PACKAGES="\
   python-rocket-fft \
   "
 
-
 ARG AUR_PACKAGES="\
   python-py-pde \
   "
@@ -69,6 +68,8 @@ RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
   echo "alias startJupyter=\"jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --NotebookApp.allow_origin='\$(gp url 8888)' --NotebookApp.token='' --NotebookApp.password=''\"" >> ~/.bashrc
+
+ENV PYDEVD_DISABLE_FILE_VALIDATION=1
 
 EXPOSE 8888
 

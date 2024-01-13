@@ -59,7 +59,7 @@ ARG PACKAGES="\
   tldr \
   ttf-fira-code \
   "
-# http://fpliu-blog.chinacloudsites.cn/it/software/man
+
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh

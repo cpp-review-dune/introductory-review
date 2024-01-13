@@ -50,6 +50,8 @@ RUN sudo pacman-key --init && \
 
 ENV PETSC_DIR=/opt/petsc/linux-c-opt
 ENV PYTHONPATH=${PYTHONPATH}:${PETSC_DIR}/lib:/usr/share/gmsh/api/python
+ENV PYDEVD_DISABLE_FILE_VALIDATION=1
+
 EXPOSE 8888
 
 WORKDIR /workspace/notebook/

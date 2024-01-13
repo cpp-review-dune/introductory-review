@@ -2,7 +2,8 @@
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
-ARG PKGBUILD="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/python-splinepy/PKGBUILD"
+ARG PKGBUILD_SPLINEPY="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/python-splinepy/PKGBUILD"
+ARG PKGBUILD_COVID19H="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/python-covid19h/PKGBUILD"
 
 ARG INTERPOLATION_PACKAGES="\
   nbqa \
@@ -11,12 +12,22 @@ ARG INTERPOLATION_PACKAGES="\
   python-splines \
   "
 
+ARG DIR_SPLINPY="/home/builder/.cache/yay/python-splinepy"
+ARG DIR_COVID19H="/home/builder/.cache/yay/python-covid19h"
+
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   yay --noconfirm -S ${INTERPOLATION_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  curl -LO ${PKGBUILD} && \
+  mkdir -p ${DIR_SPLINPY} && \
+  pushd ${DIR_SPLINPY} && \
+  curl -LO ${PKGBUILD_SPLINEPY} && \
   makepkg --noconfirm -src && \
-  mkdir -p /home/builder/.cache/yay/python-splinepy && \
-  mv python-splinepy-*.pkg.tar.zst /home/builder/.cache/yay/python-splinepy
+  mv python-splinepy-*.pkg.tar.zst ${DIR_SPLINPY} && \
+  popd && \
+  mkdir -p ${DIR_COVID19H} && \
+  pushd ${DIR_COVID19H} && \
+  curl -LO ${PKGBUILD_COVID19H} &&
+  makepkg --noconfirm -src && \
+  mv python-covid19h-*.pkg.tar.zst ${DIR_COVID19H}
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="Interpolation Arch" \
@@ -55,6 +66,7 @@ ARG PACKAGES="\
   python-distro \
   python-seaborn \
   python-sympy \
+  python-tabulate \
   texlive-fontsrecommended \
   texlive-latexextra \
   "
@@ -71,5 +83,7 @@ RUN sudo pacman-key --init && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
   echo "alias startJupyter=\"jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --ServerApp.allow_origin='\$(gp url 8888)' --IdentityProvider.token='' --ServerApp.password=''\"" >> ~/.bashrc
+
+ENV PYDEVD_DISABLE_FILE_VALIDATION=1
 
 EXPOSE 8888
