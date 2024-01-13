@@ -20,16 +20,12 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   mkdir -p ${DIR_SPLINPY} && \
   pushd ${DIR_SPLINPY} && \
   curl -LO ${PKGBUILD_SPLINEPY} && \
-  makepkg --noconfirm -src && \
-  mv python-splinepy-*.pkg.tar.zst ${DIR_SPLINPY} && \
+  makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   popd && \
   mkdir -p ${DIR_COVID19H} && \
   pushd ${DIR_COVID19H} && \
   curl -LO ${PKGBUILD_COVID19H} && \
-  makepkg --noconfirm -src && \
-  mv python-covid19h-*.pkg.tar.zst ${DIR_COVID19H}
-
-# 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+  makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="Interpolation Arch" \
