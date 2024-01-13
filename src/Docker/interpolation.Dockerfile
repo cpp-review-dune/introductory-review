@@ -3,7 +3,7 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG PKGBUILD_SPLINEPY="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/python-splinepy/PKGBUILD"
-ARG PKGBUILD_COVID19H="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/python-covid19h/PKGBUILD"
+ARG PKGBUILD_COVID19H="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/python-covid19dh/PKGBUILD"
 
 ARG INTERPOLATION_PACKAGES="\
   nbqa \
