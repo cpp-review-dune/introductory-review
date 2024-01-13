@@ -25,7 +25,7 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   popd && \
   mkdir -p ${DIR_COVID19H} && \
   pushd ${DIR_COVID19H} && \
-  curl -LO ${PKGBUILD_COVID19H} &&
+  curl -LO ${PKGBUILD_COVID19H} && \
   makepkg --noconfirm -src && \
   mv python-covid19h-*.pkg.tar.zst ${DIR_COVID19H}
 
