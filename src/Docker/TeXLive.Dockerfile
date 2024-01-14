@@ -7,6 +7,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 ARG MTPRO2_LITE_SOURCE="https://raw.githubusercontent.com/carlosal1015/mathtime-installer/carlosal1015/mtp2lite.zip.tpm"
 
 ARG FONT_PACKAGES="\
+  otf-intel-one-mono \
   yay \
   "
 
@@ -58,7 +59,6 @@ ARG PACKAGES="\
   jdk17-openjdk \
   biber \
   doxygen \
-  otf-intel-one-mono \
   plantuml \
   texlive-binextra \
   texlive-bibtexextra \
