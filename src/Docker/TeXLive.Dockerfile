@@ -58,6 +58,7 @@ ARG PACKAGES="\
   jdk17-openjdk \
   biber \
   doxygen \
+  otf-intel-one-mono \
   plantuml \
   texlive-binextra \
   texlive-bibtexextra \
@@ -70,6 +71,9 @@ ARG PACKAGES="\
   texlive-plaingeneric \
   texlive-mathscience \
   texlive-xetex \
+  ttf-fira-code \
+  ttf-ibm-plex \
+  ttf-jetbrains-mono \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
