@@ -59,6 +59,7 @@ ARG PACKAGES="\
   jdk17-openjdk \
   biber \
   doxygen \
+  minted \
   plantuml \
   texlive-binextra \
   texlive-bibtexextra \
