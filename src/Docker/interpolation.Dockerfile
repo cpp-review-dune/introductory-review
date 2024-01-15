@@ -56,6 +56,7 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
+  ffmpeg \
   git \
   jupyter-collaboration \
   jupyterlab \
