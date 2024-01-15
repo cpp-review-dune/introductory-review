@@ -65,8 +65,6 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 
 USER gitpod
 
-# autopep8 \
-
 ARG PACKAGES="\
   clang \
   gnuplot \

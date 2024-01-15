@@ -51,7 +51,6 @@ ARG VTK_PACKAGES="\
   "
 
 ARG PACKAGES="\
-  autopep8 \
   git \
   jupyter-collaboration \
   jupyterlab-widgets \

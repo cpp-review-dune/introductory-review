@@ -22,7 +22,6 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   version="1.0"
 
 ARG PACKAGES="\
-  autopep8 \
   fmt \
   "
 # eigen
