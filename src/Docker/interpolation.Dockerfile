@@ -8,6 +8,7 @@ ARG PKGBUILD_COVID19H="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main
 ARG INTERPOLATION_PACKAGES="\
   nbqa \
   python-bezier \
+  python-cmocean \
   python-gustaf \
   python-splines \
   "
@@ -66,6 +67,7 @@ ARG PACKAGES="\
   python-seaborn \
   python-sympy \
   python-tabulate \
+  python-xarray \
   texlive-fontsrecommended \
   texlive-latexextra \
   "
