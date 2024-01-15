@@ -4,6 +4,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG PKGBUILD_SPLINEPY="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/python-splinepy/PKGBUILD"
 ARG PKGBUILD_COVID19H="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/python-covid19dh/PKGBUILD"
+ARG PKGBUILD_TUTORMAGIC="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/jupyter-nbextension-tutormagic/PKGBUILD"
 
 ARG INTERPOLATION_PACKAGES="\
   nbqa \
@@ -15,6 +16,7 @@ ARG INTERPOLATION_PACKAGES="\
 
 ARG DIR_SPLINPY="/home/builder/.cache/yay/python-splinepy"
 ARG DIR_COVID19H="/home/builder/.cache/yay/python-covid19h"
+ARG DIR_TUTORMAGIC="/home/builder/.cache/yay/jupyter-nbextension-tutormagic"
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   yay --noconfirm -S ${INTERPOLATION_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
@@ -26,6 +28,11 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   mkdir -p ${DIR_COVID19H} && \
   pushd ${DIR_COVID19H} && \
   curl -LO ${PKGBUILD_COVID19H} && \
+  makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  popd && \
+  mkdir -p ${DIR_TUTORMAGIC} && \
+  pushd ${DIR_TUTORMAGIC} && \
+  curl -LO ${PKGBUILD_TUTORMAGIC} && \
   makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
