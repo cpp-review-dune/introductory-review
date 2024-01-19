@@ -3,6 +3,7 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
+  mumps \
   parmetis-git \
   python-fenics-dolfinx \
   "
