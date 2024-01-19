@@ -2,7 +2,7 @@
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
-ARG OPT_PACKAGES="
+ARG OPT_PACKAGES="\
   mumps \
   "
 
