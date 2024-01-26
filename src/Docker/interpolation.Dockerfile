@@ -23,7 +23,7 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   mkdir -p ${DIR_SPLINPY} && \
   pushd ${DIR_SPLINPY} && \
   curl -LO ${PKGBUILD_SPLINEPY} && \
-  makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  makepkg --noconfirm -src && \
   popd && \
   mkdir -p ${DIR_COVID19H} && \
   pushd ${DIR_COVID19H} && \
@@ -34,6 +34,8 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   pushd ${DIR_TUTORMAGIC} && \
   curl -LO ${PKGBUILD_TUTORMAGIC} && \
   makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+
+# 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="Interpolation Arch" \
