@@ -19,7 +19,7 @@ ARG DIR_COVID19H="/home/builder/.cache/yay/python-covid19h"
 ARG DIR_TUTORMAGIC="/home/builder/.cache/yay/jupyter-nbextension-tutormagic"
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
-  yay --noconfirm -S ${INTERPOLATION_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  yay --noconfirm -S ${INTERPOLATION_PACKAGES} && \
   mkdir -p ${DIR_SPLINPY} && \
   pushd ${DIR_SPLINPY} && \
   curl -LO ${PKGBUILD_SPLINEPY} && \
