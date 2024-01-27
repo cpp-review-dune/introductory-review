@@ -12,19 +12,14 @@ ARG INTERPOLATION_PACKAGES="\
   python-cmocean \
   python-gustaf \
   python-splines \
+  python-splinepy \
   "
 
-ARG DIR_SPLINPY="/home/builder/.cache/yay/python-splinepy"
 ARG DIR_COVID19H="/home/builder/.cache/yay/python-covid19h"
 ARG DIR_TUTORMAGIC="/home/builder/.cache/yay/jupyter-nbextension-tutormagic"
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
-  yay --noconfirm -S ${INTERPOLATION_PACKAGES} && \
-  mkdir -p ${DIR_SPLINPY} && \
-  pushd ${DIR_SPLINPY} && \
-  curl -LO ${PKGBUILD_SPLINEPY} && \
-  makepkg --noconfirm -src && \
-  popd && \
+  yay --noconfirm --mflags --nocheck -S ${INTERPOLATION_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   mkdir -p ${DIR_COVID19H} && \
   pushd ${DIR_COVID19H} && \
   curl -LO ${PKGBUILD_COVID19H} && \
@@ -34,8 +29,6 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   pushd ${DIR_TUTORMAGIC} && \
   curl -LO ${PKGBUILD_TUTORMAGIC} && \
   makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
-
-# 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="Interpolation Arch" \
