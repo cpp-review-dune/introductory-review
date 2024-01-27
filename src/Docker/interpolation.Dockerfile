@@ -2,7 +2,6 @@
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
-ARG PKGBUILD_SPLINEPY="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/python-splinepy/PKGBUILD"
 ARG PKGBUILD_COVID19H="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/python-covid19dh/PKGBUILD"
 ARG PKGBUILD_TUTORMAGIC="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/jupyter-nbextension-tutormagic/PKGBUILD"
 
@@ -13,6 +12,7 @@ ARG INTERPOLATION_PACKAGES="\
   python-gustaf \
   python-splines \
   python-splinepy \
+  jupyter-octave_kernel \
   "
 
 ARG DIR_COVID19H="/home/builder/.cache/yay/python-covid19h"
@@ -85,7 +85,8 @@ RUN sudo pacman-key --init && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
-  echo "alias startJupyter=\"jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --ServerApp.allow_origin='\$(gp url 8888)' --IdentityProvider.token='' --ServerApp.password=''\"" >> ~/.bashrc
+  echo "alias startJupyter=\"jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --ServerApp.allow_origin='\$(gp url 8888)' --IdentityProvider.token='' --ServerApp.password=''\"" >> ~/.bashrc && \
+  python -m octave_kernel install --user
 
 ENV PYDEVD_DISABLE_FILE_VALIDATION=1
 
