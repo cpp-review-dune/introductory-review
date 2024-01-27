@@ -8,12 +8,14 @@ ARG PKGBUILD_TUTORMAGIC="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/ma
 
 ARG INTERPOLATION_PACKAGES="\
   nbqa \
+  identinum \
+  jupyter-octave_kernel \
   python-bezier \
   python-cmocean \
   python-gustaf \
+  python-perfplot \
   python-splines \
   python-splinepy \
-  jupyter-octave_kernel \
   "
 
 ARG DIR_COVID19H="/home/builder/.cache/yay/python-covid19h"
