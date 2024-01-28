@@ -10,6 +10,7 @@ ARG OPT_PACKAGES="\
   "
 
 ARG AUR_PACKAGES="\
+  python-findiff \
   python-py-pde \
   "
 
