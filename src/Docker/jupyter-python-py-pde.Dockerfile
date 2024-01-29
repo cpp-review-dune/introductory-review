@@ -10,6 +10,7 @@ ARG OPT_PACKAGES="\
   "
 
 ARG AUR_PACKAGES="\
+  jupyter-octave_kernel \
   python-findiff \
   python-py-pde \
   "
