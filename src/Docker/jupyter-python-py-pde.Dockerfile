@@ -7,6 +7,7 @@ ARG OPT_PACKAGES="\
   python-numba-mpi \
   python-pyfftw \
   python-rocket-fft \
+  hdf5-openmpi \
   "
 
 ARG AUR_PACKAGES="\
