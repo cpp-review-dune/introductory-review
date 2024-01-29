@@ -7,7 +7,6 @@ ARG OPT_PACKAGES="\
   python-numba-mpi \
   python-pyfftw \
   python-rocket-fft \
-  hdf5-openmpi \
   "
 
 ARG AUR_PACKAGES="\
@@ -19,8 +18,9 @@ ARG AUR_PACKAGES="\
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   yay --noconfirm -S ${OPT_PACKAGES} && \
-  yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+  yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES}
 
+#2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 # yay --noconfirm --noprogressbar -S napari --mflags --skipinteg
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
@@ -58,10 +58,11 @@ ARG PACKAGES="\
   jupyterlab \
   jupyterlab-widgets \
   python-black \
-  python-h5py-openmpi \
   python-mpi4py \
   python-pandas \
   "
+
+# python-h5py-openmpi \
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
