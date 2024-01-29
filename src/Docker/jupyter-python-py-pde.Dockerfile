@@ -13,6 +13,7 @@ ARG AUR_PACKAGES="\
   jupyter-octave_kernel \
   python-findiff \
   python-py-pde \
+  python-pystencils \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
