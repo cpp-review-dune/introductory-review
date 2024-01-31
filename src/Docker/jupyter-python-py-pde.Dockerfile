@@ -51,6 +51,7 @@ USER gitpod
 
 ARG OPT_PACKAGES="\
   octave \
+  blas-openblas \
   python-h5py-openmpi \
   "
 
