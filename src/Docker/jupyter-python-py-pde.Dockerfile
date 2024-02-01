@@ -3,11 +3,7 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
-  nbqa \
   blas-openblas \
-  python-numba-mpi \
-  python-pyfftw \
-  python-rocket-fft \
   "
 
 ARG AUR_PACKAGES="\
@@ -17,9 +13,17 @@ ARG AUR_PACKAGES="\
   python-pystencils \
   "
 
+ARG EXTRA_AUR_PACKAGES="\
+  nbqa \
+  python-numba-mpi \
+  python-pyfftw \
+  python-rocket-fft \
+  "
+
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   yay --noconfirm -S ${OPT_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+  yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  yay --noconfirm --noprogressbar -Syuq ${EXTRA_AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 # yay --noconfirm --noprogressbar -S napari --mflags --skipinteg
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
