@@ -64,6 +64,7 @@ ARG PACKAGES="\
   python-black \
   python-mpi4py \
   python-pandas \
+  python-tabulate \
   "
 
 ARG ARCH4EDU_PACKAGES="\
