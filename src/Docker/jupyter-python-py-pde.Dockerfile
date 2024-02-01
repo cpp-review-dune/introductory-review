@@ -4,6 +4,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
   nbqa \
+  blas-openblas \
   python-numba-mpi \
   python-pyfftw \
   python-rocket-fft \
