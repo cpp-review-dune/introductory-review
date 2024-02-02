@@ -21,7 +21,7 @@ ARG EXTRA_AUR_PACKAGES="\
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
-  yay --noconfirm -S ${OPT_PACKAGES} \
+  yay --noconfirm -S ${OPT_PACKAGES} && \
   yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES} && \
   yay --noconfirm --noprogressbar -Syuq ${EXTRA_AUR_PACKAGES}
 # yay --noconfirm --noprogressbar -S napari --mflags --skipinteg
