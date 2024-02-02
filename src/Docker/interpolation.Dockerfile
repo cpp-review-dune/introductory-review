@@ -69,7 +69,6 @@ USER gitpod
 
 ARG OPT_PACKAGES="\
   octave \
-  blas-openblas \
   "
 
 ARG PACKAGES="\

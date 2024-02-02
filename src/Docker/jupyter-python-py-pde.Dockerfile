@@ -2,10 +2,6 @@
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
-ARG OPT_PACKAGES="\
-  blas-openblas \
-  "
-
 ARG AUR_PACKAGES="\
   jupyter-octave_kernel \
   python-findiff \
@@ -20,13 +16,10 @@ ARG EXTRA_AUR_PACKAGES="\
   python-rocket-fft \
   "
 
-RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
-  yay --noconfirm -S ${OPT_PACKAGES} && \
-  yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES} && \
-  yay --noconfirm --noprogressbar -Syuq ${EXTRA_AUR_PACKAGES}
+RUN yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  yay --noconfirm --noprogressbar -Syuq ${EXTRA_AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 # yay --noconfirm --noprogressbar -S napari --mflags --skipinteg
-
-# 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="Jupyter python-py-pde Arch" \
@@ -58,7 +51,6 @@ USER gitpod
 
 ARG OPT_PACKAGES="\
   octave \
-  blas-openblas \
   python-h5py-openmpi \
   "
 
@@ -82,7 +74,6 @@ COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
   sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
-  sudo pacman --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} ${ARCH4EDU_PACKAGES} && \
