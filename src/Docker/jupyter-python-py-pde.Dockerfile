@@ -28,7 +28,6 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(d
   makepkg -s --noconfirm && \
   mkdir -p ~/.cache/yay/python-clawpack && \
   mv *.pkg.tar.zst ~/.cache/yay/python-clawpack
-
 # yay --noconfirm --noprogressbar -S napari --mflags --skipinteg
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
