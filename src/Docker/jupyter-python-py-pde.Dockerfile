@@ -5,6 +5,9 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 ARG AUR_PACKAGES="\
   jupyter-octave_kernel \
   python-findiff \
+  python-finitediffx \
+  python-jaxtyping \
+  python-kernex \
   python-py-pde \
   python-pystencils \
   "
@@ -16,7 +19,8 @@ ARG EXTRA_AUR_PACKAGES="\
   python-rocket-fft \
   "
 
-RUN yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
+  yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   yay --noconfirm --noprogressbar -Syuq ${EXTRA_AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 # yay --noconfirm --noprogressbar -S napari --mflags --skipinteg
