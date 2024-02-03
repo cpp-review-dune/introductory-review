@@ -19,10 +19,15 @@ ARG EXTRA_AUR_PACKAGES="\
   python-rocket-fft \
   "
 
-RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
-  yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+RUN yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  yay --noconfirm --noprogressbar -Syuq ${EXTRA_AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+  yay --noconfirm --noprogressbar -Syuq ${EXTRA_AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  yay -G python-clawpack && \
+  cd python-clawpack && \
+  git checkout 72f0448040501190054a07970a85ae464b762c80 && \
+  makepkg -s --noconfirm && \
+  mkdir -p ~/.cache/yay/python-clawpack && \
+  mv *.pkg.tar.zst ~/.cache/yay/python-clawpack
 # yay --noconfirm --noprogressbar -S napari --mflags --skipinteg
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
