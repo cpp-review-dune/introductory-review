@@ -3,13 +3,7 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
-  jupyter-octave_kernel \
-  python-findiff \
-  python-finitediffx \
-  python-jaxtyping \
-  python-kernex \
   python-py-pde \
-  python-pystencils \
   "
 
 ARG EXTRA_AUR_PACKAGES="\
@@ -21,13 +15,7 @@ ARG EXTRA_AUR_PACKAGES="\
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  yay --noconfirm --noprogressbar -Syuq ${EXTRA_AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  yay -G python-clawpack && \
-  cd python-clawpack && \
-  git checkout 72f0448040501190054a07970a85ae464b762c80 && \
-  makepkg -s --noconfirm && \
-  mkdir -p ~/.cache/yay/python-clawpack && \
-  mv *.pkg.tar.zst ~/.cache/yay/python-clawpack
+  yay --noconfirm --noprogressbar -Syuq ${EXTRA_AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 # yay --noconfirm --noprogressbar -S napari --mflags --skipinteg
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
@@ -58,11 +46,6 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 
 USER gitpod
 
-ARG OPT_PACKAGES="\
-  octave \
-  python-h5py-openmpi \
-  "
-
 ARG PACKAGES="\
   git \
   ffmpeg \
@@ -72,26 +55,17 @@ ARG PACKAGES="\
   python-black \
   python-mpi4py \
   python-pandas \
-  python-tabulate \
-  "
-
-ARG ARCH4EDU_PACKAGES="\
-  python-jax \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
-RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
-  sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
+RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
-  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} ${ARCH4EDU_PACKAGES} && \
+  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
-  echo "alias startJupyter=\"jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --NotebookApp.allow_origin='\$(gp url 8888)' --NotebookApp.token='' --NotebookApp.password=''\"" >> ~/.bashrc && \
-  python -m octave_kernel install --user
-
-# echo "setenv(\"GNUTERM\",\"fltk\");" >> ~/.octaverc && \
+  echo "alias startJupyter=\"jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --NotebookApp.allow_origin='\$(gp url 8888)' --NotebookApp.token='' --NotebookApp.password=''\"" >> ~/.bashrc
 
 ENV PYDEVD_DISABLE_FILE_VALIDATION=1
 
