@@ -2,6 +2,10 @@
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
+ARG OPT_PACKAGES="\
+  netcdf-openmpi \
+  "
+
 ARG AUR_PACKAGES="\
   nbqa \
   parmetis-git \
@@ -15,9 +19,8 @@ ARG AUR_PACKAGES="\
 
 # https://docs.pyvista.org/version/stable/user-guide/jupyter
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
-  yay --mflags --nocheck --noconfirm -S ${AUR_PACKAGES}
-  
-#2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+  sudo pacman --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} && \
+  yay --mflags --nocheck --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 FROM ghcr.io/cpp-review-dune/introductory-review/python-fenics-dolfinx
 
