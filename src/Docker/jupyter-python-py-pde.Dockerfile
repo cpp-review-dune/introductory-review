@@ -2,6 +2,10 @@
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
+ARG OPT_PACKAGES="\
+  netcdf-openmpi \
+  "
+
 ARG AUR_PACKAGES="\
   python-py-pde \
   "
@@ -14,6 +18,7 @@ ARG EXTRA_AUR_PACKAGES="\
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  sudo pacman --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} && \
   yay --noconfirm --noprogressbar -Syuq ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   yay --noconfirm --noprogressbar -Syuq ${EXTRA_AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 # yay --noconfirm --noprogressbar -S napari --mflags --skipinteg
@@ -54,9 +59,8 @@ ARG PACKAGES="\
   jupyterlab-widgets \
   python-black \
   python-mpi4py \
+  python-pandas \
   "
-
-# python-pandas \
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
