@@ -74,3 +74,11 @@ jobs:
           image: ghcr.io/cpp-review-dune/introductory-review/jupyter-python-py-eddy:latest
           annotations: true
           dockerfile: ./src/Docker/jupyter-python-py-eddy.Dockerfile
+
+      - name:
+        uses: bots-house/ghcr-delete-image-action@v1.1.0
+        with:
+          owner: cpp-introductory-review
+          name: jupyter-python-py-eddy
+          token: ${{ secrets.CR_PAT }}
+          untagged-keep-latest: 1
