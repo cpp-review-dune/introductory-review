@@ -17,11 +17,11 @@ jobs:
       - name: Maximize build space
         uses: easimon/maximize-build-space@master
         with:
-          root-reserve-mb: 512
-          swap-size-mb: 1024
+          root-reserve-mb: 36000
           remove-dotnet: "true"
           remove-android: "true"
           remove-haskell: "true"
+          remove-codeql: "true"
 
       - name: Partial Clone
         shell: bash
