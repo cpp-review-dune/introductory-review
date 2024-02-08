@@ -54,8 +54,9 @@ ARG PACKAGES="\
   jupyterlab-widgets \
   python-black \
   python-mpi4py \
-  python-pandas \
   "
+
+# python-pandas \
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
