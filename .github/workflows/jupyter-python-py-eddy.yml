@@ -80,5 +80,5 @@ jobs:
         with:
           owner: cpp-review-dune
           name: introductory-review/jupyter-python-py-eddy
-          token: ${{ secrets.CR_PAT }}
+          token: ${{ secrets.PAT }}
           untagged-keep-latest: 1
