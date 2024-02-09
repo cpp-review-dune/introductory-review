@@ -65,3 +65,11 @@ jobs:
           image: ghcr.io/cpp-review-dune/introductory-review/aur:latest
           annotations: true
           dockerfile: ./src/Docker/AUR.Dockerfile
+
+      - name: Prune untagged images
+        uses: bots-house/ghcr-delete-image-action@v1.1.0
+        with:
+          owner: cpp-review-dune
+          name: introductory-review/aur
+          token: ${{ secrets.PAT }}
+          untagged-keep-latest: 0
