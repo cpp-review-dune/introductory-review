@@ -79,6 +79,6 @@ jobs:
         uses: bots-house/ghcr-delete-image-action@v1.1.0
         with:
           owner: cpp-review-dune
-          name: jupyter-python-py-eddy
+          name: introductory-review/jupyter-python-py-eddy
           token: ${{ secrets.CR_PAT }}
           untagged-keep-latest: 1
