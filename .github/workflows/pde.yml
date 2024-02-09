@@ -68,18 +68,18 @@ jobs:
           rm -rf /tmp/.buildx-pde-cache
           mv /tmp/.buildx-main-cache /tmp/.buildx-pde-cache
 
-      # - name: Scan for vulnerabilities
-      #   uses: crazy-max/ghaction-container-scan@master
-      #   with:
-      #     image: ghcr.io/cpp-review-dune/introductory-review/pde:latest
-      #     annotations: true
-      #     severity_threshold: HIGH
-      #     dockerfile: ./src/Docker/pde.Dockerfile
+      - name: Scan for vulnerabilities
+        uses: crazy-max/ghaction-container-scan@master
+        with:
+          image: ghcr.io/cpp-review-dune/introductory-review/pde:latest
+          annotations: true
+          severity_threshold: HIGH
+          dockerfile: ./src/Docker/pde.Dockerfile
 
-      # - name: Prune untagged images
-      #   uses: bots-house/ghcr-delete-image-action@v1.1.0
-      #   with:
-      #     owner: cpp-review-dune
-      #     name: introductory-review/pde
-      #     token: ${{ secrets.PAT }}
-      #     untagged-keep-latest: 2
+      - name: Prune untagged images
+        uses: bots-house/ghcr-delete-image-action@v1.1.0
+        with:
+          owner: cpp-review-dune
+          name: introductory-review/pde
+          token: ${{ secrets.PAT }}
+          untagged-keep-latest: 2
