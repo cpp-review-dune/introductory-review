@@ -2,6 +2,8 @@
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
+ARG PKGBUILD_MOLE="https://raw.githubusercontent.com/carlosal1015/mole_examples/main/PKGBUILD"
+
 ARG AUR_PACKAGES="\
   jupyter-octave_kernel \
   python-findiff \
@@ -11,6 +13,8 @@ ARG AUR_PACKAGES="\
   python-pystencils \
   "
 
+ARG DIR_MOLE="/home/builder/.cache/yay/mole"
+
 RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
   yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   yay --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
@@ -19,7 +23,12 @@ RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/te
   git checkout 72f0448040501190054a07970a85ae464b762c80 && \
   makepkg -s --noconfirm && \
   mkdir -p ~/.cache/yay/python-clawpack && \
-  mv *.pkg.tar.zst ~/.cache/yay/python-clawpack
+  mv *.pkg.tar.zst ~/.cache/yay/python-clawpack && \
+  mkdir -p ${DIR_MOLE} && \
+  pushd ${DIR_MOLE} && \
+  curl -LO ${PKGBUILD_MOLE} && \
+  makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  popd
 
 FROM ghcr.io/cpp-review-dune/introductory-review/jupyter-python-py-pde
 
@@ -46,4 +55,5 @@ RUN sudo pacman-key --init && \
   rm /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
-  sudo rm -r /var/lib/pacman/sync/*
+  sudo rm -r /var/lib/pacman/sync/* && \
+  python -m octave_kernel install --user
