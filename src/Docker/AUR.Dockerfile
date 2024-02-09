@@ -4,7 +4,7 @@ FROM archlinux:base-devel
 
 LABEL maintainer="C++ Review Dune" \
   name="Builder packages from AUR in Gitpod" \
-  description="Builder packages from AUR." \
+  description="Builder packages from AUR" \
   url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2FAUR" \
   vcs-url="https://github.com/cpp-review-dune/introductory-review" \
   vendor="C++ Review Dune" \
