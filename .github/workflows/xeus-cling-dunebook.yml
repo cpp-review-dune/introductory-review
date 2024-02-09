@@ -73,4 +73,13 @@ jobs:
         with:
           image: ghcr.io/cpp-review-dune/introductory-review/xeus-cling-dunebook:latest
           annotations: true
+          severity_threshold: HIGH
           dockerfile: ./src/Docker/xeus-cling-dunebook.Dockerfile
+
+      - name: Prune untagged images
+        uses: bots-house/ghcr-delete-image-action@v1.1.0
+        with:
+          owner: cpp-review-dune
+          name: introductory-review/xeus-cling-dunebook
+          token: ${{ secrets.PAT }}
+          untagged-keep-latest: 1

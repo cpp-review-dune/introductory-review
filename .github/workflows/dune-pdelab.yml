@@ -78,4 +78,13 @@ jobs:
         with:
           image: ghcr.io/cpp-review-dune/introductory-review/dunepdelab:latest
           annotations: true
+          severity_threshold: HIGH
           dockerfile: ./src/Docker/DUNEPDELab.Dockerfile
+
+      - name: Prune untagged images
+        uses: bots-house/ghcr-delete-image-action@v1.1.0
+        with:
+          owner: cpp-review-dune
+          name: introductory-review/dunepdelab
+          token: ${{ secrets.PAT }}
+          untagged-keep-latest: 1

@@ -66,3 +66,19 @@ jobs:
         run: |
           rm -rf /tmp/.buildx-test-cache
           mv /tmp/.buildx-main-cache /tmp/.buildx-test-cache
+
+      - name: Scan for vulnerabilities
+        uses: crazy-max/ghaction-container-scan@v3
+        with:
+          image: ghcr.io/cpp-review-dune/introductory-review/test:latest
+          annotations: true
+          severity_threshold: HIGH
+          dockerfile: ./src/Docker/test.Dockerfile
+  
+      - name: Prune untagged images
+        uses: bots-house/ghcr-delete-image-action@v1.1.0
+        with:
+          owner: cpp-review-dune
+          name: introductory-review/test
+          token: ${{ secrets.PAT }}
+          untagged-keep-latest: 1

@@ -64,6 +64,7 @@ jobs:
         with:
           image: ghcr.io/cpp-review-dune/introductory-review/aur:latest
           annotations: true
+          severity_threshold: HIGH
           dockerfile: ./src/Docker/AUR.Dockerfile
 
       - name: Prune untagged images
@@ -72,4 +73,4 @@ jobs:
           owner: cpp-review-dune
           name: introductory-review/aur
           token: ${{ secrets.PAT }}
-          untagged-keep-latest: 0
+          untagged-keep-latest: 1
