@@ -71,7 +71,7 @@ jobs:
           mv /tmp/.buildx-main-cache /tmp/.buildx-interpolation-cache
 
       - name: Scan for vulnerabilities
-        uses: crazy-max/ghaction-container-scan@v3
+        uses: crazy-max/ghaction-container-scan@master
         with:
           image: ghcr.io/cpp-review-dune/introductory-review/interpolation:latest
           annotations: true
