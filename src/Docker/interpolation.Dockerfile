@@ -13,6 +13,8 @@ ARG INTERPOLATION_PACKAGES="\
   python-bezier \
   python-cmocean \
   python-gustaf \
+  python-optimistix \
+  python-optax \
   python-perfplot \
   python-splines \
   python-splinepy \
@@ -22,7 +24,8 @@ ARG DIR_COVID19H="/home/builder/.cache/yay/python-covid19h"
 ARG DIR_HDNUM="/home/builder/.cache/yay/hdnum-git"
 ARG DIR_TUTORMAGIC="/home/builder/.cache/yay/jupyter-nbextension-tutormagic"
 
-RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
+RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
+  yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   yay --noconfirm --mflags --nocheck -S ${INTERPOLATION_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   mkdir -p ${DIR_COVID19H} && \
   pushd ${DIR_COVID19H} && \
@@ -93,6 +96,7 @@ COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 RUN sudo pacman-key --init && \
   sudo pacman-key --populate archlinux && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring && \
+  curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \ 
   sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
