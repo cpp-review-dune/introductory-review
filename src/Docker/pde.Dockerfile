@@ -27,8 +27,10 @@ RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/te
   mkdir -p ${DIR_MOLE} && \
   pushd ${DIR_MOLE} && \
   curl -LO ${PKGBUILD_MOLE} && \
-  makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  makepkg --noconfirm -src && \
   popd
+
+#2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 FROM ghcr.io/cpp-review-dune/introductory-review/jupyter-python-py-pde
 
