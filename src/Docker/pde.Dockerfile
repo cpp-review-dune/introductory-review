@@ -7,11 +7,14 @@ ARG PKGBUILD_MOLE="https://raw.githubusercontent.com/carlosal1015/mole_examples/
 ARG AUR_PACKAGES="\
   armadillo \
   jupyter-octave_kernel \
+  python-devito \
   python-findiff \
   python-finitediffx \
+  python-gotranx \
   python-jaxtyping \
   python-kernex \
   python-pystencils \
+  python-uvw \
   "
 
 ARG DIR_MOLE="/home/builder/.cache/yay/mole"
