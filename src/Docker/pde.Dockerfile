@@ -22,6 +22,7 @@ ARG DIR_MOLE="/home/builder/.cache/yay/mole"
 RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
   yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   yay --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  yay --mflags --nocheck --noconfirm -S petsc 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   yay -G python-clawpack && \
   cd python-clawpack && \
   git checkout 72f0448040501190054a07970a85ae464b762c80 && \
@@ -61,3 +62,6 @@ RUN sudo pacman-key --init && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
   python -m octave_kernel install --user
+
+ENV PETSC_DIR=/opt/petsc/linux-c-opt
+ENV PYTHONPATH=${PYTHONPATH}:${PETSC_DIR}/lib
