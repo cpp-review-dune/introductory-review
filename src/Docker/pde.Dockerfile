@@ -7,6 +7,7 @@ ARG PKGBUILD_MOLEGIT="https://raw.githubusercontent.com/carlosal1015/mole_exampl
 ARG AUR_PACKAGES="\
   armadillo \
   jupyter-octave_kernel \
+  otf-intel-one-mono \
   python-devito \
   python-findiff \
   python-finitediffx \
@@ -48,7 +49,6 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 
 ARG PACKAGES="\
   octave \
-  otf-intel-one-mono \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
