@@ -44,4 +44,3 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
   rm -r /var/lib/pacman/sync/*
 
 USER ${USER}
-
