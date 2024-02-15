@@ -15,6 +15,7 @@ ARG EXTRA_AUR_PACKAGES="\
   python-numba-mpi \
   python-pyfftw \
   python-rocket-fft \
+  pyupgrade \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
@@ -61,7 +62,6 @@ ARG PACKAGES="\
   python-isort \
   python-mpi4py \
   python-pandas \
-  pyupgrade \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/

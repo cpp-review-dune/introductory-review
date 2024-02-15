@@ -11,6 +11,7 @@ ARG AUR_PACKAGES="\
   python-trame \
   python-trame-vtk \
   python-trame-vuetify \
+  pyupgrade \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
@@ -57,7 +58,6 @@ ARG PACKAGES="\
   python-black \
   python-isort \
   python-matplotlib \
-  pyupgrade \
   xorg-server-xvfb \
   "
 

@@ -18,6 +18,7 @@ ARG INTERPOLATION_PACKAGES="\
   python-perfplot \
   python-splines \
   python-splinepy \
+  pyupgrade \
   "
 
 ARG DIR_COVID19H="/home/builder/.cache/yay/python-covid19h"
@@ -88,7 +89,6 @@ ARG PACKAGES="\
   python-sympy \
   python-tabulate \
   python-xarray \
-  pyupgrade \
   texlive-fontsrecommended \
   texlive-latexextra \
   "
