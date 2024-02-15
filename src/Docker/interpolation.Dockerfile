@@ -83,10 +83,12 @@ ARG PACKAGES="\
   python-black \
   python-distro \
   python-ipympl \
+  python-isort \
   python-seaborn \
   python-sympy \
   python-tabulate \
   python-xarray \
+  pyupgrade \
   texlive-fontsrecommended \
   texlive-latexextra \
   "

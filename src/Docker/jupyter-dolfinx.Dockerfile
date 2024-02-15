@@ -55,7 +55,9 @@ ARG PACKAGES="\
   jupyter-collaboration \
   jupyterlab-widgets \
   python-black \
+  python-isort \
   python-matplotlib \
+  pyupgrade \
   xorg-server-xvfb \
   "
 

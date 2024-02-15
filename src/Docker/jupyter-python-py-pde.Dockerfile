@@ -58,8 +58,10 @@ ARG PACKAGES="\
   jupyterlab \
   jupyterlab-widgets \
   python-black \
+  python-isort \
   python-mpi4py \
   python-pandas \
+  pyupgrade \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
