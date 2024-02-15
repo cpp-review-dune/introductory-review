@@ -64,5 +64,6 @@ RUN sudo pacman-key --init && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/*
 
+ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
 ENV PETSC_DIR=/opt/petsc/linux-c-opt
 ENV PYTHONPATH=${PYTHONPATH}:${PETSC_DIR}/lib

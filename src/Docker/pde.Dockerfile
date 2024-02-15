@@ -67,5 +67,6 @@ RUN sudo pacman-key --init && \
   ipython profile create && \
   echo -e "c.IPythonWidget.font_size = 11\nc.IPythonWidget.font_family = 'Intel One Mono'\nc.IPKernelApp.matplotlib = 'inline'\nc.InlineBackend.figure_format = 'retina'\n" >> ~/.ipython/profile_default/ipython_config.py
 
+ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
 ENV PETSC_DIR=/opt/petsc/linux-c-opt
 ENV PYTHONPATH=${PYTHONPATH}:${PETSC_DIR}/lib
