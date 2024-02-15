@@ -82,4 +82,4 @@ jobs:
           owner: cpp-review-dune
           name: introductory-review/deal-ii-action
           token: ${{ secrets.PAT }}
-          untagged-keep-latest: 2
+          untagged-keep-latest: 3

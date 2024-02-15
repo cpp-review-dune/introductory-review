@@ -87,4 +87,4 @@ jobs:
           owner: cpp-review-dune
           name: introductory-review/dunelearn
           token: ${{ secrets.PAT }}
-          untagged-keep-latest: 2
+          untagged-keep-latest: 3

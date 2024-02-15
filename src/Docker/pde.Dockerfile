@@ -22,7 +22,7 @@ ARG DIR_MOLE="/home/builder/.cache/yay/mole"
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   yay --mflags --nocheck --noconfirm -S petsc 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
-  yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   yay --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   yay -G python-clawpack && \
   cd python-clawpack && \
