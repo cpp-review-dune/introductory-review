@@ -6,6 +6,7 @@ ARG PKGBUILD_MOLEGIT="https://raw.githubusercontent.com/carlosal1015/mole_exampl
 
 ARG AUR_PACKAGES="\
   armadillo \
+  octave-tablicious \
   otf-intel-one-mono \
   python-devito \
   python-findiff \
@@ -17,7 +18,7 @@ ARG AUR_PACKAGES="\
   python-pystencils \
   python-uvw \
   "
-
+# octave-symbolic
 ARG DIR_MOLEGIT="/home/builder/.cache/yay/mole"
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
@@ -63,9 +64,10 @@ RUN sudo pacman-key --init && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
-  python -m octave_kernel install --user && \
-  ipython profile create && \
-  echo -e "c.IPythonWidget.font_size = 11\nc.IPythonWidget.font_family = 'Intel One Mono'\nc.IPKernelApp.matplotlib = 'inline'\nc.InlineBackend.figure_format = 'retina'\n" >> ~/.ipython/profile_default/ipython_config.py
+  python -m octave_kernel install --user
+
+# ipython profile create && \
+# echo -e "c.IPythonWidget.font_size = 11\nc.IPythonWidget.font_family = 'Intel One Mono'\nc.IPKernelApp.matplotlib = 'inline'\nc.InlineBackend.figure_format = 'retina'\n" >> ~/.ipython/profile_default/ipython_config.py
 
 ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
 ENV PETSC_DIR=/opt/petsc/linux-c-opt
