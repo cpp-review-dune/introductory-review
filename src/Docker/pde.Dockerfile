@@ -6,7 +6,6 @@ ARG PKGBUILD_MOLEGIT="https://raw.githubusercontent.com/carlosal1015/mole_exampl
 
 ARG AUR_PACKAGES="\
   armadillo \
-  jupyter-octave_kernel \
   otf-intel-one-mono \
   python-devito \
   python-findiff \
