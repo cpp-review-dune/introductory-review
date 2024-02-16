@@ -14,6 +14,7 @@ ARG AUR_PACKAGES="\
   python-gotranx \
   python-jaxtyping \
   python-kernex \
+  python-oct2py \
   python-pystencils \
   python-uvw \
   "
