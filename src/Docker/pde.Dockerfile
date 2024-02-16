@@ -48,9 +48,9 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   vendor="Oromion Aznarán" \
   version="1.0"
 
-ARG PACKAGES="\
-  octave \
-  "
+# ARG PACKAGES="\
+#   octave \
+#   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
@@ -61,13 +61,13 @@ RUN sudo pacman-key --init && \
   sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
-  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
-  python -m octave_kernel install --user
+  python -m octave_kernel install --user && \ 
+  ipython profile create && \
+  echo -e "c.IPythonWidget.font_size = 11\nc.IPythonWidget.font_family = 'Intel One Mono'\nc.IPKernelApp.matplotlib = 'inline'\nc.InlineBackend.figure_format = 'retina'\n" >> ~/.ipython/profile_default/ipython_config.py
 
-# ipython profile create && \
-# echo -e "c.IPythonWidget.font_size = 11\nc.IPythonWidget.font_family = 'Intel One Mono'\nc.IPKernelApp.matplotlib = 'inline'\nc.InlineBackend.figure_format = 'retina'\n" >> ~/.ipython/profile_default/ipython_config.py
+# sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
 
 ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
 ENV PETSC_DIR=/opt/petsc/linux-c-opt
