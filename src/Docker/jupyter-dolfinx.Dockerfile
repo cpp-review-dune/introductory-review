@@ -57,7 +57,7 @@ ARG PACKAGES="\
   jupyterlab-widgets \
   python-black \
   python-isort \
-  python-matplotlib \
+  python-ipympl \
   xorg-server-xvfb \
   "
 

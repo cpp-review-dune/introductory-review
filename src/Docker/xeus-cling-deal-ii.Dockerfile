@@ -48,7 +48,7 @@ ARG PACKAGES="\
   openmpi\
   suitesparse \
   python-h5py-openmpi \
-  python-matplotlib \
+  python-ipympl \
   python-scipy \
   "
 

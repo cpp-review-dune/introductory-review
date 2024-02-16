@@ -50,7 +50,7 @@ ARG PACKAGES="\
   julia \
   jupyter-collaboration \
   jupyterlab-widgets \
-  python-matplotlib \
+  python-ipympl \
   python-setuptools \
   xorg-server-xvfb \
   "

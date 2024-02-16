@@ -28,7 +28,7 @@ ARG PACKAGES="\
   libx11 \
   jupyter-collaboration \
   jupyterlab \
-  python-matplotlib \
+  python-ipympl \
   python-scipy \
   python-pyvirtualdisplay \
   qt5-svg \

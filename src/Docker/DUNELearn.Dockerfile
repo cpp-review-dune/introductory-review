@@ -28,6 +28,7 @@ ARG PACKAGES="\
   jupyterlab \
   minted \
   pandoc \
+  python-ipympl \
   texlive-binextra \
   "
 

@@ -60,6 +60,7 @@ ARG PACKAGES="\
   jupyterlab-widgets \
   python-black \
   python-isort \
+  python-ipympl \
   python-mpi4py \
   python-pandas \
   "

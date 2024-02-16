@@ -44,6 +44,7 @@ ARG PACKAGES="\
   git \
   jupyter-collaboration \
   jupyterlab \
+  python-ipympl \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
