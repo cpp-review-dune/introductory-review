@@ -67,10 +67,10 @@ jobs:
           severity_threshold: HIGH
           dockerfile: ./src/Docker/AUR.Dockerfile
 
-      - name: Prune untagged images
-        uses: bots-house/ghcr-delete-image-action@v1.1.0
-        with:
-          owner: cpp-review-dune
-          name: introductory-review/aur
-          token: ${{ secrets.PAT }}
-          untagged-keep-latest: 3
+      # - name: Prune untagged images
+      #   uses: bots-house/ghcr-delete-image-action@v1.1.0
+      #   with:
+      #     owner: cpp-review-dune
+      #     name: introductory-review/aur
+      #     token: ${{ secrets.PAT }}
+      #     untagged-keep-latest: 3
