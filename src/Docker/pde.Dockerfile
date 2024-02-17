@@ -48,17 +48,18 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   vendor="Oromion Aznarán" \
   version="1.0"
 
-# ARG PACKAGES="\
-#   octave \
-#   "
+ARG PACKAGES="\
+  python-threadpoolctl \
+  python-yaml \
+  "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 RUN sudo pacman-key --init && \
   sudo pacman-key --populate archlinux && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring && \
-  curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
   sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
+  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
   sudo pacman -Scc <<< Y <<< Y && \
@@ -66,8 +67,6 @@ RUN sudo pacman-key --init && \
   python -m octave_kernel install --user && \ 
   ipython profile create && \
   echo -e "c.IPythonWidget.font_size = 11\nc.IPythonWidget.font_family = 'Intel One Mono'\nc.IPKernelApp.matplotlib = 'inline'\nc.InlineBackend.figure_format = 'retina'\n" >> ~/.ipython/profile_default/ipython_config.py
-
-# sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
 
 ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
 ENV PETSC_DIR=/opt/petsc/linux-c-opt
