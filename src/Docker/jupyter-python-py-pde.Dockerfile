@@ -52,6 +52,11 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 
 USER gitpod
 
+ARG MKL_PACKAGES="\
+  python-numpy-mkl \
+  python-scipy-mkl \
+  "
+
 ARG PACKAGES="\
   git \
   ffmpeg \
@@ -68,6 +73,7 @@ ARG PACKAGES="\
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
+  sudo pacman --needed --noconfirm --noprogressbar -S ${MKL_PACKAGES} && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
