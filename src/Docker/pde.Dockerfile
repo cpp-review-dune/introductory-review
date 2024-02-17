@@ -50,7 +50,6 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 
 ARG PACKAGES="\
   python-threadpoolctl \
-  python-yaml \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
