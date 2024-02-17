@@ -3,6 +3,7 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
+  blas-openblas \
   netcdf-openmpi \
   "
 
@@ -53,6 +54,7 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG MKL_PACKAGES="\
+  blas-openblas \
   python-numpy-mkl \
   python-scipy-mkl \
   "
