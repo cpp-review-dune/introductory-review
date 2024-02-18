@@ -2,7 +2,7 @@
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
-ARG PKGBUILD_MOLEGIT="https://raw.githubusercontent.com/carlosal1015/mole_examples/main/PKGBUILD"
+ARG PKGBUILD_MOLEGIT="https://raw.githubusercontent.com/carlosal1015/mole_examples/main/PKGBUILDs/mole-git/PKGBUILD"
 
 ARG AUR_PACKAGES="\
   armadillo \
