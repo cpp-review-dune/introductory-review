@@ -4,6 +4,11 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG PKGBUILD_MOLEGIT="https://raw.githubusercontent.com/carlosal1015/mole_examples/main/PKGBUILDs/mole-git/PKGBUILD"
 
+ARG OPT_PACKAGES="\
+  blas-openblas \
+  intel-oneapi-mkl \
+  "
+
 ARG AUR_PACKAGES="\
   armadillo \
   octave-symbolic \
@@ -23,10 +28,11 @@ ARG AUR_PACKAGES="\
 ARG DIR_MOLEGIT="/home/builder/.cache/yay/mole"
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  yay --mflags --nocheck --noconfirm -S petsc 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  yay --repo --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S petsc 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
   yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  yay --noconfirm -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  yay --needed --noconfirm --noprogressbar -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   yay -G python-clawpack && \
   cd python-clawpack && \
   git checkout 72f0448040501190054a07970a85ae464b762c80 && \
@@ -50,6 +56,8 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   version="1.0"
 
 ARG PACKAGES="\
+  blas-openblas \
+  intel-oneapi-mkl \
   python-threadpoolctl \
   "
 
