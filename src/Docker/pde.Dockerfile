@@ -9,8 +9,12 @@ ARG OPT_PACKAGES="\
   intel-oneapi-mkl \
   "
 
-ARG AUR_PACKAGES="\
+ARG PRE_PACKAGES="\
   armadillo \
+  petsc \
+  "
+
+ARG AUR_PACKAGES="\
   octave-symbolic \
   octave-tablicious \
   otf-intel-one-mono \
@@ -29,7 +33,7 @@ ARG DIR_MOLEGIT="/home/builder/.cache/yay/mole"
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   yay --repo --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S petsc 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S ${PRE_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
   yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   yay --needed --noconfirm --noprogressbar -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
