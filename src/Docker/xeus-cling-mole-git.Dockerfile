@@ -9,13 +9,14 @@ ARG OPT_PACKAGES="\
 
 ARG PACKAGES="\
   armadillo \
+  petsc \
   "
 
 ARG PKGBUILD="https://raw.githubusercontent.com/carlosal1015/mole_examples/main/PKGBUILDs/mole-git/PKGBUILD"
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   yay --repo --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  yay --needed --noconfirm --noprogressbar -S ${PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S ${PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   curl -LO ${PKGBUILD} && \
   makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   mkdir -p /home/builder/.cache/yay/mole-git && \
