@@ -60,8 +60,6 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   version="1.0"
 
 ARG PACKAGES="\
-  blas-openblas \
-  intel-oneapi-mkl \
   python-threadpoolctl \
   "
 
