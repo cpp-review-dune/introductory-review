@@ -26,7 +26,16 @@ ARG AUR_PACKAGES="\
   python-kernex \
   python-oct2py \
   python-pystencils \
+  python-py-pde \
   python-uvw \
+  "
+
+ARG EXTRA_AUR_PACKAGES="\
+  nbqa \
+  python-numba-mpi \
+  python-pyfftw \
+  python-rocket-fft \
+  pyupgrade \
   "
 
 ARG DIR_MOLEGIT="/home/builder/.cache/yay/mole"
@@ -37,6 +46,7 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(d
   curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
   yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   yay --needed --noconfirm --noprogressbar -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  yay --noconfirm --noprogressbar -S ${EXTRA_AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   yay -G python-clawpack && \
   cd python-clawpack && \
   git checkout 72f0448040501190054a07970a85ae464b762c80 && \
@@ -49,7 +59,7 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(d
   makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   popd
 
-FROM ghcr.io/cpp-review-dune/introductory-review/jupyter-python-py-pde
+FROM ghcr.io/cpp-review-dune/introductory-review/xeus-cling
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="pde Arch" \
@@ -60,6 +70,18 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   version="1.0"
 
 ARG PACKAGES="\
+  blas-openblas \
+  ffmpeg \
+  jupyter-collaboration \
+  jupyterlab \
+  jupyterlab-widgets \
+  python-black \
+  python-isort \
+  python-ipympl \
+  python-mpi4py \
+  python-numpy-mkl \
+  python-pandas \
+  python-scipy-mkl \
   python-threadpoolctl \
   "
 
@@ -81,4 +103,5 @@ RUN sudo pacman-key --init && \
 ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
 ENV MKL_THREADING_LAYER=gnu
 ENV PETSC_DIR=/opt/petsc/linux-c-opt
+ENV PYDEVD_DISABLE_FILE_VALIDATION=1
 ENV PYTHONPATH=${PYTHONPATH}:${PETSC_DIR}/lib
