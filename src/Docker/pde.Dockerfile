@@ -2,15 +2,12 @@
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
-ARG PKGBUILD_MOLEGIT="https://raw.githubusercontent.com/carlosal1015/mole_examples/main/PKGBUILDs/mole-git/PKGBUILD"
-
 ARG OPT_PACKAGES="\
   blas-openblas \
   intel-oneapi-mkl \
   "
 
 ARG PRE_PACKAGES="\
-  armadillo \
   petsc \
   "
 
@@ -38,8 +35,6 @@ ARG EXTRA_AUR_PACKAGES="\
   pyupgrade \
   "
 
-ARG DIR_MOLEGIT="/home/builder/.cache/yay/mole"
-
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   yay --repo --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   yay --mflags --nocheck --needed --noconfirm --noprogressbar -S ${PRE_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
@@ -52,14 +47,9 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(d
   git checkout 72f0448040501190054a07970a85ae464b762c80 && \
   makepkg -s --noconfirm 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   mkdir -p ~/.cache/yay/python-clawpack && \
-  mv *.pkg.tar.zst ~/.cache/yay/python-clawpack && \
-  mkdir -p ${DIR_MOLEGIT} && \
-  pushd ${DIR_MOLEGIT} && \
-  curl -LO ${PKGBUILD_MOLEGIT} && \
-  makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  popd
+  mv *.pkg.tar.zst ~/.cache/yay/python-clawpack
 
-FROM ghcr.io/cpp-review-dune/introductory-review/xeus-cling
+FROM ghcr.io/cpp-review-dune/introductory-review/xeus-cling-mole-git
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="pde Arch" \
@@ -72,8 +62,6 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 ARG PACKAGES="\
   blas-openblas \
   ffmpeg \
-  jupyter-collaboration \
-  jupyterlab \
   jupyterlab-widgets \
   python-black \
   python-isort \
