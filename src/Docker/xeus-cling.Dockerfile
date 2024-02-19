@@ -50,6 +50,7 @@ USER gitpod
 
 ARG PACKAGES="\
   git \
+  jupyter-collaboration \
   "
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
