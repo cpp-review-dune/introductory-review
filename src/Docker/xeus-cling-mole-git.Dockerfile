@@ -15,11 +15,11 @@ ARG PACKAGES="\
 
 ARG PKGBUILD="https://raw.githubusercontent.com/carlosal1015/mole_examples/main/PKGBUILDs/mole-git/PKGBUILD"
 
-RUN yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  yay --repo --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S ${PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+RUN yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 >/dev/null && \
+  yay --repo --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} 2>&1 >/dev/null && \
+  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S ${PACKAGES} 2>&1 >/dev/null && \
   curl -LO ${PKGBUILD} && \
-  makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  makepkg --noconfirm -src 2>&1 >/dev/null && \
   mkdir -p /home/builder/.cache/yay/mole-git && \
   mv mole-git-*-x86_64.pkg.tar.zst /home/builder/.cache/yay/mole-git
 
@@ -27,7 +27,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/xeus-cling
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="xeus-cling-mole-git Arch" \
-  description="MOLE in Arch." \
+  description="MOLE in Arch" \
   url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fmole" \
   vcs-url="https://github.com/cpp-review-dune/introductory-review" \
   vendor="Oromion Aznarán" \
