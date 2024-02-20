@@ -4,7 +4,6 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
   blas-openblas \
-  hdf5-openmpi \
   intel-oneapi-mkl \
   "
 
@@ -32,14 +31,14 @@ ARG EXTRA_AUR_PACKAGES="\
   "
 
 RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
-  yay --repo --needed --noconfirm --noprogressbar -Syuq && \
-  yay --repo --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} && \
-  yay --needed --noconfirm --noprogressbar -S ${AUR_PACKAGES} && \
-  yay --noconfirm --noprogressbar -S ${EXTRA_AUR_PACKAGES} && \
+  yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
+  yay --repo --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} >/dev/null 2>&1 && \
+  yay --needed --noconfirm --noprogressbar -S ${AUR_PACKAGES} >/dev/null 2>&1 && \
+  yay --noconfirm --noprogressbar -S ${EXTRA_AUR_PACKAGES} >/dev/null 2>&1 && \
   yay -G python-clawpack && \
   cd python-clawpack && \
   git checkout 72f0448040501190054a07970a85ae464b762c80 && \
-  makepkg -s --noconfirm && \
+  makepkg -s --noconfirm >/dev/null 2>&1 && \
   mkdir -p ~/.cache/yay/python-clawpack && \
   mv *.pkg.tar.zst ~/.cache/yay/python-clawpack
 
@@ -68,7 +67,7 @@ COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 RUN sudo pacman-key --init && \
   sudo pacman-key --populate archlinux && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring && \
-  sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
+  sudo pacman --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
