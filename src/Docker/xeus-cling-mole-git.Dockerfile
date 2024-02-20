@@ -15,10 +15,10 @@ ARG PACKAGES="\
 ARG PKGBUILD="https://raw.githubusercontent.com/carlosal1015/mole_examples/main/PKGBUILDs/mole-git/PKGBUILD"
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
-  yay --repo --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S ${PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  yay --repo --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} && \
+  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   curl -LO ${PKGBUILD} && \
-  makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  makepkg --noconfirm -src && \
   mkdir -p /home/builder/.cache/yay/mole-git && \
   mv mole-git-*-x86_64.pkg.tar.zst /home/builder/.cache/yay/mole-git
 
