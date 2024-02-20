@@ -62,17 +62,15 @@ ARG PACKAGES="\
   python-black \
   python-isort \
   python-ipympl \
-  python-mpi4py \
-  python-numpy-mkl \
   python-pandas \
-  python-scipy-mkl \
   python-threadpoolctl \
   "
 
+# python-mpi4py \
+
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
-RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
-  sudo pacman-key --init && \
+RUN sudo pacman-key --init && \
   sudo pacman-key --populate archlinux && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring && \
   sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
