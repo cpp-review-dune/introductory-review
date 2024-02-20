@@ -6,6 +6,8 @@ ARG OPT_PACKAGES="\
   blas-openblas \
   hdf5-openmpi \
   intel-oneapi-mkl \
+  python-numpy-mkl \
+  python-scipy-mkl \
   "
 
 ARG AUR_PACKAGES="\
