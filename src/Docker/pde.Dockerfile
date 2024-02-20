@@ -6,12 +6,9 @@ ARG OPT_PACKAGES="\
   blas-openblas \
   hdf5-openmpi \
   intel-oneapi-mkl \
-  python-numpy-mkl \
-  python-scipy-mkl \
   "
 
 ARG AUR_PACKAGES="\
-  octave-symbolic \
   octave-tablicious \
   otf-intel-one-mono \
   python-devito \
@@ -65,8 +62,6 @@ ARG PACKAGES="\
   python-pandas \
   python-threadpoolctl \
   "
-
-# python-mpi4py \
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
