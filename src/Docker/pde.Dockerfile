@@ -4,6 +4,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
   blas-openblas \
+  hdf5-openmpi \
   intel-oneapi-mkl \
   "
 
