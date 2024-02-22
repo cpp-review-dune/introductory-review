@@ -4,7 +4,6 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
   blas-openblas \
-  hdf5-openmpi \
   intel-oneapi-mkl \
   "
 
@@ -17,7 +16,6 @@ ARG AUR_PACKAGES="\
   python-gotranx \
   python-jaxtyping \
   python-kernex \
-  python-oct2py \
   python-pystencils \
   python-py-pde \
   python-uvw \
@@ -74,9 +72,7 @@ RUN sudo pacman-key --init && \
   rm /tmp/*.pkg.tar.zst && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
-  python -m octave_kernel install --user && \ 
   ipython profile create && \
   echo -e "c.IPythonWidget.font_size = 11\nc.IPythonWidget.font_family = 'Intel One Mono'\nc.IPKernelApp.matplotlib = 'inline'\nc.InlineBackend.figure_format = 'retina'\n" >> ~/.ipython/profile_default/ipython_config.py
 
-ENV MKL_THREADING_LAYER=gnu
 ENV PYDEVD_DISABLE_FILE_VALIDATION=1

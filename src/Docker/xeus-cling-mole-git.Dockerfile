@@ -59,6 +59,7 @@ RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/te
   sudo rm -r /var/lib/pacman/sync/* && \
   python -m octave_kernel install --user
 
+ENV MKL_THREADING_LAYER=gnu
 ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
 ENV PETSC_DIR=/opt/petsc/linux-c-opt
 ENV PYTHONPATH=${PYTHONPATH}:${PETSC_DIR}/lib
