@@ -5,6 +5,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 ARG OPT_PACKAGES="\
   blas-openblas \
   fftw-openmpi \
+  hdf5-openmpi \
   intel-oneapi-mkl \
   "
 
@@ -18,7 +19,7 @@ ARG PKGBUILD="https://raw.githubusercontent.com/carlosal1015/mole_examples/main/
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
   yay --repo --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} >/dev/null 2>&1 && \
-  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
+  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S ${PACKAGES} >/dev/null 2>&1 && \
   curl -LO ${PKGBUILD} && \
   makepkg --noconfirm -src >/dev/null 2>&1 && \
   mkdir -p /home/builder/.cache/yay/mole-git && \
@@ -38,6 +39,7 @@ ARG PACKAGES="\
   cmake \
   blas-openblas \
   fftw-openmpi \
+  hdf5-openmpi \
   intel-oneapi-mkl \
   python-numpy-mkl \
   python-scipy-mkl \
