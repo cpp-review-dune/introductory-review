@@ -4,8 +4,6 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
   blas-openblas \
-  fftw-openmpi \
-  hdf5-openmpi \
   intel-oneapi-mkl \
   "
 
@@ -38,9 +36,6 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 ARG PACKAGES="\
   cmake \
   blas-openblas \
-  fftw-openmpi \
-  hdf5-openmpi \
-  intel-oneapi-mkl \
   python-numpy-mkl \
   python-scipy-mkl \
   "
