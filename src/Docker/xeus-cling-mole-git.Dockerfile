@@ -9,7 +9,6 @@ ARG OPT_PACKAGES="\
 
 ARG PACKAGES="\
   armadillo \
-  petsc \
   python-oct2py \
   "
 
@@ -17,7 +16,8 @@ ARG PKGBUILD="https://raw.githubusercontent.com/carlosal1015/mole_examples/main/
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
   yay --repo --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} >/dev/null 2>&1 && \
-  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S ${PACKAGES} >/dev/null 2>&1 && \
+  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S petsc && \
+  yay --needed --noconfirm --noprogressbar -S ${PACKAGES} >/dev/null 2>&1 && \
   curl -LO ${PKGBUILD} && \
   makepkg --noconfirm -src >/dev/null 2>&1 && \
   mkdir -p /home/builder/.cache/yay/mole-git && \
