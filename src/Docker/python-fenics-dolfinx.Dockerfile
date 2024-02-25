@@ -3,7 +3,9 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
+  hdf5-openmpi \
   mumps \
+  netcdf-openmpi \
   "
 
 ARG AUR_PACKAGES="\
@@ -12,7 +14,7 @@ ARG AUR_PACKAGES="\
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
-  yay --noconfirm -S ${OPT_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  yay --noconfirm -S ${OPT_PACKAGES} && \
   yay --mflags --nocheck --noconfirm -S ${AUR_PACKAGES}
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
