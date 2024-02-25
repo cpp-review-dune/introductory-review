@@ -23,8 +23,8 @@ ARG PACKAGES="\
   tldr \
   "
 
-RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
-  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
+RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
+  sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/*
 

@@ -8,10 +8,8 @@ ARG AUR_PACKAGES="\
   parmetis-git \
   "
 
-RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
-  yay --noconfirm --noprogressbar -S ${AUR_PACKAGES}
-  
-#2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
+  yay --noconfirm --noprogressbar -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 FROM ghcr.io/cpp-review-dune/introductory-review/dunefem
 
@@ -34,7 +32,7 @@ ARG PACKAGES="\
 
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
-RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
+RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
   sudo pacman --needed --noconfirm --debug -U /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --debug --noprogressbar -S ${PACKAGES} && \
   rm /tmp/*.pkg.tar.zst && \

@@ -33,7 +33,7 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
   printf "${USER} ALL=(ALL) ALL" > /etc/sudoers.d/${USER} && \
   pacman-key --init && \
   pacman-key --populate archlinux && \
-  pacman --needed --noconfirm --noprogressbar -Syuq && \
+  pacman --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
   curl -LO ${YAY_URL} && \
   tar -xvf yay.tar.gz && \
   chown -R ${USER}:${USER} /tmp/yay && \

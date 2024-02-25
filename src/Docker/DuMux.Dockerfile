@@ -6,8 +6,8 @@ ARG AUR_PACKAGES="\
   dumux \
   "
 
-RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
-  yay --needed --noconfirm --noprogressbar -S ${AUR_PACKAGES}
+RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
+  yay --needed --noconfirm --noprogressbar -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
@@ -27,9 +27,9 @@ ARG OPT_POST_PACKAGES="\
 
 # ARG DUMUX_LECTURE="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/main/PKGBUILDS/dumux-lecture/PKGBUILD"
 
-RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
-  yay --needed --noconfirm --noprogressbar -S ${OPT_PRE_PACKAGES} && \
-  yay --needed --noconfirm --noprogressbar -S ${OPT_POST_PACKAGES}
+RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
+  yay --needed --noconfirm --noprogressbar -S ${OPT_PRE_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  yay --needed --noconfirm --noprogressbar -S ${OPT_POST_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 # mkdir -p dumux-lecture
 # curl -LO ${DUMUX_LECTURE} && \
@@ -78,7 +78,7 @@ ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/tem
 RUN sudo pacman-key --init && \
   sudo pacman-key --populate archlinux && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring && \
-  sudo pacman --needed --noconfirm --noprogressbar -Syuq && \
+  sudo pacman --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
