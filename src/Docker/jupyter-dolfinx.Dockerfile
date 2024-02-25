@@ -41,7 +41,7 @@ ARG VTK_PACKAGES="\
   openvr \
   openxr \
   ospray \
-  netcdf \
+  netcdf-openmpi \
   mariadb-libs \
   liblas \
   libharu \
