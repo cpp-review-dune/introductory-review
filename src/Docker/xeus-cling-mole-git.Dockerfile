@@ -12,16 +12,24 @@ ARG PACKAGES="\
   python-oct2py \
   "
 
-ARG PKGBUILD="https://raw.githubusercontent.com/carlosal1015/mole_examples/main/PKGBUILDs/mole-git/PKGBUILD"
+ARG MOLE_PKGBUILD="https://raw.githubusercontent.com/carlosal1015/mole_examples/main/PKGBUILDs/mole-git/PKGBUILD"
+ARG PYMKT_PKGBUILD="https://raw.githubusercontent.com/carlosal1015/mole_examples/main/PKGBUILDs/python-pymtk-git/PKGBUILD"
+ARG DIR_MOLE="/home/builder/.cache/yay/mole-git"
+ARG DIR_PYMKT="/home/builder/.cache/yay/python-pymtk-git"
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
   yay --repo --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} >/dev/null 2>&1 && \
   yay --mflags --nocheck --needed --noconfirm --noprogressbar -S petsc && \
   yay --needed --noconfirm --noprogressbar -S ${PACKAGES} >/dev/null 2>&1 && \
-  curl -LO ${PKGBUILD} && \
+  mkdir -p ${DIR_MOLE} && \
+  pushd ${DIR_MOLE} && \
+  curl -LO ${MOLE_PKGBUILD} && \
   makepkg --noconfirm -src >/dev/null 2>&1 && \
-  mkdir -p /home/builder/.cache/yay/mole-git && \
-  mv mole-git-*-x86_64.pkg.tar.zst /home/builder/.cache/yay/mole-git
+  popd && \
+  mkdir -p ${DIR_PYMKT} && \
+  pushd ${DIR_PYMKT} && \
+  curl -LO ${PYMKT_PKGBUILD} && \
+  makepkg --noconfirm -src >/dev/null 2>&1 
 
 FROM ghcr.io/cpp-review-dune/introductory-review/xeus-cling
 
