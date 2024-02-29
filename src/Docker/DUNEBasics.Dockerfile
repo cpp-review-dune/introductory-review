@@ -78,6 +78,4 @@ RUN sudo pacman-key --init && \
 
 ENV PATH="/usr/bin/vendor_perl:${PATH}"
 
-ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
-
 CMD ["/bin/bash"]

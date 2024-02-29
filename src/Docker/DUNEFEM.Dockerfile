@@ -53,6 +53,4 @@ RUN sudo pacman-key --init && \
   curl -s ${BANNER} | sudo bash -e -x && \
   echo 'cat /etc/motd' >> ~/.bashrc
 
-ENV OMPI_MCA_opal_warn_on_missing_libcuda=0
-
 CMD ["/bin/bash"]
