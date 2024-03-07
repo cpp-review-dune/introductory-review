@@ -79,9 +79,9 @@ jobs:
           dockerfile: ./src/Docker/OPM.Dockerfile
 
       - name: Prune untagged images
-        uses: bots-house/ghcr-delete-image-action@v1.1.0
+        uses: carlosal1015/ghcr-delete-image-action@main
         with:
           owner: cpp-review-dune
           name: introductory-review/opm
           token: ${{ secrets.PAT }}
-          untagged-keep-latest: 3
+          untagged-keep-latest: 2
