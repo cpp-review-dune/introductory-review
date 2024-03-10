@@ -1,4 +1,4 @@
-name: Publish Docker image based on deal-ii
+name: Publish Docker image based on deal.II v9.5.2
 
 on:
   push:

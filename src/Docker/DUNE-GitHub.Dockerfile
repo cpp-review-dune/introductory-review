@@ -42,6 +42,7 @@ ARG PACKAGES="\
   dune-extensions-git \
   "
 
+COPY --from=build /tmp/*.log /tmp/
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh
@@ -61,6 +62,7 @@ RUN sudo pacman-key --init && \
   echo -e '\n[dune-staging-git]\nSigLevel = Required DatabaseOptional\nServer = https://dune-archiso.gitlab.io/repository/dune-staging-git/$arch\n' | sudo tee -a /etc/pacman.conf && \
   echo -e '\n[dune-extensions-git]\nSigLevel = Required DatabaseOptional\nServer = https://dune-archiso.gitlab.io/repository/dune-extensions-git/$arch\n' | sudo tee -a /etc/pacman.conf && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy ${PACKAGES} && \
+  find /tmp/ ! -name '*.log' -type f -exec rm -f {} + && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
   curl -s ${BANNER} | sudo bash -e -x && \

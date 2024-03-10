@@ -31,13 +31,13 @@ ARG EXTRA_AUR_PACKAGES="\
 
 RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
   yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
-  yay --repo --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} && \
-  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S ${AUR_PACKAGES} && \
-  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S ${EXTRA_AUR_PACKAGES} && \
+  yay --repo --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S ${EXTRA_AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   yay -G python-clawpack && \
   cd python-clawpack && \
   git checkout 72f0448040501190054a07970a85ae464b762c80 && \
-  makepkg -s --noconfirm && \
+  makepkg -s --noconfirm 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   mkdir -p ~/.cache/yay/python-clawpack && \
   mv *.pkg.tar.zst ~/.cache/yay/python-clawpack
 
@@ -61,6 +61,7 @@ ARG PACKAGES="\
   python-threadpoolctl \
   "
 
+COPY --from=build /tmp/*.log /tmp/
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 RUN sudo pacman-key --init && \
@@ -70,6 +71,7 @@ RUN sudo pacman-key --init && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
+  find /tmp/ ! -name '*.log' -type f -exec rm -f {} + && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
   ipython profile create && \

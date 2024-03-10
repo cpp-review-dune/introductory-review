@@ -30,12 +30,14 @@ ARG PACKAGES="\
   texlive-binextra \
   "
 
+COPY --from=build /tmp/*.log /tmp/
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 RUN sudo pacman --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
   sudo pacman --needed --noconfirm --debug -U /tmp/*.pkg.tar.zst && \
-  sudo pacman --needed --noconfirm --debug --noprogressbar -S ${PACKAGES} && \
   rm /tmp/*.pkg.tar.zst && \
+  sudo pacman --needed --noconfirm --debug --noprogressbar -S ${PACKAGES} && \
+  find /tmp/ ! -name '*.log' -type f -exec rm -f {} + && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
   echo "alias startJupyter=\"jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --ServerApp.allow_origin='\$(gp url 8888)' --IdentityProvider.token='' --ServerApp.password=''\"" >> ~/.bashrc

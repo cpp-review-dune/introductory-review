@@ -54,6 +54,7 @@ ARG PACKAGES="\
   symengine \
   "
 
+COPY --from=build /tmp/*.log /tmp/
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 ARG GPG_KEY="8C43C00BA8F06ECA"
@@ -67,6 +68,7 @@ RUN sudo pacman-key --init && \
   sudo pacman --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
   rm /tmp/*.pkg.tar.zst && \
+  find /tmp/ ! -name '*.log' -type f -exec rm -f {} + && \
   echo -e '\n[dune-agnumpde]\nSigLevel = Required DatabaseOptional\nServer = https://dune-archiso.gitlab.io/repository/dune-agnumpde/$arch\n' | sudo tee -a /etc/pacman.conf && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy ${PACKAGES} && \
   sudo pacman -Scc <<< Y <<< Y && \

@@ -3,10 +3,6 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
-  dune-fem \
-  dune-foamgrid \
-  dune-functions \
-  parmetis-git \
   precice-config-visualizer-git \
   python-pyprecice \
   "
@@ -43,11 +39,16 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
 USER gitpod
 
 ARG PACKAGES="\
+  dune-fem \
+  dune-foamgrid \
+  dune-functions \
   dune-precice-git \
+  parmetis-git \
   "
 
 ARG GPG_KEY="2403871B121BD8BB"
 
+COPY --from=build /tmp/*.log /tmp/
 COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 ARG BANNER=https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/banner.sh
@@ -60,9 +61,9 @@ RUN sudo pacman-key --init && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy archlinux-keyring && \
   sudo pacman --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
   sudo pacman --noconfirm -U /tmp/*.pkg.tar.zst && \
-  rm /tmp/*.pkg.tar.zst && \
   echo -e '\n[dune-makepkg]\nSigLevel = Required DatabaseOptional\nServer = https://dune-archiso.gitlab.io/testing/aur/dune-makepkg/$arch\n[precice-arch]\nSigLevel = Required DatabaseOptional\nServer = https://dune-archiso.gitlab.io/testing/precice-arch/$arch\n' | sudo tee -a /etc/pacman.conf && \
   sudo pacman --needed --noconfirm --noprogressbar -Sy ${PACKAGES} && \
+  find /tmp/ ! -name '*.log' ! -name 'python-pyprecice-*.pkg.tar.zst' -type f -exec rm -f {} + && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
   curl -s ${BANNER} | sudo bash -e -x && \
