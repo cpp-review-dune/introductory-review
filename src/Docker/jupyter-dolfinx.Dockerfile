@@ -7,7 +7,6 @@ ARG AUR_PACKAGES="\
   gmsh \
   parmetis-git \
   python-meshio \
-  python-fenics-dolfinx \
   python-pyvista \
   python-trame \
   python-trame-vtk \
