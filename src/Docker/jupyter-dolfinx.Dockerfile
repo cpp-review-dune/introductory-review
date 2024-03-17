@@ -4,6 +4,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
   nbqa \
+  gmsh \
   parmetis-git \
   python-meshio \
   python-fenics-dolfinx \
@@ -58,6 +59,7 @@ ARG PACKAGES="\
   python-black \
   python-isort \
   python-ipympl \
+  python-scipy \
   xorg-server-xvfb \
   "
 
