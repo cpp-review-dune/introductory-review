@@ -4,12 +4,13 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
   hdf5-openmpi \
+  hypre \
   mumps \
   netcdf-openmpi \
+  parmetis-git \
   "
 
 ARG AUR_PACKAGES="\
-  parmetis-git \
   python-fenics-dolfinx \
   "
 
