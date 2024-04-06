@@ -44,3 +44,5 @@ RUN sudo pacman-key --init && \
   find /tmp/ ! -name '*.log' -type f -exec rm -f {} + && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/*
+
+ENV PYTHONPATH=${PYTHONPATH}:/usr/share/gmsh/api/python
