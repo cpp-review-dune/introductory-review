@@ -59,6 +59,7 @@ ARG PACKAGES="\
   python-isort \
   python-ipympl \
   python-scipy \
+  python-tqdm \
   xorg-server-xvfb \
   "
 
