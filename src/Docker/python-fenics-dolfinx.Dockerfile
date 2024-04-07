@@ -24,8 +24,8 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
   yay --mflags --nocheck --noconfirm -S ${POST_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
-  name="DolfinX with Python Arch" \
-  description="DolfinX with Python in Arch." \
+  name="python-fenics-dolfinx with Python Arch" \
+  description="python-fenics-dolfinx in Arch." \
   url="https://github.com/orgs/cpp-review-dune/packages/container/package/introductory-review%2Fdeal-ii" \
   vcs-url="https://github.com/cpp-review-dune/introductory-review" \
   vendor="Oromion Aznarán" \
@@ -67,3 +67,4 @@ RUN sudo pacman-key --init && \
 ENV PETSC_DIR=/opt/petsc/linux-c-opt
 ENV SLEPC_DIR=/opt/slepc/linux-c-opt
 ENV PYTHONPATH=${PYTHONPATH}:${PETSC_DIR}/lib:${SLEPC_DIR}/lib
+
