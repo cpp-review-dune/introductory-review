@@ -85,6 +85,7 @@ ARG PACKAGES="\
   python-distro \
   python-ipympl \
   python-isort \
+  python-jupyter-server-terminals \
   python-seaborn \
   python-sympy \
   python-tabulate \

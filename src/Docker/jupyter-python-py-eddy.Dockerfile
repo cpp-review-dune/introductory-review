@@ -45,6 +45,7 @@ ARG PACKAGES="\
   jupyter-collaboration \
   jupyterlab \
   python-ipympl \
+  python-jupyter-server-terminals \
   "
 
 COPY --from=build /tmp/*.log /tmp/

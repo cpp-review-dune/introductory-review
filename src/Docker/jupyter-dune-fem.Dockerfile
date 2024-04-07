@@ -28,6 +28,7 @@ ARG PACKAGES="\
   jupyter-collaboration \
   jupyterlab \
   python-ipympl \
+  python-jupyter-server-terminals \
   python-scipy \
   python-pyvirtualdisplay \
   qt5-svg \

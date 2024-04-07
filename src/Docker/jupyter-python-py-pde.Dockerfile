@@ -68,6 +68,7 @@ ARG PACKAGES="\
   python-black \
   python-isort \
   python-ipympl \
+  python-jupyter-server-terminals \
   python-mpi4py \
   python-pandas \
   "

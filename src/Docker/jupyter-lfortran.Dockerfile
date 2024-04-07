@@ -49,6 +49,7 @@ ARG PACKAGES="\
   git \
   jupyter-collaboration \
   jupyterlab \
+  python-jupyter-server-terminals \
   "
 
 COPY --from=build /tmp/*.log /tmp/

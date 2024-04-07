@@ -27,6 +27,7 @@ ARG PACKAGES="\
   minted \
   pandoc \
   python-ipympl \
+  python-jupyter-server-terminals \
   texlive-binextra \
   "
 

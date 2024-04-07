@@ -49,6 +49,7 @@ ARG PACKAGES="\
   jupyter-collaboration \
   jupyterlab-widgets \
   python-ipympl \
+  python-jupyter-server-terminals \
   python-setuptools \
   xorg-server-xvfb \
   "
