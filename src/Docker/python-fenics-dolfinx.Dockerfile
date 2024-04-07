@@ -11,7 +11,7 @@ ARG OPT_PACKAGES="\
   "
 
 ARG AUR_PACKAGES="\
-  python-fenics-dolfinx \
+  python-adios4dolfinx \
   "
 
 ARG POST_PACKAGES="\
