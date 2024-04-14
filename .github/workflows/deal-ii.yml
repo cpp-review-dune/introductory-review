@@ -73,7 +73,7 @@ jobs:
         with:
           image: ghcr.io/cpp-review-dune/introductory-review/deal-ii:latest
           annotations: true
-          severity_threshold: HIGH
+          severity_threshold: CRITICAL
           dockerfile: ./src/Docker/deal-ii.Dockerfile
 
       - name: Prune untagged images

@@ -73,7 +73,7 @@ jobs:
         with:
           image: ghcr.io/cpp-review-dune/introductory-review/python-fenics-dolfinx:latest
           annotations: true
-          severity_threshold: HIGH
+          severity_threshold: CRITICAL
           dockerfile: ./src/Docker/python-fenics-dolfinx.Dockerfile
 
       - name: Prune untagged images

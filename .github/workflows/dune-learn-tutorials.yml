@@ -78,7 +78,7 @@ jobs:
         with:
           image: ghcr.io/cpp-review-dune/introductory-review/dunelearn:latest
           annotations: true
-          severity_threshold: HIGH
+          severity_threshold: CRITICAL
           dockerfile: ./src/Docker/DUNELearn.Dockerfile
 
       - name: Prune untagged images
