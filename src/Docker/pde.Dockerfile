@@ -23,6 +23,7 @@ ARG AUR_PACKAGES="\
 
 ARG EXTRA_AUR_PACKAGES="\
   nbqa \
+  python-clawpack \
   python-numba-mpi \
   python-pyfftw \
   python-rocket-fft \
@@ -33,13 +34,7 @@ RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/te
   yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
   yay --repo --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   yay --mflags --nocheck --needed --noconfirm --noprogressbar -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S ${EXTRA_AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  yay -G python-clawpack && \
-  cd python-clawpack && \
-  git checkout 72f0448040501190054a07970a85ae464b762c80 && \
-  makepkg -s --noconfirm 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  mkdir -p ~/.cache/yay/python-clawpack && \
-  mv *.pkg.tar.zst ~/.cache/yay/python-clawpack
+  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S ${EXTRA_AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 FROM ghcr.io/cpp-review-dune/introductory-review/xeus-cling-mole-git
 
