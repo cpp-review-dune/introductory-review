@@ -27,21 +27,23 @@ ARG DIR_TUTORMAGIC="/home/builder/.cache/yay/jupyter-nbextension-tutormagic"
 
 RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
   yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
-  yay --noconfirm --mflags --nocheck -S ${INTERPOLATION_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  yay --noconfirm --mflags --nocheck -S ${INTERPOLATION_PACKAGES} && \
   mkdir -p ${DIR_COVID19H} && \
   pushd ${DIR_COVID19H} && \
   curl -LO ${PKGBUILD_COVID19H} && \
-  makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  makepkg --noconfirm -src && \
   popd && \
   mkdir -p ${DIR_HDNUM} && \
   pushd ${DIR_HDNUM} && \
   curl -LO ${PKGBUILD_HDNUM} && \
-  makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  makepkg --noconfirm -src && \
   popd && \
   mkdir -p ${DIR_TUTORMAGIC} && \
   pushd ${DIR_TUTORMAGIC} && \
   curl -LO ${PKGBUILD_TUTORMAGIC} && \
-  makepkg --noconfirm -src 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+  makepkg --noconfirm -src
+  
+#2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="Interpolation Arch" \
