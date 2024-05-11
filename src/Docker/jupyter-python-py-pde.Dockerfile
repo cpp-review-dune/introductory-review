@@ -19,10 +19,10 @@ ARG EXTRA_AUR_PACKAGES="\
   pyupgrade \
   "
 
-RUN yay --repo --needed --noconfirm --noprogressbar -Syuq 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
   sudo pacman --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} && \
-  yay --noconfirm --noprogressbar -S ${AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  yay --noconfirm --noprogressbar -S ${EXTRA_AUR_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+  yay --noconfirm --noprogressbar -S ${AUR_PACKAGES} && \
+  yay --noconfirm --noprogressbar -S ${EXTRA_AUR_PACKAGES}
 # yay --noconfirm --noprogressbar -S napari --mflags --skipinteg 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
