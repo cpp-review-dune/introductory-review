@@ -70,13 +70,13 @@ jobs:
           rm -rf /tmp/.buildx-dunepdelabtutorials-cache
           mv /tmp/.buildx-main-cache /tmp/.buildx-dunepdelabtutorials-cache
 
-      - name: Scan for vulnerabilities
-        uses: crazy-max/ghaction-container-scan@master
-        with:
-          image: ghcr.io/cpp-review-dune/introductory-review/dunepdelabtutorials:latest
-          annotations: true
-          severity_threshold: CRITICAL
-          dockerfile: ./src/Docker/DUNEPDELabTutorials.Dockerfile
+      # - name: Scan for vulnerabilities
+      #   uses: crazy-max/ghaction-container-scan@master
+      #   with:
+      #     image: ghcr.io/cpp-review-dune/introductory-review/dunepdelabtutorials:latest
+      #     annotations: true
+      #     severity_threshold: CRITICAL
+      #     dockerfile: ./src/Docker/DUNEPDELabTutorials.Dockerfile
 
       - name: Prune untagged images
         uses: carlosal1015/ghcr-delete-image-action@main

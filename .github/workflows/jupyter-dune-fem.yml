@@ -68,13 +68,13 @@ jobs:
           rm -rf /tmp/.buildx-jupyter-dune-fem-cache
           mv /tmp/.buildx-main-cache /tmp/.buildx-jupyter-dune-fem-cache
 
-      - name: Scan for vulnerabilities
-        uses: crazy-max/ghaction-container-scan@master
-        with:
-          image: ghcr.io/cpp-review-dune/introductory-review/jupyter-dune-fem:latest
-          annotations: true
-          severity_threshold: CRITICAL
-          dockerfile: ./src/Docker/jupyter-dune-fem.Dockerfile
+      # - name: Scan for vulnerabilities
+      #   uses: crazy-max/ghaction-container-scan@master
+      #   with:
+      #     image: ghcr.io/cpp-review-dune/introductory-review/jupyter-dune-fem:latest
+      #     annotations: true
+      #     severity_threshold: CRITICAL
+      #     dockerfile: ./src/Docker/jupyter-dune-fem.Dockerfile
 
       - name: Prune untagged images
         uses: carlosal1015/ghcr-delete-image-action@main

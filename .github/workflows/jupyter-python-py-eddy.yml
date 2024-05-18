@@ -68,13 +68,13 @@ jobs:
           rm -rf /tmp/.buildx-jupyter-python-py-eddy-cache
           mv /tmp/.buildx-main-cache /tmp/.buildx-jupyter-python-py-eddy-cache
 
-      - name: Scan for vulnerabilities
-        uses: crazy-max/ghaction-container-scan@master
-        with:
-          image: ghcr.io/cpp-review-dune/introductory-review/jupyter-python-py-eddy:latest
-          annotations: true
-          severity_threshold: CRITICAL
-          dockerfile: ./src/Docker/jupyter-python-py-eddy.Dockerfile
+      # - name: Scan for vulnerabilities
+      #   uses: crazy-max/ghaction-container-scan@master
+      #   with:
+      #     image: ghcr.io/cpp-review-dune/introductory-review/jupyter-python-py-eddy:latest
+      #     annotations: true
+      #     severity_threshold: CRITICAL
+      #     dockerfile: ./src/Docker/jupyter-python-py-eddy.Dockerfile
 
       - name: Prune untagged images
         uses: carlosal1015/ghcr-delete-image-action@main

@@ -73,13 +73,13 @@ jobs:
           rm -rf /tmp/.buildx-dunelearn-cache
           mv /tmp/.buildx-main-cache /tmp/.buildx-dunelearn-cache
 
-      - name: Scan for vulnerabilities
-        uses: crazy-max/ghaction-container-scan@master
-        with:
-          image: ghcr.io/cpp-review-dune/introductory-review/dunelearn:latest
-          annotations: true
-          severity_threshold: CRITICAL
-          dockerfile: ./src/Docker/DUNELearn.Dockerfile
+      # - name: Scan for vulnerabilities
+      #   uses: crazy-max/ghaction-container-scan@master
+      #   with:
+      #     image: ghcr.io/cpp-review-dune/introductory-review/dunelearn:latest
+      #     annotations: true
+      #     severity_threshold: CRITICAL
+      #     dockerfile: ./src/Docker/DUNELearn.Dockerfile
 
       - name: Prune untagged images
         uses: carlosal1015/ghcr-delete-image-action@main

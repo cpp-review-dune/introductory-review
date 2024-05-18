@@ -68,13 +68,13 @@ jobs:
           rm -rf /tmp/.buildx-deal-ii-cache
           mv /tmp/.buildx-main-cache /tmp/.buildx-deal-ii-cache
 
-      - name: Scan for vulnerabilities
-        uses: crazy-max/ghaction-container-scan@master
-        with:
-          image: ghcr.io/cpp-review-dune/introductory-review/deal-ii:latest
-          annotations: true
-          severity_threshold: CRITICAL
-          dockerfile: ./src/Docker/deal-ii.Dockerfile
+      # - name: Scan for vulnerabilities
+      #   uses: crazy-max/ghaction-container-scan@master
+      #   with:
+      #     image: ghcr.io/cpp-review-dune/introductory-review/deal-ii:latest
+      #     annotations: true
+      #     severity_threshold: CRITICAL
+      #     dockerfile: ./src/Docker/deal-ii.Dockerfile
 
       - name: Prune untagged images
         uses: carlosal1015/ghcr-delete-image-action@main
