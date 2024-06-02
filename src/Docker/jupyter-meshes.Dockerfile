@@ -8,6 +8,7 @@ ARG MESHES_PACKAGES="\
   python-meshio \
   python-pyvista \
   python-trame \
+  python-trame-jupyter-extension \
   python-trame-vtk \
   python-trame-vuetify \
   "

@@ -9,6 +9,7 @@ ARG AUR_PACKAGES="\
   python-meshio \
   python-pyvista \
   python-trame \
+  python-trame-jupyter-extension \
   python-trame-matplotlib \
   python-trame-vtk \
   python-trame-vuetify \
