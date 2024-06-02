@@ -6,6 +6,7 @@ ARG AUR_PACKAGES="\
   nbqa \
   gmsh \
   parmetis-git \
+  python-imageio \
   python-meshio \
   python-pyvista \
   python-trame \
@@ -63,6 +64,7 @@ ARG PACKAGES="\
   python-jupyter-server-terminals \
   python-scipy \
   python-tqdm \
+  xorg-fonts-100dpi \
   xorg-server-xvfb \
   "
 
