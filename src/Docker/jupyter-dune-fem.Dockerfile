@@ -7,6 +7,7 @@ ARG AUR_PACKAGES="\
   dune-spgrid \
   parmetis-git \
   petsc \
+  python-jupyterlab-variableinspector \
   python-pygmsh \
   "
 # dune-vem python-mayavi

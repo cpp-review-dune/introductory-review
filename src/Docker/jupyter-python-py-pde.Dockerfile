@@ -13,6 +13,7 @@ ARG AUR_PACKAGES="\
 
 ARG EXTRA_AUR_PACKAGES="\
   nbqa \
+  python-jupyterlab-variableinspector \
   python-numba-mpi \
   python-pyfftw \
   python-rocket-fft \

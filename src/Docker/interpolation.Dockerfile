@@ -13,6 +13,7 @@ ARG INTERPOLATION_PACKAGES="\
   python-bezier \
   python-cmocean \
   python-gustaf \
+  python-jupyterlab-variableinspector \
   python-optimistix \
   python-optax \
   python-perfplot \

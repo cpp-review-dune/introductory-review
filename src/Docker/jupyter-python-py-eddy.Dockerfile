@@ -3,10 +3,11 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
-  python-setuptools \
-  python-wheel \
+  python-jupyterlab-variableinspector \
   python-py-eddy-tracker-sample \
   python-py-eddy-tracker \
+  python-setuptools \
+  python-wheel \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \

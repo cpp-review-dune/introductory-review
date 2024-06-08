@@ -7,6 +7,7 @@ ARG AUR_PACKAGES="\
   gmsh \
   parmetis-git \
   python-imageio \
+  python-jupyterlab-variableinspector \
   python-meshio \
   python-pyvista \
   python-trame \

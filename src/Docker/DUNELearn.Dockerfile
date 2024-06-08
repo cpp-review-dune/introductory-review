@@ -6,6 +6,7 @@ ARG AUR_PACKAGES="\
   dune-pdelab \
   nbqa \
   parmetis-git \
+  python-jupyterlab-variableinspector \
   "
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \

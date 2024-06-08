@@ -3,9 +3,10 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG MESHES_PACKAGES="\
-  python-pygmsh \
-  python-meshpy \
+  python-jupyterlab-variableinspector \
   python-meshio \
+  python-meshpy \
+  python-pygmsh \
   python-pyvista \
   python-trame \
   python-trame-jupyter-extension \
