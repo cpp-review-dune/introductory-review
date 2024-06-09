@@ -13,6 +13,9 @@ ARG AUR_PACKAGES="\
 
 ARG EXTRA_AUR_PACKAGES="\
   nbqa \
+  jupyter-nbgrader \
+  jupyterlab-pytutor \
+  jupyterlab-rise \
   python-jupyterlab-variableinspector \
   python-numba-mpi \
   python-pyfftw \

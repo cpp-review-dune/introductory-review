@@ -9,7 +9,10 @@ ARG PKGBUILD_TUTORMAGIC="https://gitlab.com/dune-archiso/pkgbuilds/dune/-/raw/ma
 ARG INTERPOLATION_PACKAGES="\
   nbqa \
   identinum \
+  jupyter-nbgrader \
   jupyter-octave_kernel \
+  jupyterlab-pytutor \
+  jupyterlab-rise \
   python-bezier \
   python-cmocean \
   python-gustaf \

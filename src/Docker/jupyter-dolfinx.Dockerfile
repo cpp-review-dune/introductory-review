@@ -5,6 +5,9 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 ARG AUR_PACKAGES="\
   nbqa \
   gmsh \
+  jupyter-nbgrader \
+  jupyterlab-pytutor \
+  jupyterlab-rise \
   parmetis-git \
   python-imageio \
   python-jupyterlab-variableinspector \

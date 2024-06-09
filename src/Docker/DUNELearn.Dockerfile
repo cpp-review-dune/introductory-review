@@ -4,6 +4,9 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
   dune-pdelab \
+  jupyter-nbgrader \
+  jupyterlab-pytutor \
+  jupyterlab-rise \
   nbqa \
   parmetis-git \
   python-jupyterlab-variableinspector \

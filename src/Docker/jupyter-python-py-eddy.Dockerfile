@@ -3,6 +3,9 @@
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG AUR_PACKAGES="\
+  jupyter-nbgrader \
+  jupyterlab-pytutor \
+  jupyterlab-rise \
   python-jupyterlab-variableinspector \
   python-py-eddy-tracker-sample \
   python-py-eddy-tracker \

@@ -5,6 +5,9 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 ARG AUR_PACKAGES="\
   dune-fem-dg \
   dune-spgrid \
+  jupyter-nbgrader \
+  jupyterlab-pytutor \
+  jupyterlab-rise \
   parmetis-git \
   petsc \
   python-jupyterlab-variableinspector \
