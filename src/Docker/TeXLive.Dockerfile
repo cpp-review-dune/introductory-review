@@ -13,16 +13,12 @@ ARG FONT_PACKAGES="\
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
   yay --noconfirm -S ${FONT_PACKAGES} 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  yay -G mathtime-professional && \
-  cd mathtime-professional && \
+  yay -G tex-math-time-pro2-lite && \
+  cd tex-math-time-pro2-lite && \
   curl -O ${MTPRO2_LITE_SOURCE} && \
-  mv mtp2lite.zip.tpm mtp2fonts.zip.tpm && \
-  sed -i 's/MTPro2/MTPro2Lite/' PKGBUILD && \
   makepkg -s --noconfirm --skipchecksums 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
-  mkdir -p ~/.cache/yay/mathtime-professional && \
-  mv *.pkg.tar.zst ~/.cache/yay/mathtime-professional
-# find -maxdepth=2 /tmp -type f -not -name '*.install' -not -name '*.pkg.tar.zst' | xargs -0 -I {} rm {}
-# ls -lR /tmp --builddir=/tmp
+  mkdir -p ~/.cache/yay/tex-math-time-pro2-lite && \
+  mv *.pkg.tar.zst ~/.cache/yay/tex-math-time-pro2-lite
 
 LABEL maintainer="C++ Review Dune" \
   name="TeX Live in Gitpod" \
