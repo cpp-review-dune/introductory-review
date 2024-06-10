@@ -1,4 +1,4 @@
-# Copyleft (c) June, 2024, Oromion.
+# Copyleft (c) July, 2024, Oromion.
 
 FROM archlinux:base-devel
 
