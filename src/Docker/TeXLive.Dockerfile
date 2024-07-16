@@ -56,7 +56,7 @@ ARG PACKAGES="\
   doxygen \
   minted \
   perl-file-homedir \
-  perl-yaml-tiny
+  perl-yaml-tiny \
   plantuml \
   texlive-binextra \
   texlive-bibtexextra \
