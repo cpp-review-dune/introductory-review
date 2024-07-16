@@ -55,6 +55,8 @@ ARG PACKAGES="\
   biber \
   doxygen \
   minted \
+  perl-file-homedir \
+  perl-yaml-tiny
   plantuml \
   texlive-binextra \
   texlive-bibtexextra \
