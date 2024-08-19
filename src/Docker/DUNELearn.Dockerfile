@@ -29,7 +29,7 @@ ARG PACKAGES="\
   jupyter-collaboration \
   jupyterlab \
   minted \
-  pandoc \
+  pandoc-cli \
   python-ipympl \
   python-jupyter-server-terminals \
   texlive-binextra \
