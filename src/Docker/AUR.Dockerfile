@@ -22,10 +22,12 @@ RUN ln -s /usr/share/zoneinfo/America/Lima /etc/localtime && \
   sed -i 's/^#Color/Color/' /etc/pacman.conf && \
   sed -i '/#CheckSpace/a ILoveCandy' /etc/pacman.conf && \
   sed -i 's/^ParallelDownloads = 5/ParallelDownloads = 30/' /etc/pacman.conf && \
+  echo -e '\n[multilib]\nInclude = /etc/pacman.d/mirrorlist' | tee -a /etc/pacman.conf && \
   sed -i 's/^#MAKEFLAGS="-j2"/MAKEFLAGS="-j$(nproc)"/' /etc/makepkg.conf && \
   sed -i 's/^#BUILDDIR/BUILDDIR/' /etc/makepkg.conf && \
   sed -i 's/purge debug lto/purge !debug !lto/' /etc/makepkg.conf && \
-  echo -e '\n[multilib]\nInclude = /etc/pacman.d/mirrorlist' | tee -a /etc/pacman.conf && \
+  sed -i 's/man,//g' /etc/makepkg.conf && \
+  sed -i 's/doc,//g' /etc/makepkg.conf && \
   useradd -l -u 33333 -md /home/${USER} -s /bin/bash ${USER} && \
   passwd -d ${USER} && \
   printf "${USER} ALL=(ALL) ALL" > /etc/sudoers.d/${USER} && \
