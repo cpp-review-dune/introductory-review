@@ -1,10 +1,10 @@
-name: Publish Docker image based on xeus-cling-mole-git
+name: Publish Docker image based on xeus-cling-mole
 
 on:
   push:
     branches: [main]
     paths:
-      - src/Docker/xeus-cling-mole-git.Dockerfile
+      - src/Docker/xeus-cling-mole.Dockerfile
   pull_request:
     branches: [main]
   schedule:
@@ -40,10 +40,10 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v4
         with:
-          path: /tmp/.buildx-xeus-cling-mole-git-cache
+          path: /tmp/.buildx-xeus-cling-mole-cache
           key: ${{ runner.os }}-buildx-hdnum-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-buildx-xeus-cling-mole-git-
+            ${{ runner.os }}-buildx-xeus-cling-mole-
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
@@ -56,30 +56,30 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./introductory-review/src/Docker/xeus-cling-mole-git.Dockerfile
+          file: ./introductory-review/src/Docker/xeus-cling-mole.Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/cpp-review-dune/introductory-review/xeus-cling-mole-git:latest
-          cache-from: type=local,src=/tmp/.buildx-xeus-cling-mole-git-cache
+          tags: ghcr.io/cpp-review-dune/introductory-review/xeus-cling-mole:latest
+          cache-from: type=local,src=/tmp/.buildx-xeus-cling-mole-cache
           cache-to: type=local,mode=max,dest=/tmp/.buildx-main-cache
 
       - name: Move cache
         run: |
-          rm -rf /tmp/.buildx-xeus-cling-mole-git-cache
-          mv /tmp/.buildx-main-cache /tmp/.buildx-xeus-cling-mole-git-cache
+          rm -rf /tmp/.buildx-xeus-cling-mole-cache
+          mv /tmp/.buildx-main-cache /tmp/.buildx-xeus-cling-mole-cache
 
       # - name: Scan for vulnerabilities
       #   uses: crazy-max/ghaction-container-scan@master
       #   with:
-      #     image: ghcr.io/cpp-review-dune/introductory-review/xeus-cling-mole-git:latest
+      #     image: ghcr.io/cpp-review-dune/introductory-review/xeus-cling-mole:latest
       #     annotations: true
       #     severity_threshold: CRITICAL
-      #     dockerfile: ./src/Docker/xeus-cling-mole-git.Dockerfile
+      #     dockerfile: ./src/Docker/xeus-cling-mole.Dockerfile
 
       - name: Prune untagged images
         uses: carlosal1015/ghcr-delete-image-action@main
         with:
           owner: cpp-review-dune
-          name: introductory-review/xeus-cling-mole-git
+          name: introductory-review/xeus-cling-mole
           token: ${{ secrets.PAT }}
           untagged-keep-latest: 2
