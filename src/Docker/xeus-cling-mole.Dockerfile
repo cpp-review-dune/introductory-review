@@ -15,16 +15,14 @@ ARG PACKAGES="\
 ARG PYMKT_PKGBUILD="https://raw.githubusercontent.com/carlosal1015/mole_examples/main/PKGBUILDs/python-pymtk-git/PKGBUILD"
 ARG DIR_PYMKT="/home/builder/.cache/yay/python-pymtk-git"
 
-RUN yay --repo --needed --noconfirm --noprogressbar -Syuq && \
-  yay --repo --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} && \
-  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S petsc && \
-  yay --needed --noconfirm --noprogressbar -S ${PACKAGES} && \
+RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
+  yay --repo --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} >/dev/null 2>&1 && \
+  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S petsc >/dev/null 2>&1 && \
+  yay --needed --noconfirm --noprogressbar -S ${PACKAGES} >/dev/null 2>&1 && \
   mkdir -p ${DIR_PYMKT} && \
   pushd ${DIR_PYMKT} && \
   curl -LO ${PYMKT_PKGBUILD} && \
-  makepkg --noconfirm -src
-
-#>/dev/null 2>&1 
+  makepkg --noconfirm -src >/dev/null 2>&1 
 
 FROM ghcr.io/cpp-review-dune/introductory-review/xeus-cling
 
