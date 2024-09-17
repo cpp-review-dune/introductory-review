@@ -4,7 +4,7 @@ FROM ghcr.io/cpp-review-dune/introductory-review/aur AS build
 
 ARG OPT_PACKAGES="\
   blas-openblas \
-  intel-oneapi-mkl \
+  intel-oneapi-basekit \
   "
 
 ARG AUR_PACKAGES="\
