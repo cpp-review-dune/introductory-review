@@ -43,7 +43,7 @@ RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/te
 # >/dev/null 2>&1
 # 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
-FROM ghcr.io/cpp-review-dune/introductory-review/xeus-cling-mole-git
+FROM ghcr.io/cpp-review-dune/introductory-review/xeus-cling-mole
 
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="pde Arch" \
