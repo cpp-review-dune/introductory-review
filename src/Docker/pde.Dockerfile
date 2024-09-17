@@ -28,17 +28,18 @@ ARG EXTRA_AUR_PACKAGES="\
   jupyterlab-pytutor \
   jupyterlab-rise \
   python-clawpack \
-  python-jupyterlab-variableinspector \
   python-numba-mpi \
   python-pyfftw \
   python-rocket-fft \
   pyupgrade \
   "
 
+# python-jupyterlab-variableinspector
+
 RUN curl -s https://gitlab.com/dune-archiso/dune-archiso.gitlab.io/-/raw/main/templates/add_arch4edu.sh | bash && \
   yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
-  yay --repo --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} && \
-  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S ${AUR_PACKAGES} && \
+  yay --repo --needed --noconfirm --noprogressbar -S ${OPT_PACKAGES} >/dev/null 2>&1 && \
+  yay --mflags --nocheck --needed --noconfirm --noprogressbar -S ${AUR_PACKAGES} >/dev/null 2>&1 && \
   yay --mflags --nocheck --needed --noconfirm --noprogressbar -S ${EXTRA_AUR_PACKAGES}
 # 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 
