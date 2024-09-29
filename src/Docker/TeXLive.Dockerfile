@@ -99,5 +99,6 @@ RUN sudo pacman-key --init && \
 # texlive-{core,bin} ruby perl-tk psutils dialog ed poppler-data
 
 ENV PATH="/usr/bin/vendor_perl:${PATH}"
+ENV PLANTUML_JAR="/usr/share/java/plantuml/plantuml.jar"
 
 CMD ["/bin/bash"]
