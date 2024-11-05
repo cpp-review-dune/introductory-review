@@ -54,10 +54,10 @@ ARG PACKAGES="\
   jdk17-openjdk \
   biber \
   doxygen \
-  minted \
   perl-file-homedir \
   perl-yaml-tiny \
   plantuml \
+  python-pygments \
   texlive-binextra \
   texlive-bibtexextra \
   texlive-fontsextra \
