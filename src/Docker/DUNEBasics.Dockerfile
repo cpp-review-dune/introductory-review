@@ -45,7 +45,7 @@ ARG PACKAGES="\
   inkscape \
   man-pages \
   man-pages-es \
-  minted \
+  python-pygments \
   python-sphinx \
   texlive-bibtexextra \
   texlive-binextra \

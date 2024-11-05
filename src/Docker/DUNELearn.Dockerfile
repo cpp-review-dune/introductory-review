@@ -28,10 +28,10 @@ LABEL maintainer="Oromion <caznaranl@uni.pe>" \
 ARG PACKAGES="\
   jupyter-collaboration \
   jupyterlab \
-  minted \
   pandoc-cli \
   python-ipympl \
   python-jupyter-server-terminals \
+  python-pygments \
   texlive-binextra \
   "
 

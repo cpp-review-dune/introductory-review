@@ -53,7 +53,7 @@ ARG PACKAGES="\
   texlive-luatex \
   texlive-meta \
   ttf-fira-code \
-  minted \
+  python-pygments \
   "
 
 COPY --from=build /tmp/*.log /tmp/
