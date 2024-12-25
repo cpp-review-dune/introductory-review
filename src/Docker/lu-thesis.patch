@@ -1,0 +1,12 @@
+4c4
+< \RequirePackage[british]{babel}
+---
+> \RequirePackage[spanish]{babel}
+49c49
+<     {\large by \@author\\[1em]\@date}
+---
+>     {\large por \@author\\[1em]\@date}
+52c52
+<     {\large #1\ Thesis in Mathematics\\[0.5em] Thesis advisor: #2}
+---
+>     {\large #1\ de Tesis I\quad CM4D2-A\\[0.5em] Asesor de Tesis: #2}

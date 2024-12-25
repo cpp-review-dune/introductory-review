@@ -79,6 +79,7 @@ COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 ARG UNI_TEMPLATE="https://raw.githubusercontent.com/carlosal1015/Plantilla-Tesis-UNI-LaTeX/science/TesisUNI.cls"
 ARG LU_TEMPLATE="https://gitlab.maths.lu.se/robertk/thesislatextemplate/-/raw/main/lu-thesis.sty"
+ARG LU_PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/src/Docker/lu-thesis.patch"
 
 ARG LOCAL_CLASS="/home/gitpod/texmf/tex/latex/local"
 
@@ -97,7 +98,11 @@ RUN sudo pacman-key --init && \
   sudo rm -r /var/lib/pacman/sync/* && \
   mkdir -p $LOCAL_CLASS && \
   curl --create-dirs -O --output-dir $LOCAL_CLASS $UNI_TEMPLATE && \
-  curl -O --output-dir $LOCAL_CLASS $LU_TEMPLATE
+  curl -O --output-dir $LOCAL_CLASS $LU_TEMPLATE && \
+  curl -O --output-dir $LOCAL_CLASS $LU_PATCH && \
+  cd $LOCAL_CLASS && \
+  patch lu-thesis.sty lu-thesis.patch && \
+  rm lu-thesis.patch
 # texlive-{core,bin} ruby perl-tk psutils dialog ed poppler-data
 
 ENV PATH="/usr/bin/vendor_perl:${PATH}"
