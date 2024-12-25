@@ -80,7 +80,7 @@ COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 
 ARG UNI_TEMPLATE="https://raw.githubusercontent.com/carlosal1015/Plantilla-Tesis-UNI-LaTeX/science/TesisUNI.cls"
 ARG LU_TEMPLATE="https://gitlab.maths.lu.se/robertk/thesislatextemplate/-/raw/main/lu-thesis.sty"
-ARG LU_PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/src/Docker/lu-thesis.patch"
+ARG LU_PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/lu-thesis.patch"
 
 ARG LOCAL_CLASS="/home/gitpod/texmf/tex/latex/local"
 
