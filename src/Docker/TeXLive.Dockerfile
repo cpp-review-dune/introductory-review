@@ -81,6 +81,7 @@ COPY --from=build /home/builder/.cache/yay/*/*.pkg.tar.zst /tmp/
 ARG UNI_TEMPLATE="https://raw.githubusercontent.com/carlosal1015/Plantilla-Tesis-UNI-LaTeX/science/TesisUNI.cls"
 ARG LU_TEMPLATE="https://gitlab.maths.lu.se/robertk/thesislatextemplate/-/raw/main/lu-thesis.sty"
 ARG LU_PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/lu-thesis.patch"
+ARG MIRAGE_TEMPLATE="https://raw.githubusercontent.com/liantze/beamerthemeMirage/refs/heads/main/beamerthemeMirage.sty"
 
 ARG LOCAL_CLASS="/home/gitpod/texmf/tex/latex/local"
 
@@ -101,6 +102,7 @@ RUN sudo pacman-key --init && \
   curl --create-dirs -O --output-dir $LOCAL_CLASS $UNI_TEMPLATE && \
   curl -O --output-dir $LOCAL_CLASS $LU_TEMPLATE && \
   curl -O --output-dir $LOCAL_CLASS $LU_PATCH && \
+  curl -O --output-dir $LOCAL_CLASS $MIRAGE_TEMPLATE && \
   cd $LOCAL_CLASS && \
   patch lu-thesis.sty lu-thesis.patch && \
   rm lu-thesis.patch
