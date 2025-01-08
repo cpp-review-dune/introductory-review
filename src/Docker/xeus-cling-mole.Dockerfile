@@ -9,6 +9,7 @@ ARG OPT_PACKAGES="\
 
 ARG PACKAGES="\
   libmole \
+  python-ipdb \
   python-oct2py \
   "
 
@@ -22,7 +23,7 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
   mkdir -p ${DIR_PYMKT} && \
   pushd ${DIR_PYMKT} && \
   curl -LO ${PYMKT_PKGBUILD} && \
-  makepkg --noconfirm -src
+  makepkg --noconfirm -src >/dev/null 2>&1
 
 FROM ghcr.io/cpp-review-dune/introductory-review/xeus-cling
 
