@@ -1,0 +1,48 @@
+From 7dcfe18833c814dcadcbca4cbac626268f14d8bd Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Carlos=20Aznar=C3=A1n?= <caznaranl@uni.pe>
+Date: Fri, 10 Jan 2025 15:58:56 -0500
+Subject: [PATCH] Enable --nocheck for python bindings
+
+---
+ .SRCINFO | 2 +-
+ PKGBUILD | 4 +++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/.SRCINFO b/.SRCINFO
+index ee5f3a8..58aa2dc 100644
+--- a/.SRCINFO
++++ b/.SRCINFO
+@@ -2,7 +2,7 @@ pkgbase = deal-ii
+ 	pkgdesc = An Open Source Finite Element Differential Equations Analysis Library
+ 	pkgver = 9.6.2
+ 	pkgrel = 1
+-	url = https://www.dealii.org/
++	url = https://dealii.org
+ 	install = deal-ii.install
+ 	arch = i686
+ 	arch = x86_64
+diff --git a/PKGBUILD b/PKGBUILD
+index 0367968..3ba48bb 100644
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -7,7 +7,7 @@ pkgver=9.6.2
+ pkgrel=1
+ pkgdesc="An Open Source Finite Element Differential Equations Analysis Library"
+ arch=("i686" "x86_64")
+-url="https://www.dealii.org/"
++url="https://dealii.org"
+ license=('LGPL-2.1-or-later')
+ # deal.II depends on Kokkos which is implicitly provided by Trilinos. Trilinos
+ # does not yet support configuration with an external copy of Kokkos so do not
+@@ -104,6 +104,8 @@ build() {
+      cmake_configuration_flags+=" -DLAPACK_INCLUDE_DIRS=${MKLROOT}/include"
+   fi
+ 
++  cmake_configuration_flags+=" -DDEAL_II_WITH_UMFPACK=ON -DDEAL_II_COMPONENT_EXAMPLES=ON -DDEAL_II_COMPONENT_PYTHON_BINDINGS=ON -DDEAL_II_WITH_PETSC=ON -DDEAL_II_WITH_P4EST=ON -DDEAL_II_WITH_HDF5=ON -DDEAL_II_WITH_MUMPS=ON -DDEAL_II_WITH_TRILINOS=ON"
++
+   # For GSL compatibility we need the full link interface, which includes
+   # libgslcblas, so disable --as-needed with GCC:
+   sed -i '/ENABLE_IF_LINKS(DEAL_II_LINKER_FLAGS "-Wl,--as-needed")/d' \
+-- 
+2.47.1
+
