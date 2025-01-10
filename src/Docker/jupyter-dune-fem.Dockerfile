@@ -55,7 +55,7 @@ RUN sudo pacman-key --init && \
   echo "alias startJupyter=\"jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --ServerApp.allow_origin='\$(gp url 8888)' --IdentityProvider.token='' --ServerApp.password=''\"" >> ~/.bashrc
 
 ENV PETSC_DIR=/opt/petsc/linux-c-opt
-ENV PYTHONPATH=${PYTHONPATH}:${PETSC_DIR}/lib:/usr/share/gmsh/api/python
+ENV PYTHONPATH=${PETSC_DIR}/lib:/usr/share/gmsh/api/python
 ENV PYDEVD_DISABLE_FILE_VALIDATION=1
 
 EXPOSE 8888

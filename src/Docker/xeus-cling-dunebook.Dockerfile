@@ -45,4 +45,4 @@ RUN sudo pacman-key --init && \
   sudo pacman -Scc <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/*
 
-ENV PYTHONPATH=${PYTHONPATH}:/usr/share/gmsh/api/python
+ENV PYTHONPATH=/usr/share/gmsh/api/python

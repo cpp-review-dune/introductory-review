@@ -88,7 +88,7 @@ RUN sudo pacman-key --init && \
   sudo rm -r /var/lib/pacman/sync/* && \
   echo "alias startJupyter=\"jupyter-lab --port=8888 --no-browser --ip=0.0.0.0 --ServerApp.allow_origin='\$(gp url 8888)' --IdentityProvider.token='' --ServerApp.password=''\"" >> ~/.bashrc
 
-ENV PYTHONPATH=${PYTHONPATH}:/usr/share/gmsh/api/python
+ENV PYTHONPATH=/usr/share/gmsh/api/python
 ENV TRAME_DISABLE_V3_WARNING="1"
 ENV DISPLAY=":99.0"
 ENV PYVISTA_OFF_SCREEN="true"

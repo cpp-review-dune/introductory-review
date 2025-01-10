@@ -65,4 +65,4 @@ RUN sudo pacman-key --init && \
   sudo rm -r /var/lib/pacman/sync/*
 
 ENV PETSC_DIR=/opt/petsc/linux-c-opt
-ENV PYTHONPATH=${PYTHONPATH}:${PETSC_DIR}/lib
+ENV PYTHONPATH=${PETSC_DIR}/lib

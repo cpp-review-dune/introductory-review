@@ -69,4 +69,4 @@ RUN sudo pacman-key --init && \
 
 ENV PETSC_DIR=/opt/petsc/linux-c-opt
 ENV SLEPC_DIR=/opt/slepc/linux-c-opt
-ENV PYTHONPATH=${PYTHONPATH}:${PETSC_DIR}/lib:${SLEPC_DIR}/lib
+ENV PYTHONPATH=${PETSC_DIR}/lib:${SLEPC_DIR}/lib
