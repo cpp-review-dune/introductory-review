@@ -29,9 +29,9 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
   mkdir -p ${DIR_DEALII_GIT} && \
   pushd ${DIR_DEALII_GIT} && \
   curl -LO ${PKGBUILD_DEALII_GIT} && \
-  makepkg -s --noconfirm 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
+  makepkg -s --noconfirm --nocheck && \
   popd
-
+# 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="deal.II Arch" \
   description="deal.II in Arch." \
