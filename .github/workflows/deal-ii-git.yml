@@ -1,10 +1,10 @@
-name: Publish Docker image based on deal.II v9.6.2
+name: Publish Docker image based on deal.II (last commit)
 
 on:
   push:
     branches: [main]
     paths:
-      - src/Docker/deal-ii.Dockerfile
+      - src/Docker/deal-ii-git.Dockerfile
   pull_request:
     branches: [main]
   schedule:
@@ -40,10 +40,10 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v4
         with:
-          path: /tmp/.buildx-deal-ii-cache
-          key: ${{ runner.os }}-buildx-deal-ii-${{ github.sha }}
+          path: /tmp/.buildx-deal-ii-git-cache
+          key: ${{ runner.os }}-buildx-deal-ii-git-${{ github.sha }}
           restore-keys: |
-            ${{ runner.os }}-buildx-deal-ii-
+            ${{ runner.os }}-buildx-deal-ii-git-
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
@@ -56,30 +56,30 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .
-          file: ./introductory-review/src/Docker/deal-ii.Dockerfile
+          file: ./introductory-review/src/Docker/deal-ii-git.Dockerfile
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/cpp-review-dune/introductory-review/deal-ii:latest
-          cache-from: type=local,src=/tmp/.buildx-deal-ii-cache
+          tags: ghcr.io/cpp-review-dune/introductory-review/deal-ii-git:latest
+          cache-from: type=local,src=/tmp/.buildx-deal-ii-git-cache
           cache-to: type=local,mode=max,dest=/tmp/.buildx-main-cache
 
       - name: Move cache
         run: |
-          rm -rf /tmp/.buildx-deal-ii-cache
-          mv /tmp/.buildx-main-cache /tmp/.buildx-deal-ii-cache
+          rm -rf /tmp/.buildx-deal-ii-git-cache
+          mv /tmp/.buildx-main-cache /tmp/.buildx-deal-ii-git-cache
 
       # - name: Scan for vulnerabilities
       #   uses: crazy-max/ghaction-container-scan@master
       #   with:
-      #     image: ghcr.io/cpp-review-dune/introductory-review/deal-ii:latest
+      #     image: ghcr.io/cpp-review-dune/introductory-review/deal-ii-git:latest
       #     annotations: true
       #     severity_threshold: CRITICAL
-      #     dockerfile: ./src/Docker/deal-ii.Dockerfile
+      #     dockerfile: ./src/Docker/deal-ii-git.Dockerfile
 
       - name: Prune untagged images
         uses: carlosal1015/ghcr-delete-image-action@main
         with:
           owner: cpp-review-dune
-          name: introductory-review/deal-ii
+          name: introductory-review/deal-ii-git
           token: ${{ secrets.PAT }}
           untagged-keep-latest: 2
