@@ -17,7 +17,7 @@ ARG OPT_PACKAGES="\
   trilinos \
   "
 
-ARG DIR_DEALII_GIT="/home/builder/.cache/yay/python-covid19h"
+ARG DIR_DEALII_GIT="/home/builder/.cache/yay/deal-ii-git"
 
 ARG PKGBUILD_DEALII_GIT="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/PKGBUILD"
 
@@ -29,9 +29,9 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
   mkdir -p ${DIR_DEALII_GIT} && \
   pushd ${DIR_DEALII_GIT} && \
   curl -LO ${PKGBUILD_DEALII_GIT} && \
-  makepkg -s --noconfirm --nocheck && \
+  makepkg -s --noconfirm --nocheck 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null && \
   popd
-# 2>&1 | tee -a /tmp/$(date -u +"%Y-%m-%d-%H-%M-%S" --date='5 hours ago').log >/dev/null
+
 LABEL maintainer="Oromion <caznaranl@uni.pe>" \
   name="deal.II Arch" \
   description="deal.II in Arch." \
