@@ -11,7 +11,7 @@ ARG OPT_PETSC_PACKAGES="\
 ARG OPT_PACKAGES="\
   openmpi \
   p4est-deal-ii \
-  petsc-complex \
+  petsc \
   python \
   suitesparse \
   trilinos \
