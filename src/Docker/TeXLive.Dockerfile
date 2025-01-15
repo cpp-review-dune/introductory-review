@@ -64,7 +64,7 @@ ARG PACKAGES="\
   texlive-bibtexextra \
   texlive-fontsextra \
   texlive-fontutils \
-  texlive-lang-cjk \
+  texlive-langcjk \
   texlive-langgerman \
   texlive-langspanish \
   texlive-latexextra \
