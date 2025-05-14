@@ -74,6 +74,7 @@ ARG PACKAGES="\
   texlive-langspanish \
   texlive-latexextra \
   texlive-luatex \
+  texlive-metapost \
   texlive-plaingeneric \
   texlive-mathscience \
   texlive-xetex \
