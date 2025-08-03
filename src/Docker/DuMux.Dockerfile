@@ -1,4 +1,4 @@
-# Copyleft (c) May, 2024, Oromion.
+# Copyleft (c) July, 2025, Oromion
 
 FROM ghcr.io/cpp-review-dune/introductory-review/aur AS dumux
 
