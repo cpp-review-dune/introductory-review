@@ -33,7 +33,7 @@ jobs:
         run: cd docs && npm install && npm run build
 
       - name: Download artifact
-        uses: dawidd6/action-download-artifact@v9
+        uses: dawidd6/action-download-artifact@v11
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
           workflow: latex.yml
