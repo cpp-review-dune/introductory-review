@@ -1,4 +1,4 @@
-# Copyleft (c) July, 2025, Oromion
+# Copyleft (c) September, 2025, Oromion
 # https://dev.to/cloudx/testing-our-package-build-in-the-docker-world-34p0
 # https://github.com/alersrt/texlive-archlinux-docker/blob/master/Dockerfile
 
