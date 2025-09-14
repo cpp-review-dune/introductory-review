@@ -1,6 +1,6 @@
-From 7dcfe18833c814dcadcbca4cbac626268f14d8bd Mon Sep 17 00:00:00 2001
+From 48f883d7289543ae81ebfb141a4af7c65fac79f2 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Carlos=20Aznar=C3=A1n?= <caznaranl@uni.pe>
-Date: Fri, 10 Jan 2025 15:58:56 -0500
+Date: Sun, 14 Sep 2025 11:15:46 -0500
 Subject: [PATCH] Enable --nocheck for python bindings
 
 ---
@@ -9,12 +9,12 @@ Subject: [PATCH] Enable --nocheck for python bindings
  2 files changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/.SRCINFO b/.SRCINFO
-index ee5f3a8..58aa2dc 100644
+index 776c687..815f550 100644
 --- a/.SRCINFO
 +++ b/.SRCINFO
 @@ -2,7 +2,7 @@ pkgbase = deal-ii
  	pkgdesc = An Open Source Finite Element Differential Equations Analysis Library
- 	pkgver = 9.6.2
+ 	pkgver = 9.7.0
  	pkgrel = 1
 -	url = https://www.dealii.org/
 +	url = https://dealii.org
@@ -22,10 +22,10 @@ index ee5f3a8..58aa2dc 100644
  	arch = i686
  	arch = x86_64
 diff --git a/PKGBUILD b/PKGBUILD
-index 0367968..3ba48bb 100644
+index 4d4f5cd..aa2b0b6 100644
 --- a/PKGBUILD
 +++ b/PKGBUILD
-@@ -7,7 +7,7 @@ pkgver=9.6.2
+@@ -7,7 +7,7 @@ pkgver=9.7.0
  pkgrel=1
  pkgdesc="An Open Source Finite Element Differential Equations Analysis Library"
  arch=("i686" "x86_64")
@@ -44,5 +44,5 @@ index 0367968..3ba48bb 100644
    # libgslcblas, so disable --as-needed with GCC:
    sed -i '/ENABLE_IF_LINKS(DEAL_II_LINKER_FLAGS "-Wl,--as-needed")/d' \
 -- 
-2.47.1
+2.51.0
 
