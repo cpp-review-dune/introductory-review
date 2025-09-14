@@ -24,8 +24,8 @@ ARG AUR_PACKAGES="\
 ARG PATCH="https://raw.githubusercontent.com/cpp-review-dune/introductory-review/main/src/Docker/0001-Enable-nocheck-for-python-bindings.patch"
 
 RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
-  yay --noconfirm -S ${OPT_PETSC_PACKAGES} && \
-  yay --noconfirm -S ${OPT_PACKAGES} && \
+  yay --noconfirm -S ${OPT_PETSC_PACKAGES} >/dev/null 2>&1 && \
+  yay --noconfirm -S ${OPT_PACKAGES} >/dev/null 2>&1 && \
   git config --global user.email github-actions@github.com && \
   git config --global user.name github-actions && \
   yay -G ${AUR_PACKAGES} && \
