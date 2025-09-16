@@ -34,7 +34,7 @@ RUN yay --repo --needed --noconfirm --noprogressbar -Syuq >/dev/null 2>&1 && \
   cd deal-ii && \
   curl -O ${PATCH} && \
   git am --signoff <0001-Enable-nocheck-for-python-bindings.patch && \
-  makepkg -s --noconfirm \
+  makepkg -s --noconfirm && \
   mkdir -p ~/.cache/yay/deal-ii && \
   mv *.pkg.tar.zst ~/.cache/yay/deal-ii
 
