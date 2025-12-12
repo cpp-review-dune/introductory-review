@@ -76,6 +76,7 @@ ARG PACKAGES="\
   texlive-luatex \
   texlive-metapost \
   texlive-plaingeneric \
+  texlive-publishers \
   texlive-mathscience \
   texlive-xetex \
   ttf-fira-code \
