@@ -112,7 +112,7 @@ RUN sudo pacman-key --init && \
   cd $LOCAL_CLASS && \
   patch lu-thesis.sty lu-thesis.patch && \
   rm lu-thesis.patch
-# texlive-{core,bin} ruby perl-tk psutils dialog ed poppler-data
+# texlive-{core,bin} perl-tk psutils dialog ed poppler-data
 
 ENV PATH="/usr/bin/vendor_perl:${PATH}"
 ENV PLANTUML_JAR="/usr/share/java/plantuml/plantuml.jar"
