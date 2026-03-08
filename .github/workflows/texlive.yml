@@ -16,13 +16,13 @@ jobs:
 
     steps:
       - name: Maximize build space
-        uses: easimon/maximize-build-space@master
+        uses: justinthelaw/maximize-github-runner-space@master
         with:
-          root-reserve-mb: 38000
-          remove-dotnet: "true"
+          cleanup-profile: max
           remove-android: "true"
-          remove-haskell: "true"
           remove-codeql: "true"
+          remove-cached-tools: "true"
+          remove-docker-images: "true"
 
       - name: Partial Clone
         shell: bash

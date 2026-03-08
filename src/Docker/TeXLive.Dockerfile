@@ -106,7 +106,7 @@ RUN sudo pacman-key --init && \
   yay -Scc <<< Y <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
   mkdir -p $LOCAL_CLASS && \
-  curl --create-dirs -O --output-dir $LOCAL_CLASS $UNI_TEMPLATE && \
+  curl --create-dirs -O --output-dir $LOCAL_CLASS ${UNI_TEMPLATE} && \
   curl -O --output-dir $LOCAL_CLASS $LU_TEMPLATE && \
   curl -O --output-dir $LOCAL_CLASS $LU_PATCH && \
   cd $LOCAL_CLASS && \
