@@ -105,11 +105,11 @@ RUN sudo pacman-key --init && \
   find /tmp/ ! -name '*.log' -type f -exec rm -f {} + && \
   yay -Scc <<< Y <<< Y <<< Y && \
   sudo rm -r /var/lib/pacman/sync/* && \
-  mkdir -p $LOCAL_CLASS && \
-  curl --create-dirs -O --output-dir $LOCAL_CLASS ${UNI_TEMPLATE} && \
-  curl -O --output-dir $LOCAL_CLASS $LU_TEMPLATE && \
-  curl -O --output-dir $LOCAL_CLASS $LU_PATCH && \
-  cd $LOCAL_CLASS && \
+  mkdir -p ${LOCAL_CLASS} && \
+  curl --create-dirs -O --output-dir ${LOCAL_CLASS} ${UNI_TEMPLATE} && \
+  curl -O --output-dir ${LOCAL_CLASS} ${LU_TEMPLATE} && \
+  curl -O --output-dir ${LOCAL_CLASS} ${LU_PATCH} && \
+  cd ${LOCAL_CLASS} && \
   patch lu-thesis.sty lu-thesis.patch && \
   rm lu-thesis.patch
 # texlive-{core,bin} perl-tk psutils dialog ed poppler-data
