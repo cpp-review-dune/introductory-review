@@ -21,7 +21,7 @@ jobs:
 
     steps:
       - name: Maximize build space
-        uses: justinthelaw/maximize-github-runner-space@master
+        uses: justinthelaw/maximize-github-runner-space@main
         with:
           cleanup-profile: max
 
